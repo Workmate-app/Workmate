@@ -38,19 +38,21 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bars_btn = new FontAwesome.Sharp.IconButton();
             this.bar_pnl = new System.Windows.Forms.Panel();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
+            this.edit_btn = new FontAwesome.Sharp.IconButton();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.plus_btn = new FontAwesome.Sharp.IconButton();
             this.desktop_pnl = new System.Windows.Forms.Panel();
             this.ordini_data = new System.Windows.Forms.DataGridView();
+            this.ordine = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prezzo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.magazzino_data = new System.Windows.Forms.DataGridView();
             this.codice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantita_codice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prezzo_codice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descrizione = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ordine = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prezzo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.note = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.settings_pnl = new System.Windows.Forms.Panel();
             this.dock_pnl.SuspendLayout();
             this.logo_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -96,6 +98,7 @@
             this.impostazioni_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.impostazioni_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.impostazioni_btn.UseVisualStyleBackColor = true;
+            this.impostazioni_btn.Click += new System.EventHandler(this.impostazioni_btn_Click);
             // 
             // ordini_btn
             // 
@@ -207,7 +210,7 @@
             // bar_pnl
             // 
             this.bar_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.bar_pnl.Controls.Add(this.iconButton2);
+            this.bar_pnl.Controls.Add(this.edit_btn);
             this.bar_pnl.Controls.Add(this.iconButton1);
             this.bar_pnl.Controls.Add(this.plus_btn);
             this.bar_pnl.Dock = System.Windows.Forms.DockStyle.Top;
@@ -216,21 +219,22 @@
             this.bar_pnl.Size = new System.Drawing.Size(838, 60);
             this.bar_pnl.TabIndex = 1;
             // 
-            // iconButton2
+            // edit_btn
             // 
-            this.iconButton2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.iconButton2.FlatAppearance.BorderSize = 0;
-            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.Pen;
-            this.iconButton2.IconColor = System.Drawing.Color.Black;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.IconSize = 40;
-            this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.iconButton2.Location = new System.Drawing.Point(110, 0);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(55, 60);
-            this.iconButton2.TabIndex = 2;
-            this.iconButton2.UseVisualStyleBackColor = true;
+            this.edit_btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.edit_btn.FlatAppearance.BorderSize = 0;
+            this.edit_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.edit_btn.IconChar = FontAwesome.Sharp.IconChar.Pen;
+            this.edit_btn.IconColor = System.Drawing.Color.Black;
+            this.edit_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.edit_btn.IconSize = 40;
+            this.edit_btn.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.edit_btn.Location = new System.Drawing.Point(110, 0);
+            this.edit_btn.Name = "edit_btn";
+            this.edit_btn.Size = new System.Drawing.Size(55, 60);
+            this.edit_btn.TabIndex = 2;
+            this.edit_btn.UseVisualStyleBackColor = true;
+            this.edit_btn.Click += new System.EventHandler(this.edit_btn_Click_1);
             // 
             // iconButton1
             // 
@@ -247,6 +251,7 @@
             this.iconButton1.Size = new System.Drawing.Size(55, 60);
             this.iconButton1.TabIndex = 1;
             this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // plus_btn
             // 
@@ -263,6 +268,7 @@
             this.plus_btn.Size = new System.Drawing.Size(55, 60);
             this.plus_btn.TabIndex = 0;
             this.plus_btn.UseVisualStyleBackColor = true;
+            this.plus_btn.Click += new System.EventHandler(this.plus_btn_Click_1);
             // 
             // desktop_pnl
             // 
@@ -280,6 +286,7 @@
             this.ordini_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ordini_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ordine,
+            this.cliente,
             this.prezzo,
             this.note});
             this.ordini_data.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -288,6 +295,26 @@
             this.ordini_data.RowTemplate.Height = 25;
             this.ordini_data.Size = new System.Drawing.Size(838, 532);
             this.ordini_data.TabIndex = 1;
+            // 
+            // ordine
+            // 
+            this.ordine.HeaderText = "Ordine";
+            this.ordine.Name = "ordine";
+            // 
+            // cliente
+            // 
+            this.cliente.HeaderText = "Cliente";
+            this.cliente.Name = "cliente";
+            // 
+            // prezzo
+            // 
+            this.prezzo.HeaderText = "Prezzo";
+            this.prezzo.Name = "prezzo";
+            // 
+            // note
+            // 
+            this.note.HeaderText = "Note";
+            this.note.Name = "note";
             // 
             // magazzino_data
             // 
@@ -324,26 +351,21 @@
             this.descrizione.HeaderText = "Descrizione";
             this.descrizione.Name = "descrizione";
             // 
-            // ordine
+            // settings_pnl
             // 
-            this.ordine.HeaderText = "Ordine";
-            this.ordine.Name = "ordine";
-            // 
-            // prezzo
-            // 
-            this.prezzo.HeaderText = "Prezzo";
-            this.prezzo.Name = "prezzo";
-            // 
-            // note
-            // 
-            this.note.HeaderText = "Note";
-            this.note.Name = "note";
+            this.settings_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.settings_pnl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.settings_pnl.Location = new System.Drawing.Point(230, 60);
+            this.settings_pnl.Name = "settings_pnl";
+            this.settings_pnl.Size = new System.Drawing.Size(838, 532);
+            this.settings_pnl.TabIndex = 3;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1068, 592);
+            this.Controls.Add(this.settings_pnl);
             this.Controls.Add(this.desktop_pnl);
             this.Controls.Add(this.bar_pnl);
             this.Controls.Add(this.dock_pnl);
@@ -378,7 +400,7 @@
         private PictureBox pictureBox1;
         private FontAwesome.Sharp.IconButton iconButton1;
         private FontAwesome.Sharp.IconButton plus_btn;
-        private FontAwesome.Sharp.IconButton iconButton2;
+        private FontAwesome.Sharp.IconButton edit_btn;
         private DataGridView ordini_data;
         private DataGridView magazzino_data;
         private DataGridViewTextBoxColumn codice;
@@ -386,7 +408,9 @@
         private DataGridViewTextBoxColumn prezzo_codice;
         private DataGridViewTextBoxColumn descrizione;
         private DataGridViewTextBoxColumn ordine;
+        private DataGridViewTextBoxColumn cliente;
         private DataGridViewTextBoxColumn prezzo;
         private DataGridViewTextBoxColumn note;
+        private Panel settings_pnl;
     }
 }
