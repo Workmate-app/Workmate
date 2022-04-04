@@ -9,6 +9,7 @@ namespace Workmate
         private int borderSize = 2;
         private bool magazzino = false;
         bool mostra_avviso = true;
+        bool avv_mostrati = false;
         public Form1()
         {
             InitializeComponent();
@@ -87,7 +88,7 @@ namespace Workmate
             }
         }
 
-        private void carica_codici()
+        private void carica_codici(string testoc = "", string colonnac = "", int search = 0)
         {
             magazzino_data.Rows.Clear();
             string[] codici = var.carica_codici();
@@ -100,9 +101,33 @@ namespace Workmate
                 XmlNode quantita = xml_doc.DocumentElement.SelectSingleNode("/codice/quantità");
                 XmlNode quantitamin = xml_doc.DocumentElement.SelectSingleNode("/codice/quantitàmin");
                 XmlNode descrizione = xml_doc.DocumentElement.SelectSingleNode("/codice/descrizione");
-                string[] riga = { codice.InnerText, prezzo.InnerText, quantita.InnerText, quantitamin.InnerText,descrizione.InnerText };
-                magazzino_data.Rows.Add(riga);
-                if(Int32.Parse(quantita.InnerText) < Int32.Parse(quantitamin.InnerText) && mostra_avviso == true)
+                string[] riga = { codice.InnerText, prezzo.InnerText, quantita.InnerText, quantitamin.InnerText, descrizione.InnerText };
+                //MessageBox.Show(codici[i].Replace(var.db+@"Magazzino\", ""));
+                string contenuto = "";
+                switch (colonnac)
+                {
+                    case "Codice":
+                        contenuto = codice.InnerText;
+                        break;
+                    case "Prezzo":
+                        contenuto = prezzo.InnerText;
+                        break;
+                    case "Quantità":
+                        contenuto = quantita.InnerText;
+                        break;
+                    case "Descrizione":
+                        contenuto = descrizione.InnerText;
+                        break;
+                    default:
+                        contenuto = "";
+                        break;
+                }
+                contenuto = contenuto.ToLower();
+                testoc = testoc.ToLower();
+                if (contenuto.Contains(testoc))
+                    magazzino_data.Rows.Add(riga);
+
+                if (Int32.Parse(quantita.InnerText) < Int32.Parse(quantitamin.InnerText) && mostra_avviso == true && search == 0 && avv_mostrati == false)
                 {
                     CustomDialog customdialog = new CustomDialog();
                     customdialog.label1.Text = codice.InnerText + " è sceso sotto la soglia minima";
@@ -115,7 +140,7 @@ namespace Workmate
             }
         }
 
-        private void carica_ordini()
+        private void carica_ordini(string testoc = "", string colonnac = "")
         {
             ordini_data.Rows.Clear();
             string[] ordini = var.carica_ordini();
@@ -128,7 +153,30 @@ namespace Workmate
                 XmlNode cliente = xml_doc.DocumentElement.SelectSingleNode("/ordine/cliente");
                 XmlNode note = xml_doc.DocumentElement.SelectSingleNode("/ordine/note");
                 string[] riga = { ordine.InnerText, prezzo.InnerText, cliente.InnerText, note.InnerText };
-                ordini_data.Rows.Add(riga);
+
+                string contenuto = "";
+                switch (colonnac)
+                {
+                    case "Ordine":
+                        contenuto = ordine.InnerText;
+                        break;
+                    case "Prezzo":
+                        contenuto = prezzo.InnerText;
+                        break;
+                    case "Cliente":
+                        contenuto = cliente.InnerText;
+                        break;
+                    case "Note":
+                        contenuto = note.InnerText;
+                        break;
+                    default:
+                        contenuto = "";
+                        break;
+                }
+                contenuto = contenuto.ToLower();
+                testoc = testoc.ToLower();
+                if (contenuto.Contains(testoc))
+                    ordini_data.Rows.Add(riga);
             }
         }
         private void magazzino_btn_Click(object sender, EventArgs e)
@@ -139,7 +187,14 @@ namespace Workmate
             ordini_data.Visible = false;
             magazzino_data.Visible = true;
             magazzino = true;
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add("Codice");
+            comboBox1.Items.Add("Prezzo");
+            comboBox1.Items.Add("Quantità");
+            comboBox1.Items.Add("Descrizione");
             carica_codici();
+            avv_mostrati = true;
+            comboBox1.SelectedIndex = 0;
         }
 
         private void ordini_btn_Click(object sender, EventArgs e)
@@ -150,7 +205,14 @@ namespace Workmate
             ordini_data.Visible = true;
             magazzino_data.Visible = false;
             magazzino = false;
+            avv_mostrati = false;
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add("Ordine");
+            comboBox1.Items.Add("Prezzo");
+            comboBox1.Items.Add("Cliente");
+            comboBox1.Items.Add("Note");
             carica_ordini();
+            comboBox1.SelectedIndex = 0;
         }
 
         private void home_btn_Click(object sender, EventArgs e)
@@ -160,12 +222,14 @@ namespace Workmate
             bar_pnl.Visible = false;
             ordini_data.Visible = false;
             magazzino_data.Visible = false;
+            avv_mostrati = false;
         }
         private void impostazioni_btn_Click(object sender, EventArgs e)
         {
             desktop_pnl.Visible = false;
             bar_pnl.Visible = false;
             settings_pnl.Visible = true;
+            avv_mostrati = false;
         }
 
         private void plus_btn_Click_1(object sender, EventArgs e)
@@ -224,7 +288,8 @@ namespace Workmate
                     try
                     {
                         File.Delete(var.db + @"Magazzino\" + codice + ".xml");
-                    }catch(Exception ex)
+                    }
+                    catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, " Impossibile eliminare il codice");
                     }
@@ -241,13 +306,98 @@ namespace Workmate
                     {
                         File.Delete(var.db + @"Ordini\" + ordine + ".xml");
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, " Impossibile eliminare l'ordine");
                     }
-                        carica_ordini();
+                    carica_ordini();
                 }
             }
+        }
+
+        private void srch_btn_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length > 0)
+            {
+                if (magazzino == true)
+                {
+                    carica_codici(textBox1.Text, comboBox1.Text, 1);
+                }
+                else
+                {
+                    carica_ordini(textBox1.Text, comboBox1.Text);
+                }
+            }
+            else
+            {
+                if (magazzino == true)
+                    carica_codici();
+                else
+                    carica_ordini();
+            }
+        }
+
+        private void erase_btn_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            comboBox1.SelectedIndex = 0;
+            if (magazzino == true)
+                carica_codici();
+            else
+                carica_ordini();
+        }
+
+        private void ordini_data_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
+                {
+                    ordini_data.CurrentCell = ordini_data.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    ordini_data.Rows[e.RowIndex].Selected = true;
+                    ordini_data.Focus();
+                    ordini_data.ContextMenuStrip = contextMenuStrip1;
+                    Point posizioneContext = new Point(MousePosition.X, MousePosition.Y);
+                    ordini_data.ContextMenuStrip.Show(posizioneContext);
+                    ordini_data.ContextMenuStrip = null;
+                }
+                else
+                    ordini_data.ContextMenuStrip = null;
+            }
+        }
+
+        private void magazzino_data_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
+                {
+                    magazzino_data.CurrentCell = magazzino_data.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    magazzino_data.Rows[e.RowIndex].Selected = true;
+                    magazzino_data.Focus();
+                    magazzino_data.ContextMenuStrip = contextMenuStrip1;
+                    Point posizioneContext = new Point(MousePosition.X, MousePosition.Y);
+                    magazzino_data.ContextMenuStrip.Show(posizioneContext);
+                    magazzino_data.ContextMenuStrip = null;
+                }
+                else
+                    magazzino_data.ContextMenuStrip = null;
+            }
+        }
+
+        private void modificaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            edit_btn_Click_1(sender, e);
+        }
+
+        private void aggiungiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            plus_btn_Click_1(sender, e);
+        }
+
+        private void eliminaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            del_btn_Click(sender, e);
         }
     }
 }

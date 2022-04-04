@@ -16,6 +16,7 @@ namespace Workmate
     {
         public Aggiungi_Ordine()
         {
+            this.DialogResult = DialogResult.No;
             InitializeComponent();
         }
 
@@ -38,6 +39,14 @@ namespace Workmate
                 MessageBox.Show("Controllare il prezzo (per la , inserire il .)");
                 return;
             }
+           /* foreach (TextBox textbox in qt_pnl.Controls.OfType<TextBox>())
+            {
+                if (System.Text.RegularExpressions.Regex.IsMatch(textbox.Text, @"^[0-9]+$") == false && textbox.Text.Length != 0)
+                {
+                    MessageBox.Show("Controllare la quantità dei codici");
+                    return;
+                }
+            }*/
             #endregion
 
             XDocument doc_xml = new XDocument(new XElement("ordine",
@@ -59,6 +68,7 @@ namespace Workmate
                 if (Modifica == 1 && OldOrd != ord_txt.Text)
                     File.Delete(root + OldOrd + ".xml");
             }
+            this.DialogResult = DialogResult.Yes;
             this.Close();
         }
 
@@ -68,6 +78,7 @@ namespace Workmate
         }
         private void Aggiungi_Ordine_Load_1(object sender, EventArgs e)
         {
+            //Codici.Visible = false;
             if (Modifica == 1)
             {
                 this.Text = "Modifica ordine";

@@ -16,6 +16,7 @@ namespace Workmate
     {
         public Aggiungi_Codice()
         {
+
             InitializeComponent();
         }
 
@@ -48,7 +49,12 @@ namespace Workmate
                 MessageBox.Show("Controllare la quantità");
                 return;
             }
-            if(qtmin_txt.Text.Length == 0)
+            if (System.Text.RegularExpressions.Regex.IsMatch(qtmin_txt.Text, @"^[0-9]+$") == false)
+            {
+                MessageBox.Show("Controllare la quantità minima");
+                return;
+            }
+            if (qtmin_txt.Text.Length == 0)
             {
                 qtmin_txt.Text = "0";
             }

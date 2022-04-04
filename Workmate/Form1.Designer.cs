@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dock_pnl = new System.Windows.Forms.Panel();
             this.impostazioni_btn = new FontAwesome.Sharp.IconButton();
@@ -38,6 +39,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bars_btn = new FontAwesome.Sharp.IconButton();
             this.bar_pnl = new System.Windows.Forms.Panel();
+            this.erase_btn = new System.Windows.Forms.Button();
+            this.srch_btn = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.edit_btn = new FontAwesome.Sharp.IconButton();
             this.del_btn = new FontAwesome.Sharp.IconButton();
             this.plus_btn = new FontAwesome.Sharp.IconButton();
@@ -54,6 +59,10 @@
             this.quantitamin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descrizione = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.settings_pnl = new System.Windows.Forms.Panel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.modificaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dock_pnl.SuspendLayout();
             this.logo_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -61,6 +70,7 @@
             this.desktop_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordini_data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.magazzino_data)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dock_pnl
@@ -211,6 +221,10 @@
             // bar_pnl
             // 
             this.bar_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.bar_pnl.Controls.Add(this.erase_btn);
+            this.bar_pnl.Controls.Add(this.srch_btn);
+            this.bar_pnl.Controls.Add(this.comboBox1);
+            this.bar_pnl.Controls.Add(this.textBox1);
             this.bar_pnl.Controls.Add(this.edit_btn);
             this.bar_pnl.Controls.Add(this.del_btn);
             this.bar_pnl.Controls.Add(this.plus_btn);
@@ -219,6 +233,41 @@
             this.bar_pnl.Name = "bar_pnl";
             this.bar_pnl.Size = new System.Drawing.Size(838, 60);
             this.bar_pnl.TabIndex = 1;
+            // 
+            // erase_btn
+            // 
+            this.erase_btn.Location = new System.Drawing.Point(485, 20);
+            this.erase_btn.Name = "erase_btn";
+            this.erase_btn.Size = new System.Drawing.Size(75, 23);
+            this.erase_btn.TabIndex = 7;
+            this.erase_btn.Text = "button2";
+            this.erase_btn.UseVisualStyleBackColor = true;
+            this.erase_btn.Click += new System.EventHandler(this.erase_btn_Click);
+            // 
+            // srch_btn
+            // 
+            this.srch_btn.Location = new System.Drawing.Point(404, 20);
+            this.srch_btn.Name = "srch_btn";
+            this.srch_btn.Size = new System.Drawing.Size(75, 23);
+            this.srch_btn.TabIndex = 6;
+            this.srch_btn.Text = "button1";
+            this.srch_btn.UseVisualStyleBackColor = true;
+            this.srch_btn.Click += new System.EventHandler(this.srch_btn_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(277, 20);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.TabIndex = 5;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(171, 20);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 23);
+            this.textBox1.TabIndex = 4;
             // 
             // edit_btn
             // 
@@ -299,6 +348,7 @@
             this.ordini_data.RowTemplate.Height = 25;
             this.ordini_data.Size = new System.Drawing.Size(838, 532);
             this.ordini_data.TabIndex = 1;
+            this.ordini_data.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ordini_data_CellMouseClick);
             // 
             // ordine
             // 
@@ -338,6 +388,7 @@
             this.magazzino_data.RowTemplate.Height = 25;
             this.magazzino_data.Size = new System.Drawing.Size(838, 532);
             this.magazzino_data.TabIndex = 0;
+            this.magazzino_data.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.magazzino_data_CellMouseClick);
             // 
             // codice
             // 
@@ -373,6 +424,36 @@
             this.settings_pnl.Size = new System.Drawing.Size(838, 532);
             this.settings_pnl.TabIndex = 3;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modificaToolStripMenuItem,
+            this.aggiungiToolStripMenuItem,
+            this.eliminaToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 92);
+            // 
+            // modificaToolStripMenuItem
+            // 
+            this.modificaToolStripMenuItem.Name = "modificaToolStripMenuItem";
+            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modificaToolStripMenuItem.Text = "Modifica";
+            this.modificaToolStripMenuItem.Click += new System.EventHandler(this.modificaToolStripMenuItem_Click);
+            // 
+            // aggiungiToolStripMenuItem
+            // 
+            this.aggiungiToolStripMenuItem.Name = "aggiungiToolStripMenuItem";
+            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aggiungiToolStripMenuItem.Text = "Aggiungi ";
+            this.aggiungiToolStripMenuItem.Click += new System.EventHandler(this.aggiungiToolStripMenuItem_Click);
+            // 
+            // eliminaToolStripMenuItem
+            // 
+            this.eliminaToolStripMenuItem.Name = "eliminaToolStripMenuItem";
+            this.eliminaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminaToolStripMenuItem.Text = "Elimina";
+            this.eliminaToolStripMenuItem.Click += new System.EventHandler(this.eliminaToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -392,9 +473,11 @@
             this.logo_pnl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.bar_pnl.ResumeLayout(false);
+            this.bar_pnl.PerformLayout();
             this.desktop_pnl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ordini_data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.magazzino_data)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -426,5 +509,13 @@
         private DataGridViewTextBoxColumn cliente;
         private DataGridViewTextBoxColumn note;
         private FontAwesome.Sharp.IconButton del_btn;
+        private Button erase_btn;
+        private Button srch_btn;
+        private ComboBox comboBox1;
+        private TextBox textBox1;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem modificaToolStripMenuItem;
+        private ToolStripMenuItem aggiungiToolStripMenuItem;
+        private ToolStripMenuItem eliminaToolStripMenuItem;
     }
 }
