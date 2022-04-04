@@ -39,10 +39,14 @@
             this.bars_btn = new FontAwesome.Sharp.IconButton();
             this.bar_pnl = new System.Windows.Forms.Panel();
             this.edit_btn = new FontAwesome.Sharp.IconButton();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.del_btn = new FontAwesome.Sharp.IconButton();
             this.plus_btn = new FontAwesome.Sharp.IconButton();
             this.desktop_pnl = new System.Windows.Forms.Panel();
             this.ordini_data = new System.Windows.Forms.DataGridView();
+            this.ordine = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prezzo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.magazzino_data = new System.Windows.Forms.DataGridView();
             this.codice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prezzo_codice = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,10 +54,6 @@
             this.quantitamin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descrizione = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.settings_pnl = new System.Windows.Forms.Panel();
-            this.ordine = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prezzo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dock_pnl.SuspendLayout();
             this.logo_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -212,7 +212,7 @@
             // 
             this.bar_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
             this.bar_pnl.Controls.Add(this.edit_btn);
-            this.bar_pnl.Controls.Add(this.iconButton1);
+            this.bar_pnl.Controls.Add(this.del_btn);
             this.bar_pnl.Controls.Add(this.plus_btn);
             this.bar_pnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.bar_pnl.Location = new System.Drawing.Point(230, 0);
@@ -237,22 +237,22 @@
             this.edit_btn.UseVisualStyleBackColor = true;
             this.edit_btn.Click += new System.EventHandler(this.edit_btn_Click_1);
             // 
-            // iconButton1
+            // del_btn
             // 
-            this.iconButton1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Minus;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 40;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.iconButton1.Location = new System.Drawing.Point(55, 0);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(55, 60);
-            this.iconButton1.TabIndex = 1;
-            this.iconButton1.UseVisualStyleBackColor = true;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            this.del_btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.del_btn.FlatAppearance.BorderSize = 0;
+            this.del_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.del_btn.IconChar = FontAwesome.Sharp.IconChar.Minus;
+            this.del_btn.IconColor = System.Drawing.Color.Black;
+            this.del_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.del_btn.IconSize = 40;
+            this.del_btn.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.del_btn.Location = new System.Drawing.Point(55, 0);
+            this.del_btn.Name = "del_btn";
+            this.del_btn.Size = new System.Drawing.Size(55, 60);
+            this.del_btn.TabIndex = 3;
+            this.del_btn.UseVisualStyleBackColor = true;
+            this.del_btn.Click += new System.EventHandler(this.del_btn_Click);
             // 
             // plus_btn
             // 
@@ -284,6 +284,9 @@
             // 
             // ordini_data
             // 
+            this.ordini_data.AllowUserToAddRows = false;
+            this.ordini_data.AllowUserToDeleteRows = false;
+            this.ordini_data.AllowUserToResizeRows = false;
             this.ordini_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ordini_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ordine,
@@ -297,8 +300,31 @@
             this.ordini_data.Size = new System.Drawing.Size(838, 532);
             this.ordini_data.TabIndex = 1;
             // 
+            // ordine
+            // 
+            this.ordine.HeaderText = "Ordine";
+            this.ordine.Name = "ordine";
+            // 
+            // prezzo
+            // 
+            this.prezzo.HeaderText = "Prezzo";
+            this.prezzo.Name = "prezzo";
+            // 
+            // cliente
+            // 
+            this.cliente.HeaderText = "Cliente";
+            this.cliente.Name = "cliente";
+            // 
+            // note
+            // 
+            this.note.HeaderText = "Note";
+            this.note.Name = "note";
+            // 
             // magazzino_data
             // 
+            this.magazzino_data.AllowUserToAddRows = false;
+            this.magazzino_data.AllowUserToDeleteRows = false;
+            this.magazzino_data.AllowUserToResizeRows = false;
             this.magazzino_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.magazzino_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codice,
@@ -347,26 +373,6 @@
             this.settings_pnl.Size = new System.Drawing.Size(838, 532);
             this.settings_pnl.TabIndex = 3;
             // 
-            // ordine
-            // 
-            this.ordine.HeaderText = "Ordine";
-            this.ordine.Name = "ordine";
-            // 
-            // prezzo
-            // 
-            this.prezzo.HeaderText = "Prezzo";
-            this.prezzo.Name = "prezzo";
-            // 
-            // cliente
-            // 
-            this.cliente.HeaderText = "Cliente";
-            this.cliente.Name = "cliente";
-            // 
-            // note
-            // 
-            this.note.HeaderText = "Note";
-            this.note.Name = "note";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -405,7 +411,6 @@
         private FontAwesome.Sharp.IconButton home_btn;
         private FontAwesome.Sharp.IconButton bars_btn;
         private PictureBox pictureBox1;
-        private FontAwesome.Sharp.IconButton iconButton1;
         private FontAwesome.Sharp.IconButton plus_btn;
         private FontAwesome.Sharp.IconButton edit_btn;
         private DataGridView ordini_data;
@@ -420,5 +425,6 @@
         private DataGridViewTextBoxColumn prezzo;
         private DataGridViewTextBoxColumn cliente;
         private DataGridViewTextBoxColumn note;
+        private FontAwesome.Sharp.IconButton del_btn;
     }
 }

@@ -19,6 +19,7 @@ namespace Workmate
             InitializeComponent();
         }
 
+        string OldOrd = "";
         private void add_btn_Click(object sender, EventArgs e)
         {
             #region Controlli
@@ -47,7 +48,7 @@ namespace Workmate
                 ));
 
             string root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Ordini\\";
-            if (File.Exists(root + ord_txt.Text + ".xml"))
+            if (File.Exists(root + ord_txt.Text + ".xml") && Modifica != 1)
             {
                 MessageBox.Show("Ordine già esistente");
                 return;
@@ -55,6 +56,8 @@ namespace Workmate
             else
             {
                 doc_xml.Save(root + ord_txt.Text + ".xml");
+                if (Modifica == 1 && OldOrd != ord_txt.Text)
+                    File.Delete(root + OldOrd + ".xml");
             }
             this.Close();
         }
@@ -63,5 +66,23 @@ namespace Workmate
         {
             this.Close();
         }
+        private void Aggiungi_Ordine_Load_1(object sender, EventArgs e)
+        {
+            if (Modifica == 1)
+            {
+                this.Text = "Modifica ordine";
+                OldOrd = varOrdine;
+            }
+            ord_txt.Text = varOrdine;
+            prz_txt.Text = varPrz;
+            cliente_txt.Text = varCliente;
+            note_txt.Text = varNote;
+        }
+
+        public string varOrdine { get; set; }
+        public string varPrz { get; set; }
+        public string varCliente { get; set; }
+        public string varNote { get; set; }
+        public int Modifica { get; set; }
     }
 }

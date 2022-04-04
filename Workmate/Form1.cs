@@ -184,24 +184,69 @@ namespace Workmate
             }
         }
 
-        private void iconButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void edit_btn_Click_1(object sender, EventArgs e)
         {
             if (magazzino == true)
             {
                 Aggiungi_Codice Nuovo_Codice = new Aggiungi_Codice();
                 Nuovo_Codice.FormClosing += new FormClosingEventHandler(closeform);
+                Nuovo_Codice.varCod = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                Nuovo_Codice.varPrz = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[1].Value.ToString();
+                Nuovo_Codice.varQt = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[2].Value.ToString();
+                Nuovo_Codice.varQtmin = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[3].Value.ToString();
+                Nuovo_Codice.varDes = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[4].Value.ToString();
+                Nuovo_Codice.Modifica = 1;
+
                 Nuovo_Codice.ShowDialog();
             }
             else
             {
                 Aggiungi_Ordine Nuovo_Ordine = new Aggiungi_Ordine();
                 Nuovo_Ordine.FormClosing += new FormClosingEventHandler(closeform);
+                Nuovo_Ordine.varOrdine = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                Nuovo_Ordine.varPrz = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[1].Value.ToString();
+                Nuovo_Ordine.varCliente = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[2].Value.ToString();
+                Nuovo_Ordine.varNote = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[3].Value.ToString();
+                Nuovo_Ordine.Modifica = 1;
+
                 Nuovo_Ordine.ShowDialog();
+            }
+        }
+
+        private void del_btn_Click(object sender, EventArgs e)
+        {
+            if (magazzino == true)
+            {
+                string codice = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                DialogResult Scelta = MessageBox.Show("Sei sicuro di voler eliminare " + codice, "Eliminazione codice", MessageBoxButtons.YesNo);
+                if (Scelta == DialogResult.Yes)
+                {
+                    try
+                    {
+                        File.Delete(var.db + @"Magazzino\" + codice + ".xml");
+                    }catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, " Impossibile eliminare il codice");
+                    }
+                    carica_codici();
+                }
+            }
+            else
+            {
+                string ordine = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                DialogResult Scelta = MessageBox.Show("Sei sicuro di voler eliminare " + ordine, "Eliminazione ordine", MessageBoxButtons.YesNo);
+                if (Scelta == DialogResult.Yes)
+                {
+                    try
+                    {
+                        File.Delete(var.db + @"Ordini\" + ordine + ".xml");
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, " Impossibile eliminare l'ordine");
+                    }
+                        carica_ordini();
+                }
             }
         }
     }

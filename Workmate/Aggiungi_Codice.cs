@@ -19,6 +19,7 @@ namespace Workmate
             InitializeComponent();
         }
 
+        string OldCod = "";
         private void add_btn_Click(object sender, EventArgs e)
         {
             #region Controlli
@@ -47,6 +48,10 @@ namespace Workmate
                 MessageBox.Show("Controllare la quantità");
                 return;
             }
+            if(qtmin_txt.Text.Length == 0)
+            {
+                qtmin_txt.Text = "0";
+            }
             #endregion
 
             XDocument doc_xml = new XDocument(new XElement("codice",
@@ -58,7 +63,7 @@ namespace Workmate
                 ));
 
             string root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Magazzino\\";
-            if (File.Exists(root + cod_txt.Text + ".xml"))
+            if (File.Exists(root + cod_txt.Text + ".xml") && Modifica != 1)
             {
                 MessageBox.Show("Codice già esistente");
                 return;
@@ -66,6 +71,8 @@ namespace Workmate
             else
             {
                 doc_xml.Save(root + cod_txt.Text + ".xml");
+                if (Modifica == 1 && OldCod != cod_txt.Text)
+                    File.Delete(root + OldCod + ".xml");
             }
             this.Close();
         }
@@ -74,5 +81,24 @@ namespace Workmate
         {
             this.Close();
         }
+        private void Aggiungi_Codice_Load_1(object sender, EventArgs e)
+        {
+            if (Modifica == 1)
+            {
+                this.Text = "Modifica codice";
+                OldCod = varCod;
+                qtmin_txt.Text = varQtmin;
+            }
+            cod_txt.Text = varCod;
+            prz_txt.Text = varPrz;
+            qt_txt.Text = varQt;
+            desc_txt.Text = varDes;
+        }
+        public string varCod { get; set; }
+        public string varPrz { get; set; }
+        public string varQt { get; set; }
+        public string varQtmin { get; set; }
+        public string varDes { get; set; }
+        public int Modifica { get; set; }
     }
 }

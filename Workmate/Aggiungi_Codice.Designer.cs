@@ -180,6 +180,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Aggiungi codice";
+            this.Load += new System.EventHandler(this.Aggiungi_Codice_Load_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 
