@@ -53,6 +53,7 @@ namespace Workmate
                 new XElement("cod", cod_txt.Text),
                 new XElement("prezzo", prz_txt.Text),
                 new XElement("quantità", qt_txt.Text),
+                new XElement("quantitàmin", qtmin_txt.Text),
                 new XElement("descrizione", desc_txt.Text)
                 ));
 

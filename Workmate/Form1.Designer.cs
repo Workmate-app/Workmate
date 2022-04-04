@@ -43,16 +43,17 @@
             this.plus_btn = new FontAwesome.Sharp.IconButton();
             this.desktop_pnl = new System.Windows.Forms.Panel();
             this.ordini_data = new System.Windows.Forms.DataGridView();
-            this.ordine = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prezzo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.magazzino_data = new System.Windows.Forms.DataGridView();
             this.codice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantita_codice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prezzo_codice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantita_codice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantitamin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descrizione = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.settings_pnl = new System.Windows.Forms.Panel();
+            this.ordine = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prezzo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dock_pnl.SuspendLayout();
             this.logo_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -286,8 +287,8 @@
             this.ordini_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ordini_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ordine,
-            this.cliente,
             this.prezzo,
+            this.cliente,
             this.note});
             this.ordini_data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ordini_data.Location = new System.Drawing.Point(0, 0);
@@ -296,33 +297,14 @@
             this.ordini_data.Size = new System.Drawing.Size(838, 532);
             this.ordini_data.TabIndex = 1;
             // 
-            // ordine
-            // 
-            this.ordine.HeaderText = "Ordine";
-            this.ordine.Name = "ordine";
-            // 
-            // cliente
-            // 
-            this.cliente.HeaderText = "Cliente";
-            this.cliente.Name = "cliente";
-            // 
-            // prezzo
-            // 
-            this.prezzo.HeaderText = "Prezzo";
-            this.prezzo.Name = "prezzo";
-            // 
-            // note
-            // 
-            this.note.HeaderText = "Note";
-            this.note.Name = "note";
-            // 
             // magazzino_data
             // 
             this.magazzino_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.magazzino_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codice,
-            this.quantita_codice,
             this.prezzo_codice,
+            this.quantita_codice,
+            this.quantitamin,
             this.descrizione});
             this.magazzino_data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.magazzino_data.Location = new System.Drawing.Point(0, 0);
@@ -336,15 +318,20 @@
             this.codice.HeaderText = "Codice";
             this.codice.Name = "codice";
             // 
+            // prezzo_codice
+            // 
+            this.prezzo_codice.HeaderText = "Prezzo";
+            this.prezzo_codice.Name = "prezzo_codice";
+            // 
             // quantita_codice
             // 
             this.quantita_codice.HeaderText = "Quantità";
             this.quantita_codice.Name = "quantita_codice";
             // 
-            // prezzo_codice
+            // quantitamin
             // 
-            this.prezzo_codice.HeaderText = "Prezzo";
-            this.prezzo_codice.Name = "prezzo_codice";
+            this.quantitamin.HeaderText = "Quantità min";
+            this.quantitamin.Name = "quantitamin";
             // 
             // descrizione
             // 
@@ -359,6 +346,26 @@
             this.settings_pnl.Name = "settings_pnl";
             this.settings_pnl.Size = new System.Drawing.Size(838, 532);
             this.settings_pnl.TabIndex = 3;
+            // 
+            // ordine
+            // 
+            this.ordine.HeaderText = "Ordine";
+            this.ordine.Name = "ordine";
+            // 
+            // prezzo
+            // 
+            this.prezzo.HeaderText = "Prezzo";
+            this.prezzo.Name = "prezzo";
+            // 
+            // cliente
+            // 
+            this.cliente.HeaderText = "Cliente";
+            this.cliente.Name = "cliente";
+            // 
+            // note
+            // 
+            this.note.HeaderText = "Note";
+            this.note.Name = "note";
             // 
             // Form1
             // 
@@ -403,14 +410,15 @@
         private FontAwesome.Sharp.IconButton edit_btn;
         private DataGridView ordini_data;
         private DataGridView magazzino_data;
+        private Panel settings_pnl;
         private DataGridViewTextBoxColumn codice;
-        private DataGridViewTextBoxColumn quantita_codice;
         private DataGridViewTextBoxColumn prezzo_codice;
+        private DataGridViewTextBoxColumn quantita_codice;
+        private DataGridViewTextBoxColumn quantitamin;
         private DataGridViewTextBoxColumn descrizione;
         private DataGridViewTextBoxColumn ordine;
-        private DataGridViewTextBoxColumn cliente;
         private DataGridViewTextBoxColumn prezzo;
+        private DataGridViewTextBoxColumn cliente;
         private DataGridViewTextBoxColumn note;
-        private Panel settings_pnl;
     }
 }

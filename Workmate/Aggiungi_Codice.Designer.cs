@@ -39,6 +39,8 @@
             this.desc_txt = new System.Windows.Forms.TextBox();
             this.cancel_btn = new FontAwesome.Sharp.IconButton();
             this.add_btn = new FontAwesome.Sharp.IconButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.qtmin_txt = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cod_txt
@@ -136,11 +138,30 @@
             this.add_btn.UseVisualStyleBackColor = true;
             this.add_btn.Click += new System.EventHandler(this.add_btn_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(183, 144);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(100, 15);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Quantità minima:";
+            // 
+            // qtmin_txt
+            // 
+            this.qtmin_txt.Location = new System.Drawing.Point(183, 162);
+            this.qtmin_txt.Name = "qtmin_txt";
+            this.qtmin_txt.Size = new System.Drawing.Size(145, 23);
+            this.qtmin_txt.TabIndex = 11;
+            this.qtmin_txt.Text = "0";
+            // 
             // Aggiungi_Codice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(458, 502);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.qtmin_txt);
             this.Controls.Add(this.add_btn);
             this.Controls.Add(this.cancel_btn);
             this.Controls.Add(this.label4);
@@ -176,5 +197,7 @@
         private TextBox desc_txt;
         private FontAwesome.Sharp.IconButton cancel_btn;
         private FontAwesome.Sharp.IconButton add_btn;
+        private Label label5;
+        private TextBox qtmin_txt;
     }
 }

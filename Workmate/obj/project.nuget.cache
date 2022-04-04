@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+idJwTLA7WvB7lfOnJM56MgslfPcW01O4IORa0YiCLQQzkQTURnzpjYNyIYWr1ELQ7ydQmheSyJGLA7vg4oAqQ==",
+  "dgSpecHash": "0I/QDNC+4xBE/pTPSNlXkEi+R7lOVFQhnHXSCGK2IKtkK9MzRk/rR6nL18N0L3Wy/ZRO45zTuiX9UX+XPiU18A==",
   "success": true,
-  "projectFilePath": "D:\\programmazione\\School\\Concorso Sorint 2022\\workmate - Copia - Copia\\Workmate\\Workmate.csproj",
+  "projectFilePath": "D:\\programmazione\\School\\Concorso Sorint 2022\\workmate\\Workmate\\Workmate\\Workmate.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Matteo Piffari\\.nuget\\packages\\fontawesome.sharp\\5.15.4\\fontawesome.sharp.5.15.4.nupkg.sha512"
   ],

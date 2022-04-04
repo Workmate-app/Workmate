@@ -8,6 +8,7 @@ namespace Workmate
     {
         private int borderSize = 2;
         private bool magazzino = false;
+        bool mostra_avviso = true;
         public Form1()
         {
             InitializeComponent();
@@ -97,9 +98,20 @@ namespace Workmate
                 XmlNode codice = xml_doc.DocumentElement.SelectSingleNode("/codice/cod");
                 XmlNode prezzo = xml_doc.DocumentElement.SelectSingleNode("/codice/prezzo");
                 XmlNode quantita = xml_doc.DocumentElement.SelectSingleNode("/codice/quantità");
+                XmlNode quantitamin = xml_doc.DocumentElement.SelectSingleNode("/codice/quantitàmin");
                 XmlNode descrizione = xml_doc.DocumentElement.SelectSingleNode("/codice/descrizione");
-                string[] riga = { codice.InnerText, prezzo.InnerText, quantita.InnerText, descrizione.InnerText };
+                string[] riga = { codice.InnerText, prezzo.InnerText, quantita.InnerText, quantitamin.InnerText,descrizione.InnerText };
                 magazzino_data.Rows.Add(riga);
+                if(Int32.Parse(quantita.InnerText) < Int32.Parse(quantitamin.InnerText) && mostra_avviso == true)
+                {
+                    CustomDialog customdialog = new CustomDialog();
+                    customdialog.label1.Text = codice.InnerText + " è sceso sotto la soglia minima";
+                    customdialog.ShowDialog();
+                    if (customdialog.DialogResult.Equals(DialogResult.Yes))
+                    {
+                        mostra_avviso = false;
+                    }
+                }
             }
         }
 
