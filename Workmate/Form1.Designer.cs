@@ -39,7 +39,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bars_btn = new FontAwesome.Sharp.IconButton();
             this.bar_pnl = new System.Windows.Forms.Panel();
-            this.erase_btn = new System.Windows.Forms.Button();
+            this.erase_btn = new FontAwesome.Sharp.IconButton();
             this.srch_btn = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -63,6 +63,30 @@
             this.modificaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prod_btn = new FontAwesome.Sharp.IconButton();
+            this.prod_data = new System.Windows.Forms.DataGridView();
+            this.prodotto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codice1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codice2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codice3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codice4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codice5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codice6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codice7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codice8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codice9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codice10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qt1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qt2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qt3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qt4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qt5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qt6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qt7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qt8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qt9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qt10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dock_pnl.SuspendLayout();
             this.logo_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -71,6 +95,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ordini_data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.magazzino_data)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.prod_data)).BeginInit();
             this.SuspendLayout();
             // 
             // dock_pnl
@@ -78,6 +103,7 @@
             this.dock_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(133)))), ((int)(((byte)(181)))));
             this.dock_pnl.Controls.Add(this.impostazioni_btn);
             this.dock_pnl.Controls.Add(this.ordini_btn);
+            this.dock_pnl.Controls.Add(this.prod_btn);
             this.dock_pnl.Controls.Add(this.magazzino_btn);
             this.dock_pnl.Controls.Add(this.home_btn);
             this.dock_pnl.Controls.Add(this.logo_pnl);
@@ -123,7 +149,7 @@
             this.ordini_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ordini_btn.IconSize = 42;
             this.ordini_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ordini_btn.Location = new System.Drawing.Point(0, 226);
+            this.ordini_btn.Location = new System.Drawing.Point(0, 282);
             this.ordini_btn.Name = "ordini_btn";
             this.ordini_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.ordini_btn.Size = new System.Drawing.Size(230, 56);
@@ -236,21 +262,29 @@
             // 
             // erase_btn
             // 
-            this.erase_btn.Location = new System.Drawing.Point(485, 20);
+            this.erase_btn.FlatAppearance.BorderSize = 0;
+            this.erase_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.erase_btn.IconChar = FontAwesome.Sharp.IconChar.Eraser;
+            this.erase_btn.IconColor = System.Drawing.Color.Black;
+            this.erase_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.erase_btn.IconSize = 46;
+            this.erase_btn.Location = new System.Drawing.Point(468, 3);
             this.erase_btn.Name = "erase_btn";
-            this.erase_btn.Size = new System.Drawing.Size(75, 23);
+            this.erase_btn.Size = new System.Drawing.Size(54, 57);
             this.erase_btn.TabIndex = 7;
-            this.erase_btn.Text = "button2";
             this.erase_btn.UseVisualStyleBackColor = true;
             this.erase_btn.Click += new System.EventHandler(this.erase_btn_Click);
             // 
             // srch_btn
             // 
-            this.srch_btn.Location = new System.Drawing.Point(404, 20);
+            this.srch_btn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("srch_btn.BackgroundImage")));
+            this.srch_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.srch_btn.FlatAppearance.BorderSize = 0;
+            this.srch_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.srch_btn.Location = new System.Drawing.Point(404, 3);
             this.srch_btn.Name = "srch_btn";
-            this.srch_btn.Size = new System.Drawing.Size(75, 23);
+            this.srch_btn.Size = new System.Drawing.Size(49, 57);
             this.srch_btn.TabIndex = 6;
-            this.srch_btn.Text = "button1";
             this.srch_btn.UseVisualStyleBackColor = true;
             this.srch_btn.Click += new System.EventHandler(this.srch_btn_Click);
             // 
@@ -325,6 +359,7 @@
             this.desktop_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
             this.desktop_pnl.Controls.Add(this.ordini_data);
             this.desktop_pnl.Controls.Add(this.magazzino_data);
+            this.desktop_pnl.Controls.Add(this.prod_data);
             this.desktop_pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.desktop_pnl.Location = new System.Drawing.Point(230, 60);
             this.desktop_pnl.Name = "desktop_pnl";
@@ -431,28 +466,218 @@
             this.aggiungiToolStripMenuItem,
             this.eliminaToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(127, 70);
             // 
             // modificaToolStripMenuItem
             // 
             this.modificaToolStripMenuItem.Name = "modificaToolStripMenuItem";
-            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.modificaToolStripMenuItem.Text = "Modifica";
             this.modificaToolStripMenuItem.Click += new System.EventHandler(this.modificaToolStripMenuItem_Click);
             // 
             // aggiungiToolStripMenuItem
             // 
             this.aggiungiToolStripMenuItem.Name = "aggiungiToolStripMenuItem";
-            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.aggiungiToolStripMenuItem.Text = "Aggiungi ";
             this.aggiungiToolStripMenuItem.Click += new System.EventHandler(this.aggiungiToolStripMenuItem_Click);
             // 
             // eliminaToolStripMenuItem
             // 
             this.eliminaToolStripMenuItem.Name = "eliminaToolStripMenuItem";
-            this.eliminaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.eliminaToolStripMenuItem.Text = "Elimina";
             this.eliminaToolStripMenuItem.Click += new System.EventHandler(this.eliminaToolStripMenuItem_Click);
+            // 
+            // prod_btn
+            // 
+            this.prod_btn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.prod_btn.FlatAppearance.BorderSize = 0;
+            this.prod_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.prod_btn.Font = new System.Drawing.Font("SF Pro Display", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.prod_btn.ForeColor = System.Drawing.Color.White;
+            this.prod_btn.IconChar = FontAwesome.Sharp.IconChar.Boxes;
+            this.prod_btn.IconColor = System.Drawing.Color.White;
+            this.prod_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.prod_btn.IconSize = 42;
+            this.prod_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.prod_btn.Location = new System.Drawing.Point(0, 226);
+            this.prod_btn.Name = "prod_btn";
+            this.prod_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.prod_btn.Size = new System.Drawing.Size(230, 56);
+            this.prod_btn.TabIndex = 5;
+            this.prod_btn.Tag = "Ordini";
+            this.prod_btn.Text = "Prodotti";
+            this.prod_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.prod_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.prod_btn.UseVisualStyleBackColor = true;
+            this.prod_btn.Click += new System.EventHandler(this.prod_btn_Click);
+            // 
+            // prod_data
+            // 
+            this.prod_data.AllowUserToAddRows = false;
+            this.prod_data.AllowUserToDeleteRows = false;
+            this.prod_data.AllowUserToResizeRows = false;
+            this.prod_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.prod_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.prodotto,
+            this.dataGridViewTextBoxColumn1,
+            this.codice1,
+            this.codice2,
+            this.codice3,
+            this.codice4,
+            this.codice5,
+            this.codice6,
+            this.codice7,
+            this.codice8,
+            this.codice9,
+            this.codice10,
+            this.qt1,
+            this.qt2,
+            this.qt3,
+            this.qt4,
+            this.qt5,
+            this.qt6,
+            this.qt7,
+            this.qt8,
+            this.qt9,
+            this.qt10});
+            this.prod_data.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.prod_data.Location = new System.Drawing.Point(0, 0);
+            this.prod_data.Name = "prod_data";
+            this.prod_data.RowTemplate.Height = 25;
+            this.prod_data.Size = new System.Drawing.Size(838, 532);
+            this.prod_data.TabIndex = 2;
+            // 
+            // prodotto
+            // 
+            this.prodotto.HeaderText = "Prodotto";
+            this.prodotto.Name = "prodotto";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Descrizione";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // codice1
+            // 
+            this.codice1.HeaderText = "Column1";
+            this.codice1.Name = "codice1";
+            this.codice1.Visible = false;
+            // 
+            // codice2
+            // 
+            this.codice2.HeaderText = "Column1";
+            this.codice2.Name = "codice2";
+            this.codice2.Visible = false;
+            // 
+            // codice3
+            // 
+            this.codice3.HeaderText = "Column1";
+            this.codice3.Name = "codice3";
+            this.codice3.Visible = false;
+            // 
+            // codice4
+            // 
+            this.codice4.HeaderText = "Column1";
+            this.codice4.Name = "codice4";
+            this.codice4.Visible = false;
+            // 
+            // codice5
+            // 
+            this.codice5.HeaderText = "Column1";
+            this.codice5.Name = "codice5";
+            this.codice5.Visible = false;
+            // 
+            // codice6
+            // 
+            this.codice6.HeaderText = "Column1";
+            this.codice6.Name = "codice6";
+            this.codice6.Visible = false;
+            // 
+            // codice7
+            // 
+            this.codice7.HeaderText = "Column1";
+            this.codice7.Name = "codice7";
+            this.codice7.Visible = false;
+            // 
+            // codice8
+            // 
+            this.codice8.HeaderText = "Column1";
+            this.codice8.Name = "codice8";
+            this.codice8.Visible = false;
+            // 
+            // codice9
+            // 
+            this.codice9.HeaderText = "Column1";
+            this.codice9.Name = "codice9";
+            this.codice9.Visible = false;
+            // 
+            // codice10
+            // 
+            this.codice10.HeaderText = "Column1";
+            this.codice10.Name = "codice10";
+            this.codice10.Visible = false;
+            // 
+            // qt1
+            // 
+            this.qt1.HeaderText = "Column1";
+            this.qt1.Name = "qt1";
+            this.qt1.Visible = false;
+            // 
+            // qt2
+            // 
+            this.qt2.HeaderText = "Column1";
+            this.qt2.Name = "qt2";
+            this.qt2.Visible = false;
+            // 
+            // qt3
+            // 
+            this.qt3.HeaderText = "Column1";
+            this.qt3.Name = "qt3";
+            this.qt3.Visible = false;
+            // 
+            // qt4
+            // 
+            this.qt4.HeaderText = "Column1";
+            this.qt4.Name = "qt4";
+            this.qt4.Visible = false;
+            // 
+            // qt5
+            // 
+            this.qt5.HeaderText = "Column1";
+            this.qt5.Name = "qt5";
+            this.qt5.Visible = false;
+            // 
+            // qt6
+            // 
+            this.qt6.HeaderText = "Column1";
+            this.qt6.Name = "qt6";
+            this.qt6.Visible = false;
+            // 
+            // qt7
+            // 
+            this.qt7.HeaderText = "Column1";
+            this.qt7.Name = "qt7";
+            this.qt7.Visible = false;
+            // 
+            // qt8
+            // 
+            this.qt8.HeaderText = "Column1";
+            this.qt8.Name = "qt8";
+            this.qt8.Visible = false;
+            // 
+            // qt9
+            // 
+            this.qt9.HeaderText = "Column1";
+            this.qt9.Name = "qt9";
+            this.qt9.Visible = false;
+            // 
+            // qt10
+            // 
+            this.qt10.HeaderText = "Column1";
+            this.qt10.Name = "qt10";
+            this.qt10.Visible = false;
             // 
             // Form1
             // 
@@ -478,6 +703,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ordini_data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.magazzino_data)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.prod_data)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -509,7 +735,6 @@
         private DataGridViewTextBoxColumn cliente;
         private DataGridViewTextBoxColumn note;
         private FontAwesome.Sharp.IconButton del_btn;
-        private Button erase_btn;
         private Button srch_btn;
         private ComboBox comboBox1;
         private TextBox textBox1;
@@ -517,5 +742,30 @@
         private ToolStripMenuItem modificaToolStripMenuItem;
         private ToolStripMenuItem aggiungiToolStripMenuItem;
         private ToolStripMenuItem eliminaToolStripMenuItem;
+        private FontAwesome.Sharp.IconButton erase_btn;
+        private FontAwesome.Sharp.IconButton prod_btn;
+        private DataGridView prod_data;
+        private DataGridViewTextBoxColumn prodotto;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn codice1;
+        private DataGridViewTextBoxColumn codice2;
+        private DataGridViewTextBoxColumn codice3;
+        private DataGridViewTextBoxColumn codice4;
+        private DataGridViewTextBoxColumn codice5;
+        private DataGridViewTextBoxColumn codice6;
+        private DataGridViewTextBoxColumn codice7;
+        private DataGridViewTextBoxColumn codice8;
+        private DataGridViewTextBoxColumn codice9;
+        private DataGridViewTextBoxColumn codice10;
+        private DataGridViewTextBoxColumn qt1;
+        private DataGridViewTextBoxColumn qt2;
+        private DataGridViewTextBoxColumn qt3;
+        private DataGridViewTextBoxColumn qt4;
+        private DataGridViewTextBoxColumn qt5;
+        private DataGridViewTextBoxColumn qt6;
+        private DataGridViewTextBoxColumn qt7;
+        private DataGridViewTextBoxColumn qt8;
+        private DataGridViewTextBoxColumn qt9;
+        private DataGridViewTextBoxColumn qt10;
     }
 }

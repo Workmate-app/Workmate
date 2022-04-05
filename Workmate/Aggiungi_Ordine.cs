@@ -64,12 +64,32 @@ namespace Workmate
             }
             else
             {
+                if (Modifica != 1)
+                {
+                    foreach (TextBox textbox in prod_pnl.Controls.OfType<TextBox>()) {
+                        if (textbox.Text.Length != 0)
+                        {
+                            try
+                            {
+                                XmlDocument xml_doc = new XmlDocument();
+                                xml_doc.Load(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Magazzino\\" + textbox.Text + ".xml");
+                                //XmlNode qt = xml_doc.DocumentElement.SelectSingleNode("/codice/quantità");
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Prodotto " + textbox.Text + " non trovato!");
+                                return;
+                            }
+                        }
+                    }
+                }
+
                 doc_xml.Save(root + ord_txt.Text + ".xml");
                 if (Modifica == 1 && OldOrd != ord_txt.Text)
                     File.Delete(root + OldOrd + ".xml");
-            }
-            this.DialogResult = DialogResult.Yes;
-            this.Close();
+                this.DialogResult = DialogResult.Yes;
+                this.Close();
+                }
         }
 
         private void cancel_btn_Click(object sender, EventArgs e)
@@ -78,7 +98,7 @@ namespace Workmate
         }
         private void Aggiungi_Ordine_Load_1(object sender, EventArgs e)
         {
-            //Codici.Visible = false;
+            add_prod_pnl.Visible = false;
             if (Modifica == 1)
             {
                 this.Text = "Modifica ordine";
@@ -95,5 +115,15 @@ namespace Workmate
         public string varCliente { get; set; }
         public string varNote { get; set; }
         public int Modifica { get; set; }
+
+        private void add_prod_btn_Click(object sender, EventArgs e)
+        {
+            add_prod_pnl.Visible = true;
+        }
+
+        private void ok_btn_Click(object sender, EventArgs e)
+        {
+            add_prod_pnl.Visible = false;
+        }
     }
 }

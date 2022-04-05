@@ -186,6 +186,7 @@ namespace Workmate
             bar_pnl.Visible = true;
             ordini_data.Visible = false;
             magazzino_data.Visible = true;
+            prod_data.Visible = false;
             magazzino = true;
             comboBox1.Items.Clear();
             comboBox1.Items.Add("Codice");
@@ -204,6 +205,7 @@ namespace Workmate
             bar_pnl.Visible = true;
             ordini_data.Visible = true;
             magazzino_data.Visible = false;
+            prod_data.Visible = false;
             magazzino = false;
             avv_mostrati = false;
             comboBox1.Items.Clear();
@@ -222,6 +224,7 @@ namespace Workmate
             bar_pnl.Visible = false;
             ordini_data.Visible = false;
             magazzino_data.Visible = false;
+            prod_data.Visible = false;
             avv_mostrati = false;
         }
         private void impostazioni_btn_Click(object sender, EventArgs e)
@@ -337,16 +340,6 @@ namespace Workmate
             }
         }
 
-        private void erase_btn_Click(object sender, EventArgs e)
-        {
-            textBox1.Text = "";
-            comboBox1.SelectedIndex = 0;
-            if (magazzino == true)
-                carica_codici();
-            else
-                carica_ordini();
-        }
-
         private void ordini_data_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -398,6 +391,32 @@ namespace Workmate
         private void eliminaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             del_btn_Click(sender, e);
+        }
+
+        private void erase_btn_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            comboBox1.SelectedIndex = 0;
+            if (magazzino == true)
+                carica_codici();
+            else
+                carica_ordini();
+        }
+
+        private void prod_btn_Click(object sender, EventArgs e)
+        {
+            prod_data.Visible = true;
+            magazzino_data.Visible = false;
+            ordini_data.Visible = false;
+            settings_pnl.Visible = false;
+            desktop_pnl.Visible = true;
+            bar_pnl.Visible = true;
+            magazzino = false;
+            avv_mostrati = false;
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add("Prodotto");
+            comboBox1.Items.Add("Descrizione");
+            comboBox1.SelectedIndex = 0;
         }
     }
 }
