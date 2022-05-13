@@ -33,6 +33,7 @@
             this.dock_pnl = new System.Windows.Forms.Panel();
             this.impostazioni_btn = new FontAwesome.Sharp.IconButton();
             this.ordini_btn = new FontAwesome.Sharp.IconButton();
+            this.prod_btn = new FontAwesome.Sharp.IconButton();
             this.magazzino_btn = new FontAwesome.Sharp.IconButton();
             this.home_btn = new FontAwesome.Sharp.IconButton();
             this.logo_pnl = new System.Windows.Forms.Panel();
@@ -58,13 +59,12 @@
             this.quantita_codice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantitamin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descrizione = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prod_data = new System.Windows.Forms.DataGridView();
             this.settings_pnl = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.modificaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.prod_btn = new FontAwesome.Sharp.IconButton();
-            this.prod_data = new System.Windows.Forms.DataGridView();
             this.prodotto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codice1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,9 +77,19 @@
             this.codice8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codice9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codice10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codice11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codice12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codice13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codice14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codice15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qt1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qt2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qt3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qt11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qt12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qt13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qt14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qt15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qt4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qt5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qt6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -94,8 +104,8 @@
             this.desktop_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordini_data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.magazzino_data)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.prod_data)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dock_pnl
@@ -160,6 +170,30 @@
             this.ordini_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ordini_btn.UseVisualStyleBackColor = true;
             this.ordini_btn.Click += new System.EventHandler(this.ordini_btn_Click);
+            // 
+            // prod_btn
+            // 
+            this.prod_btn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.prod_btn.FlatAppearance.BorderSize = 0;
+            this.prod_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.prod_btn.Font = new System.Drawing.Font("SF Pro Display", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.prod_btn.ForeColor = System.Drawing.Color.White;
+            this.prod_btn.IconChar = FontAwesome.Sharp.IconChar.Boxes;
+            this.prod_btn.IconColor = System.Drawing.Color.White;
+            this.prod_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.prod_btn.IconSize = 42;
+            this.prod_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.prod_btn.Location = new System.Drawing.Point(0, 226);
+            this.prod_btn.Name = "prod_btn";
+            this.prod_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.prod_btn.Size = new System.Drawing.Size(230, 56);
+            this.prod_btn.TabIndex = 5;
+            this.prod_btn.Tag = "Ordini";
+            this.prod_btn.Text = "Prodotti";
+            this.prod_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.prod_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.prod_btn.UseVisualStyleBackColor = true;
+            this.prod_btn.Click += new System.EventHandler(this.prod_btn_Click);
             // 
             // magazzino_btn
             // 
@@ -450,6 +484,52 @@
             this.descrizione.HeaderText = "Descrizione";
             this.descrizione.Name = "descrizione";
             // 
+            // prod_data
+            // 
+            this.prod_data.AllowUserToAddRows = false;
+            this.prod_data.AllowUserToDeleteRows = false;
+            this.prod_data.AllowUserToResizeRows = false;
+            this.prod_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.prod_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.prodotto,
+            this.dataGridViewTextBoxColumn1,
+            this.codice1,
+            this.codice2,
+            this.codice3,
+            this.codice4,
+            this.codice5,
+            this.codice6,
+            this.codice7,
+            this.codice8,
+            this.codice9,
+            this.codice10,
+            this.codice11,
+            this.codice12,
+            this.codice13,
+            this.codice14,
+            this.codice15,
+            this.qt1,
+            this.qt2,
+            this.qt3,
+            this.qt11,
+            this.qt12,
+            this.qt13,
+            this.qt14,
+            this.qt15,
+            this.qt4,
+            this.qt5,
+            this.qt6,
+            this.qt7,
+            this.qt8,
+            this.qt9,
+            this.qt10});
+            this.prod_data.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.prod_data.Location = new System.Drawing.Point(0, 0);
+            this.prod_data.Name = "prod_data";
+            this.prod_data.RowTemplate.Height = 25;
+            this.prod_data.Size = new System.Drawing.Size(838, 532);
+            this.prod_data.TabIndex = 2;
+            // 
             // settings_pnl
             // 
             this.settings_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
@@ -488,66 +568,6 @@
             this.eliminaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.eliminaToolStripMenuItem.Text = "Elimina";
             this.eliminaToolStripMenuItem.Click += new System.EventHandler(this.eliminaToolStripMenuItem_Click);
-            // 
-            // prod_btn
-            // 
-            this.prod_btn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.prod_btn.FlatAppearance.BorderSize = 0;
-            this.prod_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.prod_btn.Font = new System.Drawing.Font("SF Pro Display", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.prod_btn.ForeColor = System.Drawing.Color.White;
-            this.prod_btn.IconChar = FontAwesome.Sharp.IconChar.Boxes;
-            this.prod_btn.IconColor = System.Drawing.Color.White;
-            this.prod_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.prod_btn.IconSize = 42;
-            this.prod_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.prod_btn.Location = new System.Drawing.Point(0, 226);
-            this.prod_btn.Name = "prod_btn";
-            this.prod_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.prod_btn.Size = new System.Drawing.Size(230, 56);
-            this.prod_btn.TabIndex = 5;
-            this.prod_btn.Tag = "Ordini";
-            this.prod_btn.Text = "Prodotti";
-            this.prod_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.prod_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.prod_btn.UseVisualStyleBackColor = true;
-            this.prod_btn.Click += new System.EventHandler(this.prod_btn_Click);
-            // 
-            // prod_data
-            // 
-            this.prod_data.AllowUserToAddRows = false;
-            this.prod_data.AllowUserToDeleteRows = false;
-            this.prod_data.AllowUserToResizeRows = false;
-            this.prod_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.prod_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.prodotto,
-            this.dataGridViewTextBoxColumn1,
-            this.codice1,
-            this.codice2,
-            this.codice3,
-            this.codice4,
-            this.codice5,
-            this.codice6,
-            this.codice7,
-            this.codice8,
-            this.codice9,
-            this.codice10,
-            this.qt1,
-            this.qt2,
-            this.qt3,
-            this.qt4,
-            this.qt5,
-            this.qt6,
-            this.qt7,
-            this.qt8,
-            this.qt9,
-            this.qt10});
-            this.prod_data.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.prod_data.Location = new System.Drawing.Point(0, 0);
-            this.prod_data.Name = "prod_data";
-            this.prod_data.RowTemplate.Height = 25;
-            this.prod_data.Size = new System.Drawing.Size(838, 532);
-            this.prod_data.TabIndex = 2;
             // 
             // prodotto
             // 
@@ -619,6 +639,36 @@
             this.codice10.Name = "codice10";
             this.codice10.Visible = false;
             // 
+            // codice11
+            // 
+            this.codice11.HeaderText = "Column1";
+            this.codice11.Name = "codice11";
+            this.codice11.Visible = false;
+            // 
+            // codice12
+            // 
+            this.codice12.HeaderText = "Column1";
+            this.codice12.Name = "codice12";
+            this.codice12.Visible = false;
+            // 
+            // codice13
+            // 
+            this.codice13.HeaderText = "Column1";
+            this.codice13.Name = "codice13";
+            this.codice13.Visible = false;
+            // 
+            // codice14
+            // 
+            this.codice14.HeaderText = "Column1";
+            this.codice14.Name = "codice14";
+            this.codice14.Visible = false;
+            // 
+            // codice15
+            // 
+            this.codice15.HeaderText = "Column1";
+            this.codice15.Name = "codice15";
+            this.codice15.Visible = false;
+            // 
             // qt1
             // 
             this.qt1.HeaderText = "Column1";
@@ -636,6 +686,36 @@
             this.qt3.HeaderText = "Column1";
             this.qt3.Name = "qt3";
             this.qt3.Visible = false;
+            // 
+            // qt11
+            // 
+            this.qt11.HeaderText = "Column1";
+            this.qt11.Name = "qt11";
+            this.qt11.Visible = false;
+            // 
+            // qt12
+            // 
+            this.qt12.HeaderText = "Column1";
+            this.qt12.Name = "qt12";
+            this.qt12.Visible = false;
+            // 
+            // qt13
+            // 
+            this.qt13.HeaderText = "Column1";
+            this.qt13.Name = "qt13";
+            this.qt13.Visible = false;
+            // 
+            // qt14
+            // 
+            this.qt14.HeaderText = "Column1";
+            this.qt14.Name = "qt14";
+            this.qt14.Visible = false;
+            // 
+            // qt15
+            // 
+            this.qt15.HeaderText = "Column1";
+            this.qt15.Name = "qt15";
+            this.qt15.Visible = false;
             // 
             // qt4
             // 
@@ -702,8 +782,8 @@
             this.desktop_pnl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ordini_data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.magazzino_data)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.prod_data)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -757,9 +837,19 @@
         private DataGridViewTextBoxColumn codice8;
         private DataGridViewTextBoxColumn codice9;
         private DataGridViewTextBoxColumn codice10;
+        private DataGridViewTextBoxColumn codice11;
+        private DataGridViewTextBoxColumn codice12;
+        private DataGridViewTextBoxColumn codice13;
+        private DataGridViewTextBoxColumn codice14;
+        private DataGridViewTextBoxColumn codice15;
         private DataGridViewTextBoxColumn qt1;
         private DataGridViewTextBoxColumn qt2;
         private DataGridViewTextBoxColumn qt3;
+        private DataGridViewTextBoxColumn qt11;
+        private DataGridViewTextBoxColumn qt12;
+        private DataGridViewTextBoxColumn qt13;
+        private DataGridViewTextBoxColumn qt14;
+        private DataGridViewTextBoxColumn qt15;
         private DataGridViewTextBoxColumn qt4;
         private DataGridViewTextBoxColumn qt5;
         private DataGridViewTextBoxColumn qt6;

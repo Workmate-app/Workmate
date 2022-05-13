@@ -63,3 +63,4 @@ D:\programmazione\School\Concorso Sorint 2022\workmate\Workmate\Workmate\obj\Deb
 D:\programmazione\School\Concorso Sorint 2022\workmate\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.genruntimeconfig.cache
 D:\programmazione\School\Concorso Sorint 2022\workmate\Workmate\Workmate\obj\Debug\net6.0-windows\ref\Workmate.dll
 D:\programmazione\School\Concorso Sorint 2022\workmate\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.CustomDialog.resources
+D:\programmazione\School\Concorso Sorint 2022\workmate\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.Aggiungi_Prodotto.resources

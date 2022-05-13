@@ -8,6 +8,7 @@ namespace Workmate
     {
         private int borderSize = 2;
         private bool magazzino = false;
+        private bool prod = false;
         bool mostra_avviso = true;
         bool avv_mostrati = false;
         public Form1()
@@ -20,18 +21,17 @@ namespace Workmate
             ordini_data.Visible = false;
             magazzino_data.Visible = false;
             settings_pnl.Visible = false;
+            prod_data.Visible = false;
             desktop_pnl.Visible = true;
         }
         private void closeform(object sender, FormClosingEventArgs e)
         {
             if (magazzino == true)
-            {
                 carica_codici();
-            }
+            else if(prod==true)
+                carica_prodotti();
             else
-            {
                 carica_ordini();
-            }
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -85,6 +85,10 @@ namespace Workmate
             if (!Directory.Exists(root + @"\Ordini"))
             {
                 Directory.CreateDirectory(root + @"\Ordini");
+            }
+            if (!Directory.Exists(root + @"\Prodotti"))
+            {
+                Directory.CreateDirectory(root + @"\Prodotti");
             }
         }
 
@@ -179,6 +183,65 @@ namespace Workmate
                     ordini_data.Rows.Add(riga);
             }
         }
+
+        private void carica_prodotti(string testoc = "", string colonnac = "", int search = 0)
+        {
+            prod_data.Rows.Clear();
+            string[] prodotti = var.carica_prodotti();
+            for (int i = 0; i < prodotti.Length; i++)
+            {
+                XmlDocument xml_doc = new XmlDocument();
+                xml_doc.Load(prodotti[i]);
+                XmlNode prodotto = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/prodotto");
+                XmlNode cod1 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod1");
+                XmlNode cod2 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod2");
+                XmlNode cod3 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod3");
+                XmlNode cod4 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod4");
+                XmlNode cod5 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod5");
+                XmlNode cod6 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod6");
+                XmlNode cod7 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod7");
+                XmlNode cod8 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod8");
+                XmlNode cod9 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod9");
+                XmlNode cod10 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod10");
+                XmlNode cod11 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod11");
+                XmlNode cod12 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod12");
+                XmlNode cod13 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod13");
+                XmlNode cod14 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod14");
+                XmlNode cod15 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod15");
+                XmlNode qt1 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt1");
+                XmlNode qt2 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt2");
+                XmlNode qt3 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt3");
+                XmlNode qt4 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt4");
+                XmlNode qt5 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt5");
+                XmlNode qt6 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt6");
+                XmlNode qt7 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt7");
+                XmlNode qt8 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt8");
+                XmlNode qt9 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt9");
+                XmlNode qt10 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt10");
+                XmlNode qt11 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt11");
+                XmlNode qt12 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt12");
+                XmlNode qt13 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt13");
+                XmlNode qt14 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt14");
+                XmlNode qt15 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt15");
+
+                string[] riga = { prodotto.InnerText, "", cod1.InnerText, cod2.InnerText, cod3.InnerText, cod4.InnerText, cod5.InnerText, cod6.InnerText, cod7.InnerText, cod8.InnerText, cod9.InnerText, cod10.InnerText, cod11.InnerText, cod12.InnerText, cod13.InnerText, cod14.InnerText, cod15.InnerText, qt1.InnerText, qt2.InnerText, qt3.InnerText, qt4.InnerText, qt5.InnerText, qt6.InnerText, qt7.InnerText, qt8.InnerText, qt9.InnerText, qt10.InnerText, qt11.InnerText, qt12.InnerText, qt13.InnerText, qt14.InnerText, qt15.InnerText };
+                //MessageBox.Show(codici[i].Replace(var.db+@"Magazzino\", ""));
+                string contenuto = "";
+                switch (colonnac)
+                {
+                    case "Prodotto":
+                        contenuto = prodotto.InnerText;
+                        break;
+                    default:
+                        contenuto = "";
+                        break;
+                }
+                contenuto = contenuto.ToLower();
+                testoc = testoc.ToLower();
+                if (contenuto.Contains(testoc))
+                   prod_data.Rows.Add(riga);
+            }
+        }
         private void magazzino_btn_Click(object sender, EventArgs e)
         {
             settings_pnl.Visible = false;
@@ -188,6 +251,7 @@ namespace Workmate
             magazzino_data.Visible = true;
             prod_data.Visible = false;
             magazzino = true;
+            prod = false;
             comboBox1.Items.Clear();
             comboBox1.Items.Add("Codice");
             comboBox1.Items.Add("Prezzo");
@@ -207,6 +271,7 @@ namespace Workmate
             magazzino_data.Visible = false;
             prod_data.Visible = false;
             magazzino = false;
+            prod = false;
             avv_mostrati = false;
             comboBox1.Items.Clear();
             comboBox1.Items.Add("Ordine");
@@ -216,7 +281,23 @@ namespace Workmate
             carica_ordini();
             comboBox1.SelectedIndex = 0;
         }
-
+        private void prod_btn_Click(object sender, EventArgs e)
+        {
+            prod_data.Visible = true;
+            magazzino_data.Visible = false;
+            ordini_data.Visible = false;
+            settings_pnl.Visible = false;
+            desktop_pnl.Visible = true;
+            bar_pnl.Visible = true;
+            magazzino = false;
+            prod = true;
+            avv_mostrati = false;
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add("Prodotto");
+            comboBox1.Items.Add("Descrizione");
+            carica_prodotti();
+            comboBox1.SelectedIndex = 0;
+        }
         private void home_btn_Click(object sender, EventArgs e)
         {
             settings_pnl.Visible = false;
@@ -243,6 +324,12 @@ namespace Workmate
                 Nuovo_Codice.FormClosing += new FormClosingEventHandler(closeform);
                 Nuovo_Codice.ShowDialog();
             }
+            else if (prod == true)
+            {
+                Aggiungi_Prodotto Nuovo_Prodotto = new Aggiungi_Prodotto();
+                Nuovo_Prodotto.FormClosing += new FormClosingEventHandler(closeform);
+                Nuovo_Prodotto.ShowDialog();
+            }
             else
             {
                 Aggiungi_Ordine Nuovo_Ordine = new Aggiungi_Ordine();
@@ -265,6 +352,46 @@ namespace Workmate
                 Nuovo_Codice.Modifica = 1;
 
                 Nuovo_Codice.ShowDialog();
+            }
+            else if (prod == true)
+            {
+                Aggiungi_Prodotto Nuovo_Prodotto = new Aggiungi_Prodotto();
+                Nuovo_Prodotto.FormClosing += new FormClosingEventHandler(closeform);
+                Nuovo_Prodotto.varProdotto = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                Nuovo_Prodotto.varDescrizione = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[1].Value.ToString();
+                Nuovo_Prodotto.varCod1 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[2].Value.ToString();
+                Nuovo_Prodotto.varCod2 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[3].Value.ToString();
+                Nuovo_Prodotto.varCod3 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[4].Value.ToString();
+                Nuovo_Prodotto.varCod4 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[5].Value.ToString();
+                Nuovo_Prodotto.varCod5 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[6].Value.ToString();
+                Nuovo_Prodotto.varCod6 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[7].Value.ToString();
+                Nuovo_Prodotto.varCod7 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[8].Value.ToString();
+                Nuovo_Prodotto.varCod8 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[9].Value.ToString();
+                Nuovo_Prodotto.varCod9 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[10].Value.ToString();
+                Nuovo_Prodotto.varCod10 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[11].Value.ToString();
+                Nuovo_Prodotto.varCod11 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[12].Value.ToString();
+                Nuovo_Prodotto.varCod12 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[13].Value.ToString();
+                Nuovo_Prodotto.varCod13 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[14].Value.ToString();
+                Nuovo_Prodotto.varCod14 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[15].Value.ToString();
+                Nuovo_Prodotto.varCod15 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[16].Value.ToString();
+                Nuovo_Prodotto.varQt1 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[17].Value.ToString();
+                Nuovo_Prodotto.varQt2 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[18].Value.ToString();
+                Nuovo_Prodotto.varQt3 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[19].Value.ToString();
+                Nuovo_Prodotto.varQt4 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[20].Value.ToString();
+                Nuovo_Prodotto.varQt5 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[21].Value.ToString();
+                Nuovo_Prodotto.varQt6 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[22].Value.ToString();
+                Nuovo_Prodotto.varQt7 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[23].Value.ToString();
+                Nuovo_Prodotto.varQt8 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[24].Value.ToString();
+                Nuovo_Prodotto.varQt9 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[25].Value.ToString();
+                Nuovo_Prodotto.varQt10 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[26].Value.ToString();
+                Nuovo_Prodotto.varQt11 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[27].Value.ToString();
+                Nuovo_Prodotto.varQt12 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[28].Value.ToString();
+                Nuovo_Prodotto.varQt13 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[29].Value.ToString();
+                Nuovo_Prodotto.varQt14 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[30].Value.ToString();
+                Nuovo_Prodotto.varQt15 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[31].Value.ToString();
+                Nuovo_Prodotto.Modifica = 1;
+
+                Nuovo_Prodotto.ShowDialog();
             }
             else
             {
@@ -297,6 +424,22 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare il codice");
                     }
                     carica_codici();
+                }
+            }else if (prod == true)
+            {
+                string prodotto = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                DialogResult Scelta = MessageBox.Show("Sei sicuro di voler eliminare " + prodotto, "Eliminazione Prodotto", MessageBoxButtons.YesNo);
+                if (Scelta == DialogResult.Yes)
+                {
+                    try
+                    {
+                        File.Delete(var.db + @"Prodotti\" + prodotto + ".xml");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, " Impossibile eliminare il prodotto");
+                    }
+                    carica_prodotti();
                 }
             }
             else
@@ -401,22 +544,6 @@ namespace Workmate
                 carica_codici();
             else
                 carica_ordini();
-        }
-
-        private void prod_btn_Click(object sender, EventArgs e)
-        {
-            prod_data.Visible = true;
-            magazzino_data.Visible = false;
-            ordini_data.Visible = false;
-            settings_pnl.Visible = false;
-            desktop_pnl.Visible = true;
-            bar_pnl.Visible = true;
-            magazzino = false;
-            avv_mostrati = false;
-            comboBox1.Items.Clear();
-            comboBox1.Items.Add("Prodotto");
-            comboBox1.Items.Add("Descrizione");
-            comboBox1.SelectedIndex = 0;
         }
     }
 }

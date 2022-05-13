@@ -7,6 +7,9 @@
     <Compile Update="Aggiungi_Ordine.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Aggiungi_Prodotto.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="CustomDialog.cs">
       <SubType>Form</SubType>
     </Compile>

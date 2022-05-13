@@ -53,7 +53,27 @@ namespace Workmate
                 new XElement("ordine", ord_txt.Text),
                 new XElement("prezzo", prz_txt.Text),
                 new XElement("cliente", cliente_txt.Text),
-                new XElement("note", note_txt.Text)
+                new XElement("note", note_txt.Text),
+                new XElement("prod1", prod1_txt.Text),
+                new XElement("prod2", prod2_txt.Text),
+                new XElement("prod3", prod3_txt.Text),
+                new XElement("prod4", prod4_txt.Text),
+                new XElement("prod5", prod5_txt.Text),
+                new XElement("prod6", prod6_txt.Text),
+                new XElement("prod7", prod7_txt.Text),
+                new XElement("prod8", prod8_txt.Text),
+                new XElement("prod9", prod9_txt.Text),
+                new XElement("prod10", prod10_txt.Text),
+                new XElement("qt1", qt1_txt.Text),
+                new XElement("qt2", qt2_txt.Text),
+                new XElement("qt3", qt3_txt.Text),
+                new XElement("qt4", qt4_txt.Text),
+                new XElement("qt5", qt5_txt.Text),
+                new XElement("qt6", qt6_txt.Text),
+                new XElement("qt7", qt7_txt.Text),
+                new XElement("qt8", qt8_txt.Text),
+                new XElement("qt9", qt9_txt.Text),
+                new XElement("qt10", qt10_txt.Text)
                 ));
 
             string root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Ordini\\";
@@ -72,7 +92,7 @@ namespace Workmate
                             try
                             {
                                 XmlDocument xml_doc = new XmlDocument();
-                                xml_doc.Load(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Magazzino\\" + textbox.Text + ".xml");
+                                xml_doc.Load(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Prodotti\\" + textbox.Text + ".xml");
                                 //XmlNode qt = xml_doc.DocumentElement.SelectSingleNode("/codice/quantità");
                             }
                             catch

@@ -22,4 +22,10 @@ public class var
         string[] ordini_trovati = Directory.GetFiles(db + @"Ordini\");
         return ordini_trovati;
     }
+
+    public static string[] carica_prodotti()
+    {
+        string[] prodotti_trovati = Directory.GetFiles(db + @"Prodotti\");
+        return prodotti_trovati;
+    }
 }
