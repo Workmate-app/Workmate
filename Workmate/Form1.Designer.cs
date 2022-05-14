@@ -48,6 +48,15 @@
             this.del_btn = new FontAwesome.Sharp.IconButton();
             this.plus_btn = new FontAwesome.Sharp.IconButton();
             this.desktop_pnl = new System.Windows.Forms.Panel();
+            this.logo_pic = new System.Windows.Forms.PictureBox();
+            this.totfat_pnl = new System.Windows.Forms.Panel();
+            this.totfat_pic = new FontAwesome.Sharp.IconPictureBox();
+            this.totfat_lbl = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.nordini_pnl = new System.Windows.Forms.Panel();
+            this.totord_pic = new FontAwesome.Sharp.IconPictureBox();
+            this.nordini_lbl = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.ordini_data = new System.Windows.Forms.DataGridView();
             this.ordine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prezzo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,11 +69,6 @@
             this.quantitamin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descrizione = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prod_data = new System.Windows.Forms.DataGridView();
-            this.settings_pnl = new System.Windows.Forms.Panel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.modificaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eliminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prodotto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codice1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -97,11 +101,21 @@
             this.qt8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qt9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qt10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.settings_pnl = new System.Windows.Forms.Panel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.modificaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dock_pnl.SuspendLayout();
             this.logo_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.bar_pnl.SuspendLayout();
             this.desktop_pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pic)).BeginInit();
+            this.totfat_pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.totfat_pic)).BeginInit();
+            this.nordini_pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.totord_pic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordini_data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.magazzino_data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prod_data)).BeginInit();
@@ -391,6 +405,9 @@
             // desktop_pnl
             // 
             this.desktop_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.desktop_pnl.Controls.Add(this.logo_pic);
+            this.desktop_pnl.Controls.Add(this.totfat_pnl);
+            this.desktop_pnl.Controls.Add(this.nordini_pnl);
             this.desktop_pnl.Controls.Add(this.ordini_data);
             this.desktop_pnl.Controls.Add(this.magazzino_data);
             this.desktop_pnl.Controls.Add(this.prod_data);
@@ -399,6 +416,106 @@
             this.desktop_pnl.Name = "desktop_pnl";
             this.desktop_pnl.Size = new System.Drawing.Size(838, 532);
             this.desktop_pnl.TabIndex = 2;
+            // 
+            // logo_pic
+            // 
+            this.logo_pic.BackgroundImage = global::Workmate.Properties.Resources.Workmate;
+            this.logo_pic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.logo_pic.Location = new System.Drawing.Point(582, 17);
+            this.logo_pic.Name = "logo_pic";
+            this.logo_pic.Size = new System.Drawing.Size(235, 235);
+            this.logo_pic.TabIndex = 3;
+            this.logo_pic.TabStop = false;
+            // 
+            // totfat_pnl
+            // 
+            this.totfat_pnl.Controls.Add(this.totfat_pic);
+            this.totfat_pnl.Controls.Add(this.totfat_lbl);
+            this.totfat_pnl.Controls.Add(this.label4);
+            this.totfat_pnl.Location = new System.Drawing.Point(213, 17);
+            this.totfat_pnl.Name = "totfat_pnl";
+            this.totfat_pnl.Size = new System.Drawing.Size(201, 76);
+            this.totfat_pnl.TabIndex = 1;
+            // 
+            // totfat_pic
+            // 
+            this.totfat_pic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.totfat_pic.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.totfat_pic.IconChar = FontAwesome.Sharp.IconChar.Wallet;
+            this.totfat_pic.IconColor = System.Drawing.SystemColors.ControlText;
+            this.totfat_pic.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.totfat_pic.IconSize = 55;
+            this.totfat_pic.Location = new System.Drawing.Point(3, 7);
+            this.totfat_pic.Name = "totfat_pic";
+            this.totfat_pic.Size = new System.Drawing.Size(55, 55);
+            this.totfat_pic.TabIndex = 4;
+            this.totfat_pic.TabStop = false;
+            // 
+            // totfat_lbl
+            // 
+            this.totfat_lbl.AutoSize = true;
+            this.totfat_lbl.Font = new System.Drawing.Font("SF Pro Display", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.totfat_lbl.Location = new System.Drawing.Point(64, 24);
+            this.totfat_lbl.Name = "totfat_lbl";
+            this.totfat_lbl.Size = new System.Drawing.Size(22, 24);
+            this.totfat_lbl.TabIndex = 3;
+            this.totfat_lbl.Text = "0";
+            this.totfat_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("SF Pro Display", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(64, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(92, 16);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Totale fatturato";
+            // 
+            // nordini_pnl
+            // 
+            this.nordini_pnl.Controls.Add(this.totord_pic);
+            this.nordini_pnl.Controls.Add(this.nordini_lbl);
+            this.nordini_pnl.Controls.Add(this.label1);
+            this.nordini_pnl.Location = new System.Drawing.Point(6, 17);
+            this.nordini_pnl.Name = "nordini_pnl";
+            this.nordini_pnl.Size = new System.Drawing.Size(201, 76);
+            this.nordini_pnl.TabIndex = 0;
+            // 
+            // totord_pic
+            // 
+            this.totord_pic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.totord_pic.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.totord_pic.IconChar = FontAwesome.Sharp.IconChar.Truck;
+            this.totord_pic.IconColor = System.Drawing.SystemColors.ControlText;
+            this.totord_pic.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.totord_pic.IconSize = 55;
+            this.totord_pic.Location = new System.Drawing.Point(4, 7);
+            this.totord_pic.Name = "totord_pic";
+            this.totord_pic.Size = new System.Drawing.Size(55, 55);
+            this.totord_pic.TabIndex = 3;
+            this.totord_pic.TabStop = false;
+            // 
+            // nordini_lbl
+            // 
+            this.nordini_lbl.AutoSize = true;
+            this.nordini_lbl.Font = new System.Drawing.Font("SF Pro Display", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.nordini_lbl.Location = new System.Drawing.Point(62, 24);
+            this.nordini_lbl.Name = "nordini_lbl";
+            this.nordini_lbl.Size = new System.Drawing.Size(22, 24);
+            this.nordini_lbl.TabIndex = 1;
+            this.nordini_lbl.Text = "0";
+            this.nordini_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("SF Pro Display", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(62, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Totale ordini";
             // 
             // ordini_data
             // 
@@ -529,45 +646,6 @@
             this.prod_data.RowTemplate.Height = 25;
             this.prod_data.Size = new System.Drawing.Size(838, 532);
             this.prod_data.TabIndex = 2;
-            // 
-            // settings_pnl
-            // 
-            this.settings_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.settings_pnl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.settings_pnl.Location = new System.Drawing.Point(230, 60);
-            this.settings_pnl.Name = "settings_pnl";
-            this.settings_pnl.Size = new System.Drawing.Size(838, 532);
-            this.settings_pnl.TabIndex = 3;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.modificaToolStripMenuItem,
-            this.aggiungiToolStripMenuItem,
-            this.eliminaToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(127, 70);
-            // 
-            // modificaToolStripMenuItem
-            // 
-            this.modificaToolStripMenuItem.Name = "modificaToolStripMenuItem";
-            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.modificaToolStripMenuItem.Text = "Modifica";
-            this.modificaToolStripMenuItem.Click += new System.EventHandler(this.modificaToolStripMenuItem_Click);
-            // 
-            // aggiungiToolStripMenuItem
-            // 
-            this.aggiungiToolStripMenuItem.Name = "aggiungiToolStripMenuItem";
-            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.aggiungiToolStripMenuItem.Text = "Aggiungi ";
-            this.aggiungiToolStripMenuItem.Click += new System.EventHandler(this.aggiungiToolStripMenuItem_Click);
-            // 
-            // eliminaToolStripMenuItem
-            // 
-            this.eliminaToolStripMenuItem.Name = "eliminaToolStripMenuItem";
-            this.eliminaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.eliminaToolStripMenuItem.Text = "Elimina";
-            this.eliminaToolStripMenuItem.Click += new System.EventHandler(this.eliminaToolStripMenuItem_Click);
             // 
             // prodotto
             // 
@@ -759,13 +837,52 @@
             this.qt10.Name = "qt10";
             this.qt10.Visible = false;
             // 
+            // settings_pnl
+            // 
+            this.settings_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.settings_pnl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.settings_pnl.Location = new System.Drawing.Point(230, 60);
+            this.settings_pnl.Name = "settings_pnl";
+            this.settings_pnl.Size = new System.Drawing.Size(838, 532);
+            this.settings_pnl.TabIndex = 3;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modificaToolStripMenuItem,
+            this.aggiungiToolStripMenuItem,
+            this.eliminaToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(127, 70);
+            // 
+            // modificaToolStripMenuItem
+            // 
+            this.modificaToolStripMenuItem.Name = "modificaToolStripMenuItem";
+            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.modificaToolStripMenuItem.Text = "Modifica";
+            this.modificaToolStripMenuItem.Click += new System.EventHandler(this.modificaToolStripMenuItem_Click);
+            // 
+            // aggiungiToolStripMenuItem
+            // 
+            this.aggiungiToolStripMenuItem.Name = "aggiungiToolStripMenuItem";
+            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.aggiungiToolStripMenuItem.Text = "Aggiungi ";
+            this.aggiungiToolStripMenuItem.Click += new System.EventHandler(this.aggiungiToolStripMenuItem_Click);
+            // 
+            // eliminaToolStripMenuItem
+            // 
+            this.eliminaToolStripMenuItem.Name = "eliminaToolStripMenuItem";
+            this.eliminaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.eliminaToolStripMenuItem.Text = "Elimina";
+            this.eliminaToolStripMenuItem.Click += new System.EventHandler(this.eliminaToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1068, 592);
-            this.Controls.Add(this.settings_pnl);
             this.Controls.Add(this.desktop_pnl);
+            this.Controls.Add(this.settings_pnl);
             this.Controls.Add(this.bar_pnl);
             this.Controls.Add(this.dock_pnl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -780,6 +897,13 @@
             this.bar_pnl.ResumeLayout(false);
             this.bar_pnl.PerformLayout();
             this.desktop_pnl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pic)).EndInit();
+            this.totfat_pnl.ResumeLayout(false);
+            this.totfat_pnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.totfat_pic)).EndInit();
+            this.nordini_pnl.ResumeLayout(false);
+            this.nordini_pnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.totord_pic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordini_data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.magazzino_data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.prod_data)).EndInit();
@@ -857,5 +981,14 @@
         private DataGridViewTextBoxColumn qt8;
         private DataGridViewTextBoxColumn qt9;
         private DataGridViewTextBoxColumn qt10;
+        private Panel totfat_pnl;
+        private Panel nordini_pnl;
+        private FontAwesome.Sharp.IconPictureBox totfat_pic;
+        private Label totfat_lbl;
+        private Label label4;
+        private FontAwesome.Sharp.IconPictureBox totord_pic;
+        private Label nordini_lbl;
+        private Label label1;
+        private PictureBox logo_pic;
     }
 }

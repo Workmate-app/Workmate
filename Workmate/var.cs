@@ -2,7 +2,8 @@
 public class var
 {
     public static string db = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Workmate\";
-
+    
+    public static bool ended = false;
     public static int cnc()
     {
         return Directory.GetFiles(db + @"Magazzino\").Length;

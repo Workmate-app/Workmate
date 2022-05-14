@@ -1,6 +1,7 @@
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
+using System.Globalization;
 
 namespace Workmate
 {
@@ -11,12 +12,17 @@ namespace Workmate
         private bool prod = false;
         bool mostra_avviso = true;
         bool avv_mostrati = false;
+        public float totalefatturato;
+        bool ordinicaricati = false;
+        bool prodotticaricati = false;
+        bool codicicaricati = false;
         public Form1()
         {
             InitializeComponent();
             Checkdirs();
             this.Padding = new Padding(borderSize);
             this.BackColor = Color.FromArgb(29, 133, 181);
+            carica_ordini();
             bar_pnl.Visible = false;
             ordini_data.Visible = false;
             magazzino_data.Visible = false;
@@ -26,12 +32,24 @@ namespace Workmate
         }
         private void closeform(object sender, FormClosingEventArgs e)
         {
-            if (magazzino == true)
+            if (magazzino == true && var.ended == true)
+            {
                 carica_codici();
-            else if(prod==true)
+                var.ended = false;
+                codicicaricati = true;
+            }
+            else if (prod == true && var.ended == true)
+            {
                 carica_prodotti();
-            else
+                var.ended = false;
+                prodotticaricati = true;
+            }
+            else if (var.ended == true)
+            {
                 carica_ordini();
+                var.ended = false;
+                ordinicaricati = true;
+            }
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -94,6 +112,7 @@ namespace Workmate
 
         private void carica_codici(string testoc = "", string colonnac = "", int search = 0)
         {
+            MessageBox.Show("Caricamento codici in corso...");
             magazzino_data.Rows.Clear();
             string[] codici = var.carica_codici();
             for (int i = 0; i < codici.Length; i++)
@@ -146,6 +165,9 @@ namespace Workmate
 
         private void carica_ordini(string testoc = "", string colonnac = "")
         {
+            MessageBox.Show("Caricamento ordini in corso...");
+            if (testoc == "")
+                totalefatturato = 0;
             ordini_data.Rows.Clear();
             string[] ordini = var.carica_ordini();
             for (int i = 0; i < ordini.Length; i++)
@@ -181,11 +203,14 @@ namespace Workmate
                 testoc = testoc.ToLower();
                 if (contenuto.Contains(testoc))
                     ordini_data.Rows.Add(riga);
+                if (testoc == "")
+                    totalefatturato += float.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
             }
         }
 
         private void carica_prodotti(string testoc = "", string colonnac = "", int search = 0)
         {
+            MessageBox.Show("Caricamento prodotti in corso...");
             prod_data.Rows.Clear();
             string[] prodotti = var.carica_prodotti();
             for (int i = 0; i < prodotti.Length; i++)
@@ -244,6 +269,11 @@ namespace Workmate
         }
         private void magazzino_btn_Click(object sender, EventArgs e)
         {
+            nordini_pnl.Visible = false;
+            totfat_pnl.Visible = false;
+            totfat_pic.Visible = false;
+            totord_pic.Visible = false;
+            logo_pic.Visible = false;
             settings_pnl.Visible = false;
             desktop_pnl.Visible = true;
             bar_pnl.Visible = true;
@@ -257,13 +287,23 @@ namespace Workmate
             comboBox1.Items.Add("Prezzo");
             comboBox1.Items.Add("Quantità");
             comboBox1.Items.Add("Descrizione");
-            carica_codici();
-            avv_mostrati = true;
             comboBox1.SelectedIndex = 0;
+            if (codicicaricati == false || mostra_avviso == true)
+            {
+                carica_codici();
+                codicicaricati = true;
+            }
+            avv_mostrati = true;
+
         }
 
         private void ordini_btn_Click(object sender, EventArgs e)
         {
+            nordini_pnl.Visible = false;
+            totfat_pnl.Visible = false;
+            totfat_pic.Visible = false;
+            totord_pic.Visible = false;
+            logo_pic.Visible = false;
             settings_pnl.Visible = false;
             desktop_pnl.Visible = true;
             bar_pnl.Visible = true;
@@ -278,11 +318,21 @@ namespace Workmate
             comboBox1.Items.Add("Prezzo");
             comboBox1.Items.Add("Cliente");
             comboBox1.Items.Add("Note");
-            carica_ordini();
             comboBox1.SelectedIndex = 0;
+            if (ordinicaricati == false)
+            {
+                carica_ordini();
+                ordinicaricati = true;
+            }
+
         }
         private void prod_btn_Click(object sender, EventArgs e)
         {
+            nordini_pnl.Visible = false;
+            totfat_pnl.Visible = false;
+            totfat_pic.Visible = false;
+            totord_pic.Visible = false;
+            logo_pic.Visible = false;
             prod_data.Visible = true;
             magazzino_data.Visible = false;
             ordini_data.Visible = false;
@@ -295,11 +345,17 @@ namespace Workmate
             comboBox1.Items.Clear();
             comboBox1.Items.Add("Prodotto");
             comboBox1.Items.Add("Descrizione");
-            carica_prodotti();
             comboBox1.SelectedIndex = 0;
+            if (prodotticaricati == false)
+            {
+                carica_prodotti();
+                prodotticaricati = true;
+            }
         }
         private void home_btn_Click(object sender, EventArgs e)
         {
+            totfat_lbl.Text = totalefatturato.ToString("0.00") + " €";
+            nordini_lbl.Text = var.cno().ToString();
             settings_pnl.Visible = false;
             desktop_pnl.Visible = true;
             bar_pnl.Visible = false;
@@ -307,6 +363,11 @@ namespace Workmate
             magazzino_data.Visible = false;
             prod_data.Visible = false;
             avv_mostrati = false;
+            nordini_pnl.Visible = true;
+            totfat_pnl.Visible = true;
+            totfat_pic.Visible = true;
+            totord_pic.Visible = true;
+            logo_pic.Visible = true;
         }
         private void impostazioni_btn_Click(object sender, EventArgs e)
         {
@@ -323,18 +384,24 @@ namespace Workmate
                 Aggiungi_Codice Nuovo_Codice = new Aggiungi_Codice();
                 Nuovo_Codice.FormClosing += new FormClosingEventHandler(closeform);
                 Nuovo_Codice.ShowDialog();
+                if(Nuovo_Codice.DialogResult == DialogResult.Yes)
+                    codicicaricati = false;
             }
             else if (prod == true)
             {
                 Aggiungi_Prodotto Nuovo_Prodotto = new Aggiungi_Prodotto();
                 Nuovo_Prodotto.FormClosing += new FormClosingEventHandler(closeform);
                 Nuovo_Prodotto.ShowDialog();
+                if(Nuovo_Prodotto.DialogResult == DialogResult.Yes)
+                    prodotticaricati = false;
             }
             else
             {
                 Aggiungi_Ordine Nuovo_Ordine = new Aggiungi_Ordine();
                 Nuovo_Ordine.FormClosing += new FormClosingEventHandler(closeform);
                 Nuovo_Ordine.ShowDialog();
+                if(Nuovo_Ordine.DialogResult == DialogResult.Yes)
+                    ordinicaricati = false;
             }
         }
 
@@ -350,7 +417,6 @@ namespace Workmate
                 Nuovo_Codice.varQtmin = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[3].Value.ToString();
                 Nuovo_Codice.varDes = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[4].Value.ToString();
                 Nuovo_Codice.Modifica = 1;
-
                 Nuovo_Codice.ShowDialog();
             }
             else if (prod == true)

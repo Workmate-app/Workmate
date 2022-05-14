@@ -124,6 +124,7 @@ namespace Workmate
             if (Modifica == 1 && OldProd != prodotto_txt.Text)
                 File.Delete(root + OldProd + ".xml");
             this.DialogResult = DialogResult.Yes;
+            var.ended = true;
             this.Close();
 
         }

@@ -80,6 +80,7 @@ namespace Workmate
                 if (Modifica == 1 && OldCod != cod_txt.Text)
                     File.Delete(root + OldCod + ".xml");
             }
+            var.ended = true;
             this.Close();
         }
 

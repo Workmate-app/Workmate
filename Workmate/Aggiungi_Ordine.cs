@@ -108,6 +108,7 @@ namespace Workmate
                 if (Modifica == 1 && OldOrd != ord_txt.Text)
                     File.Delete(root + OldOrd + ".xml");
                 this.DialogResult = DialogResult.Yes;
+                var.ended = true;
                 this.Close();
                 }
         }
