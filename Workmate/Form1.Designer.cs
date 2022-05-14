@@ -88,7 +88,16 @@
             this.quantita_codice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantitamin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descrizione = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Foto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prod_data = new System.Windows.Forms.DataGridView();
+            this.settings_pnl = new System.Windows.Forms.Panel();
+            this.save_btn = new FontAwesome.Sharp.IconButton();
+            this.changeimg_btn = new FontAwesome.Sharp.IconButton();
+            this.changedb_btn = new FontAwesome.Sharp.IconButton();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.modificaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prodotto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codice1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -121,11 +130,7 @@
             this.qt8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qt9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qt10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.settings_pnl = new System.Windows.Forms.Panel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.modificaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eliminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dock_pnl.SuspendLayout();
             this.logo_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -139,6 +144,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ordini_data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.magazzino_data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prod_data)).BeginInit();
+            this.settings_pnl.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -728,7 +734,8 @@
             this.prezzo_codice,
             this.quantita_codice,
             this.quantitamin,
-            this.descrizione});
+            this.descrizione,
+            this.Foto});
             this.magazzino_data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.magazzino_data.Location = new System.Drawing.Point(0, 0);
             this.magazzino_data.Name = "magazzino_data";
@@ -761,6 +768,12 @@
             // 
             this.descrizione.HeaderText = "Descrizione";
             this.descrizione.Name = "descrizione";
+            // 
+            // Foto
+            // 
+            this.Foto.HeaderText = "Foto";
+            this.Foto.Name = "Foto";
+            this.Foto.Visible = false;
             // 
             // prod_data
             // 
@@ -800,13 +813,102 @@
             this.qt7,
             this.qt8,
             this.qt9,
-            this.qt10});
+            this.qt10,
+            this.dataGridViewTextBoxColumn12});
             this.prod_data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.prod_data.Location = new System.Drawing.Point(0, 0);
             this.prod_data.Name = "prod_data";
             this.prod_data.RowTemplate.Height = 25;
             this.prod_data.Size = new System.Drawing.Size(838, 532);
             this.prod_data.TabIndex = 2;
+            this.prod_data.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.prod_data_CellMouseClick);
+            // 
+            // settings_pnl
+            // 
+            this.settings_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.settings_pnl.Controls.Add(this.save_btn);
+            this.settings_pnl.Controls.Add(this.changeimg_btn);
+            this.settings_pnl.Controls.Add(this.changedb_btn);
+            this.settings_pnl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.settings_pnl.Location = new System.Drawing.Point(230, 60);
+            this.settings_pnl.Name = "settings_pnl";
+            this.settings_pnl.Size = new System.Drawing.Size(838, 532);
+            this.settings_pnl.TabIndex = 3;
+            // 
+            // save_btn
+            // 
+            this.save_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.save_btn.FlatAppearance.BorderSize = 0;
+            this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.save_btn.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.save_btn.IconColor = System.Drawing.Color.Black;
+            this.save_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.save_btn.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.save_btn.Location = new System.Drawing.Point(752, 455);
+            this.save_btn.Name = "save_btn";
+            this.save_btn.Size = new System.Drawing.Size(65, 65);
+            this.save_btn.TabIndex = 2;
+            this.save_btn.UseVisualStyleBackColor = true;
+            // 
+            // changeimg_btn
+            // 
+            this.changeimg_btn.IconChar = FontAwesome.Sharp.IconChar.Image;
+            this.changeimg_btn.IconColor = System.Drawing.Color.Black;
+            this.changeimg_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.changeimg_btn.IconSize = 38;
+            this.changeimg_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.changeimg_btn.Location = new System.Drawing.Point(15, 82);
+            this.changeimg_btn.Name = "changeimg_btn";
+            this.changeimg_btn.Size = new System.Drawing.Size(245, 41);
+            this.changeimg_btn.TabIndex = 1;
+            this.changeimg_btn.Text = "Cambia immagine home";
+            this.changeimg_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.changeimg_btn.UseVisualStyleBackColor = true;
+            // 
+            // changedb_btn
+            // 
+            this.changedb_btn.IconChar = FontAwesome.Sharp.IconChar.Database;
+            this.changedb_btn.IconColor = System.Drawing.Color.Black;
+            this.changedb_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.changedb_btn.IconSize = 38;
+            this.changedb_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.changedb_btn.Location = new System.Drawing.Point(15, 24);
+            this.changedb_btn.Name = "changedb_btn";
+            this.changedb_btn.Size = new System.Drawing.Size(245, 41);
+            this.changedb_btn.TabIndex = 0;
+            this.changedb_btn.Text = "Cambia il percorso del database";
+            this.changedb_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.changedb_btn.UseVisualStyleBackColor = true;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modificaToolStripMenuItem,
+            this.aggiungiToolStripMenuItem,
+            this.eliminaToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(127, 70);
+            // 
+            // modificaToolStripMenuItem
+            // 
+            this.modificaToolStripMenuItem.Name = "modificaToolStripMenuItem";
+            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.modificaToolStripMenuItem.Text = "Modifica";
+            this.modificaToolStripMenuItem.Click += new System.EventHandler(this.modificaToolStripMenuItem_Click);
+            // 
+            // aggiungiToolStripMenuItem
+            // 
+            this.aggiungiToolStripMenuItem.Name = "aggiungiToolStripMenuItem";
+            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.aggiungiToolStripMenuItem.Text = "Aggiungi ";
+            this.aggiungiToolStripMenuItem.Click += new System.EventHandler(this.aggiungiToolStripMenuItem_Click);
+            // 
+            // eliminaToolStripMenuItem
+            // 
+            this.eliminaToolStripMenuItem.Name = "eliminaToolStripMenuItem";
+            this.eliminaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.eliminaToolStripMenuItem.Text = "Elimina";
+            this.eliminaToolStripMenuItem.Click += new System.EventHandler(this.eliminaToolStripMenuItem_Click);
             // 
             // prodotto
             // 
@@ -998,52 +1100,19 @@
             this.qt10.Name = "qt10";
             this.qt10.Visible = false;
             // 
-            // settings_pnl
+            // dataGridViewTextBoxColumn12
             // 
-            this.settings_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.settings_pnl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.settings_pnl.Location = new System.Drawing.Point(230, 60);
-            this.settings_pnl.Name = "settings_pnl";
-            this.settings_pnl.Size = new System.Drawing.Size(838, 532);
-            this.settings_pnl.TabIndex = 3;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.modificaToolStripMenuItem,
-            this.aggiungiToolStripMenuItem,
-            this.eliminaToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(127, 70);
-            // 
-            // modificaToolStripMenuItem
-            // 
-            this.modificaToolStripMenuItem.Name = "modificaToolStripMenuItem";
-            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.modificaToolStripMenuItem.Text = "Modifica";
-            this.modificaToolStripMenuItem.Click += new System.EventHandler(this.modificaToolStripMenuItem_Click);
-            // 
-            // aggiungiToolStripMenuItem
-            // 
-            this.aggiungiToolStripMenuItem.Name = "aggiungiToolStripMenuItem";
-            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.aggiungiToolStripMenuItem.Text = "Aggiungi ";
-            this.aggiungiToolStripMenuItem.Click += new System.EventHandler(this.aggiungiToolStripMenuItem_Click);
-            // 
-            // eliminaToolStripMenuItem
-            // 
-            this.eliminaToolStripMenuItem.Name = "eliminaToolStripMenuItem";
-            this.eliminaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.eliminaToolStripMenuItem.Text = "Elimina";
-            this.eliminaToolStripMenuItem.Click += new System.EventHandler(this.eliminaToolStripMenuItem_Click);
+            this.dataGridViewTextBoxColumn12.HeaderText = "Foto";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1068, 592);
-            this.Controls.Add(this.desktop_pnl);
             this.Controls.Add(this.settings_pnl);
+            this.Controls.Add(this.desktop_pnl);
             this.Controls.Add(this.bar_pnl);
             this.Controls.Add(this.dock_pnl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1068,6 +1137,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ordini_data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.magazzino_data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.prod_data)).EndInit();
+            this.settings_pnl.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1090,11 +1160,6 @@
         private DataGridView ordini_data;
         private DataGridView magazzino_data;
         private Panel settings_pnl;
-        private DataGridViewTextBoxColumn codice;
-        private DataGridViewTextBoxColumn prezzo_codice;
-        private DataGridViewTextBoxColumn quantita_codice;
-        private DataGridViewTextBoxColumn quantitamin;
-        private DataGridViewTextBoxColumn descrizione;
         private FontAwesome.Sharp.IconButton del_btn;
         private Button srch_btn;
         private ComboBox comboBox1;
@@ -1106,38 +1171,6 @@
         private FontAwesome.Sharp.IconButton erase_btn;
         private FontAwesome.Sharp.IconButton prod_btn;
         private DataGridView prod_data;
-        private DataGridViewTextBoxColumn prodotto;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn codice1;
-        private DataGridViewTextBoxColumn codice2;
-        private DataGridViewTextBoxColumn codice3;
-        private DataGridViewTextBoxColumn codice4;
-        private DataGridViewTextBoxColumn codice5;
-        private DataGridViewTextBoxColumn codice6;
-        private DataGridViewTextBoxColumn codice7;
-        private DataGridViewTextBoxColumn codice8;
-        private DataGridViewTextBoxColumn codice9;
-        private DataGridViewTextBoxColumn codice10;
-        private DataGridViewTextBoxColumn codice11;
-        private DataGridViewTextBoxColumn codice12;
-        private DataGridViewTextBoxColumn codice13;
-        private DataGridViewTextBoxColumn codice14;
-        private DataGridViewTextBoxColumn codice15;
-        private DataGridViewTextBoxColumn qt1;
-        private DataGridViewTextBoxColumn qt2;
-        private DataGridViewTextBoxColumn qt3;
-        private DataGridViewTextBoxColumn qt11;
-        private DataGridViewTextBoxColumn qt12;
-        private DataGridViewTextBoxColumn qt13;
-        private DataGridViewTextBoxColumn qt14;
-        private DataGridViewTextBoxColumn qt15;
-        private DataGridViewTextBoxColumn qt4;
-        private DataGridViewTextBoxColumn qt5;
-        private DataGridViewTextBoxColumn qt6;
-        private DataGridViewTextBoxColumn qt7;
-        private DataGridViewTextBoxColumn qt8;
-        private DataGridViewTextBoxColumn qt9;
-        private DataGridViewTextBoxColumn qt10;
         private Panel totfat_pnl;
         private Panel nordini_pnl;
         private FontAwesome.Sharp.IconPictureBox totfat_pic;
@@ -1171,5 +1204,47 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private FontAwesome.Sharp.IconButton changedb_btn;
+        private FontAwesome.Sharp.IconButton save_btn;
+        private FontAwesome.Sharp.IconButton changeimg_btn;
+        private DataGridViewTextBoxColumn codice;
+        private DataGridViewTextBoxColumn prezzo_codice;
+        private DataGridViewTextBoxColumn quantita_codice;
+        private DataGridViewTextBoxColumn quantitamin;
+        private DataGridViewTextBoxColumn descrizione;
+        private DataGridViewTextBoxColumn Foto;
+        private DataGridViewTextBoxColumn prodotto;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn codice1;
+        private DataGridViewTextBoxColumn codice2;
+        private DataGridViewTextBoxColumn codice3;
+        private DataGridViewTextBoxColumn codice4;
+        private DataGridViewTextBoxColumn codice5;
+        private DataGridViewTextBoxColumn codice6;
+        private DataGridViewTextBoxColumn codice7;
+        private DataGridViewTextBoxColumn codice8;
+        private DataGridViewTextBoxColumn codice9;
+        private DataGridViewTextBoxColumn codice10;
+        private DataGridViewTextBoxColumn codice11;
+        private DataGridViewTextBoxColumn codice12;
+        private DataGridViewTextBoxColumn codice13;
+        private DataGridViewTextBoxColumn codice14;
+        private DataGridViewTextBoxColumn codice15;
+        private DataGridViewTextBoxColumn qt1;
+        private DataGridViewTextBoxColumn qt2;
+        private DataGridViewTextBoxColumn qt3;
+        private DataGridViewTextBoxColumn qt11;
+        private DataGridViewTextBoxColumn qt12;
+        private DataGridViewTextBoxColumn qt13;
+        private DataGridViewTextBoxColumn qt14;
+        private DataGridViewTextBoxColumn qt15;
+        private DataGridViewTextBoxColumn qt4;
+        private DataGridViewTextBoxColumn qt5;
+        private DataGridViewTextBoxColumn qt6;
+        private DataGridViewTextBoxColumn qt7;
+        private DataGridViewTextBoxColumn qt8;
+        private DataGridViewTextBoxColumn qt9;
+        private DataGridViewTextBoxColumn qt10;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
     }
 }

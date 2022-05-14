@@ -70,8 +70,14 @@
             this.qt_pnl = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.desc_txt = new System.Windows.Forms.TextBox();
+            this.prodimg = new System.Windows.Forms.PictureBox();
+            this.addimg_btn = new FontAwesome.Sharp.IconButton();
+            this.removeimg_btn = new FontAwesome.Sharp.IconButton();
+            this.showimg_btn = new FontAwesome.Sharp.IconButton();
+            this.addphoto_dlg = new System.Windows.Forms.OpenFileDialog();
             this.cod_pnl.SuspendLayout();
             this.qt_pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.prodimg)).BeginInit();
             this.SuspendLayout();
             // 
             // prodotto_txt
@@ -95,7 +101,7 @@
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label2.Location = new System.Drawing.Point(-7, 79);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(480, 2);
+            this.label2.Size = new System.Drawing.Size(505, 2);
             this.label2.TabIndex = 2;
             // 
             // Cod1
@@ -334,7 +340,7 @@
             this.ok_btn.IconColor = System.Drawing.Color.Black;
             this.ok_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ok_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.ok_btn.Location = new System.Drawing.Point(312, 522);
+            this.ok_btn.Location = new System.Drawing.Point(351, 522);
             this.ok_btn.Name = "ok_btn";
             this.ok_btn.Size = new System.Drawing.Size(64, 50);
             this.ok_btn.TabIndex = 2;
@@ -349,7 +355,7 @@
             this.iconButton1.IconColor = System.Drawing.Color.Black;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.iconButton1.Location = new System.Drawing.Point(382, 522);
+            this.iconButton1.Location = new System.Drawing.Point(421, 522);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(64, 50);
             this.iconButton1.TabIndex = 3;
@@ -405,7 +411,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(219, 24);
+            this.label5.Location = new System.Drawing.Point(246, 24);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 15);
             this.label5.TabIndex = 4;
@@ -413,16 +419,75 @@
             // 
             // desc_txt
             // 
-            this.desc_txt.Location = new System.Drawing.Point(219, 42);
+            this.desc_txt.Location = new System.Drawing.Point(246, 42);
             this.desc_txt.Name = "desc_txt";
             this.desc_txt.Size = new System.Drawing.Size(227, 23);
             this.desc_txt.TabIndex = 5;
+            // 
+            // prodimg
+            // 
+            this.prodimg.BackgroundImage = global::Workmate.Properties.Resources.Workmate;
+            this.prodimg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.prodimg.Location = new System.Drawing.Point(308, 112);
+            this.prodimg.Name = "prodimg";
+            this.prodimg.Size = new System.Drawing.Size(177, 100);
+            this.prodimg.TabIndex = 6;
+            this.prodimg.TabStop = false;
+            // 
+            // addimg_btn
+            // 
+            this.addimg_btn.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.addimg_btn.IconColor = System.Drawing.Color.Black;
+            this.addimg_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.addimg_btn.Location = new System.Drawing.Point(410, 218);
+            this.addimg_btn.Name = "addimg_btn";
+            this.addimg_btn.Size = new System.Drawing.Size(75, 23);
+            this.addimg_btn.TabIndex = 7;
+            this.addimg_btn.Text = "Aggiungi";
+            this.addimg_btn.UseVisualStyleBackColor = true;
+            this.addimg_btn.Click += new System.EventHandler(this.addimg_btn_Click);
+            // 
+            // removeimg_btn
+            // 
+            this.removeimg_btn.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.removeimg_btn.IconColor = System.Drawing.Color.Black;
+            this.removeimg_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.removeimg_btn.Location = new System.Drawing.Point(410, 247);
+            this.removeimg_btn.Name = "removeimg_btn";
+            this.removeimg_btn.Size = new System.Drawing.Size(75, 23);
+            this.removeimg_btn.TabIndex = 8;
+            this.removeimg_btn.Text = "Rimuovi";
+            this.removeimg_btn.UseVisualStyleBackColor = true;
+            this.removeimg_btn.Click += new System.EventHandler(this.removeimg_btn_Click);
+            // 
+            // showimg_btn
+            // 
+            this.showimg_btn.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.showimg_btn.IconColor = System.Drawing.Color.Black;
+            this.showimg_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.showimg_btn.Location = new System.Drawing.Point(410, 276);
+            this.showimg_btn.Name = "showimg_btn";
+            this.showimg_btn.Size = new System.Drawing.Size(75, 23);
+            this.showimg_btn.TabIndex = 9;
+            this.showimg_btn.Text = "Mostra";
+            this.showimg_btn.UseVisualStyleBackColor = true;
+            this.showimg_btn.Click += new System.EventHandler(this.showimg_btn_Click);
+            // 
+            // addphoto_dlg
+            // 
+            this.addphoto_dlg.DefaultExt = "jpg";
+            this.addphoto_dlg.FileName = "Foto prodotto";
+            this.addphoto_dlg.Filter = "\"All Graphics Types|*.jpg;*.jpeg;*.png\"";
             // 
             // Aggiungi_Prodotto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(458, 584);
+            this.ClientSize = new System.Drawing.Size(497, 584);
+            this.Controls.Add(this.showimg_btn);
+            this.Controls.Add(this.removeimg_btn);
+            this.Controls.Add(this.addimg_btn);
+            this.Controls.Add(this.prodimg);
             this.Controls.Add(this.desc_txt);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.qt_pnl);
@@ -432,6 +497,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.prodotto_txt);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Aggiungi_Prodotto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -441,6 +507,7 @@
             this.cod_pnl.PerformLayout();
             this.qt_pnl.ResumeLayout(false);
             this.qt_pnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.prodimg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -489,5 +556,10 @@
         private Panel qt_pnl;
         private Label label5;
         private TextBox desc_txt;
+        private PictureBox prodimg;
+        private FontAwesome.Sharp.IconButton addimg_btn;
+        private FontAwesome.Sharp.IconButton removeimg_btn;
+        private FontAwesome.Sharp.IconButton showimg_btn;
+        private OpenFileDialog addphoto_dlg;
     }
 }

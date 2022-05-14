@@ -41,6 +41,12 @@
             this.add_btn = new FontAwesome.Sharp.IconButton();
             this.label5 = new System.Windows.Forms.Label();
             this.qtmin_txt = new System.Windows.Forms.TextBox();
+            this.imgcod = new System.Windows.Forms.PictureBox();
+            this.addimg_btn = new FontAwesome.Sharp.IconButton();
+            this.showimg_btn = new FontAwesome.Sharp.IconButton();
+            this.addphoto_dlg = new System.Windows.Forms.OpenFileDialog();
+            this.removeimg_btn = new FontAwesome.Sharp.IconButton();
+            ((System.ComponentModel.ISupportInitialize)(this.imgcod)).BeginInit();
             this.SuspendLayout();
             // 
             // cod_txt
@@ -155,11 +161,69 @@
             this.qtmin_txt.TabIndex = 11;
             this.qtmin_txt.Text = "0";
             // 
+            // imgcod
+            // 
+            this.imgcod.BackgroundImage = global::Workmate.Properties.Resources.Workmate;
+            this.imgcod.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.imgcod.Location = new System.Drawing.Point(183, 46);
+            this.imgcod.Name = "imgcod";
+            this.imgcod.Size = new System.Drawing.Size(145, 81);
+            this.imgcod.TabIndex = 13;
+            this.imgcod.TabStop = false;
+            // 
+            // addimg_btn
+            // 
+            this.addimg_btn.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.addimg_btn.IconColor = System.Drawing.Color.Black;
+            this.addimg_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.addimg_btn.Location = new System.Drawing.Point(339, 46);
+            this.addimg_btn.Name = "addimg_btn";
+            this.addimg_btn.Size = new System.Drawing.Size(75, 23);
+            this.addimg_btn.TabIndex = 14;
+            this.addimg_btn.Text = "Aggiungi";
+            this.addimg_btn.UseVisualStyleBackColor = true;
+            this.addimg_btn.Click += new System.EventHandler(this.addimg_btn_Click);
+            // 
+            // showimg_btn
+            // 
+            this.showimg_btn.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.showimg_btn.IconColor = System.Drawing.Color.Black;
+            this.showimg_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.showimg_btn.Location = new System.Drawing.Point(339, 104);
+            this.showimg_btn.Name = "showimg_btn";
+            this.showimg_btn.Size = new System.Drawing.Size(75, 23);
+            this.showimg_btn.TabIndex = 16;
+            this.showimg_btn.Text = "Mostra";
+            this.showimg_btn.UseVisualStyleBackColor = true;
+            // 
+            // addphoto_dlg
+            // 
+            this.addphoto_dlg.DefaultExt = "jpg";
+            this.addphoto_dlg.FileName = "foto_codice";
+            this.addphoto_dlg.Filter = "\"All Graphics Types|*.jpg;*.jpeg;*.png\"";
+            // 
+            // removeimg_btn
+            // 
+            this.removeimg_btn.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.removeimg_btn.IconColor = System.Drawing.Color.Black;
+            this.removeimg_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.removeimg_btn.Location = new System.Drawing.Point(339, 75);
+            this.removeimg_btn.Name = "removeimg_btn";
+            this.removeimg_btn.Size = new System.Drawing.Size(75, 23);
+            this.removeimg_btn.TabIndex = 17;
+            this.removeimg_btn.Text = "Rimuovi";
+            this.removeimg_btn.UseVisualStyleBackColor = true;
+            this.removeimg_btn.Click += new System.EventHandler(this.removeimg_btn_Click);
+            // 
             // Aggiungi_Codice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(458, 502);
+            this.Controls.Add(this.removeimg_btn);
+            this.Controls.Add(this.showimg_btn);
+            this.Controls.Add(this.addimg_btn);
+            this.Controls.Add(this.imgcod);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.qtmin_txt);
             this.Controls.Add(this.add_btn);
@@ -181,6 +245,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Aggiungi codice";
             this.Load += new System.EventHandler(this.Aggiungi_Codice_Load_1);
+            ((System.ComponentModel.ISupportInitialize)(this.imgcod)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,5 +265,10 @@
         private FontAwesome.Sharp.IconButton add_btn;
         private Label label5;
         private TextBox qtmin_txt;
+        private PictureBox imgcod;
+        private FontAwesome.Sharp.IconButton addimg_btn;
+        private FontAwesome.Sharp.IconButton showimg_btn;
+        private OpenFileDialog addphoto_dlg;
+        private FontAwesome.Sharp.IconButton removeimg_btn;
     }
 }

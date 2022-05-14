@@ -23,6 +23,7 @@ namespace Workmate
         string OldCod = "";
         private void add_btn_Click(object sender, EventArgs e)
         {
+            string root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Magazzino\\";
             #region Controlli
             if (cod_txt.Text.Length == 0)
             {
@@ -60,15 +61,23 @@ namespace Workmate
             }
             #endregion
 
+            string extfoto = "";
+            if (imgcod.Tag != null)
+            {
+                extfoto = Path.GetExtension(imgcod.Tag.ToString());
+            }
+            string percorsofoto = root + "Foto\\" + cod_txt.Text + extfoto;
+            if (imgcod.Tag == null)
+                percorsofoto = "";
             XDocument doc_xml = new XDocument(new XElement("codice",
                 new XElement("cod", cod_txt.Text),
                 new XElement("prezzo", prz_txt.Text),
                 new XElement("quantità", qt_txt.Text),
                 new XElement("quantitàmin", qtmin_txt.Text),
-                new XElement("descrizione", desc_txt.Text)
+                new XElement("descrizione", desc_txt.Text),
+                new XElement("foto", percorsofoto)
                 ));
 
-            string root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Magazzino\\";
             if (File.Exists(root + cod_txt.Text + ".xml") && Modifica != 1)
             {
                 MessageBox.Show("Codice già esistente");
@@ -76,6 +85,12 @@ namespace Workmate
             }
             else
             {
+                if (imgcod.Tag != null)
+                {
+                    if (File.Exists(root + "Foto\\" + cod_txt.Text + extfoto))
+                        File.Delete(root + "Foto\\" + cod_txt.Text + extfoto);
+                    File.Copy(imgcod.Tag.ToString(), root + "Foto\\" + cod_txt.Text + extfoto);
+                }
                 doc_xml.Save(root + cod_txt.Text + ".xml");
                 if (Modifica == 1 && OldCod != cod_txt.Text)
                     File.Delete(root + OldCod + ".xml");
@@ -99,6 +114,17 @@ namespace Workmate
                 prz_txt.Text = varPrz;
                 qt_txt.Text = varQt;
                 desc_txt.Text = varDes;
+                if (varFoto.Length != 0)
+                {
+                    Image image = Image.FromFile(varFoto);
+                    imgcod.BackgroundImage = image;
+                    imgcod.Tag = varFoto;
+                }
+                else
+                {
+                    imgcod.BackgroundImage = Properties.Resources.Workmate;
+                    imgcod.Tag = null;
+                }
             }
         }
         public string varCod { get; set; }
@@ -107,5 +133,29 @@ namespace Workmate
         public string varQtmin { get; set; }
         public string varDes { get; set; }
         public int Modifica { get; set; }
+        public string varFoto { get; set; }
+
+        private void addimg_btn_Click(object sender, EventArgs e)
+        {
+            addphoto_dlg.ShowDialog();
+            try
+            {
+                if(addphoto_dlg.FileName != null)
+                {
+                    Image image = Image.FromFile(addphoto_dlg.FileName);
+                    imgcod.BackgroundImage = image;
+                    imgcod.Tag = addphoto_dlg.FileName;
+                }
+            }
+            catch
+            {
+            
+            }
+        }
+        private void removeimg_btn_Click(object sender, EventArgs e)
+        {
+            imgcod.BackgroundImage = Properties.Resources.Workmate;
+            imgcod.Tag = null;
+        }
     }
 }

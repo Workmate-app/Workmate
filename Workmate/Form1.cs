@@ -100,14 +100,17 @@ namespace Workmate
             if (!Directory.Exists(root + @"\Magazzino"))
             {
                 Directory.CreateDirectory(root + @"\Magazzino");
+                Directory.CreateDirectory(root + @"\Magazzino\Foto");
             }
             if (!Directory.Exists(root + @"\Ordini"))
             {
                 Directory.CreateDirectory(root + @"\Ordini");
+                Directory.CreateDirectory(root + @"\Ordini\Foto");
             }
             if (!Directory.Exists(root + @"\Prodotti"))
             {
                 Directory.CreateDirectory(root + @"\Prodotti");
+                Directory.CreateDirectory(root + @"\Prodotti\Foto");
             }
         }
 
@@ -125,7 +128,8 @@ namespace Workmate
                 XmlNode quantita = xml_doc.DocumentElement.SelectSingleNode("/codice/quantità");
                 XmlNode quantitamin = xml_doc.DocumentElement.SelectSingleNode("/codice/quantitàmin");
                 XmlNode descrizione = xml_doc.DocumentElement.SelectSingleNode("/codice/descrizione");
-                string[] riga = { codice.InnerText, prezzo.InnerText, quantita.InnerText, quantitamin.InnerText, descrizione.InnerText };
+                XmlNode foto = xml_doc.DocumentElement.SelectSingleNode("/codice/foto");
+                string[] riga = { codice.InnerText, prezzo.InnerText, quantita.InnerText, quantitamin.InnerText, descrizione.InnerText, foto.InnerText };
                 string contenuto = "";
                 switch (colonnac)
                 {
@@ -273,8 +277,9 @@ namespace Workmate
                 XmlNode qt13 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt13");
                 XmlNode qt14 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt14");
                 XmlNode qt15 = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt15");
+                XmlNode foto = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/foto");
 
-                string[] riga = { prodotto.InnerText, descrizione.InnerText , cod1.InnerText, cod2.InnerText, cod3.InnerText, cod4.InnerText, cod5.InnerText, cod6.InnerText, cod7.InnerText, cod8.InnerText, cod9.InnerText, cod10.InnerText, cod11.InnerText, cod12.InnerText, cod13.InnerText, cod14.InnerText, cod15.InnerText, qt1.InnerText, qt2.InnerText, qt3.InnerText, qt4.InnerText, qt5.InnerText, qt6.InnerText, qt7.InnerText, qt8.InnerText, qt9.InnerText, qt10.InnerText, qt11.InnerText, qt12.InnerText, qt13.InnerText, qt14.InnerText, qt15.InnerText };
+                string[] riga = { prodotto.InnerText, descrizione.InnerText , cod1.InnerText, cod2.InnerText, cod3.InnerText, cod4.InnerText, cod5.InnerText, cod6.InnerText, cod7.InnerText, cod8.InnerText, cod9.InnerText, cod10.InnerText, cod11.InnerText, cod12.InnerText, cod13.InnerText, cod14.InnerText, cod15.InnerText, qt1.InnerText, qt2.InnerText, qt3.InnerText, qt4.InnerText, qt5.InnerText, qt6.InnerText, qt7.InnerText, qt8.InnerText, qt9.InnerText, qt10.InnerText, qt11.InnerText, qt12.InnerText, qt13.InnerText, qt14.InnerText, qt15.InnerText, foto.InnerText };
                 string contenuto = "";
                 switch (colonnac)
                 {
@@ -438,6 +443,7 @@ namespace Workmate
                 Nuovo_Codice.varQt = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[2].Value.ToString();
                 Nuovo_Codice.varQtmin = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[3].Value.ToString();
                 Nuovo_Codice.varDes = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[4].Value.ToString();
+                Nuovo_Codice.varFoto = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[5].Value.ToString();
                 Nuovo_Codice.Modifica = 1;
                 Nuovo_Codice.ShowDialog();
             }
@@ -477,6 +483,7 @@ namespace Workmate
                 Nuovo_Prodotto.varQt13 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[29].Value.ToString();
                 Nuovo_Prodotto.varQt14 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[30].Value.ToString();
                 Nuovo_Prodotto.varQt15 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[31].Value.ToString();
+                Nuovo_Prodotto.varFoto = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[32].Value.ToString();
                 Nuovo_Prodotto.Modifica = 1;
 
                 Nuovo_Prodotto.ShowDialog();
@@ -534,6 +541,14 @@ namespace Workmate
                     try
                     {
                         File.Delete(var.db + @"Magazzino\" + codice + ".xml");
+                        if (File.Exists(var.db + @"Magazzino\Foto\" + codice + ".png"))
+                            File.Delete(var.db + @"Magazzino\Foto\" + codice + ".png");
+
+                        if (File.Exists(var.db + @"Magazzino\Foto\" + codice + ".jpg"))
+                            File.Delete(var.db + @"Magazzino\Foto\" + codice + ".jpg");
+
+                        if (File.Exists(var.db + @"Magazzino\Foto\" + codice + ".jpeg"))
+                            File.Delete(var.db + @"Magazzino\Foto\" + codice + ".jpeg");
                     }
                     catch (Exception ex)
                     {
@@ -550,6 +565,14 @@ namespace Workmate
                     try
                     {
                         File.Delete(var.db + @"Prodotti\" + prodotto + ".xml");
+                        if (File.Exists(var.db + @"Prodotti\Foto\" + prodotto + ".png"))
+                            File.Delete(var.db + @"Prodotti\Foto\" + prodotto + ".png");
+                        
+                        if (File.Exists(var.db + @"Prodotti\Foto\" + prodotto + ".jpg"))
+                            File.Delete(var.db + @"Prodotti\Foto\" + prodotto + ".jpg");
+
+                        if (File.Exists(var.db + @"Prodotti\Foto\" + prodotto + ".jpeg"))
+                            File.Delete(var.db + @"Prodotti\Foto\" + prodotto + ".jpeg");
                     }
                     catch (Exception ex)
                     {
@@ -668,6 +691,25 @@ namespace Workmate
                 carica_prodotti();
             else
                 carica_ordini();
+        }
+
+        private void prod_data_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
+                {
+                    prod_data.CurrentCell = prod_data.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    prod_data.Rows[e.RowIndex].Selected = true;
+                    prod_data.Focus();
+                    prod_data.ContextMenuStrip = contextMenuStrip1;
+                    Point posizioneContext = new Point(MousePosition.X, MousePosition.Y);
+                    prod_data.ContextMenuStrip.Show(posizioneContext);
+                    prod_data.ContextMenuStrip = null;
+                }
+                else
+                    prod_data.ContextMenuStrip = null;
+            }
         }
     }
 }

@@ -58,6 +58,17 @@ namespace Workmate
                 qt13.Text = varQt13;
                 qt14.Text = varQt14;
                 qt15.Text = varQt15;
+                if (varFoto.Length != 0)
+                {
+                    Image image = Image.FromFile(varFoto);
+                    prodimg.BackgroundImage = image;
+                    prodimg.Tag = varFoto;
+                }
+                else
+                {
+                    prodimg.BackgroundImage = Properties.Resources.Workmate;
+                    prodimg.Tag = null;
+                }
             }
         }
 
@@ -73,6 +84,16 @@ namespace Workmate
                 MessageBox.Show("Prodotto non può essere vuoto");
                 return;
             }
+
+            string extfoto = "";
+            if (prodimg.Tag != null)
+            {
+                extfoto = Path.GetExtension(prodimg.Tag.ToString());
+            }
+            string root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Prodotti\\";
+            string percorsofoto = root + "Foto\\" + prodotto_txt.Text + extfoto;
+            if (prodimg.Tag == null)
+                percorsofoto = "";
 
             XDocument doc_xml = new XDocument(new XElement("Prodotto",
                 new XElement("prodotto", prodotto_txt.Text),
@@ -106,10 +127,10 @@ namespace Workmate
                 new XElement("qt12", qt12.Text),
                 new XElement("qt13", qt13.Text),
                 new XElement("qt14", qt14.Text),
-                new XElement("qt15", qt15.Text)
+                new XElement("qt15", qt15.Text),
+                new XElement("foto", percorsofoto)
                 ));
 
-            string root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Prodotti\\";
             if (File.Exists(root + prodotto_txt.Text + ".xml") && Modifica != 1)
             {
                 MessageBox.Show("Prodotto già esistente");
@@ -144,13 +165,47 @@ namespace Workmate
                     }
                 }
             }
-
+            if (prodimg.Tag != null)
+            {
+                if (File.Exists(root + "Foto\\" + prodotto_txt.Text + extfoto))
+                    File.Delete(root + "Foto\\" + prodotto_txt.Text + extfoto);
+                File.Copy(prodimg.Tag.ToString(), root + "Foto\\" + prodotto_txt.Text + extfoto);
+            }
             doc_xml.Save(root + prodotto_txt.Text + ".xml");
             if (Modifica == 1 && OldProd != prodotto_txt.Text)
                 File.Delete(root + OldProd + ".xml");
             this.DialogResult = DialogResult.Yes;
             var.ended = true;
             this.Close();
+
+        }
+
+        private void addimg_btn_Click(object sender, EventArgs e)
+        {
+            addphoto_dlg.ShowDialog();
+            try
+            {
+                if (addphoto_dlg.FileName != null)
+                {
+                    Image image = Image.FromFile(addphoto_dlg.FileName);
+                    prodimg.BackgroundImage = image;
+                    prodimg.Tag = addphoto_dlg.FileName;
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void removeimg_btn_Click(object sender, EventArgs e)
+        {
+            prodimg.BackgroundImage = Properties.Resources.Workmate;
+            prodimg.Tag = null;
+        }
+
+        private void showimg_btn_Click(object sender, EventArgs e)
+        {
 
         }
         public int Modifica { get; set; }
@@ -187,6 +242,7 @@ namespace Workmate
         public string varQt13 { get; set; }
         public string varQt14 { get; set; }
         public string varQt15 { get; set; }
-        
+        public string varFoto { get; set; }
+
     }
 }
