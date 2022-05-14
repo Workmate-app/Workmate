@@ -95,11 +95,11 @@ namespace Workmate
                 this.Text = "Modifica codice";
                 OldCod = varCod;
                 qtmin_txt.Text = varQtmin;
+                cod_txt.Text = varCod;
+                prz_txt.Text = varPrz;
+                qt_txt.Text = varQt;
+                desc_txt.Text = varDes;
             }
-            cod_txt.Text = varCod;
-            prz_txt.Text = varPrz;
-            qt_txt.Text = varQt;
-            desc_txt.Text = varDes;
         }
         public string varCod { get; set; }
         public string varPrz { get; set; }

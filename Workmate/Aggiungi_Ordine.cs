@@ -39,14 +39,14 @@ namespace Workmate
                 MessageBox.Show("Controllare il prezzo (per la , inserire il .)");
                 return;
             }
-           /* foreach (TextBox textbox in qt_pnl.Controls.OfType<TextBox>())
+           foreach (TextBox textbox in qt_pnl.Controls.OfType<TextBox>())
             {
                 if (System.Text.RegularExpressions.Regex.IsMatch(textbox.Text, @"^[0-9]+$") == false && textbox.Text.Length != 0)
                 {
                     MessageBox.Show("Controllare la quantità dei codici");
                     return;
                 }
-            }*/
+            }
             #endregion
 
             XDocument doc_xml = new XDocument(new XElement("ordine",
@@ -84,6 +84,17 @@ namespace Workmate
             }
             else
             {
+                int[] arr = new int[10];
+                int j=0;
+                foreach (TextBox textbox in qt_pnl.Controls.OfType<TextBox>())
+                {
+                    if (textbox.Text.Length != 0)
+                    {
+                        arr[j] = Convert.ToInt32(textbox.Text);
+                        j++;
+                    }                   
+                }
+                int x = 0;
                 if (Modifica != 1)
                 {
                     foreach (TextBox textbox in prod_pnl.Controls.OfType<TextBox>()) {
@@ -93,7 +104,33 @@ namespace Workmate
                             {
                                 XmlDocument xml_doc = new XmlDocument();
                                 xml_doc.Load(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Prodotti\\" + textbox.Text + ".xml");
-                                //XmlNode qt = xml_doc.DocumentElement.SelectSingleNode("/codice/quantità");
+                                for(int i = 0; i < 15; i++)
+                                {
+                                    XmlNode cod = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod" + (i + 1));
+                                    if (cod.InnerText != "")
+                                    {
+                                        XmlNode qt = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt" + (i + 1));
+                                        XmlDocument xml_doc_cod = new XmlDocument();
+                                        xml_doc_cod.Load(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Magazzino\\" + cod.InnerText + ".xml");
+                                        XmlNode qt_cod = xml_doc_cod.DocumentElement.SelectSingleNode("/codice/quantità");
+                                        int tmp = Convert.ToInt32(qt_cod.InnerText) - (Convert.ToInt32(qt.InnerText) * arr[x]);
+                                        if (tmp < 0)
+                                        {
+                                            DialogResult dialogresult = MessageBox.Show("La quantità del codice " + cod.InnerText + " sarà inferiore a 0. Continuare?", "Attenzione",MessageBoxButtons.YesNo);
+                                            if (dialogresult == DialogResult.Yes)
+                                            {
+                                                qt_cod.InnerText = tmp.ToString();
+                                                xml_doc_cod.Save(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Magazzino\\" + cod.InnerText + ".xml");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            qt_cod.InnerText = tmp.ToString();
+                                            xml_doc_cod.Save(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Magazzino\\" + cod.InnerText + ".xml");
+                                        }
+                                    }
+                                }
+                                x++;
                             }
                             catch
                             {
@@ -101,6 +138,7 @@ namespace Workmate
                                 return;
                             }
                         }
+                        
                     }
                 }
 
@@ -124,11 +162,32 @@ namespace Workmate
             {
                 this.Text = "Modifica ordine";
                 OldOrd = varOrdine;
+                ord_txt.Text = varOrdine;
+                prz_txt.Text = varPrz;
+                cliente_txt.Text = varCliente;
+                note_txt.Text = varNote;
+                prod1_txt.Text = varProdotto1;
+                prod2_txt.Text = varProdotto2;
+                prod3_txt.Text = varProdotto3;
+                prod4_txt.Text = varProdotto4;
+                prod5_txt.Text = varProdotto5;
+                prod6_txt.Text = varProdotto6;
+                prod7_txt.Text = varProdotto7;
+                prod8_txt.Text = varProdotto8;
+                prod9_txt.Text = varProdotto9;
+                prod10_txt.Text = varProdotto10;
+                qt1_txt.Text = varQt1.ToString();
+                qt2_txt.Text = varQt2.ToString();
+                qt3_txt.Text = varQt3.ToString();
+                qt4_txt.Text = varQt4.ToString();
+                qt5_txt.Text = varQt5.ToString();
+                qt6_txt.Text = varQt6.ToString();
+                qt7_txt.Text = varQt7.ToString();
+                qt8_txt.Text = varQt8.ToString();
+                qt9_txt.Text = varQt9.ToString();
+                qt10_txt.Text = varQt10.ToString();
+
             }
-            ord_txt.Text = varOrdine;
-            prz_txt.Text = varPrz;
-            cliente_txt.Text = varCliente;
-            note_txt.Text = varNote;
         }
 
         public string varOrdine { get; set; }
@@ -136,6 +195,27 @@ namespace Workmate
         public string varCliente { get; set; }
         public string varNote { get; set; }
         public int Modifica { get; set; }
+        public string varProdotto1 { get; set; }
+        public string varProdotto2 { get; set; }
+        public string varProdotto3 { get; set; }
+        public string varProdotto4 { get; set; }
+        public string varProdotto5 { get; set; }
+        public string varProdotto6 { get; set; }
+        public string varProdotto7 { get; set; }
+        public string varProdotto8 { get; set; }
+        public string varProdotto9 { get; set; }
+        public string varProdotto10 { get; set; }
+        public int varQt1 { get; set; }
+        public int varQt2 { get; set; }
+        public int varQt3 { get; set; }
+        public int varQt4 { get; set; }
+        public int varQt5 { get; set; }
+        public int varQt6 { get; set; }
+        public int varQt7 { get; set; }
+        public int varQt8 { get; set; }
+        public int varQt9 { get; set; }
+        public int varQt10 { get; set; }
+
 
         private void add_prod_btn_Click(object sender, EventArgs e)
         {

@@ -222,21 +222,21 @@
             this.prod9_txt.Location = new System.Drawing.Point(0, 384);
             this.prod9_txt.Name = "prod9_txt";
             this.prod9_txt.Size = new System.Drawing.Size(100, 23);
-            this.prod9_txt.TabIndex = 19;
+            this.prod9_txt.TabIndex = 8;
             // 
             // prod2_txt
             // 
             this.prod2_txt.Location = new System.Drawing.Point(0, 75);
             this.prod2_txt.Name = "prod2_txt";
             this.prod2_txt.Size = new System.Drawing.Size(100, 23);
-            this.prod2_txt.TabIndex = 5;
+            this.prod2_txt.TabIndex = 1;
             // 
             // prod1_txt
             // 
             this.prod1_txt.Location = new System.Drawing.Point(0, 30);
             this.prod1_txt.Name = "prod1_txt";
             this.prod1_txt.Size = new System.Drawing.Size(100, 23);
-            this.prod1_txt.TabIndex = 1;
+            this.prod1_txt.TabIndex = 0;
             // 
             // label14
             // 
@@ -261,7 +261,7 @@
             this.prod10_txt.Location = new System.Drawing.Point(0, 430);
             this.prod10_txt.Name = "prod10_txt";
             this.prod10_txt.Size = new System.Drawing.Size(100, 23);
-            this.prod10_txt.TabIndex = 21;
+            this.prod10_txt.TabIndex = 9;
             // 
             // label5
             // 
@@ -286,7 +286,7 @@
             this.prod3_txt.Location = new System.Drawing.Point(0, 118);
             this.prod3_txt.Name = "prod3_txt";
             this.prod3_txt.Size = new System.Drawing.Size(100, 23);
-            this.prod3_txt.TabIndex = 7;
+            this.prod3_txt.TabIndex = 2;
             // 
             // label7
             // 
@@ -311,14 +311,14 @@
             this.prod4_txt.Location = new System.Drawing.Point(0, 161);
             this.prod4_txt.Name = "prod4_txt";
             this.prod4_txt.Size = new System.Drawing.Size(100, 23);
-            this.prod4_txt.TabIndex = 9;
+            this.prod4_txt.TabIndex = 3;
             // 
             // prod8_txt
             // 
             this.prod8_txt.Location = new System.Drawing.Point(0, 338);
             this.prod8_txt.Name = "prod8_txt";
             this.prod8_txt.Size = new System.Drawing.Size(100, 23);
-            this.prod8_txt.TabIndex = 17;
+            this.prod8_txt.TabIndex = 7;
             // 
             // label8
             // 
@@ -343,14 +343,14 @@
             this.prod5_txt.Location = new System.Drawing.Point(0, 206);
             this.prod5_txt.Name = "prod5_txt";
             this.prod5_txt.Size = new System.Drawing.Size(100, 23);
-            this.prod5_txt.TabIndex = 11;
+            this.prod5_txt.TabIndex = 4;
             // 
             // prod7_txt
             // 
             this.prod7_txt.Location = new System.Drawing.Point(0, 294);
             this.prod7_txt.Name = "prod7_txt";
             this.prod7_txt.Size = new System.Drawing.Size(100, 23);
-            this.prod7_txt.TabIndex = 15;
+            this.prod7_txt.TabIndex = 6;
             // 
             // label9
             // 
@@ -375,7 +375,7 @@
             this.prod6_txt.Location = new System.Drawing.Point(0, 250);
             this.prod6_txt.Name = "prod6_txt";
             this.prod6_txt.Size = new System.Drawing.Size(100, 23);
-            this.prod6_txt.TabIndex = 13;
+            this.prod6_txt.TabIndex = 5;
             // 
             // ok_btn
             // 
@@ -388,7 +388,7 @@
             this.ok_btn.Location = new System.Drawing.Point(382, 440);
             this.ok_btn.Name = "ok_btn";
             this.ok_btn.Size = new System.Drawing.Size(64, 50);
-            this.ok_btn.TabIndex = 13;
+            this.ok_btn.TabIndex = 0;
             this.ok_btn.UseVisualStyleBackColor = true;
             this.ok_btn.Click += new System.EventHandler(this.ok_btn_Click);
             // 
@@ -433,7 +433,7 @@
             this.qt10_txt.Location = new System.Drawing.Point(3, 430);
             this.qt10_txt.Name = "qt10_txt";
             this.qt10_txt.Size = new System.Drawing.Size(100, 23);
-            this.qt10_txt.TabIndex = 23;
+            this.qt10_txt.TabIndex = 9;
             // 
             // label21
             // 
@@ -449,7 +449,7 @@
             this.qt9_txt.Location = new System.Drawing.Point(3, 384);
             this.qt9_txt.Name = "qt9_txt";
             this.qt9_txt.Size = new System.Drawing.Size(100, 23);
-            this.qt9_txt.TabIndex = 21;
+            this.qt9_txt.TabIndex = 8;
             // 
             // label20
             // 
@@ -465,7 +465,7 @@
             this.qt8_txt.Location = new System.Drawing.Point(3, 338);
             this.qt8_txt.Name = "qt8_txt";
             this.qt8_txt.Size = new System.Drawing.Size(100, 23);
-            this.qt8_txt.TabIndex = 19;
+            this.qt8_txt.TabIndex = 7;
             // 
             // label19
             // 
@@ -481,7 +481,7 @@
             this.qt7_txt.Location = new System.Drawing.Point(3, 294);
             this.qt7_txt.Name = "qt7_txt";
             this.qt7_txt.Size = new System.Drawing.Size(100, 23);
-            this.qt7_txt.TabIndex = 17;
+            this.qt7_txt.TabIndex = 6;
             // 
             // label18
             // 
@@ -497,7 +497,7 @@
             this.qt6_txt.Location = new System.Drawing.Point(3, 250);
             this.qt6_txt.Name = "qt6_txt";
             this.qt6_txt.Size = new System.Drawing.Size(100, 23);
-            this.qt6_txt.TabIndex = 15;
+            this.qt6_txt.TabIndex = 5;
             // 
             // label17
             // 
@@ -513,7 +513,7 @@
             this.qt5_txt.Location = new System.Drawing.Point(3, 206);
             this.qt5_txt.Name = "qt5_txt";
             this.qt5_txt.Size = new System.Drawing.Size(100, 23);
-            this.qt5_txt.TabIndex = 13;
+            this.qt5_txt.TabIndex = 4;
             // 
             // label16
             // 
@@ -529,7 +529,7 @@
             this.qt4_txt.Location = new System.Drawing.Point(3, 162);
             this.qt4_txt.Name = "qt4_txt";
             this.qt4_txt.Size = new System.Drawing.Size(100, 23);
-            this.qt4_txt.TabIndex = 11;
+            this.qt4_txt.TabIndex = 3;
             // 
             // label15
             // 
@@ -545,7 +545,7 @@
             this.qt3_txt.Location = new System.Drawing.Point(3, 118);
             this.qt3_txt.Name = "qt3_txt";
             this.qt3_txt.Size = new System.Drawing.Size(100, 23);
-            this.qt3_txt.TabIndex = 9;
+            this.qt3_txt.TabIndex = 2;
             // 
             // label3
             // 
@@ -570,14 +570,14 @@
             this.qt1_txt.Location = new System.Drawing.Point(3, 30);
             this.qt1_txt.Name = "qt1_txt";
             this.qt1_txt.Size = new System.Drawing.Size(100, 23);
-            this.qt1_txt.TabIndex = 3;
+            this.qt1_txt.TabIndex = 0;
             // 
             // qt2_txt
             // 
             this.qt2_txt.Location = new System.Drawing.Point(3, 75);
             this.qt2_txt.Name = "qt2_txt";
             this.qt2_txt.Size = new System.Drawing.Size(100, 23);
-            this.qt2_txt.TabIndex = 7;
+            this.qt2_txt.TabIndex = 1;
             // 
             // cancel_btn
             // 

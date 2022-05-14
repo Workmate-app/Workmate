@@ -66,6 +66,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.ok_btn = new FontAwesome.Sharp.IconButton();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.cod_pnl = new System.Windows.Forms.Panel();
+            this.qt_pnl = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.desc_txt = new System.Windows.Forms.TextBox();
+            this.cod_pnl.SuspendLayout();
+            this.qt_pnl.SuspendLayout();
             this.SuspendLayout();
             // 
             // prodotto_txt
@@ -94,218 +100,218 @@
             // 
             // Cod1
             // 
-            this.Cod1.Location = new System.Drawing.Point(12, 110);
+            this.Cod1.Location = new System.Drawing.Point(11, 26);
             this.Cod1.Name = "Cod1";
             this.Cod1.Size = new System.Drawing.Size(132, 23);
-            this.Cod1.TabIndex = 3;
+            this.Cod1.TabIndex = 0;
             // 
             // Cod2
             // 
-            this.Cod2.Location = new System.Drawing.Point(12, 139);
+            this.Cod2.Location = new System.Drawing.Point(11, 55);
             this.Cod2.Name = "Cod2";
             this.Cod2.Size = new System.Drawing.Size(132, 23);
-            this.Cod2.TabIndex = 4;
+            this.Cod2.TabIndex = 1;
             // 
             // Cod3
             // 
-            this.Cod3.Location = new System.Drawing.Point(12, 168);
+            this.Cod3.Location = new System.Drawing.Point(11, 84);
             this.Cod3.Name = "Cod3";
             this.Cod3.Size = new System.Drawing.Size(132, 23);
-            this.Cod3.TabIndex = 5;
+            this.Cod3.TabIndex = 2;
             // 
             // Cod4
             // 
-            this.Cod4.Location = new System.Drawing.Point(12, 197);
+            this.Cod4.Location = new System.Drawing.Point(11, 113);
             this.Cod4.Name = "Cod4";
             this.Cod4.Size = new System.Drawing.Size(132, 23);
-            this.Cod4.TabIndex = 6;
+            this.Cod4.TabIndex = 3;
             // 
             // Cod5
             // 
-            this.Cod5.Location = new System.Drawing.Point(12, 226);
+            this.Cod5.Location = new System.Drawing.Point(11, 142);
             this.Cod5.Name = "Cod5";
             this.Cod5.Size = new System.Drawing.Size(132, 23);
-            this.Cod5.TabIndex = 7;
+            this.Cod5.TabIndex = 4;
             // 
             // Cod6
             // 
-            this.Cod6.Location = new System.Drawing.Point(12, 255);
+            this.Cod6.Location = new System.Drawing.Point(11, 171);
             this.Cod6.Name = "Cod6";
             this.Cod6.Size = new System.Drawing.Size(132, 23);
-            this.Cod6.TabIndex = 8;
+            this.Cod6.TabIndex = 5;
             // 
             // Cod7
             // 
-            this.Cod7.Location = new System.Drawing.Point(12, 284);
+            this.Cod7.Location = new System.Drawing.Point(11, 200);
             this.Cod7.Name = "Cod7";
             this.Cod7.Size = new System.Drawing.Size(132, 23);
-            this.Cod7.TabIndex = 9;
+            this.Cod7.TabIndex = 6;
             // 
             // Cod8
             // 
-            this.Cod8.Location = new System.Drawing.Point(12, 313);
+            this.Cod8.Location = new System.Drawing.Point(11, 229);
             this.Cod8.Name = "Cod8";
             this.Cod8.Size = new System.Drawing.Size(132, 23);
-            this.Cod8.TabIndex = 10;
+            this.Cod8.TabIndex = 7;
             // 
             // Cod9
             // 
-            this.Cod9.Location = new System.Drawing.Point(12, 342);
+            this.Cod9.Location = new System.Drawing.Point(11, 258);
             this.Cod9.Name = "Cod9";
             this.Cod9.Size = new System.Drawing.Size(132, 23);
-            this.Cod9.TabIndex = 11;
+            this.Cod9.TabIndex = 8;
             // 
             // Cod10
             // 
-            this.Cod10.Location = new System.Drawing.Point(12, 371);
+            this.Cod10.Location = new System.Drawing.Point(11, 287);
             this.Cod10.Name = "Cod10";
             this.Cod10.Size = new System.Drawing.Size(132, 23);
-            this.Cod10.TabIndex = 12;
+            this.Cod10.TabIndex = 9;
             // 
             // Cod11
             // 
-            this.Cod11.Location = new System.Drawing.Point(12, 400);
+            this.Cod11.Location = new System.Drawing.Point(11, 316);
             this.Cod11.Name = "Cod11";
             this.Cod11.Size = new System.Drawing.Size(132, 23);
-            this.Cod11.TabIndex = 13;
+            this.Cod11.TabIndex = 10;
             // 
             // Cod12
             // 
-            this.Cod12.Location = new System.Drawing.Point(12, 429);
+            this.Cod12.Location = new System.Drawing.Point(11, 345);
             this.Cod12.Name = "Cod12";
             this.Cod12.Size = new System.Drawing.Size(132, 23);
-            this.Cod12.TabIndex = 14;
+            this.Cod12.TabIndex = 11;
             // 
             // Cod13
             // 
-            this.Cod13.Location = new System.Drawing.Point(12, 458);
+            this.Cod13.Location = new System.Drawing.Point(11, 374);
             this.Cod13.Name = "Cod13";
             this.Cod13.Size = new System.Drawing.Size(132, 23);
-            this.Cod13.TabIndex = 15;
+            this.Cod13.TabIndex = 12;
             // 
             // Cod14
             // 
-            this.Cod14.Location = new System.Drawing.Point(12, 487);
+            this.Cod14.Location = new System.Drawing.Point(11, 403);
             this.Cod14.Name = "Cod14";
             this.Cod14.Size = new System.Drawing.Size(132, 23);
-            this.Cod14.TabIndex = 16;
+            this.Cod14.TabIndex = 13;
             // 
             // Cod15
             // 
-            this.Cod15.Location = new System.Drawing.Point(12, 516);
+            this.Cod15.Location = new System.Drawing.Point(11, 432);
             this.Cod15.Name = "Cod15";
             this.Cod15.Size = new System.Drawing.Size(132, 23);
-            this.Cod15.TabIndex = 17;
+            this.Cod15.TabIndex = 14;
             // 
             // qt15
             // 
-            this.qt15.Location = new System.Drawing.Point(161, 516);
+            this.qt15.Location = new System.Drawing.Point(3, 432);
             this.qt15.Name = "qt15";
             this.qt15.Size = new System.Drawing.Size(132, 23);
-            this.qt15.TabIndex = 32;
+            this.qt15.TabIndex = 14;
             // 
             // qt14
             // 
-            this.qt14.Location = new System.Drawing.Point(161, 487);
+            this.qt14.Location = new System.Drawing.Point(3, 403);
             this.qt14.Name = "qt14";
             this.qt14.Size = new System.Drawing.Size(132, 23);
-            this.qt14.TabIndex = 31;
+            this.qt14.TabIndex = 13;
             // 
             // qt13
             // 
-            this.qt13.Location = new System.Drawing.Point(161, 458);
+            this.qt13.Location = new System.Drawing.Point(3, 374);
             this.qt13.Name = "qt13";
             this.qt13.Size = new System.Drawing.Size(132, 23);
-            this.qt13.TabIndex = 30;
+            this.qt13.TabIndex = 12;
             // 
             // qt12
             // 
-            this.qt12.Location = new System.Drawing.Point(161, 429);
+            this.qt12.Location = new System.Drawing.Point(3, 345);
             this.qt12.Name = "qt12";
             this.qt12.Size = new System.Drawing.Size(132, 23);
-            this.qt12.TabIndex = 29;
+            this.qt12.TabIndex = 11;
             // 
             // qt11
             // 
-            this.qt11.Location = new System.Drawing.Point(161, 400);
+            this.qt11.Location = new System.Drawing.Point(3, 316);
             this.qt11.Name = "qt11";
             this.qt11.Size = new System.Drawing.Size(132, 23);
-            this.qt11.TabIndex = 28;
+            this.qt11.TabIndex = 10;
             // 
             // qt10
             // 
-            this.qt10.Location = new System.Drawing.Point(161, 371);
+            this.qt10.Location = new System.Drawing.Point(3, 287);
             this.qt10.Name = "qt10";
             this.qt10.Size = new System.Drawing.Size(132, 23);
-            this.qt10.TabIndex = 27;
+            this.qt10.TabIndex = 9;
             // 
             // qt9
             // 
-            this.qt9.Location = new System.Drawing.Point(161, 342);
+            this.qt9.Location = new System.Drawing.Point(3, 258);
             this.qt9.Name = "qt9";
             this.qt9.Size = new System.Drawing.Size(132, 23);
-            this.qt9.TabIndex = 26;
+            this.qt9.TabIndex = 8;
             // 
             // qt8
             // 
-            this.qt8.Location = new System.Drawing.Point(161, 313);
+            this.qt8.Location = new System.Drawing.Point(3, 229);
             this.qt8.Name = "qt8";
             this.qt8.Size = new System.Drawing.Size(132, 23);
-            this.qt8.TabIndex = 25;
+            this.qt8.TabIndex = 7;
             // 
             // qt7
             // 
-            this.qt7.Location = new System.Drawing.Point(161, 284);
+            this.qt7.Location = new System.Drawing.Point(3, 200);
             this.qt7.Name = "qt7";
             this.qt7.Size = new System.Drawing.Size(132, 23);
-            this.qt7.TabIndex = 24;
+            this.qt7.TabIndex = 6;
             // 
             // qt6
             // 
-            this.qt6.Location = new System.Drawing.Point(161, 255);
+            this.qt6.Location = new System.Drawing.Point(3, 171);
             this.qt6.Name = "qt6";
             this.qt6.Size = new System.Drawing.Size(132, 23);
-            this.qt6.TabIndex = 23;
+            this.qt6.TabIndex = 5;
             // 
             // qt5
             // 
-            this.qt5.Location = new System.Drawing.Point(161, 226);
+            this.qt5.Location = new System.Drawing.Point(3, 142);
             this.qt5.Name = "qt5";
             this.qt5.Size = new System.Drawing.Size(132, 23);
-            this.qt5.TabIndex = 22;
+            this.qt5.TabIndex = 4;
             // 
             // qt4
             // 
-            this.qt4.Location = new System.Drawing.Point(161, 197);
+            this.qt4.Location = new System.Drawing.Point(3, 113);
             this.qt4.Name = "qt4";
             this.qt4.Size = new System.Drawing.Size(132, 23);
-            this.qt4.TabIndex = 21;
+            this.qt4.TabIndex = 3;
             // 
             // qt3
             // 
-            this.qt3.Location = new System.Drawing.Point(161, 168);
+            this.qt3.Location = new System.Drawing.Point(3, 84);
             this.qt3.Name = "qt3";
             this.qt3.Size = new System.Drawing.Size(132, 23);
-            this.qt3.TabIndex = 20;
+            this.qt3.TabIndex = 2;
             // 
             // qt2
             // 
-            this.qt2.Location = new System.Drawing.Point(161, 139);
+            this.qt2.Location = new System.Drawing.Point(3, 55);
             this.qt2.Name = "qt2";
             this.qt2.Size = new System.Drawing.Size(132, 23);
-            this.qt2.TabIndex = 19;
+            this.qt2.TabIndex = 1;
             // 
             // qt1
             // 
-            this.qt1.Location = new System.Drawing.Point(161, 110);
+            this.qt1.Location = new System.Drawing.Point(3, 26);
             this.qt1.Name = "qt1";
             this.qt1.Size = new System.Drawing.Size(132, 23);
-            this.qt1.TabIndex = 18;
+            this.qt1.TabIndex = 0;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 92);
+            this.label3.Location = new System.Drawing.Point(11, 8);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 15);
             this.label3.TabIndex = 33;
@@ -314,7 +320,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(161, 92);
+            this.label4.Location = new System.Drawing.Point(3, 8);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 15);
             this.label4.TabIndex = 34;
@@ -331,7 +337,7 @@
             this.ok_btn.Location = new System.Drawing.Point(312, 522);
             this.ok_btn.Name = "ok_btn";
             this.ok_btn.Size = new System.Drawing.Size(64, 50);
-            this.ok_btn.TabIndex = 35;
+            this.ok_btn.TabIndex = 2;
             this.ok_btn.UseVisualStyleBackColor = true;
             this.ok_btn.Click += new System.EventHandler(this.ok_btn_Click);
             // 
@@ -346,49 +352,83 @@
             this.iconButton1.Location = new System.Drawing.Point(382, 522);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(64, 50);
-            this.iconButton1.TabIndex = 36;
+            this.iconButton1.TabIndex = 3;
             this.iconButton1.UseVisualStyleBackColor = true;
             this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            // 
+            // cod_pnl
+            // 
+            this.cod_pnl.Controls.Add(this.label3);
+            this.cod_pnl.Controls.Add(this.Cod1);
+            this.cod_pnl.Controls.Add(this.Cod2);
+            this.cod_pnl.Controls.Add(this.Cod3);
+            this.cod_pnl.Controls.Add(this.Cod4);
+            this.cod_pnl.Controls.Add(this.Cod5);
+            this.cod_pnl.Controls.Add(this.Cod6);
+            this.cod_pnl.Controls.Add(this.Cod7);
+            this.cod_pnl.Controls.Add(this.Cod8);
+            this.cod_pnl.Controls.Add(this.Cod9);
+            this.cod_pnl.Controls.Add(this.Cod10);
+            this.cod_pnl.Controls.Add(this.Cod11);
+            this.cod_pnl.Controls.Add(this.Cod12);
+            this.cod_pnl.Controls.Add(this.Cod13);
+            this.cod_pnl.Controls.Add(this.Cod14);
+            this.cod_pnl.Controls.Add(this.Cod15);
+            this.cod_pnl.Location = new System.Drawing.Point(1, 84);
+            this.cod_pnl.Name = "cod_pnl";
+            this.cod_pnl.Size = new System.Drawing.Size(154, 471);
+            this.cod_pnl.TabIndex = 1;
+            // 
+            // qt_pnl
+            // 
+            this.qt_pnl.Controls.Add(this.label4);
+            this.qt_pnl.Controls.Add(this.qt1);
+            this.qt_pnl.Controls.Add(this.qt2);
+            this.qt_pnl.Controls.Add(this.qt3);
+            this.qt_pnl.Controls.Add(this.qt4);
+            this.qt_pnl.Controls.Add(this.qt5);
+            this.qt_pnl.Controls.Add(this.qt6);
+            this.qt_pnl.Controls.Add(this.qt7);
+            this.qt_pnl.Controls.Add(this.qt8);
+            this.qt_pnl.Controls.Add(this.qt9);
+            this.qt_pnl.Controls.Add(this.qt10);
+            this.qt_pnl.Controls.Add(this.qt11);
+            this.qt_pnl.Controls.Add(this.qt12);
+            this.qt_pnl.Controls.Add(this.qt13);
+            this.qt_pnl.Controls.Add(this.qt14);
+            this.qt_pnl.Controls.Add(this.qt15);
+            this.qt_pnl.Location = new System.Drawing.Point(158, 84);
+            this.qt_pnl.Name = "qt_pnl";
+            this.qt_pnl.Size = new System.Drawing.Size(135, 471);
+            this.qt_pnl.TabIndex = 2;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(219, 24);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 15);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Descrizione";
+            // 
+            // desc_txt
+            // 
+            this.desc_txt.Location = new System.Drawing.Point(219, 42);
+            this.desc_txt.Name = "desc_txt";
+            this.desc_txt.Size = new System.Drawing.Size(227, 23);
+            this.desc_txt.TabIndex = 5;
             // 
             // Aggiungi_Prodotto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(458, 584);
+            this.Controls.Add(this.desc_txt);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.qt_pnl);
+            this.Controls.Add(this.cod_pnl);
             this.Controls.Add(this.iconButton1);
             this.Controls.Add(this.ok_btn);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.qt15);
-            this.Controls.Add(this.qt14);
-            this.Controls.Add(this.qt13);
-            this.Controls.Add(this.qt12);
-            this.Controls.Add(this.qt11);
-            this.Controls.Add(this.qt10);
-            this.Controls.Add(this.qt9);
-            this.Controls.Add(this.qt8);
-            this.Controls.Add(this.qt7);
-            this.Controls.Add(this.qt6);
-            this.Controls.Add(this.qt5);
-            this.Controls.Add(this.qt4);
-            this.Controls.Add(this.qt3);
-            this.Controls.Add(this.qt2);
-            this.Controls.Add(this.qt1);
-            this.Controls.Add(this.Cod15);
-            this.Controls.Add(this.Cod14);
-            this.Controls.Add(this.Cod13);
-            this.Controls.Add(this.Cod12);
-            this.Controls.Add(this.Cod11);
-            this.Controls.Add(this.Cod10);
-            this.Controls.Add(this.Cod9);
-            this.Controls.Add(this.Cod8);
-            this.Controls.Add(this.Cod7);
-            this.Controls.Add(this.Cod6);
-            this.Controls.Add(this.Cod5);
-            this.Controls.Add(this.Cod4);
-            this.Controls.Add(this.Cod3);
-            this.Controls.Add(this.Cod2);
-            this.Controls.Add(this.Cod1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.prodotto_txt);
@@ -397,6 +437,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Aggiungi_Prodotto";
             this.Load += new System.EventHandler(this.Aggiungi_Prodotto_Load);
+            this.cod_pnl.ResumeLayout(false);
+            this.cod_pnl.PerformLayout();
+            this.qt_pnl.ResumeLayout(false);
+            this.qt_pnl.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -441,5 +485,9 @@
         private Label label4;
         private FontAwesome.Sharp.IconButton ok_btn;
         private FontAwesome.Sharp.IconButton iconButton1;
+        private Panel cod_pnl;
+        private Panel qt_pnl;
+        private Label label5;
+        private TextBox desc_txt;
     }
 }

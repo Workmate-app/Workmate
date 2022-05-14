@@ -62,6 +62,26 @@
             this.prezzo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.note = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Prodotto1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Prodotto2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Prodotto3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Prodotto4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Prodotto5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Prodotto6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Prodotto7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Prodotto8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Prodotto9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Prodotto10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.magazzino_data = new System.Windows.Forms.DataGridView();
             this.codice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prezzo_codice = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -419,6 +439,7 @@
             // 
             // logo_pic
             // 
+            this.logo_pic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.logo_pic.BackgroundImage = global::Workmate.Properties.Resources.Workmate;
             this.logo_pic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.logo_pic.Location = new System.Drawing.Point(582, 17);
@@ -527,7 +548,27 @@
             this.ordine,
             this.prezzo,
             this.cliente,
-            this.note});
+            this.note,
+            this.Prodotto1,
+            this.Prodotto2,
+            this.Prodotto3,
+            this.Prodotto4,
+            this.Prodotto5,
+            this.Prodotto6,
+            this.Prodotto7,
+            this.Prodotto8,
+            this.Prodotto9,
+            this.Prodotto10,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewTextBoxColumn11});
             this.ordini_data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ordini_data.Location = new System.Drawing.Point(0, 0);
             this.ordini_data.Name = "ordini_data";
@@ -555,6 +596,126 @@
             // 
             this.note.HeaderText = "Note";
             this.note.Name = "note";
+            // 
+            // Prodotto1
+            // 
+            this.Prodotto1.HeaderText = "Column1";
+            this.Prodotto1.Name = "Prodotto1";
+            this.Prodotto1.Visible = false;
+            // 
+            // Prodotto2
+            // 
+            this.Prodotto2.HeaderText = "Column1";
+            this.Prodotto2.Name = "Prodotto2";
+            this.Prodotto2.Visible = false;
+            // 
+            // Prodotto3
+            // 
+            this.Prodotto3.HeaderText = "Column1";
+            this.Prodotto3.Name = "Prodotto3";
+            this.Prodotto3.Visible = false;
+            // 
+            // Prodotto4
+            // 
+            this.Prodotto4.HeaderText = "Column1";
+            this.Prodotto4.Name = "Prodotto4";
+            this.Prodotto4.Visible = false;
+            // 
+            // Prodotto5
+            // 
+            this.Prodotto5.HeaderText = "Column1";
+            this.Prodotto5.Name = "Prodotto5";
+            this.Prodotto5.Visible = false;
+            // 
+            // Prodotto6
+            // 
+            this.Prodotto6.HeaderText = "Column1";
+            this.Prodotto6.Name = "Prodotto6";
+            this.Prodotto6.Visible = false;
+            // 
+            // Prodotto7
+            // 
+            this.Prodotto7.HeaderText = "Column1";
+            this.Prodotto7.Name = "Prodotto7";
+            this.Prodotto7.Visible = false;
+            // 
+            // Prodotto8
+            // 
+            this.Prodotto8.HeaderText = "Column1";
+            this.Prodotto8.Name = "Prodotto8";
+            this.Prodotto8.Visible = false;
+            // 
+            // Prodotto9
+            // 
+            this.Prodotto9.HeaderText = "Column1";
+            this.Prodotto9.Name = "Prodotto9";
+            this.Prodotto9.Visible = false;
+            // 
+            // Prodotto10
+            // 
+            this.Prodotto10.HeaderText = "Column1";
+            this.Prodotto10.Name = "Prodotto10";
+            this.Prodotto10.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.Visible = false;
             // 
             // magazzino_data
             // 
@@ -886,7 +1047,7 @@
             this.Controls.Add(this.bar_pnl);
             this.Controls.Add(this.dock_pnl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(716, 384);
+            this.MinimumSize = new System.Drawing.Size(950, 384);
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Workmate";
@@ -934,10 +1095,6 @@
         private DataGridViewTextBoxColumn quantita_codice;
         private DataGridViewTextBoxColumn quantitamin;
         private DataGridViewTextBoxColumn descrizione;
-        private DataGridViewTextBoxColumn ordine;
-        private DataGridViewTextBoxColumn prezzo;
-        private DataGridViewTextBoxColumn cliente;
-        private DataGridViewTextBoxColumn note;
         private FontAwesome.Sharp.IconButton del_btn;
         private Button srch_btn;
         private ComboBox comboBox1;
@@ -990,5 +1147,29 @@
         private Label nordini_lbl;
         private Label label1;
         private PictureBox logo_pic;
+        private DataGridViewTextBoxColumn ordine;
+        private DataGridViewTextBoxColumn prezzo;
+        private DataGridViewTextBoxColumn cliente;
+        private DataGridViewTextBoxColumn note;
+        private DataGridViewTextBoxColumn Prodotto1;
+        private DataGridViewTextBoxColumn Prodotto2;
+        private DataGridViewTextBoxColumn Prodotto3;
+        private DataGridViewTextBoxColumn Prodotto4;
+        private DataGridViewTextBoxColumn Prodotto5;
+        private DataGridViewTextBoxColumn Prodotto6;
+        private DataGridViewTextBoxColumn Prodotto7;
+        private DataGridViewTextBoxColumn Prodotto8;
+        private DataGridViewTextBoxColumn Prodotto9;
+        private DataGridViewTextBoxColumn Prodotto10;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
     }
 }
