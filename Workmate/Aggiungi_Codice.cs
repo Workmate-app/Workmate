@@ -87,8 +87,12 @@ namespace Workmate
             {
                 if (imgcod.Tag != null)
                 {
-                    if (File.Exists(root + "Foto\\" + cod_txt.Text + extfoto))
-                        File.Delete(root + "Foto\\" + cod_txt.Text + extfoto);
+                    if (File.Exists(root + "Foto\\" + cod_txt.Text + "png"))
+                        File.Delete(root + "Foto\\" + cod_txt.Text + "png");
+                    else if(File.Exists(root + "Foto\\" + cod_txt.Text + "jpg"))
+                        File.Delete(root + "Foto\\" + cod_txt.Text + "jpg");
+                    else if (File.Exists(root + "Foto\\" + cod_txt.Text + "jpeg"))
+                        File.Delete(root + "Foto\\" + cod_txt.Text + "jpeg");
                     File.Copy(imgcod.Tag.ToString(), root + "Foto\\" + cod_txt.Text + extfoto);
                 }
                 doc_xml.Save(root + cod_txt.Text + ".xml");
@@ -137,19 +141,21 @@ namespace Workmate
 
         private void addimg_btn_Click(object sender, EventArgs e)
         {
-            addphoto_dlg.ShowDialog();
-            try
+            if (addphoto_dlg.ShowDialog() == DialogResult.OK)
             {
-                if(addphoto_dlg.FileName != null)
+                try
                 {
-                    Image image = Image.FromFile(addphoto_dlg.FileName);
-                    imgcod.BackgroundImage = image;
-                    imgcod.Tag = addphoto_dlg.FileName;
+                    if (addphoto_dlg.FileName != null)
+                    {
+                        Image image = Image.FromFile(addphoto_dlg.FileName);
+                        imgcod.BackgroundImage = image;
+                        imgcod.Tag = addphoto_dlg.FileName;
+                    }
                 }
-            }
-            catch
-            {
-            
+                catch
+                {
+
+                }
             }
         }
         private void removeimg_btn_Click(object sender, EventArgs e)

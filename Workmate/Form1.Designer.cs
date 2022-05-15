@@ -40,6 +40,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bars_btn = new FontAwesome.Sharp.IconButton();
             this.bar_pnl = new System.Windows.Forms.Panel();
+            this.bolla_btn = new FontAwesome.Sharp.IconButton();
             this.erase_btn = new FontAwesome.Sharp.IconButton();
             this.srch_btn = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -90,14 +91,6 @@
             this.descrizione = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Foto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prod_data = new System.Windows.Forms.DataGridView();
-            this.settings_pnl = new System.Windows.Forms.Panel();
-            this.save_btn = new FontAwesome.Sharp.IconButton();
-            this.changeimg_btn = new FontAwesome.Sharp.IconButton();
-            this.changedb_btn = new FontAwesome.Sharp.IconButton();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.modificaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eliminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prodotto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codice1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -131,6 +124,15 @@
             this.qt9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qt10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.settings_pnl = new System.Windows.Forms.Panel();
+            this.save_btn = new FontAwesome.Sharp.IconButton();
+            this.changeimg_btn = new FontAwesome.Sharp.IconButton();
+            this.changedb_btn = new FontAwesome.Sharp.IconButton();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.modificaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imghome_dlg = new System.Windows.Forms.OpenFileDialog();
             this.dock_pnl.SuspendLayout();
             this.logo_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -321,6 +323,7 @@
             // bar_pnl
             // 
             this.bar_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.bar_pnl.Controls.Add(this.bolla_btn);
             this.bar_pnl.Controls.Add(this.erase_btn);
             this.bar_pnl.Controls.Add(this.srch_btn);
             this.bar_pnl.Controls.Add(this.comboBox1);
@@ -333,6 +336,20 @@
             this.bar_pnl.Name = "bar_pnl";
             this.bar_pnl.Size = new System.Drawing.Size(838, 60);
             this.bar_pnl.TabIndex = 1;
+            // 
+            // bolla_btn
+            // 
+            this.bolla_btn.FlatAppearance.BorderSize = 0;
+            this.bolla_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bolla_btn.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
+            this.bolla_btn.IconColor = System.Drawing.Color.Black;
+            this.bolla_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.bolla_btn.IconSize = 46;
+            this.bolla_btn.Location = new System.Drawing.Point(781, 2);
+            this.bolla_btn.Name = "bolla_btn";
+            this.bolla_btn.Size = new System.Drawing.Size(54, 57);
+            this.bolla_btn.TabIndex = 8;
+            this.bolla_btn.UseVisualStyleBackColor = true;
             // 
             // erase_btn
             // 
@@ -823,93 +840,6 @@
             this.prod_data.TabIndex = 2;
             this.prod_data.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.prod_data_CellMouseClick);
             // 
-            // settings_pnl
-            // 
-            this.settings_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.settings_pnl.Controls.Add(this.save_btn);
-            this.settings_pnl.Controls.Add(this.changeimg_btn);
-            this.settings_pnl.Controls.Add(this.changedb_btn);
-            this.settings_pnl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.settings_pnl.Location = new System.Drawing.Point(230, 60);
-            this.settings_pnl.Name = "settings_pnl";
-            this.settings_pnl.Size = new System.Drawing.Size(838, 532);
-            this.settings_pnl.TabIndex = 3;
-            // 
-            // save_btn
-            // 
-            this.save_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.save_btn.FlatAppearance.BorderSize = 0;
-            this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.save_btn.IconChar = FontAwesome.Sharp.IconChar.Check;
-            this.save_btn.IconColor = System.Drawing.Color.Black;
-            this.save_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.save_btn.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.save_btn.Location = new System.Drawing.Point(752, 455);
-            this.save_btn.Name = "save_btn";
-            this.save_btn.Size = new System.Drawing.Size(65, 65);
-            this.save_btn.TabIndex = 2;
-            this.save_btn.UseVisualStyleBackColor = true;
-            // 
-            // changeimg_btn
-            // 
-            this.changeimg_btn.IconChar = FontAwesome.Sharp.IconChar.Image;
-            this.changeimg_btn.IconColor = System.Drawing.Color.Black;
-            this.changeimg_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.changeimg_btn.IconSize = 38;
-            this.changeimg_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.changeimg_btn.Location = new System.Drawing.Point(15, 82);
-            this.changeimg_btn.Name = "changeimg_btn";
-            this.changeimg_btn.Size = new System.Drawing.Size(245, 41);
-            this.changeimg_btn.TabIndex = 1;
-            this.changeimg_btn.Text = "Cambia immagine home";
-            this.changeimg_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.changeimg_btn.UseVisualStyleBackColor = true;
-            // 
-            // changedb_btn
-            // 
-            this.changedb_btn.IconChar = FontAwesome.Sharp.IconChar.Database;
-            this.changedb_btn.IconColor = System.Drawing.Color.Black;
-            this.changedb_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.changedb_btn.IconSize = 38;
-            this.changedb_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.changedb_btn.Location = new System.Drawing.Point(15, 24);
-            this.changedb_btn.Name = "changedb_btn";
-            this.changedb_btn.Size = new System.Drawing.Size(245, 41);
-            this.changedb_btn.TabIndex = 0;
-            this.changedb_btn.Text = "Cambia il percorso del database";
-            this.changedb_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.changedb_btn.UseVisualStyleBackColor = true;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.modificaToolStripMenuItem,
-            this.aggiungiToolStripMenuItem,
-            this.eliminaToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(127, 70);
-            // 
-            // modificaToolStripMenuItem
-            // 
-            this.modificaToolStripMenuItem.Name = "modificaToolStripMenuItem";
-            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.modificaToolStripMenuItem.Text = "Modifica";
-            this.modificaToolStripMenuItem.Click += new System.EventHandler(this.modificaToolStripMenuItem_Click);
-            // 
-            // aggiungiToolStripMenuItem
-            // 
-            this.aggiungiToolStripMenuItem.Name = "aggiungiToolStripMenuItem";
-            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.aggiungiToolStripMenuItem.Text = "Aggiungi ";
-            this.aggiungiToolStripMenuItem.Click += new System.EventHandler(this.aggiungiToolStripMenuItem_Click);
-            // 
-            // eliminaToolStripMenuItem
-            // 
-            this.eliminaToolStripMenuItem.Name = "eliminaToolStripMenuItem";
-            this.eliminaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.eliminaToolStripMenuItem.Text = "Elimina";
-            this.eliminaToolStripMenuItem.Click += new System.EventHandler(this.eliminaToolStripMenuItem_Click);
-            // 
             // prodotto
             // 
             this.prodotto.HeaderText = "Prodotto";
@@ -1106,6 +1036,99 @@
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             this.dataGridViewTextBoxColumn12.Visible = false;
             // 
+            // settings_pnl
+            // 
+            this.settings_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.settings_pnl.Controls.Add(this.save_btn);
+            this.settings_pnl.Controls.Add(this.changeimg_btn);
+            this.settings_pnl.Controls.Add(this.changedb_btn);
+            this.settings_pnl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.settings_pnl.Location = new System.Drawing.Point(230, 60);
+            this.settings_pnl.Name = "settings_pnl";
+            this.settings_pnl.Size = new System.Drawing.Size(838, 532);
+            this.settings_pnl.TabIndex = 3;
+            // 
+            // save_btn
+            // 
+            this.save_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.save_btn.FlatAppearance.BorderSize = 0;
+            this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.save_btn.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.save_btn.IconColor = System.Drawing.Color.Black;
+            this.save_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.save_btn.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.save_btn.Location = new System.Drawing.Point(752, 455);
+            this.save_btn.Name = "save_btn";
+            this.save_btn.Size = new System.Drawing.Size(65, 65);
+            this.save_btn.TabIndex = 2;
+            this.save_btn.UseVisualStyleBackColor = true;
+            // 
+            // changeimg_btn
+            // 
+            this.changeimg_btn.IconChar = FontAwesome.Sharp.IconChar.Image;
+            this.changeimg_btn.IconColor = System.Drawing.Color.Black;
+            this.changeimg_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.changeimg_btn.IconSize = 38;
+            this.changeimg_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.changeimg_btn.Location = new System.Drawing.Point(15, 82);
+            this.changeimg_btn.Name = "changeimg_btn";
+            this.changeimg_btn.Size = new System.Drawing.Size(245, 41);
+            this.changeimg_btn.TabIndex = 1;
+            this.changeimg_btn.Text = "Cambia immagine home";
+            this.changeimg_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.changeimg_btn.UseVisualStyleBackColor = true;
+            this.changeimg_btn.Click += new System.EventHandler(this.changeimg_btn_Click);
+            // 
+            // changedb_btn
+            // 
+            this.changedb_btn.IconChar = FontAwesome.Sharp.IconChar.Database;
+            this.changedb_btn.IconColor = System.Drawing.Color.Black;
+            this.changedb_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.changedb_btn.IconSize = 38;
+            this.changedb_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.changedb_btn.Location = new System.Drawing.Point(15, 24);
+            this.changedb_btn.Name = "changedb_btn";
+            this.changedb_btn.Size = new System.Drawing.Size(245, 41);
+            this.changedb_btn.TabIndex = 0;
+            this.changedb_btn.Text = "Cambia il percorso del database";
+            this.changedb_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.changedb_btn.UseVisualStyleBackColor = true;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modificaToolStripMenuItem,
+            this.aggiungiToolStripMenuItem,
+            this.eliminaToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(127, 70);
+            // 
+            // modificaToolStripMenuItem
+            // 
+            this.modificaToolStripMenuItem.Name = "modificaToolStripMenuItem";
+            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.modificaToolStripMenuItem.Text = "Modifica";
+            this.modificaToolStripMenuItem.Click += new System.EventHandler(this.modificaToolStripMenuItem_Click);
+            // 
+            // aggiungiToolStripMenuItem
+            // 
+            this.aggiungiToolStripMenuItem.Name = "aggiungiToolStripMenuItem";
+            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.aggiungiToolStripMenuItem.Text = "Aggiungi ";
+            this.aggiungiToolStripMenuItem.Click += new System.EventHandler(this.aggiungiToolStripMenuItem_Click);
+            // 
+            // eliminaToolStripMenuItem
+            // 
+            this.eliminaToolStripMenuItem.Name = "eliminaToolStripMenuItem";
+            this.eliminaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.eliminaToolStripMenuItem.Text = "Elimina";
+            this.eliminaToolStripMenuItem.Click += new System.EventHandler(this.eliminaToolStripMenuItem_Click);
+            // 
+            // imghome_dlg
+            // 
+            this.imghome_dlg.FileName = "home img";
+            this.imghome_dlg.Filter = "\"All Graphics Types|*.jpg;*.jpeg;*.png\"";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1246,5 +1269,7 @@
         private DataGridViewTextBoxColumn qt9;
         private DataGridViewTextBoxColumn qt10;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private FontAwesome.Sharp.IconButton bolla_btn;
+        private OpenFileDialog imghome_dlg;
     }
 }

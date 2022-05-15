@@ -20,6 +20,7 @@ namespace Workmate
         {
             InitializeComponent();
             Checkdirs();
+            carica_foto_home();
             this.Padding = new Padding(borderSize);
             this.BackColor = Color.FromArgb(29, 133, 181);
             carica_ordini();
@@ -105,12 +106,41 @@ namespace Workmate
             if (!Directory.Exists(root + @"\Ordini"))
             {
                 Directory.CreateDirectory(root + @"\Ordini");
-                Directory.CreateDirectory(root + @"\Ordini\Foto");
+                //Directory.CreateDirectory(root + @"\Ordini\Foto");
             }
             if (!Directory.Exists(root + @"\Prodotti"))
             {
                 Directory.CreateDirectory(root + @"\Prodotti");
                 Directory.CreateDirectory(root + @"\Prodotti\Foto");
+            }
+            if(!File.Exists(root + @"\workmate.xml"))
+            {
+                XDocument doc_xml = new XDocument(new XElement("workmate",
+                    new XElement("bollaid", 0)
+                    ));
+                doc_xml.Save(root + @"\workmate.xml");
+            }
+        }
+
+        private void carica_foto_home()
+        {
+            if (File.Exists(var.db + @"home.png"))
+            {
+                Image image = Image.FromFile(var.db + @"home.png");
+                logo_pic.BackgroundImage = image;
+                logo_pic.Tag = var.db + @"home.png";
+            }
+            else if (File.Exists(var.db + @"home.jpg"))
+            {
+                Image image = Image.FromFile(var.db + @"home.jpg");
+                logo_pic.BackgroundImage = image;
+                logo_pic.Tag = var.db + @"home.jpg";
+            }
+            else if (Directory.Exists(var.db + @"home.jpeg"))
+            {
+                Image image = Image.FromFile(var.db + @"home.jpeg");
+                logo_pic.BackgroundImage = image;
+                logo_pic.Tag = var.db + @"home.jpeg";
             }
         }
 
@@ -306,6 +336,7 @@ namespace Workmate
             settings_pnl.Visible = false;
             desktop_pnl.Visible = true;
             bar_pnl.Visible = true;
+            bolla_btn.Visible = false;
             ordini_data.Visible = false;
             magazzino_data.Visible = true;
             prod_data.Visible = false;
@@ -336,6 +367,7 @@ namespace Workmate
             settings_pnl.Visible = false;
             desktop_pnl.Visible = true;
             bar_pnl.Visible = true;
+            bolla_btn.Visible = true;
             ordini_data.Visible = true;
             magazzino_data.Visible = false;
             prod_data.Visible = false;
@@ -368,6 +400,7 @@ namespace Workmate
             settings_pnl.Visible = false;
             desktop_pnl.Visible = true;
             bar_pnl.Visible = true;
+            bolla_btn.Visible = false;
             magazzino = false;
             prod = true;
             avv_mostrati = false;
@@ -709,6 +742,34 @@ namespace Workmate
                 }
                 else
                     prod_data.ContextMenuStrip = null;
+            }
+        }
+
+        private void changeimg_btn_Click(object sender, EventArgs e)
+        {
+            if (imghome_dlg.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if (imghome_dlg.FileName != null)
+                    {
+                        Image image = Image.FromFile(imghome_dlg.FileName);
+                        logo_pic.BackgroundImage = image;
+                        logo_pic.Tag = imghome_dlg.FileName;
+                        string extfoto = Path.GetExtension(logo_pic.Tag.ToString());
+                        if (File.Exists(var.db + @"home.png"))
+                            File.Delete(var.db + @"home.png");
+                        else if (File.Exists(var.db + @"home.jpg"))
+                            File.Delete(var.db + @"home.jpg");
+                        else if (File.Exists(var.db + @"home.jpeg"))
+                            File.Delete(var.db + @"home.jpeg");
+                        File.Copy(logo_pic.Tag.ToString(), var.db + @"home" + extfoto);
+                    }
+                }
+                catch
+                {
+
+                }
             }
         }
     }
