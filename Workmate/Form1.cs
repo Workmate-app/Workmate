@@ -10,12 +10,14 @@ namespace Workmate
         private int borderSize = 2;
         private bool magazzino = false;
         private bool prod = false;
+        private bool clienti=false;
         bool mostra_avviso = true;
         bool avv_mostrati = false;
         public float totalefatturato;
         bool ordinicaricati = false;
         bool prodotticaricati = false;
         bool codicicaricati = false;
+        bool clienticaricati = false;
         public Form1()
         {
             InitializeComponent();
@@ -24,12 +26,15 @@ namespace Workmate
             this.Padding = new Padding(borderSize);
             this.BackColor = Color.FromArgb(29, 133, 181);
             carica_ordini();
+            carica_clienti();
             ordinicaricati = true;
+            clienticaricati=true;
             bar_pnl.Visible = false;
             ordini_data.Visible = false;
             magazzino_data.Visible = false;
             settings_pnl.Visible = false;
             prod_data.Visible = false;
+            clienti_data.Visible = false;
             desktop_pnl.Visible = true;
         }
         private void closeform(object sender, FormClosingEventArgs e)
@@ -45,6 +50,12 @@ namespace Workmate
                 carica_prodotti();
                 var.ended = false;
                 prodotticaricati = true;
+            }
+            else if(clienti==true && var.ended == true)
+            {
+                carica_clienti();
+                var.ended = false;
+                clienticaricati = true;
             }
             else if (var.ended == true)
             {
@@ -113,7 +124,11 @@ namespace Workmate
                 Directory.CreateDirectory(root + @"\Prodotti");
                 Directory.CreateDirectory(root + @"\Prodotti\Foto");
             }
-            if(!File.Exists(root + @"\workmate.xml"))
+            if (!Directory.Exists(root + @"\Clienti"))
+            {
+                Directory.CreateDirectory(root + @"\Clienti");
+            }
+            if (!File.Exists(root + @"\workmate.xml"))
             {
                 XDocument doc_xml = new XDocument(new XElement("workmate",
                     new XElement("bollaid", 0)
@@ -326,6 +341,44 @@ namespace Workmate
                    prod_data.Rows.Add(riga);
             }
         }
+
+        private void carica_clienti(string testoc = "", string colonnac = "")
+        {
+            MessageBox.Show("Caricamento clienti in corso...");
+            clienti_data.Rows.Clear();
+            string[] codici = var.carica_clienti();
+            for (int i = 0; i < codici.Length; i++)
+            {
+                XmlDocument xml_doc = new XmlDocument();
+                xml_doc.Load(codici[i]);
+                XmlNode cliente = xml_doc.DocumentElement.SelectSingleNode("/cliente/cliente");
+                XmlNode piva = xml_doc.DocumentElement.SelectSingleNode("/cliente/piva");
+                XmlNode cf = xml_doc.DocumentElement.SelectSingleNode("/cliente/codice_fiscale");
+                XmlNode indirizzo = xml_doc.DocumentElement.SelectSingleNode("/cliente/indirizzo");
+                XmlNode note = xml_doc.DocumentElement.SelectSingleNode("/cliente/note");
+                string[] riga = { cliente.InnerText, piva.InnerText, cf.InnerText, indirizzo.InnerText, note.InnerText};
+                string contenuto = "";
+                switch (colonnac)
+                {
+                    case "Codice":
+                        contenuto = cliente.InnerText;
+                        break;
+                    case "Piva":
+                        contenuto = piva.InnerText;
+                        break;
+                    case "CF":
+                        contenuto = cf.InnerText;
+                        break;
+                    default:
+                        contenuto = "";
+                        break;
+                }
+                contenuto = contenuto.ToLower();
+                testoc = testoc.ToLower();
+                if (contenuto.Contains(testoc))
+                    clienti_data.Rows.Add(riga);
+            }
+        }
         private void magazzino_btn_Click(object sender, EventArgs e)
         {
             nordini_pnl.Visible = false;
@@ -340,8 +393,10 @@ namespace Workmate
             ordini_data.Visible = false;
             magazzino_data.Visible = true;
             prod_data.Visible = false;
+            clienti_data.Visible = false;
             magazzino = true;
             prod = false;
+            clienti = false;
             comboBox1.Items.Clear();
             comboBox1.Items.Add("Codice");
             comboBox1.Items.Add("Prezzo");
@@ -371,8 +426,10 @@ namespace Workmate
             ordini_data.Visible = true;
             magazzino_data.Visible = false;
             prod_data.Visible = false;
+            clienti_data.Visible = false;
             magazzino = false;
             prod = false;
+            clienti= false;
             avv_mostrati = false;
             comboBox1.Items.Clear();
             comboBox1.Items.Add("Ordine");
@@ -397,12 +454,14 @@ namespace Workmate
             prod_data.Visible = true;
             magazzino_data.Visible = false;
             ordini_data.Visible = false;
+            clienti_data.Visible = false;
             settings_pnl.Visible = false;
             desktop_pnl.Visible = true;
             bar_pnl.Visible = true;
             bolla_btn.Visible = false;
             magazzino = false;
             prod = true;
+            clienti = false;
             avv_mostrati = false;
             comboBox1.Items.Clear();
             comboBox1.Items.Add("Prodotto");
@@ -428,6 +487,37 @@ namespace Workmate
             totfat_pic.Visible = true;
             totord_pic.Visible = true;
             logo_pic.Visible = true;
+            clienti = false;
+            magazzino = false;
+            prod=false;
+        }
+        private void clienti_btn_Click(object sender, EventArgs e)
+        {
+            nordini_pnl.Visible = false;
+            totfat_pnl.Visible = false;
+            totfat_pic.Visible = false;
+            totord_pic.Visible = false;
+            logo_pic.Visible = false;
+            bolla_btn.Visible = false;
+            clienti_data.Visible = true;
+            magazzino_data.Visible = false;
+            ordini_data.Visible = false;
+            prod_data.Visible = false;
+            settings_pnl.Visible = false;
+            bar_pnl.Visible = true;
+            clienti = true;
+            magazzino = false;
+            prod = false;
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add("Cliente");
+            comboBox1.Items.Add("Piva");
+            comboBox1.Items.Add("CF");
+            comboBox1.SelectedIndex = 0;
+            if (clienticaricati == false)
+            {
+                carica_clienti();
+                clienticaricati = true;
+            }
         }
         private void impostazioni_btn_Click(object sender, EventArgs e)
         {
@@ -455,6 +545,14 @@ namespace Workmate
                 if(Nuovo_Prodotto.DialogResult == DialogResult.Yes)
                     prodotticaricati = false;
             }
+            else if(clienti == true)
+            {
+                Aggiungi_Cliente Nuovo_Cliente = new Aggiungi_Cliente();
+                Nuovo_Cliente.FormClosing += new FormClosingEventHandler(closeform);
+                Nuovo_Cliente.ShowDialog();
+                /*if (Nuovo_Prodotto.DialogResult == DialogResult.Yes)
+                    prodotticaricati = false;*/
+            }
             else
             {
                 Aggiungi_Ordine Nuovo_Ordine = new Aggiungi_Ordine();
@@ -469,97 +567,137 @@ namespace Workmate
         {
             if (magazzino == true)
             {
-                Aggiungi_Codice Nuovo_Codice = new Aggiungi_Codice();
-                Nuovo_Codice.FormClosing += new FormClosingEventHandler(closeform);
-                Nuovo_Codice.varCod = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
-                Nuovo_Codice.varPrz = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[1].Value.ToString();
-                Nuovo_Codice.varQt = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[2].Value.ToString();
-                Nuovo_Codice.varQtmin = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[3].Value.ToString();
-                Nuovo_Codice.varDes = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[4].Value.ToString();
-                Nuovo_Codice.varFoto = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[5].Value.ToString();
-                Nuovo_Codice.Modifica = 1;
-                Nuovo_Codice.ShowDialog();
+                if(magazzino_data.SelectedCells.Count > 0)
+                {
+                    Aggiungi_Codice Nuovo_Codice = new Aggiungi_Codice();
+                    Nuovo_Codice.FormClosing += new FormClosingEventHandler(closeform);
+                    Nuovo_Codice.varCod = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                    Nuovo_Codice.varPrz = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[1].Value.ToString();
+                    Nuovo_Codice.varQt = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[2].Value.ToString();
+                    Nuovo_Codice.varQtmin = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[3].Value.ToString();
+                    Nuovo_Codice.varDes = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[4].Value.ToString();
+                    Nuovo_Codice.varFoto = magazzino_data.Rows[magazzino_data.CurrentCell.RowIndex].Cells[5].Value.ToString();
+                    Nuovo_Codice.Modifica = 1;
+                    Nuovo_Codice.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Selezionare prima un codice!");
+                }
             }
             else if (prod == true)
             {
-                Aggiungi_Prodotto Nuovo_Prodotto = new Aggiungi_Prodotto();
-                Nuovo_Prodotto.FormClosing += new FormClosingEventHandler(closeform);
-                Nuovo_Prodotto.varProdotto = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
-                Nuovo_Prodotto.varDescrizione = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[1].Value.ToString();
-                Nuovo_Prodotto.varCod1 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[2].Value.ToString();
-                Nuovo_Prodotto.varCod2 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[3].Value.ToString();
-                Nuovo_Prodotto.varCod3 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[4].Value.ToString();
-                Nuovo_Prodotto.varCod4 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[5].Value.ToString();
-                Nuovo_Prodotto.varCod5 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[6].Value.ToString();
-                Nuovo_Prodotto.varCod6 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[7].Value.ToString();
-                Nuovo_Prodotto.varCod7 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[8].Value.ToString();
-                Nuovo_Prodotto.varCod8 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[9].Value.ToString();
-                Nuovo_Prodotto.varCod9 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[10].Value.ToString();
-                Nuovo_Prodotto.varCod10 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[11].Value.ToString();
-                Nuovo_Prodotto.varCod11 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[12].Value.ToString();
-                Nuovo_Prodotto.varCod12 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[13].Value.ToString();
-                Nuovo_Prodotto.varCod13 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[14].Value.ToString();
-                Nuovo_Prodotto.varCod14 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[15].Value.ToString();
-                Nuovo_Prodotto.varCod15 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[16].Value.ToString();
-                Nuovo_Prodotto.varQt1 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[17].Value.ToString();
-                Nuovo_Prodotto.varQt2 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[18].Value.ToString();
-                Nuovo_Prodotto.varQt3 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[19].Value.ToString();
-                Nuovo_Prodotto.varQt4 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[20].Value.ToString();
-                Nuovo_Prodotto.varQt5 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[21].Value.ToString();
-                Nuovo_Prodotto.varQt6 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[22].Value.ToString();
-                Nuovo_Prodotto.varQt7 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[23].Value.ToString();
-                Nuovo_Prodotto.varQt8 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[24].Value.ToString();
-                Nuovo_Prodotto.varQt9 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[25].Value.ToString();
-                Nuovo_Prodotto.varQt10 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[26].Value.ToString();
-                Nuovo_Prodotto.varQt11 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[27].Value.ToString();
-                Nuovo_Prodotto.varQt12 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[28].Value.ToString();
-                Nuovo_Prodotto.varQt13 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[29].Value.ToString();
-                Nuovo_Prodotto.varQt14 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[30].Value.ToString();
-                Nuovo_Prodotto.varQt15 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[31].Value.ToString();
-                Nuovo_Prodotto.varFoto = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[32].Value.ToString();
-                Nuovo_Prodotto.Modifica = 1;
+                if(prod_data.SelectedCells.Count > 0)
+                {
+                    Aggiungi_Prodotto Nuovo_Prodotto = new Aggiungi_Prodotto();
+                    Nuovo_Prodotto.FormClosing += new FormClosingEventHandler(closeform);
+                    Nuovo_Prodotto.varProdotto = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                    Nuovo_Prodotto.varDescrizione = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[1].Value.ToString();
+                    Nuovo_Prodotto.varCod1 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[2].Value.ToString();
+                    Nuovo_Prodotto.varCod2 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[3].Value.ToString();
+                    Nuovo_Prodotto.varCod3 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[4].Value.ToString();
+                    Nuovo_Prodotto.varCod4 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[5].Value.ToString();
+                    Nuovo_Prodotto.varCod5 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[6].Value.ToString();
+                    Nuovo_Prodotto.varCod6 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[7].Value.ToString();
+                    Nuovo_Prodotto.varCod7 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[8].Value.ToString();
+                    Nuovo_Prodotto.varCod8 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[9].Value.ToString();
+                    Nuovo_Prodotto.varCod9 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[10].Value.ToString();
+                    Nuovo_Prodotto.varCod10 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[11].Value.ToString();
+                    Nuovo_Prodotto.varCod11 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[12].Value.ToString();
+                    Nuovo_Prodotto.varCod12 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[13].Value.ToString();
+                    Nuovo_Prodotto.varCod13 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[14].Value.ToString();
+                    Nuovo_Prodotto.varCod14 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[15].Value.ToString();
+                    Nuovo_Prodotto.varCod15 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[16].Value.ToString();
+                    Nuovo_Prodotto.varQt1 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[17].Value.ToString();
+                    Nuovo_Prodotto.varQt2 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[18].Value.ToString();
+                    Nuovo_Prodotto.varQt3 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[19].Value.ToString();
+                    Nuovo_Prodotto.varQt4 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[20].Value.ToString();
+                    Nuovo_Prodotto.varQt5 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[21].Value.ToString();
+                    Nuovo_Prodotto.varQt6 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[22].Value.ToString();
+                    Nuovo_Prodotto.varQt7 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[23].Value.ToString();
+                    Nuovo_Prodotto.varQt8 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[24].Value.ToString();
+                    Nuovo_Prodotto.varQt9 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[25].Value.ToString();
+                    Nuovo_Prodotto.varQt10 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[26].Value.ToString();
+                    Nuovo_Prodotto.varQt11 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[27].Value.ToString();
+                    Nuovo_Prodotto.varQt12 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[28].Value.ToString();
+                    Nuovo_Prodotto.varQt13 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[29].Value.ToString();
+                    Nuovo_Prodotto.varQt14 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[30].Value.ToString();
+                    Nuovo_Prodotto.varQt15 = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[31].Value.ToString();
+                    Nuovo_Prodotto.varFoto = prod_data.Rows[prod_data.CurrentCell.RowIndex].Cells[32].Value.ToString();
+                    Nuovo_Prodotto.Modifica = 1;
 
-                Nuovo_Prodotto.ShowDialog();
+                    Nuovo_Prodotto.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Selezionare prima un prodotto!");
+                }
+            }
+            else if (clienti == true)
+            {
+                if(clienti_data.SelectedCells.Count >0)
+                {
+                    Aggiungi_Cliente Nuovo_Cliente = new Aggiungi_Cliente();
+                    Nuovo_Cliente.FormClosing += new FormClosingEventHandler(closeform);
+                    Nuovo_Cliente.varCli = clienti_data.Rows[clienti_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                    Nuovo_Cliente.varPiva = clienti_data.Rows[clienti_data.CurrentCell.RowIndex].Cells[1].Value.ToString();
+                    Nuovo_Cliente.varCf = clienti_data.Rows[clienti_data.CurrentCell.RowIndex].Cells[2].Value.ToString();
+                    Nuovo_Cliente.varInd = clienti_data.Rows[clienti_data.CurrentCell.RowIndex].Cells[3].Value.ToString();
+                    Nuovo_Cliente.varNote = clienti_data.Rows[clienti_data.CurrentCell.RowIndex].Cells[4].Value.ToString();
+                    Nuovo_Cliente.Modifica = 1;
+                    Nuovo_Cliente.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Selezionare prima un cliente!");
+                }
             }
             else
             {
-                Aggiungi_Ordine Nuovo_Ordine = new Aggiungi_Ordine();
-                Nuovo_Ordine.FormClosing += new FormClosingEventHandler(closeform);
-                Nuovo_Ordine.varOrdine = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
-                Nuovo_Ordine.varPrz = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[1].Value.ToString();
-                Nuovo_Ordine.varCliente = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[2].Value.ToString();
-                Nuovo_Ordine.varNote = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[3].Value.ToString();
-                Nuovo_Ordine.varProdotto1 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[4].Value.ToString();
-                Nuovo_Ordine.varProdotto2 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[5].Value.ToString();
-                Nuovo_Ordine.varProdotto3 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[6].Value.ToString();
-                Nuovo_Ordine.varProdotto4 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[7].Value.ToString();
-                Nuovo_Ordine.varProdotto5 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[8].Value.ToString();
-                Nuovo_Ordine.varProdotto6 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[9].Value.ToString();
-                Nuovo_Ordine.varProdotto7 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[10].Value.ToString();
-                Nuovo_Ordine.varProdotto8 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[11].Value.ToString();
-                Nuovo_Ordine.varProdotto9 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[12].Value.ToString();
-                Nuovo_Ordine.varProdotto10 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[13].Value.ToString();
-                try
+                if(ordini_data.SelectedCells.Count > 0)
                 {
-                    Nuovo_Ordine.varQt1 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[14].Value);
-                    Nuovo_Ordine.varQt2 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[15].Value);
-                    Nuovo_Ordine.varQt3 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[16].Value);
-                    Nuovo_Ordine.varQt4 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[17].Value);
-                    Nuovo_Ordine.varQt5 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[18].Value);
-                    Nuovo_Ordine.varQt6 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[19].Value);
-                    Nuovo_Ordine.varQt7 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[20].Value);
-                    Nuovo_Ordine.varQt8 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[21].Value);
-                    Nuovo_Ordine.varQt9 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[22].Value);
-                    Nuovo_Ordine.varQt10 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[23].Value);
+                    Aggiungi_Ordine Nuovo_Ordine = new Aggiungi_Ordine();
+                    Nuovo_Ordine.FormClosing += new FormClosingEventHandler(closeform);
+                    Nuovo_Ordine.varOrdine = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                    Nuovo_Ordine.varPrz = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[1].Value.ToString();
+                    Nuovo_Ordine.varCliente = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[2].Value.ToString();
+                    Nuovo_Ordine.varNote = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[3].Value.ToString();
+                    Nuovo_Ordine.varProdotto1 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[4].Value.ToString();
+                    Nuovo_Ordine.varProdotto2 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[5].Value.ToString();
+                    Nuovo_Ordine.varProdotto3 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[6].Value.ToString();
+                    Nuovo_Ordine.varProdotto4 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[7].Value.ToString();
+                    Nuovo_Ordine.varProdotto5 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[8].Value.ToString();
+                    Nuovo_Ordine.varProdotto6 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[9].Value.ToString();
+                    Nuovo_Ordine.varProdotto7 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[10].Value.ToString();
+                    Nuovo_Ordine.varProdotto8 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[11].Value.ToString();
+                    Nuovo_Ordine.varProdotto9 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[12].Value.ToString();
+                    Nuovo_Ordine.varProdotto10 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[13].Value.ToString();
+                    try
+                    {
+                        Nuovo_Ordine.varQt1 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[14].Value);
+                        Nuovo_Ordine.varQt2 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[15].Value);
+                        Nuovo_Ordine.varQt3 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[16].Value);
+                        Nuovo_Ordine.varQt4 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[17].Value);
+                        Nuovo_Ordine.varQt5 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[18].Value);
+                        Nuovo_Ordine.varQt6 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[19].Value);
+                        Nuovo_Ordine.varQt7 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[20].Value);
+                        Nuovo_Ordine.varQt8 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[21].Value);
+                        Nuovo_Ordine.varQt9 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[22].Value);
+                        Nuovo_Ordine.varQt10 = Convert.ToInt32(ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[23].Value);
 
+                    }
+                    catch
+                    {
+
+                    }
+                    Nuovo_Ordine.Modifica = 1;
+
+                    Nuovo_Ordine.ShowDialog();
                 }
-                catch
+                else
                 {
-                    
+                    MessageBox.Show("Selezionare prima un ordine!");
                 }
-                Nuovo_Ordine.Modifica = 1;
-
-                Nuovo_Ordine.ShowDialog();
             }
         }
 
@@ -614,6 +752,23 @@ namespace Workmate
                     carica_prodotti();
                 }
             }
+            else if (clienti == true)
+            {
+                string cliente = clienti_data.Rows[clienti_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                DialogResult Scelta = MessageBox.Show("Sei sicuro di voler eliminare " + cliente, "Eliminazione cliente", MessageBoxButtons.YesNo);
+                if (Scelta == DialogResult.Yes)
+                {
+                    try
+                    {
+                        File.Delete(var.db + @"Clienti\" + cliente + ".xml");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, " Impossibile eliminare il cliente");
+                    }
+                    carica_clienti();
+                }
+            }
             else
             {
                 string ordine = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
@@ -645,6 +800,10 @@ namespace Workmate
                 {
                     carica_prodotti(textBox1.Text, comboBox1.Text);
                 }
+                else if (clienti == true)
+                {
+                    carica_clienti(textBox1.Text, comboBox1.Text);
+                }
                 else
                 {
                     carica_ordini(textBox1.Text, comboBox1.Text);
@@ -656,6 +815,8 @@ namespace Workmate
                     carica_codici();
                 else if (prod == true)
                     carica_prodotti();
+                else if (clienti == true)
+                    carica_clienti();
                 else
                     carica_ordini();
             }
@@ -722,6 +883,8 @@ namespace Workmate
                 carica_codici();
             else if (prod == true)
                 carica_prodotti();
+            else if (clienti == true)
+                carica_clienti();
             else
                 carica_ordini();
         }

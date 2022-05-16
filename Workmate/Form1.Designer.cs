@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dock_pnl = new System.Windows.Forms.Panel();
+            this.clienti_btn = new FontAwesome.Sharp.IconButton();
             this.impostazioni_btn = new FontAwesome.Sharp.IconButton();
             this.ordini_btn = new FontAwesome.Sharp.IconButton();
             this.prod_btn = new FontAwesome.Sharp.IconButton();
@@ -90,6 +91,7 @@
             this.quantitamin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descrizione = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Foto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clienti_data = new System.Windows.Forms.DataGridView();
             this.prod_data = new System.Windows.Forms.DataGridView();
             this.prodotto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -125,7 +127,6 @@
             this.qt10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.settings_pnl = new System.Windows.Forms.Panel();
-            this.save_btn = new FontAwesome.Sharp.IconButton();
             this.changeimg_btn = new FontAwesome.Sharp.IconButton();
             this.changedb_btn = new FontAwesome.Sharp.IconButton();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -133,6 +134,11 @@
             this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imghome_dlg = new System.Windows.Forms.OpenFileDialog();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.piva = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codicefiscale = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.indirizzo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dock_pnl.SuspendLayout();
             this.logo_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -145,6 +151,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.totord_pic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordini_data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.magazzino_data)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clienti_data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prod_data)).BeginInit();
             this.settings_pnl.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -153,6 +160,7 @@
             // dock_pnl
             // 
             this.dock_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(133)))), ((int)(((byte)(181)))));
+            this.dock_pnl.Controls.Add(this.clienti_btn);
             this.dock_pnl.Controls.Add(this.impostazioni_btn);
             this.dock_pnl.Controls.Add(this.ordini_btn);
             this.dock_pnl.Controls.Add(this.prod_btn);
@@ -164,6 +172,30 @@
             this.dock_pnl.Name = "dock_pnl";
             this.dock_pnl.Size = new System.Drawing.Size(230, 592);
             this.dock_pnl.TabIndex = 0;
+            // 
+            // clienti_btn
+            // 
+            this.clienti_btn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.clienti_btn.FlatAppearance.BorderSize = 0;
+            this.clienti_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clienti_btn.Font = new System.Drawing.Font("SF Pro Display", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.clienti_btn.ForeColor = System.Drawing.Color.White;
+            this.clienti_btn.IconChar = FontAwesome.Sharp.IconChar.Users;
+            this.clienti_btn.IconColor = System.Drawing.Color.White;
+            this.clienti_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.clienti_btn.IconSize = 42;
+            this.clienti_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.clienti_btn.Location = new System.Drawing.Point(0, 338);
+            this.clienti_btn.Name = "clienti_btn";
+            this.clienti_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.clienti_btn.Size = new System.Drawing.Size(230, 56);
+            this.clienti_btn.TabIndex = 6;
+            this.clienti_btn.Tag = "Ordini";
+            this.clienti_btn.Text = "Clienti";
+            this.clienti_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.clienti_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.clienti_btn.UseVisualStyleBackColor = true;
+            this.clienti_btn.Click += new System.EventHandler(this.clienti_btn_Click);
             // 
             // impostazioni_btn
             // 
@@ -453,6 +485,7 @@
             this.desktop_pnl.Controls.Add(this.nordini_pnl);
             this.desktop_pnl.Controls.Add(this.ordini_data);
             this.desktop_pnl.Controls.Add(this.magazzino_data);
+            this.desktop_pnl.Controls.Add(this.clienti_data);
             this.desktop_pnl.Controls.Add(this.prod_data);
             this.desktop_pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.desktop_pnl.Location = new System.Drawing.Point(230, 60);
@@ -792,6 +825,25 @@
             this.Foto.Name = "Foto";
             this.Foto.Visible = false;
             // 
+            // clienti_data
+            // 
+            this.clienti_data.AllowUserToAddRows = false;
+            this.clienti_data.AllowUserToDeleteRows = false;
+            this.clienti_data.AllowUserToResizeRows = false;
+            this.clienti_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.clienti_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn13,
+            this.piva,
+            this.codicefiscale,
+            this.indirizzo,
+            this.dataGridViewTextBoxColumn14});
+            this.clienti_data.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clienti_data.Location = new System.Drawing.Point(0, 0);
+            this.clienti_data.Name = "clienti_data";
+            this.clienti_data.RowTemplate.Height = 25;
+            this.clienti_data.Size = new System.Drawing.Size(838, 532);
+            this.clienti_data.TabIndex = 4;
+            // 
             // prod_data
             // 
             this.prod_data.AllowUserToAddRows = false;
@@ -1039,7 +1091,6 @@
             // settings_pnl
             // 
             this.settings_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.settings_pnl.Controls.Add(this.save_btn);
             this.settings_pnl.Controls.Add(this.changeimg_btn);
             this.settings_pnl.Controls.Add(this.changedb_btn);
             this.settings_pnl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1047,21 +1098,6 @@
             this.settings_pnl.Name = "settings_pnl";
             this.settings_pnl.Size = new System.Drawing.Size(838, 532);
             this.settings_pnl.TabIndex = 3;
-            // 
-            // save_btn
-            // 
-            this.save_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.save_btn.FlatAppearance.BorderSize = 0;
-            this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.save_btn.IconChar = FontAwesome.Sharp.IconChar.Check;
-            this.save_btn.IconColor = System.Drawing.Color.Black;
-            this.save_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.save_btn.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.save_btn.Location = new System.Drawing.Point(752, 455);
-            this.save_btn.Name = "save_btn";
-            this.save_btn.Size = new System.Drawing.Size(65, 65);
-            this.save_btn.TabIndex = 2;
-            this.save_btn.UseVisualStyleBackColor = true;
             // 
             // changeimg_btn
             // 
@@ -1129,6 +1165,31 @@
             this.imghome_dlg.FileName = "home img";
             this.imghome_dlg.Filter = "\"All Graphics Types|*.jpg;*.jpeg;*.png\"";
             // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.HeaderText = "cliente";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            // 
+            // piva
+            // 
+            this.piva.HeaderText = "p.iva";
+            this.piva.Name = "piva";
+            // 
+            // codicefiscale
+            // 
+            this.codicefiscale.HeaderText = "codice fiscale";
+            this.codicefiscale.Name = "codicefiscale";
+            // 
+            // indirizzo
+            // 
+            this.indirizzo.HeaderText = "indirizzo";
+            this.indirizzo.Name = "indirizzo";
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.HeaderText = "note";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1159,6 +1220,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.totord_pic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordini_data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.magazzino_data)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clienti_data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.prod_data)).EndInit();
             this.settings_pnl.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
@@ -1228,7 +1290,6 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private FontAwesome.Sharp.IconButton changedb_btn;
-        private FontAwesome.Sharp.IconButton save_btn;
         private FontAwesome.Sharp.IconButton changeimg_btn;
         private DataGridViewTextBoxColumn codice;
         private DataGridViewTextBoxColumn prezzo_codice;
@@ -1271,5 +1332,12 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private FontAwesome.Sharp.IconButton bolla_btn;
         private OpenFileDialog imghome_dlg;
+        private FontAwesome.Sharp.IconButton clienti_btn;
+        private DataGridView clienti_data;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private DataGridViewTextBoxColumn piva;
+        private DataGridViewTextBoxColumn codicefiscale;
+        private DataGridViewTextBoxColumn indirizzo;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
     }
 }

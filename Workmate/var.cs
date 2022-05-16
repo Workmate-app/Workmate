@@ -29,4 +29,10 @@ public class var
         string[] prodotti_trovati = Directory.GetFiles(db + @"Prodotti\");
         return prodotti_trovati;
     }
+
+    public static string[] carica_clienti()
+    {
+        string[] clienti_trovati = Directory.GetFiles(db + @"Clienti\");
+        return clienti_trovati;
+    }
 }
