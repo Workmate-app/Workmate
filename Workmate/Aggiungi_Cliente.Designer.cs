@@ -41,6 +41,12 @@
             this.ind_txt = new System.Windows.Forms.TextBox();
             this.note_txt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.cap_txt = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.paese_txt = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.prov_txt = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // add_btn
@@ -135,7 +141,7 @@
             // 
             this.ind_txt.Location = new System.Drawing.Point(12, 199);
             this.ind_txt.Name = "ind_txt";
-            this.ind_txt.Size = new System.Drawing.Size(188, 23);
+            this.ind_txt.Size = new System.Drawing.Size(130, 23);
             this.ind_txt.TabIndex = 21;
             // 
             // note_txt
@@ -155,11 +161,67 @@
             this.label5.TabIndex = 22;
             this.label5.Text = "Note:";
             // 
+            // cap_txt
+            // 
+            this.cap_txt.Location = new System.Drawing.Point(252, 199);
+            this.cap_txt.Name = "cap_txt";
+            this.cap_txt.Size = new System.Drawing.Size(61, 23);
+            this.cap_txt.TabIndex = 25;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(252, 181);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(33, 15);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "CAP:";
+            // 
+            // paese_txt
+            // 
+            this.paese_txt.Location = new System.Drawing.Point(148, 199);
+            this.paese_txt.Name = "paese_txt";
+            this.paese_txt.Size = new System.Drawing.Size(98, 23);
+            this.paese_txt.TabIndex = 27;
+            this.paese_txt.TextChanged += new System.EventHandler(this.paese_txt_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(148, 181);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 15);
+            this.label7.TabIndex = 26;
+            this.label7.Text = "Paese:";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // prov_txt
+            // 
+            this.prov_txt.Location = new System.Drawing.Point(319, 199);
+            this.prov_txt.Name = "prov_txt";
+            this.prov_txt.Size = new System.Drawing.Size(59, 23);
+            this.prov_txt.TabIndex = 29;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(319, 181);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(59, 15);
+            this.label8.TabIndex = 28;
+            this.label8.Text = "Provincia:";
+            // 
             // Aggiungi_Cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(458, 502);
+            this.Controls.Add(this.prov_txt);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.paese_txt);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.cap_txt);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.note_txt);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.ind_txt);
@@ -198,5 +260,11 @@
         private TextBox ind_txt;
         private TextBox note_txt;
         private Label label5;
+        private TextBox cap_txt;
+        private Label label6;
+        private TextBox paese_txt;
+        private Label label7;
+        private TextBox prov_txt;
+        private Label label8;
     }
 }

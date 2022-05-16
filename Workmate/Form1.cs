@@ -131,7 +131,7 @@ namespace Workmate
             if (!File.Exists(root + @"\workmate.xml"))
             {
                 XDocument doc_xml = new XDocument(new XElement("workmate",
-                    new XElement("bollaid", 0)
+                    new XElement("bollaid", 1)
                     ));
                 doc_xml.Save(root + @"\workmate.xml");
             }
@@ -355,8 +355,11 @@ namespace Workmate
                 XmlNode piva = xml_doc.DocumentElement.SelectSingleNode("/cliente/piva");
                 XmlNode cf = xml_doc.DocumentElement.SelectSingleNode("/cliente/codice_fiscale");
                 XmlNode indirizzo = xml_doc.DocumentElement.SelectSingleNode("/cliente/indirizzo");
+                XmlNode cap = xml_doc.DocumentElement.SelectSingleNode("/cliente/cap");
+                XmlNode paese = xml_doc.DocumentElement.SelectSingleNode("/cliente/paese");
+                XmlNode prov = xml_doc.DocumentElement.SelectSingleNode("/cliente/prov");
                 XmlNode note = xml_doc.DocumentElement.SelectSingleNode("/cliente/note");
-                string[] riga = { cliente.InnerText, piva.InnerText, cf.InnerText, indirizzo.InnerText, note.InnerText};
+                string[] riga = { cliente.InnerText, piva.InnerText, cf.InnerText, indirizzo.InnerText,cap.InnerText,paese.InnerText,prov.InnerText, note.InnerText };
                 string contenuto = "";
                 switch (colonnac)
                 {
@@ -481,6 +484,7 @@ namespace Workmate
             ordini_data.Visible = false;
             magazzino_data.Visible = false;
             prod_data.Visible = false;
+            clienti_data.Visible = false;
             avv_mostrati = false;
             nordini_pnl.Visible = true;
             totfat_pnl.Visible = true;
@@ -643,7 +647,10 @@ namespace Workmate
                     Nuovo_Cliente.varPiva = clienti_data.Rows[clienti_data.CurrentCell.RowIndex].Cells[1].Value.ToString();
                     Nuovo_Cliente.varCf = clienti_data.Rows[clienti_data.CurrentCell.RowIndex].Cells[2].Value.ToString();
                     Nuovo_Cliente.varInd = clienti_data.Rows[clienti_data.CurrentCell.RowIndex].Cells[3].Value.ToString();
-                    Nuovo_Cliente.varNote = clienti_data.Rows[clienti_data.CurrentCell.RowIndex].Cells[4].Value.ToString();
+                    Nuovo_Cliente.varCap = clienti_data.Rows[clienti_data.CurrentCell.RowIndex].Cells[4].Value.ToString();
+                    Nuovo_Cliente.varPaese = clienti_data.Rows[clienti_data.CurrentCell.RowIndex].Cells[5].Value.ToString();
+                    Nuovo_Cliente.varProv = clienti_data.Rows[clienti_data.CurrentCell.RowIndex].Cells[6].Value.ToString();
+                    Nuovo_Cliente.varNote = clienti_data.Rows[clienti_data.CurrentCell.RowIndex].Cells[7].Value.ToString();
                     Nuovo_Cliente.Modifica = 1;
                     Nuovo_Cliente.ShowDialog();
                 }
@@ -934,6 +941,13 @@ namespace Workmate
 
                 }
             }
+        }
+
+        private void bolla_btn_Click(object sender, EventArgs e)
+        {
+            Crea_Bolla Bolla = new Crea_Bolla();
+            Bolla.FormClosing += new FormClosingEventHandler(closeform);
+            Bolla.ShowDialog();
         }
     }
 }

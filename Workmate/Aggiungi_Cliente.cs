@@ -39,12 +39,15 @@ namespace Workmate
                 new XElement("piva", piva_txt.Text),
                 new XElement("codice_fiscale", cf_txt.Text),
                 new XElement("indirizzo", ind_txt.Text),
+                new XElement("cap", cap_txt.Text),
+                new XElement("paese", paese_txt.Text),
+                new XElement("provincia", prov_txt.Text),
                 new XElement("note", note_txt.Text)
                 ));
 
             if (File.Exists(root + cli_txt.Text + ".xml") && Modifica != 1)
             {
-                MessageBox.Show("Codice già esistente");
+                MessageBox.Show("Cliente già esistente");
                 return;
             }
             else
@@ -61,6 +64,9 @@ namespace Workmate
         public string varPiva { get; set; }
         public string varCf { get; set; }
         public string varInd { get; set; }
+        public string varCap { get; set; }
+        public string varPaese { get; set; }
+        public string varProv { get; set; }
         public string varNote{ get; set; }
         public int Modifica { get; set; }
 
@@ -74,8 +80,21 @@ namespace Workmate
                 piva_txt.Text = varPiva;
                 cf_txt.Text = varCf;
                 ind_txt.Text = varInd;
+                cap_txt.Text = varCap;
+                paese_txt.Text = varPaese;
+                prov_txt.Text = varProv;    
                 note_txt.Text = varNote;
             }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void paese_txt_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

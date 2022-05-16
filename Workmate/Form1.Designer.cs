@@ -138,6 +138,9 @@
             this.piva = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codicefiscale = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.indirizzo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paese = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.provincia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dock_pnl.SuspendLayout();
             this.logo_pnl.SuspendLayout();
@@ -190,7 +193,7 @@
             this.clienti_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.clienti_btn.Size = new System.Drawing.Size(230, 56);
             this.clienti_btn.TabIndex = 6;
-            this.clienti_btn.Tag = "Ordini";
+            this.clienti_btn.Tag = "Clienti";
             this.clienti_btn.Text = "Clienti";
             this.clienti_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.clienti_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -262,7 +265,7 @@
             this.prod_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.prod_btn.Size = new System.Drawing.Size(230, 56);
             this.prod_btn.TabIndex = 5;
-            this.prod_btn.Tag = "Ordini";
+            this.prod_btn.Tag = "Prodotti";
             this.prod_btn.Text = "Prodotti";
             this.prod_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.prod_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -382,6 +385,7 @@
             this.bolla_btn.Size = new System.Drawing.Size(54, 57);
             this.bolla_btn.TabIndex = 8;
             this.bolla_btn.UseVisualStyleBackColor = true;
+            this.bolla_btn.Click += new System.EventHandler(this.bolla_btn_Click);
             // 
             // erase_btn
             // 
@@ -836,6 +840,9 @@
             this.piva,
             this.codicefiscale,
             this.indirizzo,
+            this.cap,
+            this.paese,
+            this.provincia,
             this.dataGridViewTextBoxColumn14});
             this.clienti_data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.clienti_data.Location = new System.Drawing.Point(0, 0);
@@ -1185,6 +1192,21 @@
             this.indirizzo.HeaderText = "indirizzo";
             this.indirizzo.Name = "indirizzo";
             // 
+            // cap
+            // 
+            this.cap.HeaderText = "cap";
+            this.cap.Name = "cap";
+            // 
+            // paese
+            // 
+            this.paese.HeaderText = "paese";
+            this.paese.Name = "paese";
+            // 
+            // provincia
+            // 
+            this.provincia.HeaderText = "provincia";
+            this.provincia.Name = "provincia";
+            // 
             // dataGridViewTextBoxColumn14
             // 
             this.dataGridViewTextBoxColumn14.HeaderText = "note";
@@ -1338,6 +1360,9 @@
         private DataGridViewTextBoxColumn piva;
         private DataGridViewTextBoxColumn codicefiscale;
         private DataGridViewTextBoxColumn indirizzo;
+        private DataGridViewTextBoxColumn cap;
+        private DataGridViewTextBoxColumn paese;
+        private DataGridViewTextBoxColumn provincia;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
     }
 }

@@ -84,6 +84,8 @@
             this.qt1_txt = new System.Windows.Forms.TextBox();
             this.qt2_txt = new System.Windows.Forms.TextBox();
             this.cancel_btn = new FontAwesome.Sharp.IconButton();
+            this.selectcli_btn = new FontAwesome.Sharp.IconButton();
+            this.selectcli_dlg = new System.Windows.Forms.OpenFileDialog();
             this.add_prod_pnl.SuspendLayout();
             this.prod_pnl.SuspendLayout();
             this.qt_pnl.SuspendLayout();
@@ -594,6 +596,25 @@
             this.cancel_btn.UseVisualStyleBackColor = true;
             this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
             // 
+            // selectcli_btn
+            // 
+            this.selectcli_btn.FlatAppearance.BorderSize = 0;
+            this.selectcli_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.selectcli_btn.IconChar = FontAwesome.Sharp.IconChar.User;
+            this.selectcli_btn.IconColor = System.Drawing.Color.Black;
+            this.selectcli_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.selectcli_btn.IconSize = 25;
+            this.selectcli_btn.Location = new System.Drawing.Point(165, 157);
+            this.selectcli_btn.Name = "selectcli_btn";
+            this.selectcli_btn.Size = new System.Drawing.Size(30, 30);
+            this.selectcli_btn.TabIndex = 24;
+            this.selectcli_btn.UseVisualStyleBackColor = true;
+            this.selectcli_btn.Click += new System.EventHandler(this.selectcli_btn_Click);
+            // 
+            // selectcli_dlg
+            // 
+            this.selectcli_dlg.Filter = "Xml|*.xml";
+            // 
             // Aggiungi_Ordine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -611,6 +632,7 @@
             this.Controls.Add(this.ord_txt);
             this.Controls.Add(this.cancel_btn);
             this.Controls.Add(this.add_btn);
+            this.Controls.Add(this.selectcli_btn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -686,5 +708,7 @@
         private TextBox qt2_txt;
         private Panel prod_pnl;
         private FontAwesome.Sharp.IconButton cancel_btn;
+        private FontAwesome.Sharp.IconButton selectcli_btn;
+        private OpenFileDialog selectcli_dlg;
     }
 }

@@ -186,8 +186,8 @@ namespace Workmate
                 qt8_txt.Text = varQt8.ToString();
                 qt9_txt.Text = varQt9.ToString();
                 qt10_txt.Text = varQt10.ToString();
-
             }
+            selectcli_dlg.InitialDirectory = var.db + @"Clienti\";
         }
 
         public string varOrdine { get; set; }
@@ -225,6 +225,24 @@ namespace Workmate
         private void ok_btn_Click(object sender, EventArgs e)
         {
             add_prod_pnl.Visible = false;
+        }
+
+        private void selectcli_btn_Click(object sender, EventArgs e)
+        {
+            if(selectcli_dlg.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if(selectcli_dlg.FileName != null)
+                    {
+                        cliente_txt.Text = Path.ChangeExtension(Path.GetFileName(selectcli_dlg.FileName), null).ToString();
+                    }
+                }
+                catch
+                {
+
+                }
+            }
         }
     }
 }
