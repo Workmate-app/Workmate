@@ -1,11 +1,9 @@
-﻿Sezione clienti --> possibilità di aggiungere un cliente con le info
-
-Bolla (file:///D:/downloads/postback.pdf):
-	possibilità di creare una bolla con autocompilazione delle info del cliente se è registrato
-	Data e numero bolla in automatico (nbolla da xml)
-	Data e ora di trasporto
-	Cesta / Bancale ecc
-	n colli
-	firme 
+﻿Bolla:
+	Aggiungere data e ora creazione
+	Controllare/Finire generazione con più pagine
+	Descrizione prodotti
 
 Cambia percorso db
+
+Impostazioni
+	Finire implementazione xml

@@ -391,6 +391,7 @@
             this.ok_btn.Size = new System.Drawing.Size(64, 50);
             this.ok_btn.TabIndex = 39;
             this.ok_btn.UseVisualStyleBackColor = true;
+            this.ok_btn.Click += new System.EventHandler(this.ok_btn_Click);
             // 
             // ora_txt
             // 

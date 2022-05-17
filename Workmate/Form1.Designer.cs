@@ -92,6 +92,14 @@
             this.descrizione = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Foto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clienti_data = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.piva = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codicefiscale = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.indirizzo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paese = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.provincia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prod_data = new System.Windows.Forms.DataGridView();
             this.prodotto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -134,14 +142,19 @@
             this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imghome_dlg = new System.Windows.Forms.OpenFileDialog();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.piva = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codicefiscale = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.indirizzo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paese = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.provincia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.indirizzo_txt = new System.Windows.Forms.TextBox();
+            this.cap_txt = new System.Windows.Forms.TextBox();
+            this.prov_txt = new System.Windows.Forms.TextBox();
+            this.piva_txt = new System.Windows.Forms.TextBox();
+            this.cf_txt = new System.Windows.Forms.TextBox();
+            this.azienda_txt = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.ok_btn = new FontAwesome.Sharp.IconButton();
             this.dock_pnl.SuspendLayout();
             this.logo_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -851,6 +864,46 @@
             this.clienti_data.Size = new System.Drawing.Size(838, 532);
             this.clienti_data.TabIndex = 4;
             // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.HeaderText = "cliente";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            // 
+            // piva
+            // 
+            this.piva.HeaderText = "p.iva";
+            this.piva.Name = "piva";
+            // 
+            // codicefiscale
+            // 
+            this.codicefiscale.HeaderText = "codice fiscale";
+            this.codicefiscale.Name = "codicefiscale";
+            // 
+            // indirizzo
+            // 
+            this.indirizzo.HeaderText = "indirizzo";
+            this.indirizzo.Name = "indirizzo";
+            // 
+            // cap
+            // 
+            this.cap.HeaderText = "cap";
+            this.cap.Name = "cap";
+            // 
+            // paese
+            // 
+            this.paese.HeaderText = "paese";
+            this.paese.Name = "paese";
+            // 
+            // provincia
+            // 
+            this.provincia.HeaderText = "provincia";
+            this.provincia.Name = "provincia";
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.HeaderText = "note";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            // 
             // prod_data
             // 
             this.prod_data.AllowUserToAddRows = false;
@@ -1098,6 +1151,19 @@
             // settings_pnl
             // 
             this.settings_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.settings_pnl.Controls.Add(this.ok_btn);
+            this.settings_pnl.Controls.Add(this.label7);
+            this.settings_pnl.Controls.Add(this.label2);
+            this.settings_pnl.Controls.Add(this.label6);
+            this.settings_pnl.Controls.Add(this.label5);
+            this.settings_pnl.Controls.Add(this.label3);
+            this.settings_pnl.Controls.Add(this.azienda_txt);
+            this.settings_pnl.Controls.Add(this.cf_txt);
+            this.settings_pnl.Controls.Add(this.piva_txt);
+            this.settings_pnl.Controls.Add(this.prov_txt);
+            this.settings_pnl.Controls.Add(this.cap_txt);
+            this.settings_pnl.Controls.Add(this.indirizzo_txt);
+            this.settings_pnl.Controls.Add(this.textBox2);
             this.settings_pnl.Controls.Add(this.changeimg_btn);
             this.settings_pnl.Controls.Add(this.changedb_btn);
             this.settings_pnl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1172,45 +1238,115 @@
             this.imghome_dlg.FileName = "home img";
             this.imghome_dlg.Filter = "\"All Graphics Types|*.jpg;*.jpeg;*.png\"";
             // 
-            // dataGridViewTextBoxColumn13
+            // textBox2
             // 
-            this.dataGridViewTextBoxColumn13.HeaderText = "cliente";
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.textBox2.Location = new System.Drawing.Point(15, 187);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(129, 23);
+            this.textBox2.TabIndex = 2;
             // 
-            // piva
+            // indirizzo_txt
             // 
-            this.piva.HeaderText = "p.iva";
-            this.piva.Name = "piva";
+            this.indirizzo_txt.Location = new System.Drawing.Point(15, 231);
+            this.indirizzo_txt.Name = "indirizzo_txt";
+            this.indirizzo_txt.Size = new System.Drawing.Size(129, 23);
+            this.indirizzo_txt.TabIndex = 3;
             // 
-            // codicefiscale
+            // cap_txt
             // 
-            this.codicefiscale.HeaderText = "codice fiscale";
-            this.codicefiscale.Name = "codicefiscale";
+            this.cap_txt.Location = new System.Drawing.Point(150, 231);
+            this.cap_txt.Name = "cap_txt";
+            this.cap_txt.Size = new System.Drawing.Size(57, 23);
+            this.cap_txt.TabIndex = 4;
             // 
-            // indirizzo
+            // prov_txt
             // 
-            this.indirizzo.HeaderText = "indirizzo";
-            this.indirizzo.Name = "indirizzo";
+            this.prov_txt.Location = new System.Drawing.Point(213, 231);
+            this.prov_txt.Name = "prov_txt";
+            this.prov_txt.Size = new System.Drawing.Size(47, 23);
+            this.prov_txt.TabIndex = 5;
             // 
-            // cap
+            // piva_txt
             // 
-            this.cap.HeaderText = "cap";
-            this.cap.Name = "cap";
+            this.piva_txt.Location = new System.Drawing.Point(15, 275);
+            this.piva_txt.Name = "piva_txt";
+            this.piva_txt.Size = new System.Drawing.Size(129, 23);
+            this.piva_txt.TabIndex = 6;
             // 
-            // paese
+            // cf_txt
             // 
-            this.paese.HeaderText = "paese";
-            this.paese.Name = "paese";
+            this.cf_txt.Location = new System.Drawing.Point(15, 320);
+            this.cf_txt.Name = "cf_txt";
+            this.cf_txt.Size = new System.Drawing.Size(129, 23);
+            this.cf_txt.TabIndex = 7;
             // 
-            // provincia
+            // azienda_txt
             // 
-            this.provincia.HeaderText = "provincia";
-            this.provincia.Name = "provincia";
+            this.azienda_txt.AutoSize = true;
+            this.azienda_txt.Location = new System.Drawing.Point(15, 169);
+            this.azienda_txt.Name = "azienda_txt";
+            this.azienda_txt.Size = new System.Drawing.Size(83, 15);
+            this.azienda_txt.TabIndex = 8;
+            this.azienda_txt.Text = "Nome azienda";
             // 
-            // dataGridViewTextBoxColumn14
+            // label3
             // 
-            this.dataGridViewTextBoxColumn14.HeaderText = "note";
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 213);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 15);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Indirizzo";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(15, 257);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(32, 15);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "P.Iva";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(15, 302);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 15);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Codice fiscale";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(150, 213);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(30, 15);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "CAP";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(213, 213);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(56, 15);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Provincia";
+            // 
+            // ok_btn
+            // 
+            this.ok_btn.FlatAppearance.BorderSize = 0;
+            this.ok_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ok_btn.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.ok_btn.IconColor = System.Drawing.Color.Black;
+            this.ok_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ok_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ok_btn.Location = new System.Drawing.Point(762, 470);
+            this.ok_btn.Name = "ok_btn";
+            this.ok_btn.Size = new System.Drawing.Size(64, 50);
+            this.ok_btn.TabIndex = 14;
+            this.ok_btn.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -1245,6 +1381,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.clienti_data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.prod_data)).EndInit();
             this.settings_pnl.ResumeLayout(false);
+            this.settings_pnl.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1364,5 +1501,18 @@
         private DataGridViewTextBoxColumn paese;
         private DataGridViewTextBoxColumn provincia;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private Label label7;
+        private Label label2;
+        private Label label6;
+        private Label label5;
+        private Label label3;
+        private Label azienda_txt;
+        private TextBox cf_txt;
+        private TextBox piva_txt;
+        private TextBox prov_txt;
+        private TextBox cap_txt;
+        private TextBox indirizzo_txt;
+        private TextBox textBox2;
+        private FontAwesome.Sharp.IconButton ok_btn;
     }
 }

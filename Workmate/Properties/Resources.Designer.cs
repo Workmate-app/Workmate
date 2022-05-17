@@ -61,6 +61,51 @@ namespace Workmate.Properties {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a :root {
+        ///  --white: #ffffff;
+        ///  --darkWhite: #ccc;
+        ///  --black: #000000;
+        ///  --dark: #615c60;
+        ///  --themeColor: #22b8d1;
+        ///}
+        ///
+        ////* Font Include */
+        ///@import url(&apos;https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&amp;display=swap&apos;);
+        ///
+        ///.page[size=\&quot;A4\&quot;] {
+        ///  width: 21cm;
+        ///  height: 29.7cm;
+        ///  overflow: hidden;
+        ///}
+        ///
+        ///.bb {
+        ///  border-bottom: 3px solid var(--darkWhite);
+        ///}
+        ///
+        ////* Top Section */
+        ///.top-content {
+        ///  padding-bottom: 15px;
+        ///}
+        ///
+        ///.logo img {
+        ///  height: 150px;
+        ///}
+        ///
+        ///.top-right p {
+        ///  margin: 0;
+        ///}
+        ///
+        ///.top-right b {
+        ///  font-size: 25px;
+        /// [stringa troncata]&quot;;.
+        /// </summary>
+        internal static string style {
+            get {
+                return ResourceManager.GetString("style", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Workmate {

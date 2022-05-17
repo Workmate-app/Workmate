@@ -41,7 +41,7 @@ namespace Workmate
                 new XElement("indirizzo", ind_txt.Text),
                 new XElement("cap", cap_txt.Text),
                 new XElement("paese", paese_txt.Text),
-                new XElement("provincia", prov_txt.Text),
+                new XElement("prov", prov_txt.Text),
                 new XElement("note", note_txt.Text)
                 ));
 

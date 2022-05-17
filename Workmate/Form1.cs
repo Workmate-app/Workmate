@@ -131,7 +131,13 @@ namespace Workmate
             if (!File.Exists(root + @"\workmate.xml"))
             {
                 XDocument doc_xml = new XDocument(new XElement("workmate",
-                    new XElement("bollaid", 1)
+                    new XElement("bollaid", 1),
+                    new XElement("azienda", ""),
+                    new XElement("indirizzo", ""),
+                    new XElement("cap", ""),
+                    new XElement("prov", ""),
+                    new XElement("piva", ""),
+                    new XElement("codicefiscale", "")                    
                     ));
                 doc_xml.Save(root + @"\workmate.xml");
             }
@@ -144,18 +150,21 @@ namespace Workmate
                 Image image = Image.FromFile(var.db + @"home.png");
                 logo_pic.BackgroundImage = image;
                 logo_pic.Tag = var.db + @"home.png";
+                var.nfotohome = "home.png";
             }
             else if (File.Exists(var.db + @"home.jpg"))
             {
                 Image image = Image.FromFile(var.db + @"home.jpg");
                 logo_pic.BackgroundImage = image;
                 logo_pic.Tag = var.db + @"home.jpg";
+                var.nfotohome = "home.jpg";
             }
             else if (Directory.Exists(var.db + @"home.jpeg"))
             {
                 Image image = Image.FromFile(var.db + @"home.jpeg");
                 logo_pic.BackgroundImage = image;
                 logo_pic.Tag = var.db + @"home.jpeg";
+                var.nfotohome = "home.jpeg";
             }
         }
 
@@ -945,8 +954,18 @@ namespace Workmate
 
         private void bolla_btn_Click(object sender, EventArgs e)
         {
+            string[] ordini = new string[ordini_data.SelectedCells.Count];
+            int i = ordini_data.SelectedCells.Count-1;
+            foreach (DataGridViewCell cell in ordini_data.SelectedCells)
+            {
+                ordini[i]=ordini_data.Rows[cell.RowIndex].Cells[0].Value.ToString();
+                MessageBox.Show(ordini[i]);
+                i--;
+            }
             Crea_Bolla Bolla = new Crea_Bolla();
             Bolla.FormClosing += new FormClosingEventHandler(closeform);
+            Bolla.ordini = ordini;
+            Bolla.nordini = ordini_data.SelectedCells.Count;
             Bolla.ShowDialog();
         }
     }
