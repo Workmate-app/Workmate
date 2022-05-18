@@ -46,7 +46,7 @@ namespace Workmate
                     MessageBox.Show("Controllare la quantità dei codici");
                     return;
                 }
-            }
+           }
             #endregion
 
             XDocument doc_xml = new XDocument(new XElement("ordine",

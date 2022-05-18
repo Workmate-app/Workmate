@@ -1,9 +1,7 @@
 ﻿Bolla:
-	Aggiungere data e ora creazione
 	Controllare/Finire generazione con più pagine
 	Descrizione prodotti
 
 Cambia percorso db
 
-Impostazioni
-	Finire implementazione xml
+Aggiorna magazzino se modifico ordine

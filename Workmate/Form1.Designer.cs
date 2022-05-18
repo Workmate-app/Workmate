@@ -135,6 +135,19 @@
             this.qt10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.settings_pnl = new System.Windows.Forms.Panel();
+            this.ok_btn = new FontAwesome.Sharp.IconButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label = new System.Windows.Forms.Label();
+            this.cf_txt = new System.Windows.Forms.TextBox();
+            this.piva_txt = new System.Windows.Forms.TextBox();
+            this.prov_txt = new System.Windows.Forms.TextBox();
+            this.cap_txt = new System.Windows.Forms.TextBox();
+            this.indirizzo_txt = new System.Windows.Forms.TextBox();
+            this.azienda_txt = new System.Windows.Forms.TextBox();
             this.changeimg_btn = new FontAwesome.Sharp.IconButton();
             this.changedb_btn = new FontAwesome.Sharp.IconButton();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -142,19 +155,6 @@
             this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imghome_dlg = new System.Windows.Forms.OpenFileDialog();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.indirizzo_txt = new System.Windows.Forms.TextBox();
-            this.cap_txt = new System.Windows.Forms.TextBox();
-            this.prov_txt = new System.Windows.Forms.TextBox();
-            this.piva_txt = new System.Windows.Forms.TextBox();
-            this.cf_txt = new System.Windows.Forms.TextBox();
-            this.azienda_txt = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.ok_btn = new FontAwesome.Sharp.IconButton();
             this.dock_pnl.SuspendLayout();
             this.logo_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -1157,13 +1157,13 @@
             this.settings_pnl.Controls.Add(this.label6);
             this.settings_pnl.Controls.Add(this.label5);
             this.settings_pnl.Controls.Add(this.label3);
-            this.settings_pnl.Controls.Add(this.azienda_txt);
+            this.settings_pnl.Controls.Add(this.label);
             this.settings_pnl.Controls.Add(this.cf_txt);
             this.settings_pnl.Controls.Add(this.piva_txt);
             this.settings_pnl.Controls.Add(this.prov_txt);
             this.settings_pnl.Controls.Add(this.cap_txt);
             this.settings_pnl.Controls.Add(this.indirizzo_txt);
-            this.settings_pnl.Controls.Add(this.textBox2);
+            this.settings_pnl.Controls.Add(this.azienda_txt);
             this.settings_pnl.Controls.Add(this.changeimg_btn);
             this.settings_pnl.Controls.Add(this.changedb_btn);
             this.settings_pnl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1171,6 +1171,118 @@
             this.settings_pnl.Name = "settings_pnl";
             this.settings_pnl.Size = new System.Drawing.Size(838, 532);
             this.settings_pnl.TabIndex = 3;
+            // 
+            // ok_btn
+            // 
+            this.ok_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ok_btn.FlatAppearance.BorderSize = 0;
+            this.ok_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ok_btn.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.ok_btn.IconColor = System.Drawing.Color.Black;
+            this.ok_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ok_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ok_btn.Location = new System.Drawing.Point(762, 470);
+            this.ok_btn.Name = "ok_btn";
+            this.ok_btn.Size = new System.Drawing.Size(64, 50);
+            this.ok_btn.TabIndex = 14;
+            this.ok_btn.UseVisualStyleBackColor = true;
+            this.ok_btn.Click += new System.EventHandler(this.ok_btn_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(213, 213);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(56, 15);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Provincia";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(150, 213);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(30, 15);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "CAP";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(15, 302);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 15);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Codice fiscale";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(15, 257);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(32, 15);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "P.Iva";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 213);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 15);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Indirizzo";
+            // 
+            // label
+            // 
+            this.label.AutoSize = true;
+            this.label.Location = new System.Drawing.Point(15, 169);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(83, 15);
+            this.label.TabIndex = 8;
+            this.label.Text = "Nome azienda";
+            // 
+            // cf_txt
+            // 
+            this.cf_txt.Location = new System.Drawing.Point(15, 320);
+            this.cf_txt.Name = "cf_txt";
+            this.cf_txt.Size = new System.Drawing.Size(129, 23);
+            this.cf_txt.TabIndex = 7;
+            // 
+            // piva_txt
+            // 
+            this.piva_txt.Location = new System.Drawing.Point(15, 275);
+            this.piva_txt.Name = "piva_txt";
+            this.piva_txt.Size = new System.Drawing.Size(129, 23);
+            this.piva_txt.TabIndex = 6;
+            // 
+            // prov_txt
+            // 
+            this.prov_txt.Location = new System.Drawing.Point(213, 231);
+            this.prov_txt.Name = "prov_txt";
+            this.prov_txt.Size = new System.Drawing.Size(47, 23);
+            this.prov_txt.TabIndex = 5;
+            // 
+            // cap_txt
+            // 
+            this.cap_txt.Location = new System.Drawing.Point(150, 231);
+            this.cap_txt.Name = "cap_txt";
+            this.cap_txt.Size = new System.Drawing.Size(57, 23);
+            this.cap_txt.TabIndex = 4;
+            // 
+            // indirizzo_txt
+            // 
+            this.indirizzo_txt.Location = new System.Drawing.Point(15, 231);
+            this.indirizzo_txt.Name = "indirizzo_txt";
+            this.indirizzo_txt.Size = new System.Drawing.Size(129, 23);
+            this.indirizzo_txt.TabIndex = 3;
+            // 
+            // azienda_txt
+            // 
+            this.azienda_txt.Location = new System.Drawing.Point(15, 187);
+            this.azienda_txt.Name = "azienda_txt";
+            this.azienda_txt.Size = new System.Drawing.Size(129, 23);
+            this.azienda_txt.TabIndex = 2;
             // 
             // changeimg_btn
             // 
@@ -1237,116 +1349,6 @@
             // 
             this.imghome_dlg.FileName = "home img";
             this.imghome_dlg.Filter = "\"All Graphics Types|*.jpg;*.jpeg;*.png\"";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(15, 187);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(129, 23);
-            this.textBox2.TabIndex = 2;
-            // 
-            // indirizzo_txt
-            // 
-            this.indirizzo_txt.Location = new System.Drawing.Point(15, 231);
-            this.indirizzo_txt.Name = "indirizzo_txt";
-            this.indirizzo_txt.Size = new System.Drawing.Size(129, 23);
-            this.indirizzo_txt.TabIndex = 3;
-            // 
-            // cap_txt
-            // 
-            this.cap_txt.Location = new System.Drawing.Point(150, 231);
-            this.cap_txt.Name = "cap_txt";
-            this.cap_txt.Size = new System.Drawing.Size(57, 23);
-            this.cap_txt.TabIndex = 4;
-            // 
-            // prov_txt
-            // 
-            this.prov_txt.Location = new System.Drawing.Point(213, 231);
-            this.prov_txt.Name = "prov_txt";
-            this.prov_txt.Size = new System.Drawing.Size(47, 23);
-            this.prov_txt.TabIndex = 5;
-            // 
-            // piva_txt
-            // 
-            this.piva_txt.Location = new System.Drawing.Point(15, 275);
-            this.piva_txt.Name = "piva_txt";
-            this.piva_txt.Size = new System.Drawing.Size(129, 23);
-            this.piva_txt.TabIndex = 6;
-            // 
-            // cf_txt
-            // 
-            this.cf_txt.Location = new System.Drawing.Point(15, 320);
-            this.cf_txt.Name = "cf_txt";
-            this.cf_txt.Size = new System.Drawing.Size(129, 23);
-            this.cf_txt.TabIndex = 7;
-            // 
-            // azienda_txt
-            // 
-            this.azienda_txt.AutoSize = true;
-            this.azienda_txt.Location = new System.Drawing.Point(15, 169);
-            this.azienda_txt.Name = "azienda_txt";
-            this.azienda_txt.Size = new System.Drawing.Size(83, 15);
-            this.azienda_txt.TabIndex = 8;
-            this.azienda_txt.Text = "Nome azienda";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 213);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 15);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Indirizzo";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 257);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 15);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "P.Iva";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 302);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 15);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Codice fiscale";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(150, 213);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 15);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "CAP";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(213, 213);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 15);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Provincia";
-            // 
-            // ok_btn
-            // 
-            this.ok_btn.FlatAppearance.BorderSize = 0;
-            this.ok_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ok_btn.IconChar = FontAwesome.Sharp.IconChar.Check;
-            this.ok_btn.IconColor = System.Drawing.Color.Black;
-            this.ok_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ok_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.ok_btn.Location = new System.Drawing.Point(762, 470);
-            this.ok_btn.Name = "ok_btn";
-            this.ok_btn.Size = new System.Drawing.Size(64, 50);
-            this.ok_btn.TabIndex = 14;
-            this.ok_btn.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -1506,13 +1508,13 @@
         private Label label6;
         private Label label5;
         private Label label3;
-        private Label azienda_txt;
+        private Label label;
         private TextBox cf_txt;
         private TextBox piva_txt;
         private TextBox prov_txt;
         private TextBox cap_txt;
         private TextBox indirizzo_txt;
-        private TextBox textBox2;
+        private TextBox azienda_txt;
         private FontAwesome.Sharp.IconButton ok_btn;
     }
 }

@@ -18,6 +18,7 @@ namespace Workmate
         bool prodotticaricati = false;
         bool codicicaricati = false;
         bool clienticaricati = false;
+        string[] impostazioni = new string[6];
         public Form1()
         {
             InitializeComponent();
@@ -27,6 +28,7 @@ namespace Workmate
             this.BackColor = Color.FromArgb(29, 133, 181);
             carica_ordini();
             carica_clienti();
+            carica_impostazioni();
             ordinicaricati = true;
             clienticaricati=true;
             bar_pnl.Visible = false;
@@ -391,6 +393,25 @@ namespace Workmate
                     clienti_data.Rows.Add(riga);
             }
         }
+
+        private void carica_impostazioni()
+        {
+            XmlDocument xml_doc = new XmlDocument();
+            xml_doc.Load(var.db + "workmate.xml");
+            XmlNode bollaid = xml_doc.DocumentElement.SelectSingleNode("/workmate/bollaid");
+            XmlNode azienda = xml_doc.DocumentElement.SelectSingleNode("/workmate/azienda");
+            XmlNode indirizzo = xml_doc.DocumentElement.SelectSingleNode("/workmate/indirizzo");
+            XmlNode cap = xml_doc.DocumentElement.SelectSingleNode("/workmate/cap");
+            XmlNode prov = xml_doc.DocumentElement.SelectSingleNode("/workmate/prov");
+            XmlNode piva = xml_doc.DocumentElement.SelectSingleNode("/workmate/piva");
+            XmlNode codicefiscale = xml_doc.DocumentElement.SelectSingleNode("/workmate/codicefiscale");
+            impostazioni[0] = azienda.InnerText;
+            impostazioni[1] = indirizzo.InnerText;
+            impostazioni[2] = cap.InnerText;
+            impostazioni[3] = prov.InnerText;
+            impostazioni[4] = piva.InnerText;
+            impostazioni[5] = codicefiscale.InnerText;
+        }
         private void magazzino_btn_Click(object sender, EventArgs e)
         {
             nordini_pnl.Visible = false;
@@ -506,6 +527,7 @@ namespace Workmate
         }
         private void clienti_btn_Click(object sender, EventArgs e)
         {
+            desktop_pnl.Visible = true;
             nordini_pnl.Visible = false;
             totfat_pnl.Visible = false;
             totfat_pic.Visible = false;
@@ -538,6 +560,12 @@ namespace Workmate
             bar_pnl.Visible = false;
             settings_pnl.Visible = true;
             avv_mostrati = false;
+            azienda_txt.Text = impostazioni[0];
+            indirizzo_txt.Text = impostazioni[1];
+            cap_txt.Text=impostazioni[2];
+            prov_txt.Text = impostazioni[3];
+            cf_txt.Text =impostazioni[4];
+            piva_txt.Text = impostazioni[5];
         }
 
         private void plus_btn_Click_1(object sender, EventArgs e)
@@ -967,6 +995,27 @@ namespace Workmate
             Bolla.ordini = ordini;
             Bolla.nordini = ordini_data.SelectedCells.Count;
             Bolla.ShowDialog();
+        }
+
+        private void ok_btn_Click(object sender, EventArgs e)
+        {
+            XmlDocument xml_doc = new XmlDocument();
+            xml_doc.Load(var.db + "workmate.xml");
+            XmlNode bollaid = xml_doc.DocumentElement.SelectSingleNode("/workmate/bollaid");
+            XmlNode azienda = xml_doc.DocumentElement.SelectSingleNode("/workmate/azienda");
+            XmlNode indirizzo = xml_doc.DocumentElement.SelectSingleNode("/workmate/indirizzo");
+            XmlNode cap = xml_doc.DocumentElement.SelectSingleNode("/workmate/cap");
+            XmlNode prov = xml_doc.DocumentElement.SelectSingleNode("/workmate/prov");
+            XmlNode piva = xml_doc.DocumentElement.SelectSingleNode("/workmate/piva");
+            XmlNode codicefiscale = xml_doc.DocumentElement.SelectSingleNode("/workmate/codicefiscale");
+            azienda.InnerText = azienda_txt.Text;
+            indirizzo.InnerText = indirizzo_txt.Text;
+            cap.InnerText = cap_txt.Text;
+            prov.InnerText = prov_txt.Text;
+            piva.InnerText = piva_txt.Text;
+            codicefiscale.InnerText = cf_txt.Text;
+            xml_doc.Save(var.db + "workmate.xml");
+            carica_impostazioni();
         }
     }
 }

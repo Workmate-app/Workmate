@@ -84,13 +84,15 @@ namespace Workmate
         {
             XmlDocument xml_doc = new XmlDocument();
             xml_doc.Load(var.db + "workmate.xml");
+            XmlNode n = xml_doc.DocumentElement.SelectSingleNode("/workmate/bollaid");
             XmlNode azienda = xml_doc.DocumentElement.SelectSingleNode("/workmate/azienda");
             XmlNode indirizzo = xml_doc.DocumentElement.SelectSingleNode("/workmate/indirizzo");
             XmlNode cap = xml_doc.DocumentElement.SelectSingleNode("/workmate/cap");
             XmlNode prov = xml_doc.DocumentElement.SelectSingleNode("/workmate/prov");
             XmlNode piva = xml_doc.DocumentElement.SelectSingleNode("/workmate/piva");
             XmlNode codicefiscale = xml_doc.DocumentElement.SelectSingleNode("/workmate/codicefiscale");
-
+            n.InnerText = (Convert.ToInt32(n.InnerText) + 1).ToString();
+            xml_doc.Save(var.db + "workmate.xml");
             string result = "";
             #region html head
 
@@ -117,9 +119,9 @@ namespace Workmate
             result += "                    <div class=\"position-relative\" style=\"text-align: right;\">" + Environment.NewLine;
             result += "                        <b>" + azienda.InnerText + "</b>" + Environment.NewLine;
             result += "                        <p>" + indirizzo.InnerText + "</p>" + Environment.NewLine;
-            result += "                        <p>" + cap.InnerText + "</p>" + Environment.NewLine;
-            result += "                        <p>P.Iva" + piva.InnerText + "</p>" + Environment.NewLine;
-            result += "                        <p>Codice fiscale" + codicefiscale.InnerText + "</p>" + Environment.NewLine;
+            result += "                        <p>" + cap.InnerText + " " + prov.InnerText + "</p>" + Environment.NewLine;
+            result += "                        <p>P.Iva " + piva.InnerText + "</p>" + Environment.NewLine;
+            result += "                        <p>Codice fiscale " + codicefiscale.InnerText + "</p>" + Environment.NewLine;
             result += "                        <p>Documento di trasporto N. <span>" + nbolla_txt.Text +"</span></p>" + Environment.NewLine;
             result += "                    </div>" + Environment.NewLine;
             result += "                </div>" + Environment.NewLine;
@@ -158,7 +160,8 @@ namespace Workmate
             result += "                        <div class=\"col-3\">" + Environment.NewLine;
             result += "                            <p>Trasporto a cura del: <span> " + trasp_txt.Text + " </span ></p>" + Environment.NewLine;
             result += "                            <p>Causale del trasporto: <span>" + causale_txt.Text + "</span></p>" + Environment.NewLine;
-            result += "                            <p>Peso: <span>" + peso_txt.Text + "</span></p>" + Environment.NewLine;
+            result += "                            <p>Vettore: <span>" + vet_txt.Text + "</span></p>" + Environment.NewLine;
+            result += "                            <p>Peso (Kg): <span>" + peso_txt.Text + "</span></p>" + Environment.NewLine;
             result += "                        </div>" + Environment.NewLine;
             result += "                    </div>" + Environment.NewLine;
             result += "                </div>" + Environment.NewLine;
@@ -179,12 +182,11 @@ namespace Workmate
             result += "                    <tbody>" + Environment.NewLine;
 
             int x = 0;
-            MessageBox.Show(nordini.ToString());
             for (int i= 0; i < nordini; i++)
             {
-                MessageBox.Show(prodotti.ElementAt(x));
                 while (prodotti.ElementAt(x) != "end")
                 {
+                    result += "                     <tr>" + Environment.NewLine;
                     result += "                         <tr>" + Environment.NewLine;
                     result += "                            <td>" + Environment.NewLine;
                     result += "                               <div class=\"media\">" + Environment.NewLine;
@@ -222,7 +224,7 @@ namespace Workmate
             result += "                    </div>" + Environment.NewLine;
             result += "                </div>" + Environment.NewLine;
             result += "            </section>" + Environment.NewLine;
-            result += "            <p>Generato con Workmate</p>" + Environment.NewLine;
+            result += "            <p>Generato con Workmate     " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo) + "</p>" + Environment.NewLine;
             result += "        </div>" + Environment.NewLine;
             result += "    </div>" + Environment.NewLine;
             result += "</body></html>";
@@ -234,6 +236,31 @@ namespace Workmate
         List<string> quantita = new List<string>();
         private void ok_btn_Click(object sender, EventArgs e)
         {
+            if (System.Text.RegularExpressions.Regex.IsMatch(peso_txt.Text, @"^[0-9]+([.][0-9]+)?$") == false && peso_txt.Text.Length != 0)
+            {
+                MessageBox.Show("Controllare il peso (per la , inserire il .)");
+                return;
+            }
+            if (System.Text.RegularExpressions.Regex.IsMatch(capdest_txt.Text, @"^[0-9]+$")==false || System.Text.RegularExpressions.Regex.IsMatch(capclidest_txt.Text, @"^[0-9]+$") == false)
+            {
+                MessageBox.Show("Controllare il cap!");
+                return;
+            }
+            if(clidestind_txt.Text.Length == 0 || destind_txt.Text.Length == 0 || paeseclidest_txt.Text.Length == 0 || paesedest_txt.Text.Length == 0 || provclidest_txt.Text.Length == 0 || provdest_txt.Text.Length == 0 || capdest_txt.Text.Length == 0 || capclidest_txt.Text.Length == 0)
+            {
+                MessageBox.Show("Uno o più cambi indirizzo vuoti!");
+                return;
+            }
+            if (des_txt.Text.Length==0)
+            {
+                MessageBox.Show("Il campo destinatario non può essere vuoto!");
+                return;
+            }
+            if (clidest_txt.Text.Length == 0)
+            {
+                MessageBox.Show("Il campo cliente di destinazione non può essere vuoto!");
+                return;
+            }
             XmlDocument xml_doc = new XmlDocument();
             for (int x = 0; x < nordini; x++)
             {
@@ -321,17 +348,7 @@ namespace Workmate
                     string html = "";
                     html = creahtml();
                     File.WriteAllText(saveFileDialog.FileName, html);
-                    XmlDocument xml_doc2 = new XmlDocument();
-                    xml_doc2.Load(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\workmate.xml");
-                    XmlNode n = xml_doc2.DocumentElement.SelectSingleNode("/workmate/bollaid");
-                    XmlNode azienda = xml_doc2.DocumentElement.SelectSingleNode("/workmate/azienda");
-                    XmlNode indirizzo = xml_doc2.DocumentElement.SelectSingleNode("/workmate/indirizzo");
-                    XmlNode cap = xml_doc2.DocumentElement.SelectSingleNode("/workmate/cap");
-                    XmlNode prov = xml_doc2.DocumentElement.SelectSingleNode("/workmate/prov");
-                    XmlNode piva = xml_doc2.DocumentElement.SelectSingleNode("/workmate/piva");
-                    XmlNode codicefiscale = xml_doc2.DocumentElement.SelectSingleNode("/workmate/codicefiscale");
-                    n.InnerText = (Convert.ToInt32(n.InnerText) + 1).ToString();
-                    xml_doc2.Save(var.db + "workmate.xml");
+                    this.Close();
                 }
             }
             catch

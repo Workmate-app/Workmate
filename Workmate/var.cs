@@ -12,7 +12,7 @@ public class var
     }
     public static string[] carica_codici()
     {
-        string[] codici_trovati = Directory.GetFiles(db + @"Magazzino\");
+        string[] codici_trovati = Directory.GetFiles(db + @"Magazzino\", "*.xml");
         return codici_trovati;
     }
 
@@ -22,19 +22,19 @@ public class var
     }
     public static string[] carica_ordini()
     {
-        string[] ordini_trovati = Directory.GetFiles(db + @"Ordini\");
+        string[] ordini_trovati = Directory.GetFiles(db + @"Ordini\", "*.xml");
         return ordini_trovati;
     }
 
     public static string[] carica_prodotti()
     {
-        string[] prodotti_trovati = Directory.GetFiles(db + @"Prodotti\");
+        string[] prodotti_trovati = Directory.GetFiles(db + @"Prodotti\", "*.xml");
         return prodotti_trovati;
     }
 
     public static string[] carica_clienti()
     {
-        string[] clienti_trovati = Directory.GetFiles(db + @"Clienti\");
+        string[] clienti_trovati = Directory.GetFiles(db + @"Clienti\", "*.xml");
         return clienti_trovati;
     }
 }
