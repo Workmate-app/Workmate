@@ -821,6 +821,31 @@ namespace Workmate
                 {
                     try
                     {
+                        XmlDocument xml_doc = new XmlDocument();
+                        //string _byteOrderMarkUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
+                        xml_doc.Load(var.db + @"Ordini\" + ordine + ".xml");
+                        for (int i = 0; i < 10; i++)
+                        {
+                            XmlNode prod = xml_doc.DocumentElement.SelectSingleNode("/ordine/prod" + (i + 1));
+                            XmlNode qtprod = xml_doc.DocumentElement.SelectSingleNode("/ordine/qt" + (i + 1));
+                            if (prod.InnerText.Length != 0) { 
+                                XmlDocument xml2_doc = new XmlDocument();
+                                xml2_doc.Load(var.db + @"Prodotti\" + prod.InnerText + ".xml");
+                                for (int x = 0; x < 15; x++)
+                                {
+                                    XmlNode cod = xml2_doc.DocumentElement.SelectSingleNode("/Prodotto/cod" + (x + 1));
+                                    XmlNode qtcod = xml2_doc.DocumentElement.SelectSingleNode("/Prodotto/qt" + (x + 1));
+                                    if (cod.InnerText.Length != 0)
+                                    {
+                                        XmlDocument xml3_doc = new XmlDocument();
+                                        xml3_doc.Load(var.db + @"Magazzino\" + cod.InnerText + ".xml");
+                                        XmlNode qt = xml3_doc.DocumentElement.SelectSingleNode("/codice/quantità");
+                                        qt.InnerText = (Convert.ToInt32(qt.InnerText) + (Convert.ToInt32(qtprod.InnerText) * Convert.ToInt32(qtcod.InnerText))).ToString();
+                                        xml3_doc.Save(var.db + @"Magazzino\" + cod.InnerText + ".xml");
+                                    }
+                                }
+                            }
+                        }
                         File.Delete(var.db + @"Ordini\" + ordine + ".xml");
                     }
                     catch (Exception ex)

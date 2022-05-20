@@ -81,8 +81,8 @@
             this.qt3_txt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.qt1_txt = new System.Windows.Forms.TextBox();
             this.qt2_txt = new System.Windows.Forms.TextBox();
+            this.qt1_txt = new System.Windows.Forms.TextBox();
             this.cancel_btn = new FontAwesome.Sharp.IconButton();
             this.selectcli_btn = new FontAwesome.Sharp.IconButton();
             this.selectcli_dlg = new System.Windows.Forms.OpenFileDialog();
@@ -194,26 +194,26 @@
             // 
             // prod_pnl
             // 
-            this.prod_pnl.Controls.Add(this.prod9_txt);
-            this.prod_pnl.Controls.Add(this.prod2_txt);
             this.prod_pnl.Controls.Add(this.prod1_txt);
+            this.prod_pnl.Controls.Add(this.prod2_txt);
+            this.prod_pnl.Controls.Add(this.prod3_txt);
+            this.prod_pnl.Controls.Add(this.prod4_txt);
+            this.prod_pnl.Controls.Add(this.prod5_txt);
+            this.prod_pnl.Controls.Add(this.prod6_txt);
+            this.prod_pnl.Controls.Add(this.prod7_txt);
+            this.prod_pnl.Controls.Add(this.prod8_txt);
+            this.prod_pnl.Controls.Add(this.prod9_txt);
+            this.prod_pnl.Controls.Add(this.prod10_txt);
             this.prod_pnl.Controls.Add(this.label14);
             this.prod_pnl.Controls.Add(this.label);
-            this.prod_pnl.Controls.Add(this.prod10_txt);
             this.prod_pnl.Controls.Add(this.label5);
             this.prod_pnl.Controls.Add(this.label13);
-            this.prod_pnl.Controls.Add(this.prod3_txt);
             this.prod_pnl.Controls.Add(this.label7);
             this.prod_pnl.Controls.Add(this.label12);
-            this.prod_pnl.Controls.Add(this.prod4_txt);
-            this.prod_pnl.Controls.Add(this.prod8_txt);
             this.prod_pnl.Controls.Add(this.label8);
             this.prod_pnl.Controls.Add(this.label11);
-            this.prod_pnl.Controls.Add(this.prod5_txt);
-            this.prod_pnl.Controls.Add(this.prod7_txt);
             this.prod_pnl.Controls.Add(this.label9);
             this.prod_pnl.Controls.Add(this.label10);
-            this.prod_pnl.Controls.Add(this.prod6_txt);
             this.prod_pnl.Location = new System.Drawing.Point(12, 0);
             this.prod_pnl.Name = "prod_pnl";
             this.prod_pnl.Size = new System.Drawing.Size(103, 499);
@@ -396,26 +396,26 @@
             // 
             // qt_pnl
             // 
-            this.qt_pnl.Controls.Add(this.label22);
-            this.qt_pnl.Controls.Add(this.qt10_txt);
-            this.qt_pnl.Controls.Add(this.label21);
-            this.qt_pnl.Controls.Add(this.qt9_txt);
-            this.qt_pnl.Controls.Add(this.label20);
-            this.qt_pnl.Controls.Add(this.qt8_txt);
-            this.qt_pnl.Controls.Add(this.label19);
-            this.qt_pnl.Controls.Add(this.qt7_txt);
-            this.qt_pnl.Controls.Add(this.label18);
-            this.qt_pnl.Controls.Add(this.qt6_txt);
-            this.qt_pnl.Controls.Add(this.label17);
-            this.qt_pnl.Controls.Add(this.qt5_txt);
-            this.qt_pnl.Controls.Add(this.label16);
-            this.qt_pnl.Controls.Add(this.qt4_txt);
-            this.qt_pnl.Controls.Add(this.label15);
-            this.qt_pnl.Controls.Add(this.qt3_txt);
-            this.qt_pnl.Controls.Add(this.label3);
-            this.qt_pnl.Controls.Add(this.label6);
             this.qt_pnl.Controls.Add(this.qt1_txt);
             this.qt_pnl.Controls.Add(this.qt2_txt);
+            this.qt_pnl.Controls.Add(this.qt3_txt);
+            this.qt_pnl.Controls.Add(this.qt4_txt);
+            this.qt_pnl.Controls.Add(this.qt5_txt);
+            this.qt_pnl.Controls.Add(this.qt6_txt);
+            this.qt_pnl.Controls.Add(this.qt7_txt);
+            this.qt_pnl.Controls.Add(this.qt8_txt);
+            this.qt_pnl.Controls.Add(this.qt9_txt);
+            this.qt_pnl.Controls.Add(this.qt10_txt);
+            this.qt_pnl.Controls.Add(this.label22);
+            this.qt_pnl.Controls.Add(this.label21);
+            this.qt_pnl.Controls.Add(this.label20);
+            this.qt_pnl.Controls.Add(this.label19);
+            this.qt_pnl.Controls.Add(this.label18);
+            this.qt_pnl.Controls.Add(this.label17);
+            this.qt_pnl.Controls.Add(this.label16);
+            this.qt_pnl.Controls.Add(this.label15);
+            this.qt_pnl.Controls.Add(this.label3);
+            this.qt_pnl.Controls.Add(this.label6);
             this.qt_pnl.Location = new System.Drawing.Point(163, 0);
             this.qt_pnl.Name = "qt_pnl";
             this.qt_pnl.Size = new System.Drawing.Size(114, 499);
@@ -567,19 +567,19 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "Quantità";
             // 
-            // qt1_txt
-            // 
-            this.qt1_txt.Location = new System.Drawing.Point(3, 30);
-            this.qt1_txt.Name = "qt1_txt";
-            this.qt1_txt.Size = new System.Drawing.Size(100, 23);
-            this.qt1_txt.TabIndex = 0;
-            // 
             // qt2_txt
             // 
             this.qt2_txt.Location = new System.Drawing.Point(3, 75);
             this.qt2_txt.Name = "qt2_txt";
             this.qt2_txt.Size = new System.Drawing.Size(100, 23);
-            this.qt2_txt.TabIndex = 1;
+            this.qt2_txt.TabIndex = 0;
+            // 
+            // qt1_txt
+            // 
+            this.qt1_txt.Location = new System.Drawing.Point(3, 31);
+            this.qt1_txt.Name = "qt1_txt";
+            this.qt1_txt.Size = new System.Drawing.Size(100, 23);
+            this.qt1_txt.TabIndex = 1;
             // 
             // cancel_btn
             // 
@@ -704,8 +704,8 @@
         private TextBox qt3_txt;
         private Label label3;
         private Label label6;
-        private TextBox qt1_txt;
         private TextBox qt2_txt;
+        private TextBox qt1_txt;
         private Panel prod_pnl;
         private FontAwesome.Sharp.IconButton cancel_btn;
         private FontAwesome.Sharp.IconButton selectcli_btn;

@@ -21,6 +21,8 @@ namespace Workmate
         }
 
         string OldOrd = "";
+        int[] exqt = {0,0,0,0,0,0,0,0,0,0 };
+
         private void add_btn_Click(object sender, EventArgs e)
         {
             #region Controlli
@@ -95,51 +97,52 @@ namespace Workmate
                     }                   
                 }
                 int x = 0;
-                if (Modifica != 1)
-                {
-                    foreach (TextBox textbox in prod_pnl.Controls.OfType<TextBox>()) {
-                        if (textbox.Text.Length != 0)
+
+                foreach (TextBox textbox in prod_pnl.Controls.OfType<TextBox>()) {
+                    if (textbox.Text.Length != 0)
+                    {
+                        try
                         {
-                            try
+                            XmlDocument xml_doc = new XmlDocument();
+                            xml_doc.Load(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Prodotti\\" + textbox.Text + ".xml");
+                            for (int i = 0; i < 15; i++)
                             {
-                                XmlDocument xml_doc = new XmlDocument();
-                                xml_doc.Load(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Prodotti\\" + textbox.Text + ".xml");
-                                for(int i = 0; i < 15; i++)
+                                XmlNode cod = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod" + (i + 1));
+                                if (cod.InnerText != "")
                                 {
-                                    XmlNode cod = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod" + (i + 1));
-                                    if (cod.InnerText != "")
+                                    XmlNode qt = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt" + (i + 1));
+                                    XmlDocument xml_doc_cod = new XmlDocument();
+                                    xml_doc_cod.Load(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Magazzino\\" + cod.InnerText + ".xml");
+                                    XmlNode qt_cod = xml_doc_cod.DocumentElement.SelectSingleNode("/codice/quantità");
+                                    int tmp = Convert.ToInt32(qt_cod.InnerText) + (Convert.ToInt32(qt.InnerText) * exqt[x]) - (Convert.ToInt32(qt.InnerText) * arr[x]);
+                                    MessageBox.Show(exqt[x].ToString() + "  " + arr[x].ToString());
+                                    if (tmp < 0)
                                     {
-                                        XmlNode qt = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt" + (i + 1));
-                                        XmlDocument xml_doc_cod = new XmlDocument();
-                                        xml_doc_cod.Load(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Magazzino\\" + cod.InnerText + ".xml");
-                                        XmlNode qt_cod = xml_doc_cod.DocumentElement.SelectSingleNode("/codice/quantità");
-                                        int tmp = Convert.ToInt32(qt_cod.InnerText) - (Convert.ToInt32(qt.InnerText) * arr[x]);
-                                        if (tmp < 0)
-                                        {
-                                            DialogResult dialogresult = MessageBox.Show("La quantità del codice " + cod.InnerText + " sarà inferiore a 0. Continuare?", "Attenzione",MessageBoxButtons.YesNo);
-                                            if (dialogresult == DialogResult.Yes)
-                                            {
-                                                qt_cod.InnerText = tmp.ToString();
-                                                xml_doc_cod.Save(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Magazzino\\" + cod.InnerText + ".xml");
-                                            }
-                                        }
-                                        else
+                                        DialogResult dialogresult = MessageBox.Show("La quantità del codice " + cod.InnerText + " sarà inferiore a 0. Continuare?", "Attenzione", MessageBoxButtons.YesNo);
+                                        if (dialogresult == DialogResult.Yes)
                                         {
                                             qt_cod.InnerText = tmp.ToString();
                                             xml_doc_cod.Save(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Magazzino\\" + cod.InnerText + ".xml");
                                         }
+                                        else
+                                            return;
+                                    }
+                                    else
+                                    {
+                                        qt_cod.InnerText = tmp.ToString();
+                                        xml_doc_cod.Save(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Magazzino\\" + cod.InnerText + ".xml");
                                     }
                                 }
-                                x++;
                             }
-                            catch
-                            {
-                                MessageBox.Show("Prodotto " + textbox.Text + " non trovato!");
-                                return;
-                            }
+                            x++;
                         }
-                        
+                        catch
+                        {
+                            MessageBox.Show("Prodotto " + textbox.Text + " non trovato!");
+                            return;
+                        }
                     }
+
                 }
 
                 doc_xml.Save(root + ord_txt.Text + ".xml");
@@ -148,7 +151,7 @@ namespace Workmate
                 this.DialogResult = DialogResult.Yes;
                 var.ended = true;
                 this.Close();
-                }
+            }
         }
 
         private void cancel_btn_Click(object sender, EventArgs e)
@@ -186,6 +189,16 @@ namespace Workmate
                 qt8_txt.Text = varQt8.ToString();
                 qt9_txt.Text = varQt9.ToString();
                 qt10_txt.Text = varQt10.ToString();
+                int a = 0;
+                foreach (TextBox textbox in qt_pnl.Controls.OfType<TextBox>())
+                {
+                    if (textbox.Text.Length != 0)
+                    {
+                        exqt[a] = Convert.ToInt32(textbox.Text);
+                        //MessageBox.Show(exqt[a].ToString());
+                        a++;
+                    }
+                }
             }
             selectcli_dlg.InitialDirectory = var.db + @"Clienti\";
         }

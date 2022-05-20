@@ -3,5 +3,3 @@
 	Descrizione prodotti
 
 Cambia percorso db
-
-Aggiorna magazzino se modifico ordine
