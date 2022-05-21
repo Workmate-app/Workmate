@@ -49,7 +49,35 @@
             this.edit_btn = new FontAwesome.Sharp.IconButton();
             this.del_btn = new FontAwesome.Sharp.IconButton();
             this.plus_btn = new FontAwesome.Sharp.IconButton();
+            this.settings_pnl = new System.Windows.Forms.Panel();
+            this.ok_btn = new FontAwesome.Sharp.IconButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label = new System.Windows.Forms.Label();
+            this.cf_txt = new System.Windows.Forms.TextBox();
+            this.piva_txt = new System.Windows.Forms.TextBox();
+            this.prov_txt = new System.Windows.Forms.TextBox();
+            this.cap_txt = new System.Windows.Forms.TextBox();
+            this.indirizzo_txt = new System.Windows.Forms.TextBox();
+            this.azienda_txt = new System.Windows.Forms.TextBox();
+            this.changeimg_btn = new FontAwesome.Sharp.IconButton();
+            this.changedb_btn = new FontAwesome.Sharp.IconButton();
             this.desktop_pnl = new System.Windows.Forms.Panel();
+            this.btnsfilter_pnl = new System.Windows.Forms.Panel();
+            this.sempre_btn = new System.Windows.Forms.Button();
+            this.d30_btn = new System.Windows.Forms.Button();
+            this.d7_btn = new System.Windows.Forms.Button();
+            this.oggi_btn = new System.Windows.Forms.Button();
+            this.info_pnl = new System.Windows.Forms.Panel();
+            this.cap_lbl = new System.Windows.Forms.Label();
+            this.cf_lbl = new System.Windows.Forms.Label();
+            this.piva_lbl = new System.Windows.Forms.Label();
+            this.prov_lbl = new System.Windows.Forms.Label();
+            this.ind_lbl = new System.Windows.Forms.Label();
+            this.azienda_lbl = new System.Windows.Forms.Label();
             this.logo_pic = new System.Windows.Forms.PictureBox();
             this.totfat_pnl = new System.Windows.Forms.Panel();
             this.totfat_pic = new FontAwesome.Sharp.IconPictureBox();
@@ -134,32 +162,20 @@
             this.qt9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qt10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.settings_pnl = new System.Windows.Forms.Panel();
-            this.ok_btn = new FontAwesome.Sharp.IconButton();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label = new System.Windows.Forms.Label();
-            this.cf_txt = new System.Windows.Forms.TextBox();
-            this.piva_txt = new System.Windows.Forms.TextBox();
-            this.prov_txt = new System.Windows.Forms.TextBox();
-            this.cap_txt = new System.Windows.Forms.TextBox();
-            this.indirizzo_txt = new System.Windows.Forms.TextBox();
-            this.azienda_txt = new System.Windows.Forms.TextBox();
-            this.changeimg_btn = new FontAwesome.Sharp.IconButton();
-            this.changedb_btn = new FontAwesome.Sharp.IconButton();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.modificaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imghome_dlg = new System.Windows.Forms.OpenFileDialog();
+            this.mese_btn = new System.Windows.Forms.Button();
             this.dock_pnl.SuspendLayout();
             this.logo_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.bar_pnl.SuspendLayout();
+            this.settings_pnl.SuspendLayout();
             this.desktop_pnl.SuspendLayout();
+            this.btnsfilter_pnl.SuspendLayout();
+            this.info_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo_pic)).BeginInit();
             this.totfat_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.totfat_pic)).BeginInit();
@@ -169,7 +185,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.magazzino_data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienti_data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prod_data)).BeginInit();
-            this.settings_pnl.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -186,7 +201,7 @@
             this.dock_pnl.Dock = System.Windows.Forms.DockStyle.Left;
             this.dock_pnl.Location = new System.Drawing.Point(0, 0);
             this.dock_pnl.Name = "dock_pnl";
-            this.dock_pnl.Size = new System.Drawing.Size(230, 592);
+            this.dock_pnl.Size = new System.Drawing.Size(230, 655);
             this.dock_pnl.TabIndex = 0;
             // 
             // clienti_btn
@@ -225,7 +240,7 @@
             this.impostazioni_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.impostazioni_btn.IconSize = 42;
             this.impostazioni_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.impostazioni_btn.Location = new System.Drawing.Point(0, 536);
+            this.impostazioni_btn.Location = new System.Drawing.Point(0, 599);
             this.impostazioni_btn.Name = "impostazioni_btn";
             this.impostazioni_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.impostazioni_btn.Size = new System.Drawing.Size(230, 56);
@@ -382,18 +397,19 @@
             this.bar_pnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.bar_pnl.Location = new System.Drawing.Point(230, 0);
             this.bar_pnl.Name = "bar_pnl";
-            this.bar_pnl.Size = new System.Drawing.Size(838, 60);
+            this.bar_pnl.Size = new System.Drawing.Size(1094, 60);
             this.bar_pnl.TabIndex = 1;
             // 
             // bolla_btn
             // 
+            this.bolla_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bolla_btn.FlatAppearance.BorderSize = 0;
             this.bolla_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bolla_btn.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
             this.bolla_btn.IconColor = System.Drawing.Color.Black;
             this.bolla_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.bolla_btn.IconSize = 46;
-            this.bolla_btn.Location = new System.Drawing.Point(781, 2);
+            this.bolla_btn.Location = new System.Drawing.Point(1037, 2);
             this.bolla_btn.Name = "bolla_btn";
             this.bolla_btn.Size = new System.Drawing.Size(54, 57);
             this.bolla_btn.TabIndex = 8;
@@ -494,660 +510,6 @@
             this.plus_btn.UseVisualStyleBackColor = true;
             this.plus_btn.Click += new System.EventHandler(this.plus_btn_Click_1);
             // 
-            // desktop_pnl
-            // 
-            this.desktop_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.desktop_pnl.Controls.Add(this.logo_pic);
-            this.desktop_pnl.Controls.Add(this.totfat_pnl);
-            this.desktop_pnl.Controls.Add(this.nordini_pnl);
-            this.desktop_pnl.Controls.Add(this.ordini_data);
-            this.desktop_pnl.Controls.Add(this.magazzino_data);
-            this.desktop_pnl.Controls.Add(this.clienti_data);
-            this.desktop_pnl.Controls.Add(this.prod_data);
-            this.desktop_pnl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.desktop_pnl.Location = new System.Drawing.Point(230, 60);
-            this.desktop_pnl.Name = "desktop_pnl";
-            this.desktop_pnl.Size = new System.Drawing.Size(838, 532);
-            this.desktop_pnl.TabIndex = 2;
-            // 
-            // logo_pic
-            // 
-            this.logo_pic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.logo_pic.BackgroundImage = global::Workmate.Properties.Resources.Workmate;
-            this.logo_pic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.logo_pic.Location = new System.Drawing.Point(582, 17);
-            this.logo_pic.Name = "logo_pic";
-            this.logo_pic.Size = new System.Drawing.Size(235, 235);
-            this.logo_pic.TabIndex = 3;
-            this.logo_pic.TabStop = false;
-            // 
-            // totfat_pnl
-            // 
-            this.totfat_pnl.Controls.Add(this.totfat_pic);
-            this.totfat_pnl.Controls.Add(this.totfat_lbl);
-            this.totfat_pnl.Controls.Add(this.label4);
-            this.totfat_pnl.Location = new System.Drawing.Point(213, 17);
-            this.totfat_pnl.Name = "totfat_pnl";
-            this.totfat_pnl.Size = new System.Drawing.Size(201, 76);
-            this.totfat_pnl.TabIndex = 1;
-            // 
-            // totfat_pic
-            // 
-            this.totfat_pic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.totfat_pic.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.totfat_pic.IconChar = FontAwesome.Sharp.IconChar.Wallet;
-            this.totfat_pic.IconColor = System.Drawing.SystemColors.ControlText;
-            this.totfat_pic.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.totfat_pic.IconSize = 55;
-            this.totfat_pic.Location = new System.Drawing.Point(3, 7);
-            this.totfat_pic.Name = "totfat_pic";
-            this.totfat_pic.Size = new System.Drawing.Size(55, 55);
-            this.totfat_pic.TabIndex = 4;
-            this.totfat_pic.TabStop = false;
-            // 
-            // totfat_lbl
-            // 
-            this.totfat_lbl.AutoSize = true;
-            this.totfat_lbl.Font = new System.Drawing.Font("SF Pro Display", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.totfat_lbl.Location = new System.Drawing.Point(64, 24);
-            this.totfat_lbl.Name = "totfat_lbl";
-            this.totfat_lbl.Size = new System.Drawing.Size(22, 24);
-            this.totfat_lbl.TabIndex = 3;
-            this.totfat_lbl.Text = "0";
-            this.totfat_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("SF Pro Display", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(64, 7);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 16);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Totale fatturato";
-            // 
-            // nordini_pnl
-            // 
-            this.nordini_pnl.Controls.Add(this.totord_pic);
-            this.nordini_pnl.Controls.Add(this.nordini_lbl);
-            this.nordini_pnl.Controls.Add(this.label1);
-            this.nordini_pnl.Location = new System.Drawing.Point(6, 17);
-            this.nordini_pnl.Name = "nordini_pnl";
-            this.nordini_pnl.Size = new System.Drawing.Size(201, 76);
-            this.nordini_pnl.TabIndex = 0;
-            // 
-            // totord_pic
-            // 
-            this.totord_pic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.totord_pic.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.totord_pic.IconChar = FontAwesome.Sharp.IconChar.Truck;
-            this.totord_pic.IconColor = System.Drawing.SystemColors.ControlText;
-            this.totord_pic.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.totord_pic.IconSize = 55;
-            this.totord_pic.Location = new System.Drawing.Point(4, 7);
-            this.totord_pic.Name = "totord_pic";
-            this.totord_pic.Size = new System.Drawing.Size(55, 55);
-            this.totord_pic.TabIndex = 3;
-            this.totord_pic.TabStop = false;
-            // 
-            // nordini_lbl
-            // 
-            this.nordini_lbl.AutoSize = true;
-            this.nordini_lbl.Font = new System.Drawing.Font("SF Pro Display", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.nordini_lbl.Location = new System.Drawing.Point(62, 24);
-            this.nordini_lbl.Name = "nordini_lbl";
-            this.nordini_lbl.Size = new System.Drawing.Size(22, 24);
-            this.nordini_lbl.TabIndex = 1;
-            this.nordini_lbl.Text = "0";
-            this.nordini_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("SF Pro Display", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(62, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Totale ordini";
-            // 
-            // ordini_data
-            // 
-            this.ordini_data.AllowUserToAddRows = false;
-            this.ordini_data.AllowUserToDeleteRows = false;
-            this.ordini_data.AllowUserToResizeRows = false;
-            this.ordini_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ordini_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ordine,
-            this.prezzo,
-            this.cliente,
-            this.note,
-            this.Prodotto1,
-            this.Prodotto2,
-            this.Prodotto3,
-            this.Prodotto4,
-            this.Prodotto5,
-            this.Prodotto6,
-            this.Prodotto7,
-            this.Prodotto8,
-            this.Prodotto9,
-            this.Prodotto10,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11});
-            this.ordini_data.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ordini_data.Location = new System.Drawing.Point(0, 0);
-            this.ordini_data.Name = "ordini_data";
-            this.ordini_data.RowTemplate.Height = 25;
-            this.ordini_data.Size = new System.Drawing.Size(838, 532);
-            this.ordini_data.TabIndex = 1;
-            this.ordini_data.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ordini_data_CellMouseClick);
-            // 
-            // ordine
-            // 
-            this.ordine.HeaderText = "Ordine";
-            this.ordine.Name = "ordine";
-            // 
-            // prezzo
-            // 
-            this.prezzo.HeaderText = "Prezzo";
-            this.prezzo.Name = "prezzo";
-            // 
-            // cliente
-            // 
-            this.cliente.HeaderText = "Cliente";
-            this.cliente.Name = "cliente";
-            // 
-            // note
-            // 
-            this.note.HeaderText = "Note";
-            this.note.Name = "note";
-            // 
-            // Prodotto1
-            // 
-            this.Prodotto1.HeaderText = "Column1";
-            this.Prodotto1.Name = "Prodotto1";
-            this.Prodotto1.Visible = false;
-            // 
-            // Prodotto2
-            // 
-            this.Prodotto2.HeaderText = "Column1";
-            this.Prodotto2.Name = "Prodotto2";
-            this.Prodotto2.Visible = false;
-            // 
-            // Prodotto3
-            // 
-            this.Prodotto3.HeaderText = "Column1";
-            this.Prodotto3.Name = "Prodotto3";
-            this.Prodotto3.Visible = false;
-            // 
-            // Prodotto4
-            // 
-            this.Prodotto4.HeaderText = "Column1";
-            this.Prodotto4.Name = "Prodotto4";
-            this.Prodotto4.Visible = false;
-            // 
-            // Prodotto5
-            // 
-            this.Prodotto5.HeaderText = "Column1";
-            this.Prodotto5.Name = "Prodotto5";
-            this.Prodotto5.Visible = false;
-            // 
-            // Prodotto6
-            // 
-            this.Prodotto6.HeaderText = "Column1";
-            this.Prodotto6.Name = "Prodotto6";
-            this.Prodotto6.Visible = false;
-            // 
-            // Prodotto7
-            // 
-            this.Prodotto7.HeaderText = "Column1";
-            this.Prodotto7.Name = "Prodotto7";
-            this.Prodotto7.Visible = false;
-            // 
-            // Prodotto8
-            // 
-            this.Prodotto8.HeaderText = "Column1";
-            this.Prodotto8.Name = "Prodotto8";
-            this.Prodotto8.Visible = false;
-            // 
-            // Prodotto9
-            // 
-            this.Prodotto9.HeaderText = "Column1";
-            this.Prodotto9.Name = "Prodotto9";
-            this.Prodotto9.Visible = false;
-            // 
-            // Prodotto10
-            // 
-            this.Prodotto10.HeaderText = "Column1";
-            this.Prodotto10.Name = "Prodotto10";
-            this.Prodotto10.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Column1";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Column1";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Column1";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Column1";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Column1";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Column1";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Column1";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.HeaderText = "Column1";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.HeaderText = "Column1";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.HeaderText = "Column1";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.Visible = false;
-            // 
-            // magazzino_data
-            // 
-            this.magazzino_data.AllowUserToAddRows = false;
-            this.magazzino_data.AllowUserToDeleteRows = false;
-            this.magazzino_data.AllowUserToResizeRows = false;
-            this.magazzino_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.magazzino_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.codice,
-            this.prezzo_codice,
-            this.quantita_codice,
-            this.quantitamin,
-            this.descrizione,
-            this.Foto});
-            this.magazzino_data.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.magazzino_data.Location = new System.Drawing.Point(0, 0);
-            this.magazzino_data.Name = "magazzino_data";
-            this.magazzino_data.RowTemplate.Height = 25;
-            this.magazzino_data.Size = new System.Drawing.Size(838, 532);
-            this.magazzino_data.TabIndex = 0;
-            this.magazzino_data.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.magazzino_data_CellMouseClick);
-            // 
-            // codice
-            // 
-            this.codice.HeaderText = "Codice";
-            this.codice.Name = "codice";
-            // 
-            // prezzo_codice
-            // 
-            this.prezzo_codice.HeaderText = "Prezzo";
-            this.prezzo_codice.Name = "prezzo_codice";
-            // 
-            // quantita_codice
-            // 
-            this.quantita_codice.HeaderText = "Quantità";
-            this.quantita_codice.Name = "quantita_codice";
-            // 
-            // quantitamin
-            // 
-            this.quantitamin.HeaderText = "Quantità min";
-            this.quantitamin.Name = "quantitamin";
-            // 
-            // descrizione
-            // 
-            this.descrizione.HeaderText = "Descrizione";
-            this.descrizione.Name = "descrizione";
-            // 
-            // Foto
-            // 
-            this.Foto.HeaderText = "Foto";
-            this.Foto.Name = "Foto";
-            this.Foto.Visible = false;
-            // 
-            // clienti_data
-            // 
-            this.clienti_data.AllowUserToAddRows = false;
-            this.clienti_data.AllowUserToDeleteRows = false;
-            this.clienti_data.AllowUserToResizeRows = false;
-            this.clienti_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.clienti_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn13,
-            this.piva,
-            this.codicefiscale,
-            this.indirizzo,
-            this.cap,
-            this.paese,
-            this.provincia,
-            this.dataGridViewTextBoxColumn14});
-            this.clienti_data.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clienti_data.Location = new System.Drawing.Point(0, 0);
-            this.clienti_data.Name = "clienti_data";
-            this.clienti_data.RowTemplate.Height = 25;
-            this.clienti_data.Size = new System.Drawing.Size(838, 532);
-            this.clienti_data.TabIndex = 4;
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            this.dataGridViewTextBoxColumn13.HeaderText = "cliente";
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            // 
-            // piva
-            // 
-            this.piva.HeaderText = "p.iva";
-            this.piva.Name = "piva";
-            // 
-            // codicefiscale
-            // 
-            this.codicefiscale.HeaderText = "codice fiscale";
-            this.codicefiscale.Name = "codicefiscale";
-            // 
-            // indirizzo
-            // 
-            this.indirizzo.HeaderText = "indirizzo";
-            this.indirizzo.Name = "indirizzo";
-            // 
-            // cap
-            // 
-            this.cap.HeaderText = "cap";
-            this.cap.Name = "cap";
-            // 
-            // paese
-            // 
-            this.paese.HeaderText = "paese";
-            this.paese.Name = "paese";
-            // 
-            // provincia
-            // 
-            this.provincia.HeaderText = "provincia";
-            this.provincia.Name = "provincia";
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            this.dataGridViewTextBoxColumn14.HeaderText = "note";
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            // 
-            // prod_data
-            // 
-            this.prod_data.AllowUserToAddRows = false;
-            this.prod_data.AllowUserToDeleteRows = false;
-            this.prod_data.AllowUserToResizeRows = false;
-            this.prod_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.prod_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.prodotto,
-            this.dataGridViewTextBoxColumn1,
-            this.codice1,
-            this.codice2,
-            this.codice3,
-            this.codice4,
-            this.codice5,
-            this.codice6,
-            this.codice7,
-            this.codice8,
-            this.codice9,
-            this.codice10,
-            this.codice11,
-            this.codice12,
-            this.codice13,
-            this.codice14,
-            this.codice15,
-            this.qt1,
-            this.qt2,
-            this.qt3,
-            this.qt11,
-            this.qt12,
-            this.qt13,
-            this.qt14,
-            this.qt15,
-            this.qt4,
-            this.qt5,
-            this.qt6,
-            this.qt7,
-            this.qt8,
-            this.qt9,
-            this.qt10,
-            this.dataGridViewTextBoxColumn12});
-            this.prod_data.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.prod_data.Location = new System.Drawing.Point(0, 0);
-            this.prod_data.Name = "prod_data";
-            this.prod_data.RowTemplate.Height = 25;
-            this.prod_data.Size = new System.Drawing.Size(838, 532);
-            this.prod_data.TabIndex = 2;
-            this.prod_data.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.prod_data_CellMouseClick);
-            // 
-            // prodotto
-            // 
-            this.prodotto.HeaderText = "Prodotto";
-            this.prodotto.Name = "prodotto";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Descrizione";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // codice1
-            // 
-            this.codice1.HeaderText = "Column1";
-            this.codice1.Name = "codice1";
-            this.codice1.Visible = false;
-            // 
-            // codice2
-            // 
-            this.codice2.HeaderText = "Column1";
-            this.codice2.Name = "codice2";
-            this.codice2.Visible = false;
-            // 
-            // codice3
-            // 
-            this.codice3.HeaderText = "Column1";
-            this.codice3.Name = "codice3";
-            this.codice3.Visible = false;
-            // 
-            // codice4
-            // 
-            this.codice4.HeaderText = "Column1";
-            this.codice4.Name = "codice4";
-            this.codice4.Visible = false;
-            // 
-            // codice5
-            // 
-            this.codice5.HeaderText = "Column1";
-            this.codice5.Name = "codice5";
-            this.codice5.Visible = false;
-            // 
-            // codice6
-            // 
-            this.codice6.HeaderText = "Column1";
-            this.codice6.Name = "codice6";
-            this.codice6.Visible = false;
-            // 
-            // codice7
-            // 
-            this.codice7.HeaderText = "Column1";
-            this.codice7.Name = "codice7";
-            this.codice7.Visible = false;
-            // 
-            // codice8
-            // 
-            this.codice8.HeaderText = "Column1";
-            this.codice8.Name = "codice8";
-            this.codice8.Visible = false;
-            // 
-            // codice9
-            // 
-            this.codice9.HeaderText = "Column1";
-            this.codice9.Name = "codice9";
-            this.codice9.Visible = false;
-            // 
-            // codice10
-            // 
-            this.codice10.HeaderText = "Column1";
-            this.codice10.Name = "codice10";
-            this.codice10.Visible = false;
-            // 
-            // codice11
-            // 
-            this.codice11.HeaderText = "Column1";
-            this.codice11.Name = "codice11";
-            this.codice11.Visible = false;
-            // 
-            // codice12
-            // 
-            this.codice12.HeaderText = "Column1";
-            this.codice12.Name = "codice12";
-            this.codice12.Visible = false;
-            // 
-            // codice13
-            // 
-            this.codice13.HeaderText = "Column1";
-            this.codice13.Name = "codice13";
-            this.codice13.Visible = false;
-            // 
-            // codice14
-            // 
-            this.codice14.HeaderText = "Column1";
-            this.codice14.Name = "codice14";
-            this.codice14.Visible = false;
-            // 
-            // codice15
-            // 
-            this.codice15.HeaderText = "Column1";
-            this.codice15.Name = "codice15";
-            this.codice15.Visible = false;
-            // 
-            // qt1
-            // 
-            this.qt1.HeaderText = "Column1";
-            this.qt1.Name = "qt1";
-            this.qt1.Visible = false;
-            // 
-            // qt2
-            // 
-            this.qt2.HeaderText = "Column1";
-            this.qt2.Name = "qt2";
-            this.qt2.Visible = false;
-            // 
-            // qt3
-            // 
-            this.qt3.HeaderText = "Column1";
-            this.qt3.Name = "qt3";
-            this.qt3.Visible = false;
-            // 
-            // qt11
-            // 
-            this.qt11.HeaderText = "Column1";
-            this.qt11.Name = "qt11";
-            this.qt11.Visible = false;
-            // 
-            // qt12
-            // 
-            this.qt12.HeaderText = "Column1";
-            this.qt12.Name = "qt12";
-            this.qt12.Visible = false;
-            // 
-            // qt13
-            // 
-            this.qt13.HeaderText = "Column1";
-            this.qt13.Name = "qt13";
-            this.qt13.Visible = false;
-            // 
-            // qt14
-            // 
-            this.qt14.HeaderText = "Column1";
-            this.qt14.Name = "qt14";
-            this.qt14.Visible = false;
-            // 
-            // qt15
-            // 
-            this.qt15.HeaderText = "Column1";
-            this.qt15.Name = "qt15";
-            this.qt15.Visible = false;
-            // 
-            // qt4
-            // 
-            this.qt4.HeaderText = "Column1";
-            this.qt4.Name = "qt4";
-            this.qt4.Visible = false;
-            // 
-            // qt5
-            // 
-            this.qt5.HeaderText = "Column1";
-            this.qt5.Name = "qt5";
-            this.qt5.Visible = false;
-            // 
-            // qt6
-            // 
-            this.qt6.HeaderText = "Column1";
-            this.qt6.Name = "qt6";
-            this.qt6.Visible = false;
-            // 
-            // qt7
-            // 
-            this.qt7.HeaderText = "Column1";
-            this.qt7.Name = "qt7";
-            this.qt7.Visible = false;
-            // 
-            // qt8
-            // 
-            this.qt8.HeaderText = "Column1";
-            this.qt8.Name = "qt8";
-            this.qt8.Visible = false;
-            // 
-            // qt9
-            // 
-            this.qt9.HeaderText = "Column1";
-            this.qt9.Name = "qt9";
-            this.qt9.Visible = false;
-            // 
-            // qt10
-            // 
-            this.qt10.HeaderText = "Column1";
-            this.qt10.Name = "qt10";
-            this.qt10.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.HeaderText = "Foto";
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.Visible = false;
-            // 
             // settings_pnl
             // 
             this.settings_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
@@ -1169,7 +531,7 @@
             this.settings_pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.settings_pnl.Location = new System.Drawing.Point(230, 60);
             this.settings_pnl.Name = "settings_pnl";
-            this.settings_pnl.Size = new System.Drawing.Size(838, 532);
+            this.settings_pnl.Size = new System.Drawing.Size(1094, 595);
             this.settings_pnl.TabIndex = 3;
             // 
             // ok_btn
@@ -1181,7 +543,7 @@
             this.ok_btn.IconColor = System.Drawing.Color.Black;
             this.ok_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ok_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.ok_btn.Location = new System.Drawing.Point(762, 470);
+            this.ok_btn.Location = new System.Drawing.Point(1018, 533);
             this.ok_btn.Name = "ok_btn";
             this.ok_btn.Size = new System.Drawing.Size(64, 50);
             this.ok_btn.TabIndex = 14;
@@ -1315,6 +677,876 @@
             this.changedb_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.changedb_btn.UseVisualStyleBackColor = true;
             // 
+            // desktop_pnl
+            // 
+            this.desktop_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.desktop_pnl.Controls.Add(this.btnsfilter_pnl);
+            this.desktop_pnl.Controls.Add(this.info_pnl);
+            this.desktop_pnl.Controls.Add(this.logo_pic);
+            this.desktop_pnl.Controls.Add(this.totfat_pnl);
+            this.desktop_pnl.Controls.Add(this.nordini_pnl);
+            this.desktop_pnl.Controls.Add(this.ordini_data);
+            this.desktop_pnl.Controls.Add(this.magazzino_data);
+            this.desktop_pnl.Controls.Add(this.clienti_data);
+            this.desktop_pnl.Controls.Add(this.prod_data);
+            this.desktop_pnl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.desktop_pnl.Location = new System.Drawing.Point(230, 60);
+            this.desktop_pnl.Name = "desktop_pnl";
+            this.desktop_pnl.Size = new System.Drawing.Size(1094, 595);
+            this.desktop_pnl.TabIndex = 2;
+            // 
+            // btnsfilter_pnl
+            // 
+            this.btnsfilter_pnl.Controls.Add(this.mese_btn);
+            this.btnsfilter_pnl.Controls.Add(this.sempre_btn);
+            this.btnsfilter_pnl.Controls.Add(this.d30_btn);
+            this.btnsfilter_pnl.Controls.Add(this.d7_btn);
+            this.btnsfilter_pnl.Controls.Add(this.oggi_btn);
+            this.btnsfilter_pnl.Location = new System.Drawing.Point(400, 17);
+            this.btnsfilter_pnl.Name = "btnsfilter_pnl";
+            this.btnsfilter_pnl.Size = new System.Drawing.Size(399, 48);
+            this.btnsfilter_pnl.TabIndex = 12;
+            // 
+            // sempre_btn
+            // 
+            this.sempre_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(133)))), ((int)(((byte)(181)))));
+            this.sempre_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sempre_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.sempre_btn.Location = new System.Drawing.Point(300, 7);
+            this.sempre_btn.Name = "sempre_btn";
+            this.sempre_btn.Size = new System.Drawing.Size(75, 30);
+            this.sempre_btn.TabIndex = 11;
+            this.sempre_btn.Text = "Sempre";
+            this.sempre_btn.UseVisualStyleBackColor = true;
+            this.sempre_btn.Click += new System.EventHandler(this.sempre_btn_Click);
+            // 
+            // d30_btn
+            // 
+            this.d30_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(133)))), ((int)(((byte)(181)))));
+            this.d30_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.d30_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.d30_btn.Location = new System.Drawing.Point(152, 7);
+            this.d30_btn.Name = "d30_btn";
+            this.d30_btn.Size = new System.Drawing.Size(75, 30);
+            this.d30_btn.TabIndex = 10;
+            this.d30_btn.Text = "30 giorni";
+            this.d30_btn.UseVisualStyleBackColor = true;
+            this.d30_btn.Click += new System.EventHandler(this.d30_btn_Click);
+            // 
+            // d7_btn
+            // 
+            this.d7_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(133)))), ((int)(((byte)(181)))));
+            this.d7_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.d7_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.d7_btn.Location = new System.Drawing.Point(78, 7);
+            this.d7_btn.Name = "d7_btn";
+            this.d7_btn.Size = new System.Drawing.Size(75, 30);
+            this.d7_btn.TabIndex = 9;
+            this.d7_btn.Text = "7 giorni";
+            this.d7_btn.UseVisualStyleBackColor = true;
+            this.d7_btn.Click += new System.EventHandler(this.d7_btn_Click);
+            // 
+            // oggi_btn
+            // 
+            this.oggi_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(133)))), ((int)(((byte)(181)))));
+            this.oggi_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.oggi_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.oggi_btn.Location = new System.Drawing.Point(4, 7);
+            this.oggi_btn.Name = "oggi_btn";
+            this.oggi_btn.Size = new System.Drawing.Size(75, 30);
+            this.oggi_btn.TabIndex = 8;
+            this.oggi_btn.Text = "Oggi";
+            this.oggi_btn.UseVisualStyleBackColor = true;
+            this.oggi_btn.Click += new System.EventHandler(this.oggi_btn_Click);
+            // 
+            // info_pnl
+            // 
+            this.info_pnl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.info_pnl.Controls.Add(this.cap_lbl);
+            this.info_pnl.Controls.Add(this.cf_lbl);
+            this.info_pnl.Controls.Add(this.piva_lbl);
+            this.info_pnl.Controls.Add(this.prov_lbl);
+            this.info_pnl.Controls.Add(this.ind_lbl);
+            this.info_pnl.Controls.Add(this.azienda_lbl);
+            this.info_pnl.Location = new System.Drawing.Point(829, 262);
+            this.info_pnl.Name = "info_pnl";
+            this.info_pnl.Size = new System.Drawing.Size(209, 144);
+            this.info_pnl.TabIndex = 7;
+            // 
+            // cap_lbl
+            // 
+            this.cap_lbl.AutoSize = true;
+            this.cap_lbl.Font = new System.Drawing.Font("SansSerif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cap_lbl.Location = new System.Drawing.Point(9, 71);
+            this.cap_lbl.Name = "cap_lbl";
+            this.cap_lbl.Size = new System.Drawing.Size(39, 17);
+            this.cap_lbl.TabIndex = 11;
+            this.cap_lbl.Text = "CAP";
+            // 
+            // cf_lbl
+            // 
+            this.cf_lbl.AutoSize = true;
+            this.cf_lbl.Font = new System.Drawing.Font("SansSerif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cf_lbl.Location = new System.Drawing.Point(9, 114);
+            this.cf_lbl.Name = "cf_lbl";
+            this.cf_lbl.Size = new System.Drawing.Size(20, 17);
+            this.cf_lbl.TabIndex = 10;
+            this.cf_lbl.Text = "cf";
+            // 
+            // piva_lbl
+            // 
+            this.piva_lbl.AutoSize = true;
+            this.piva_lbl.Font = new System.Drawing.Font("SansSerif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.piva_lbl.Location = new System.Drawing.Point(9, 92);
+            this.piva_lbl.Name = "piva_lbl";
+            this.piva_lbl.Size = new System.Drawing.Size(35, 17);
+            this.piva_lbl.TabIndex = 9;
+            this.piva_lbl.Text = "piva";
+            // 
+            // prov_lbl
+            // 
+            this.prov_lbl.AutoSize = true;
+            this.prov_lbl.Font = new System.Drawing.Font("SansSerif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.prov_lbl.Location = new System.Drawing.Point(63, 71);
+            this.prov_lbl.Name = "prov_lbl";
+            this.prov_lbl.Size = new System.Drawing.Size(69, 17);
+            this.prov_lbl.TabIndex = 7;
+            this.prov_lbl.Text = "Provincia";
+            // 
+            // ind_lbl
+            // 
+            this.ind_lbl.AutoSize = true;
+            this.ind_lbl.Font = new System.Drawing.Font("SansSerif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ind_lbl.Location = new System.Drawing.Point(9, 47);
+            this.ind_lbl.Name = "ind_lbl";
+            this.ind_lbl.Size = new System.Drawing.Size(63, 17);
+            this.ind_lbl.TabIndex = 6;
+            this.ind_lbl.Text = "Indirizzo";
+            // 
+            // azienda_lbl
+            // 
+            this.azienda_lbl.AutoSize = true;
+            this.azienda_lbl.Font = new System.Drawing.Font("SansSerif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.azienda_lbl.Location = new System.Drawing.Point(9, 24);
+            this.azienda_lbl.Name = "azienda_lbl";
+            this.azienda_lbl.Size = new System.Drawing.Size(61, 17);
+            this.azienda_lbl.TabIndex = 5;
+            this.azienda_lbl.Text = "Azienda";
+            // 
+            // logo_pic
+            // 
+            this.logo_pic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.logo_pic.BackgroundImage = global::Workmate.Properties.Resources.Workmate;
+            this.logo_pic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.logo_pic.Location = new System.Drawing.Point(838, 17);
+            this.logo_pic.Name = "logo_pic";
+            this.logo_pic.Size = new System.Drawing.Size(235, 235);
+            this.logo_pic.TabIndex = 3;
+            this.logo_pic.TabStop = false;
+            // 
+            // totfat_pnl
+            // 
+            this.totfat_pnl.Controls.Add(this.totfat_pic);
+            this.totfat_pnl.Controls.Add(this.totfat_lbl);
+            this.totfat_pnl.Controls.Add(this.label4);
+            this.totfat_pnl.Location = new System.Drawing.Point(213, 17);
+            this.totfat_pnl.Name = "totfat_pnl";
+            this.totfat_pnl.Size = new System.Drawing.Size(185, 76);
+            this.totfat_pnl.TabIndex = 1;
+            // 
+            // totfat_pic
+            // 
+            this.totfat_pic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.totfat_pic.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.totfat_pic.IconChar = FontAwesome.Sharp.IconChar.Wallet;
+            this.totfat_pic.IconColor = System.Drawing.SystemColors.ControlText;
+            this.totfat_pic.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.totfat_pic.IconSize = 55;
+            this.totfat_pic.Location = new System.Drawing.Point(3, 7);
+            this.totfat_pic.Name = "totfat_pic";
+            this.totfat_pic.Size = new System.Drawing.Size(55, 55);
+            this.totfat_pic.TabIndex = 4;
+            this.totfat_pic.TabStop = false;
+            // 
+            // totfat_lbl
+            // 
+            this.totfat_lbl.AutoSize = true;
+            this.totfat_lbl.Font = new System.Drawing.Font("SF Pro Display", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.totfat_lbl.Location = new System.Drawing.Point(64, 24);
+            this.totfat_lbl.Name = "totfat_lbl";
+            this.totfat_lbl.Size = new System.Drawing.Size(22, 24);
+            this.totfat_lbl.TabIndex = 3;
+            this.totfat_lbl.Text = "0";
+            this.totfat_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("SF Pro Display", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(64, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(92, 16);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Totale fatturato";
+            // 
+            // nordini_pnl
+            // 
+            this.nordini_pnl.Controls.Add(this.totord_pic);
+            this.nordini_pnl.Controls.Add(this.nordini_lbl);
+            this.nordini_pnl.Controls.Add(this.label1);
+            this.nordini_pnl.Location = new System.Drawing.Point(6, 17);
+            this.nordini_pnl.Name = "nordini_pnl";
+            this.nordini_pnl.Size = new System.Drawing.Size(201, 76);
+            this.nordini_pnl.TabIndex = 0;
+            // 
+            // totord_pic
+            // 
+            this.totord_pic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.totord_pic.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.totord_pic.IconChar = FontAwesome.Sharp.IconChar.Truck;
+            this.totord_pic.IconColor = System.Drawing.SystemColors.ControlText;
+            this.totord_pic.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.totord_pic.IconSize = 55;
+            this.totord_pic.Location = new System.Drawing.Point(4, 7);
+            this.totord_pic.Name = "totord_pic";
+            this.totord_pic.Size = new System.Drawing.Size(55, 55);
+            this.totord_pic.TabIndex = 3;
+            this.totord_pic.TabStop = false;
+            // 
+            // nordini_lbl
+            // 
+            this.nordini_lbl.AutoSize = true;
+            this.nordini_lbl.Font = new System.Drawing.Font("SF Pro Display", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.nordini_lbl.Location = new System.Drawing.Point(62, 24);
+            this.nordini_lbl.Name = "nordini_lbl";
+            this.nordini_lbl.Size = new System.Drawing.Size(22, 24);
+            this.nordini_lbl.TabIndex = 1;
+            this.nordini_lbl.Text = "0";
+            this.nordini_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("SF Pro Display", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(62, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Totale ordini";
+            // 
+            // ordini_data
+            // 
+            this.ordini_data.AllowUserToAddRows = false;
+            this.ordini_data.AllowUserToDeleteRows = false;
+            this.ordini_data.AllowUserToResizeRows = false;
+            this.ordini_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ordini_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ordine,
+            this.prezzo,
+            this.cliente,
+            this.note,
+            this.Prodotto1,
+            this.Prodotto2,
+            this.Prodotto3,
+            this.Prodotto4,
+            this.Prodotto5,
+            this.Prodotto6,
+            this.Prodotto7,
+            this.Prodotto8,
+            this.Prodotto9,
+            this.Prodotto10,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewTextBoxColumn11});
+            this.ordini_data.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ordini_data.Location = new System.Drawing.Point(0, 0);
+            this.ordini_data.Name = "ordini_data";
+            this.ordini_data.ReadOnly = true;
+            this.ordini_data.RowTemplate.Height = 25;
+            this.ordini_data.Size = new System.Drawing.Size(1094, 595);
+            this.ordini_data.TabIndex = 1;
+            this.ordini_data.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ordini_data_CellMouseClick);
+            // 
+            // ordine
+            // 
+            this.ordine.HeaderText = "Ordine";
+            this.ordine.Name = "ordine";
+            this.ordine.ReadOnly = true;
+            // 
+            // prezzo
+            // 
+            this.prezzo.HeaderText = "Prezzo";
+            this.prezzo.Name = "prezzo";
+            this.prezzo.ReadOnly = true;
+            // 
+            // cliente
+            // 
+            this.cliente.HeaderText = "Cliente";
+            this.cliente.Name = "cliente";
+            this.cliente.ReadOnly = true;
+            // 
+            // note
+            // 
+            this.note.HeaderText = "Note";
+            this.note.Name = "note";
+            this.note.ReadOnly = true;
+            // 
+            // Prodotto1
+            // 
+            this.Prodotto1.HeaderText = "Column1";
+            this.Prodotto1.Name = "Prodotto1";
+            this.Prodotto1.ReadOnly = true;
+            this.Prodotto1.Visible = false;
+            // 
+            // Prodotto2
+            // 
+            this.Prodotto2.HeaderText = "Column1";
+            this.Prodotto2.Name = "Prodotto2";
+            this.Prodotto2.ReadOnly = true;
+            this.Prodotto2.Visible = false;
+            // 
+            // Prodotto3
+            // 
+            this.Prodotto3.HeaderText = "Column1";
+            this.Prodotto3.Name = "Prodotto3";
+            this.Prodotto3.ReadOnly = true;
+            this.Prodotto3.Visible = false;
+            // 
+            // Prodotto4
+            // 
+            this.Prodotto4.HeaderText = "Column1";
+            this.Prodotto4.Name = "Prodotto4";
+            this.Prodotto4.ReadOnly = true;
+            this.Prodotto4.Visible = false;
+            // 
+            // Prodotto5
+            // 
+            this.Prodotto5.HeaderText = "Column1";
+            this.Prodotto5.Name = "Prodotto5";
+            this.Prodotto5.ReadOnly = true;
+            this.Prodotto5.Visible = false;
+            // 
+            // Prodotto6
+            // 
+            this.Prodotto6.HeaderText = "Column1";
+            this.Prodotto6.Name = "Prodotto6";
+            this.Prodotto6.ReadOnly = true;
+            this.Prodotto6.Visible = false;
+            // 
+            // Prodotto7
+            // 
+            this.Prodotto7.HeaderText = "Column1";
+            this.Prodotto7.Name = "Prodotto7";
+            this.Prodotto7.ReadOnly = true;
+            this.Prodotto7.Visible = false;
+            // 
+            // Prodotto8
+            // 
+            this.Prodotto8.HeaderText = "Column1";
+            this.Prodotto8.Name = "Prodotto8";
+            this.Prodotto8.ReadOnly = true;
+            this.Prodotto8.Visible = false;
+            // 
+            // Prodotto9
+            // 
+            this.Prodotto9.HeaderText = "Column1";
+            this.Prodotto9.Name = "Prodotto9";
+            this.Prodotto9.ReadOnly = true;
+            this.Prodotto9.Visible = false;
+            // 
+            // Prodotto10
+            // 
+            this.Prodotto10.HeaderText = "Column1";
+            this.Prodotto10.Name = "Prodotto10";
+            this.Prodotto10.ReadOnly = true;
+            this.Prodotto10.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            this.dataGridViewTextBoxColumn11.Visible = false;
+            // 
+            // magazzino_data
+            // 
+            this.magazzino_data.AllowUserToAddRows = false;
+            this.magazzino_data.AllowUserToDeleteRows = false;
+            this.magazzino_data.AllowUserToResizeRows = false;
+            this.magazzino_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.magazzino_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codice,
+            this.prezzo_codice,
+            this.quantita_codice,
+            this.quantitamin,
+            this.descrizione,
+            this.Foto});
+            this.magazzino_data.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.magazzino_data.Location = new System.Drawing.Point(0, 0);
+            this.magazzino_data.Name = "magazzino_data";
+            this.magazzino_data.ReadOnly = true;
+            this.magazzino_data.RowTemplate.Height = 25;
+            this.magazzino_data.Size = new System.Drawing.Size(1094, 595);
+            this.magazzino_data.TabIndex = 0;
+            this.magazzino_data.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.magazzino_data_CellMouseClick);
+            // 
+            // codice
+            // 
+            this.codice.HeaderText = "Codice";
+            this.codice.Name = "codice";
+            this.codice.ReadOnly = true;
+            // 
+            // prezzo_codice
+            // 
+            this.prezzo_codice.HeaderText = "Prezzo";
+            this.prezzo_codice.Name = "prezzo_codice";
+            this.prezzo_codice.ReadOnly = true;
+            // 
+            // quantita_codice
+            // 
+            this.quantita_codice.HeaderText = "Quantità";
+            this.quantita_codice.Name = "quantita_codice";
+            this.quantita_codice.ReadOnly = true;
+            // 
+            // quantitamin
+            // 
+            this.quantitamin.HeaderText = "Quantità min";
+            this.quantitamin.Name = "quantitamin";
+            this.quantitamin.ReadOnly = true;
+            // 
+            // descrizione
+            // 
+            this.descrizione.HeaderText = "Descrizione";
+            this.descrizione.Name = "descrizione";
+            this.descrizione.ReadOnly = true;
+            // 
+            // Foto
+            // 
+            this.Foto.HeaderText = "Foto";
+            this.Foto.Name = "Foto";
+            this.Foto.ReadOnly = true;
+            this.Foto.Visible = false;
+            // 
+            // clienti_data
+            // 
+            this.clienti_data.AllowUserToAddRows = false;
+            this.clienti_data.AllowUserToDeleteRows = false;
+            this.clienti_data.AllowUserToResizeRows = false;
+            this.clienti_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.clienti_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn13,
+            this.piva,
+            this.codicefiscale,
+            this.indirizzo,
+            this.cap,
+            this.paese,
+            this.provincia,
+            this.dataGridViewTextBoxColumn14});
+            this.clienti_data.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clienti_data.Location = new System.Drawing.Point(0, 0);
+            this.clienti_data.Name = "clienti_data";
+            this.clienti_data.ReadOnly = true;
+            this.clienti_data.RowTemplate.Height = 25;
+            this.clienti_data.Size = new System.Drawing.Size(1094, 595);
+            this.clienti_data.TabIndex = 4;
+            this.clienti_data.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.clienti_data_CellMouseClick);
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.HeaderText = "cliente";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            // 
+            // piva
+            // 
+            this.piva.HeaderText = "p.iva";
+            this.piva.Name = "piva";
+            this.piva.ReadOnly = true;
+            // 
+            // codicefiscale
+            // 
+            this.codicefiscale.HeaderText = "codice fiscale";
+            this.codicefiscale.Name = "codicefiscale";
+            this.codicefiscale.ReadOnly = true;
+            // 
+            // indirizzo
+            // 
+            this.indirizzo.HeaderText = "indirizzo";
+            this.indirizzo.Name = "indirizzo";
+            this.indirizzo.ReadOnly = true;
+            // 
+            // cap
+            // 
+            this.cap.HeaderText = "cap";
+            this.cap.Name = "cap";
+            this.cap.ReadOnly = true;
+            // 
+            // paese
+            // 
+            this.paese.HeaderText = "paese";
+            this.paese.Name = "paese";
+            this.paese.ReadOnly = true;
+            // 
+            // provincia
+            // 
+            this.provincia.HeaderText = "provincia";
+            this.provincia.Name = "provincia";
+            this.provincia.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.HeaderText = "note";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
+            // 
+            // prod_data
+            // 
+            this.prod_data.AllowUserToAddRows = false;
+            this.prod_data.AllowUserToDeleteRows = false;
+            this.prod_data.AllowUserToResizeRows = false;
+            this.prod_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.prod_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.prodotto,
+            this.dataGridViewTextBoxColumn1,
+            this.codice1,
+            this.codice2,
+            this.codice3,
+            this.codice4,
+            this.codice5,
+            this.codice6,
+            this.codice7,
+            this.codice8,
+            this.codice9,
+            this.codice10,
+            this.codice11,
+            this.codice12,
+            this.codice13,
+            this.codice14,
+            this.codice15,
+            this.qt1,
+            this.qt2,
+            this.qt3,
+            this.qt11,
+            this.qt12,
+            this.qt13,
+            this.qt14,
+            this.qt15,
+            this.qt4,
+            this.qt5,
+            this.qt6,
+            this.qt7,
+            this.qt8,
+            this.qt9,
+            this.qt10,
+            this.dataGridViewTextBoxColumn12});
+            this.prod_data.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.prod_data.Location = new System.Drawing.Point(0, 0);
+            this.prod_data.Name = "prod_data";
+            this.prod_data.ReadOnly = true;
+            this.prod_data.RowTemplate.Height = 25;
+            this.prod_data.Size = new System.Drawing.Size(1094, 595);
+            this.prod_data.TabIndex = 2;
+            this.prod_data.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.prod_data_CellMouseClick);
+            // 
+            // prodotto
+            // 
+            this.prodotto.HeaderText = "Prodotto";
+            this.prodotto.Name = "prodotto";
+            this.prodotto.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Descrizione";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // codice1
+            // 
+            this.codice1.HeaderText = "Column1";
+            this.codice1.Name = "codice1";
+            this.codice1.ReadOnly = true;
+            this.codice1.Visible = false;
+            // 
+            // codice2
+            // 
+            this.codice2.HeaderText = "Column1";
+            this.codice2.Name = "codice2";
+            this.codice2.ReadOnly = true;
+            this.codice2.Visible = false;
+            // 
+            // codice3
+            // 
+            this.codice3.HeaderText = "Column1";
+            this.codice3.Name = "codice3";
+            this.codice3.ReadOnly = true;
+            this.codice3.Visible = false;
+            // 
+            // codice4
+            // 
+            this.codice4.HeaderText = "Column1";
+            this.codice4.Name = "codice4";
+            this.codice4.ReadOnly = true;
+            this.codice4.Visible = false;
+            // 
+            // codice5
+            // 
+            this.codice5.HeaderText = "Column1";
+            this.codice5.Name = "codice5";
+            this.codice5.ReadOnly = true;
+            this.codice5.Visible = false;
+            // 
+            // codice6
+            // 
+            this.codice6.HeaderText = "Column1";
+            this.codice6.Name = "codice6";
+            this.codice6.ReadOnly = true;
+            this.codice6.Visible = false;
+            // 
+            // codice7
+            // 
+            this.codice7.HeaderText = "Column1";
+            this.codice7.Name = "codice7";
+            this.codice7.ReadOnly = true;
+            this.codice7.Visible = false;
+            // 
+            // codice8
+            // 
+            this.codice8.HeaderText = "Column1";
+            this.codice8.Name = "codice8";
+            this.codice8.ReadOnly = true;
+            this.codice8.Visible = false;
+            // 
+            // codice9
+            // 
+            this.codice9.HeaderText = "Column1";
+            this.codice9.Name = "codice9";
+            this.codice9.ReadOnly = true;
+            this.codice9.Visible = false;
+            // 
+            // codice10
+            // 
+            this.codice10.HeaderText = "Column1";
+            this.codice10.Name = "codice10";
+            this.codice10.ReadOnly = true;
+            this.codice10.Visible = false;
+            // 
+            // codice11
+            // 
+            this.codice11.HeaderText = "Column1";
+            this.codice11.Name = "codice11";
+            this.codice11.ReadOnly = true;
+            this.codice11.Visible = false;
+            // 
+            // codice12
+            // 
+            this.codice12.HeaderText = "Column1";
+            this.codice12.Name = "codice12";
+            this.codice12.ReadOnly = true;
+            this.codice12.Visible = false;
+            // 
+            // codice13
+            // 
+            this.codice13.HeaderText = "Column1";
+            this.codice13.Name = "codice13";
+            this.codice13.ReadOnly = true;
+            this.codice13.Visible = false;
+            // 
+            // codice14
+            // 
+            this.codice14.HeaderText = "Column1";
+            this.codice14.Name = "codice14";
+            this.codice14.ReadOnly = true;
+            this.codice14.Visible = false;
+            // 
+            // codice15
+            // 
+            this.codice15.HeaderText = "Column1";
+            this.codice15.Name = "codice15";
+            this.codice15.ReadOnly = true;
+            this.codice15.Visible = false;
+            // 
+            // qt1
+            // 
+            this.qt1.HeaderText = "Column1";
+            this.qt1.Name = "qt1";
+            this.qt1.ReadOnly = true;
+            this.qt1.Visible = false;
+            // 
+            // qt2
+            // 
+            this.qt2.HeaderText = "Column1";
+            this.qt2.Name = "qt2";
+            this.qt2.ReadOnly = true;
+            this.qt2.Visible = false;
+            // 
+            // qt3
+            // 
+            this.qt3.HeaderText = "Column1";
+            this.qt3.Name = "qt3";
+            this.qt3.ReadOnly = true;
+            this.qt3.Visible = false;
+            // 
+            // qt11
+            // 
+            this.qt11.HeaderText = "Column1";
+            this.qt11.Name = "qt11";
+            this.qt11.ReadOnly = true;
+            this.qt11.Visible = false;
+            // 
+            // qt12
+            // 
+            this.qt12.HeaderText = "Column1";
+            this.qt12.Name = "qt12";
+            this.qt12.ReadOnly = true;
+            this.qt12.Visible = false;
+            // 
+            // qt13
+            // 
+            this.qt13.HeaderText = "Column1";
+            this.qt13.Name = "qt13";
+            this.qt13.ReadOnly = true;
+            this.qt13.Visible = false;
+            // 
+            // qt14
+            // 
+            this.qt14.HeaderText = "Column1";
+            this.qt14.Name = "qt14";
+            this.qt14.ReadOnly = true;
+            this.qt14.Visible = false;
+            // 
+            // qt15
+            // 
+            this.qt15.HeaderText = "Column1";
+            this.qt15.Name = "qt15";
+            this.qt15.ReadOnly = true;
+            this.qt15.Visible = false;
+            // 
+            // qt4
+            // 
+            this.qt4.HeaderText = "Column1";
+            this.qt4.Name = "qt4";
+            this.qt4.ReadOnly = true;
+            this.qt4.Visible = false;
+            // 
+            // qt5
+            // 
+            this.qt5.HeaderText = "Column1";
+            this.qt5.Name = "qt5";
+            this.qt5.ReadOnly = true;
+            this.qt5.Visible = false;
+            // 
+            // qt6
+            // 
+            this.qt6.HeaderText = "Column1";
+            this.qt6.Name = "qt6";
+            this.qt6.ReadOnly = true;
+            this.qt6.Visible = false;
+            // 
+            // qt7
+            // 
+            this.qt7.HeaderText = "Column1";
+            this.qt7.Name = "qt7";
+            this.qt7.ReadOnly = true;
+            this.qt7.Visible = false;
+            // 
+            // qt8
+            // 
+            this.qt8.HeaderText = "Column1";
+            this.qt8.Name = "qt8";
+            this.qt8.ReadOnly = true;
+            this.qt8.Visible = false;
+            // 
+            // qt9
+            // 
+            this.qt9.HeaderText = "Column1";
+            this.qt9.Name = "qt9";
+            this.qt9.ReadOnly = true;
+            this.qt9.Visible = false;
+            // 
+            // qt10
+            // 
+            this.qt10.HeaderText = "Column1";
+            this.qt10.Name = "qt10";
+            this.qt10.ReadOnly = true;
+            this.qt10.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.HeaderText = "Foto";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            this.dataGridViewTextBoxColumn12.Visible = false;
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1350,17 +1582,30 @@
             this.imghome_dlg.FileName = "home img";
             this.imghome_dlg.Filter = "\"All Graphics Types|*.jpg;*.jpeg;*.png\"";
             // 
+            // mese_btn
+            // 
+            this.mese_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(133)))), ((int)(((byte)(181)))));
+            this.mese_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mese_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.mese_btn.Location = new System.Drawing.Point(226, 7);
+            this.mese_btn.Name = "mese_btn";
+            this.mese_btn.Size = new System.Drawing.Size(75, 30);
+            this.mese_btn.TabIndex = 12;
+            this.mese_btn.Text = "Mese";
+            this.mese_btn.UseVisualStyleBackColor = true;
+            this.mese_btn.Click += new System.EventHandler(this.mese_btn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1068, 592);
-            this.Controls.Add(this.settings_pnl);
+            this.ClientSize = new System.Drawing.Size(1324, 655);
             this.Controls.Add(this.desktop_pnl);
+            this.Controls.Add(this.settings_pnl);
             this.Controls.Add(this.bar_pnl);
             this.Controls.Add(this.dock_pnl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(950, 384);
+            this.MinimumSize = new System.Drawing.Size(1340, 540);
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Workmate";
@@ -1370,7 +1615,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.bar_pnl.ResumeLayout(false);
             this.bar_pnl.PerformLayout();
+            this.settings_pnl.ResumeLayout(false);
+            this.settings_pnl.PerformLayout();
             this.desktop_pnl.ResumeLayout(false);
+            this.btnsfilter_pnl.ResumeLayout(false);
+            this.info_pnl.ResumeLayout(false);
+            this.info_pnl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo_pic)).EndInit();
             this.totfat_pnl.ResumeLayout(false);
             this.totfat_pnl.PerformLayout();
@@ -1382,8 +1632,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.magazzino_data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienti_data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.prod_data)).EndInit();
-            this.settings_pnl.ResumeLayout(false);
-            this.settings_pnl.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1516,5 +1764,18 @@
         private TextBox indirizzo_txt;
         private TextBox azienda_txt;
         private FontAwesome.Sharp.IconButton ok_btn;
+        private Label cf_lbl;
+        private Label piva_lbl;
+        private Label prov_lbl;
+        private Label ind_lbl;
+        private Label azienda_lbl;
+        private Panel info_pnl;
+        private Label cap_lbl;
+        private Button d7_btn;
+        private Button oggi_btn;
+        private Button sempre_btn;
+        private Button d30_btn;
+        private Panel btnsfilter_pnl;
+        private Button mese_btn;
     }
 }

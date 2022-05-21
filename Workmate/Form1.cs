@@ -19,6 +19,7 @@ namespace Workmate
         bool codicicaricati = false;
         bool clienticaricati = false;
         string[] impostazioni = new string[6];
+        private string btn;
         public Form1()
         {
             InitializeComponent();
@@ -29,6 +30,7 @@ namespace Workmate
             carica_ordini();
             carica_clienti();
             carica_impostazioni();
+            StileDataGrid();
             ordinicaricati = true;
             clienticaricati=true;
             bar_pnl.Visible = false;
@@ -38,6 +40,8 @@ namespace Workmate
             prod_data.Visible = false;
             clienti_data.Visible = false;
             desktop_pnl.Visible = true;
+            sempre_btn.BackColor = Color.FromArgb(29, 133, 181);
+            sempre_btn.ForeColor = Color.White;
         }
         private void closeform(object sender, FormClosingEventArgs e)
         {
@@ -170,6 +174,26 @@ namespace Workmate
             }
         }
 
+        private void StileDataGrid()
+        {
+            foreach(DataGridView datagreedview in desktop_pnl.Controls.OfType<DataGridView>())
+            {
+                datagreedview.BorderStyle = BorderStyle.None;
+                datagreedview.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(239, 239, 249);
+                datagreedview.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                datagreedview.EnableHeadersVisualStyles = false;
+                datagreedview.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+                datagreedview.ColumnHeadersDefaultCellStyle.Font = new Font("MS Reference Sans Serif", 10);
+                datagreedview.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(29, 133, 181);
+                datagreedview.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            }
+        }
+
+        private void Stilebtnshome()
+        {
+            
+
+        }
         private void carica_codici(string testoc = "", string colonnac = "", int search = 0)
         {
             MessageBox.Show("Caricamento codici in corso...");
@@ -374,7 +398,7 @@ namespace Workmate
                 string contenuto = "";
                 switch (colonnac)
                 {
-                    case "Codice":
+                    case "Cliente":
                         contenuto = cliente.InnerText;
                         break;
                     case "Piva":
@@ -411,6 +435,13 @@ namespace Workmate
             impostazioni[3] = prov.InnerText;
             impostazioni[4] = piva.InnerText;
             impostazioni[5] = codicefiscale.InnerText;
+            azienda_lbl.Text = azienda.InnerText;
+            ind_lbl.Text = indirizzo.InnerText;
+            cap_lbl.Text = cap.InnerText;
+            prov_lbl.Text = prov.InnerText;
+            piva_lbl.Text = "P.Iva: "+piva.InnerText;
+            cf_lbl.Text = "Cod. Fiscale: "+codicefiscale.InnerText;
+
         }
         private void magazzino_btn_Click(object sender, EventArgs e)
         {
@@ -419,6 +450,7 @@ namespace Workmate
             totfat_pic.Visible = false;
             totord_pic.Visible = false;
             logo_pic.Visible = false;
+            info_pnl.Visible = false;
             settings_pnl.Visible = false;
             desktop_pnl.Visible = true;
             bar_pnl.Visible = true;
@@ -451,6 +483,8 @@ namespace Workmate
             totfat_pnl.Visible = false;
             totfat_pic.Visible = false;
             totord_pic.Visible = false;
+            info_pnl.Visible = false;
+            btnsfilter_pnl.Visible = false;
             logo_pic.Visible = false;
             settings_pnl.Visible = false;
             desktop_pnl.Visible = true;
@@ -484,6 +518,8 @@ namespace Workmate
             totfat_pic.Visible = false;
             totord_pic.Visible = false;
             logo_pic.Visible = false;
+            info_pnl.Visible = false;
+            btnsfilter_pnl.Visible = false;
             prod_data.Visible = true;
             magazzino_data.Visible = false;
             ordini_data.Visible = false;
@@ -520,6 +556,8 @@ namespace Workmate
             totfat_pnl.Visible = true;
             totfat_pic.Visible = true;
             totord_pic.Visible = true;
+            info_pnl.Visible = true;
+            btnsfilter_pnl.Visible = true;
             logo_pic.Visible = true;
             clienti = false;
             magazzino = false;
@@ -532,6 +570,8 @@ namespace Workmate
             totfat_pnl.Visible = false;
             totfat_pic.Visible = false;
             totord_pic.Visible = false;
+            info_pnl.Visible = false;
+            btnsfilter_pnl.Visible = false;
             logo_pic.Visible = false;
             bolla_btn.Visible = false;
             clienti_data.Visible = true;
@@ -822,7 +862,6 @@ namespace Workmate
                     try
                     {
                         XmlDocument xml_doc = new XmlDocument();
-                        //string _byteOrderMarkUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
                         xml_doc.Load(var.db + @"Ordini\" + ordine + ".xml");
                         for (int i = 0; i < 10; i++)
                         {
@@ -1041,6 +1080,100 @@ namespace Workmate
             codicefiscale.InnerText = cf_txt.Text;
             xml_doc.Save(var.db + "workmate.xml");
             carica_impostazioni();
+        }
+
+        private void clienti_data_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
+                {
+                    clienti_data.CurrentCell = clienti_data.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    clienti_data.Rows[e.RowIndex].Selected = true;
+                    clienti_data.Focus();
+                    clienti_data.ContextMenuStrip = contextMenuStrip1;
+                    Point posizioneContext = new Point(MousePosition.X, MousePosition.Y);
+                    clienti_data.ContextMenuStrip.Show(posizioneContext);
+                    clienti_data.ContextMenuStrip = null;
+                }
+                else
+                    clienti_data.ContextMenuStrip = null;
+            }
+        }
+
+        private void oggi_btn_Click(object sender, EventArgs e)
+        {
+            oggi_btn.BackColor = Color.FromArgb(29, 133, 181);
+            oggi_btn.ForeColor = Color.White;
+            btn = oggi_btn.Name;
+            foreach (Button btns in btnsfilter_pnl.Controls.OfType<Button>())
+            {
+                if (btns.Name != btn)
+                {
+                    btns.BackColor = Color.FromArgb(245, 245, 255);
+                    btns.ForeColor = Color.Black;
+                }
+            }
+        }
+
+        private void d7_btn_Click(object sender, EventArgs e)
+        {
+            d7_btn.BackColor = Color.FromArgb(29, 133, 181);
+            d7_btn.ForeColor = Color.White;
+            btn = d7_btn.Name;
+            foreach(Button btns in btnsfilter_pnl.Controls.OfType<Button>())
+            {
+                if(btns.Name != btn)
+                {
+                    btns.BackColor = Color.FromArgb(245, 245, 255);
+                    btns.ForeColor = Color.Black;
+                }
+            }
+        }
+
+        private void d30_btn_Click(object sender, EventArgs e)
+        {
+            d30_btn.BackColor = Color.FromArgb(29, 133, 181);
+            d30_btn.ForeColor = Color.White;
+            btn = d30_btn.Name;
+            foreach (Button btns in btnsfilter_pnl.Controls.OfType<Button>())
+            {
+                if (btns.Name != btn)
+                {
+                    btns.BackColor = Color.FromArgb(245, 245, 255);
+                    btns.ForeColor = Color.Black;
+                }
+            }
+        }
+
+        private void mese_btn_Click(object sender, EventArgs e)
+        {
+            mese_btn.BackColor = Color.FromArgb(29, 133, 181);
+            mese_btn.ForeColor = Color.White;
+            btn = mese_btn.Name;
+            foreach (Button btns in btnsfilter_pnl.Controls.OfType<Button>())
+            {
+                if (btns.Name != btn)
+                {
+                    btns.BackColor = Color.FromArgb(245, 245, 255);
+                    btns.ForeColor = Color.Black;
+                }
+            }
+        }
+
+        private void sempre_btn_Click(object sender, EventArgs e)
+        {
+            sempre_btn.BackColor = Color.FromArgb(29, 133, 181);
+            sempre_btn.ForeColor = Color.White;
+            btn = sempre_btn.Name;
+            foreach (Button btns in btnsfilter_pnl.Controls.OfType<Button>())
+            {
+                if (btns.Name != btn)
+                {
+                    btns.BackColor = Color.FromArgb(245, 245, 255);
+                    btns.ForeColor = Color.Black;
+                }
+            }
         }
     }
 }

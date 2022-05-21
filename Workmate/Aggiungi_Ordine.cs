@@ -195,7 +195,6 @@ namespace Workmate
                     if (textbox.Text.Length != 0)
                     {
                         exqt[a] = Convert.ToInt32(textbox.Text);
-                        //MessageBox.Show(exqt[a].ToString());
                         a++;
                     }
                 }
