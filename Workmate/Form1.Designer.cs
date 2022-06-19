@@ -66,7 +66,11 @@
             this.changeimg_btn = new FontAwesome.Sharp.IconButton();
             this.changedb_btn = new FontAwesome.Sharp.IconButton();
             this.desktop_pnl = new System.Windows.Forms.Panel();
+            this.qtreminder_pnl = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.qtreminder_lbl = new System.Windows.Forms.Label();
             this.btnsfilter_pnl = new System.Windows.Forms.Panel();
+            this.mese_btn = new System.Windows.Forms.Button();
             this.sempre_btn = new System.Windows.Forms.Button();
             this.d30_btn = new System.Windows.Forms.Button();
             this.d7_btn = new System.Windows.Forms.Button();
@@ -163,17 +167,18 @@
             this.qt10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.generaBollaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imghome_dlg = new System.Windows.Forms.OpenFileDialog();
-            this.mese_btn = new System.Windows.Forms.Button();
             this.dock_pnl.SuspendLayout();
             this.logo_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.bar_pnl.SuspendLayout();
             this.settings_pnl.SuspendLayout();
             this.desktop_pnl.SuspendLayout();
+            this.qtreminder_pnl.SuspendLayout();
             this.btnsfilter_pnl.SuspendLayout();
             this.info_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo_pic)).BeginInit();
@@ -680,6 +685,7 @@
             // desktop_pnl
             // 
             this.desktop_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.desktop_pnl.Controls.Add(this.qtreminder_pnl);
             this.desktop_pnl.Controls.Add(this.btnsfilter_pnl);
             this.desktop_pnl.Controls.Add(this.info_pnl);
             this.desktop_pnl.Controls.Add(this.logo_pic);
@@ -695,6 +701,34 @@
             this.desktop_pnl.Size = new System.Drawing.Size(1094, 595);
             this.desktop_pnl.TabIndex = 2;
             // 
+            // qtreminder_pnl
+            // 
+            this.qtreminder_pnl.Controls.Add(this.label8);
+            this.qtreminder_pnl.Controls.Add(this.qtreminder_lbl);
+            this.qtreminder_pnl.Location = new System.Drawing.Point(6, 113);
+            this.qtreminder_pnl.Name = "qtreminder_pnl";
+            this.qtreminder_pnl.Size = new System.Drawing.Size(392, 470);
+            this.qtreminder_pnl.TabIndex = 13;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("SF Pro Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(7, 13);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(249, 19);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Codici scesi sotto la quantità minima:";
+            // 
+            // qtreminder_lbl
+            // 
+            this.qtreminder_lbl.AutoSize = true;
+            this.qtreminder_lbl.Font = new System.Drawing.Font("SF Pro Display", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.qtreminder_lbl.Location = new System.Drawing.Point(8, 42);
+            this.qtreminder_lbl.Name = "qtreminder_lbl";
+            this.qtreminder_lbl.Size = new System.Drawing.Size(0, 16);
+            this.qtreminder_lbl.TabIndex = 0;
+            // 
             // btnsfilter_pnl
             // 
             this.btnsfilter_pnl.Controls.Add(this.mese_btn);
@@ -706,6 +740,19 @@
             this.btnsfilter_pnl.Name = "btnsfilter_pnl";
             this.btnsfilter_pnl.Size = new System.Drawing.Size(399, 48);
             this.btnsfilter_pnl.TabIndex = 12;
+            // 
+            // mese_btn
+            // 
+            this.mese_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(133)))), ((int)(((byte)(181)))));
+            this.mese_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mese_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.mese_btn.Location = new System.Drawing.Point(226, 7);
+            this.mese_btn.Name = "mese_btn";
+            this.mese_btn.Size = new System.Drawing.Size(75, 30);
+            this.mese_btn.TabIndex = 12;
+            this.mese_btn.Text = "Mese";
+            this.mese_btn.UseVisualStyleBackColor = true;
+            this.mese_btn.Click += new System.EventHandler(this.mese_btn_Click);
             // 
             // sempre_btn
             // 
@@ -970,6 +1017,7 @@
             this.ordini_data.Name = "ordini_data";
             this.ordini_data.ReadOnly = true;
             this.ordini_data.RowTemplate.Height = 25;
+            this.ordini_data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.ordini_data.Size = new System.Drawing.Size(1094, 595);
             this.ordini_data.TabIndex = 1;
             this.ordini_data.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ordini_data_CellMouseClick);
@@ -1550,30 +1598,38 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.generaBollaToolStripMenuItem,
             this.modificaToolStripMenuItem,
             this.aggiungiToolStripMenuItem,
             this.eliminaToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(127, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(141, 92);
+            // 
+            // generaBollaToolStripMenuItem
+            // 
+            this.generaBollaToolStripMenuItem.Name = "generaBollaToolStripMenuItem";
+            this.generaBollaToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.generaBollaToolStripMenuItem.Text = "Genera bolla";
+            this.generaBollaToolStripMenuItem.Click += new System.EventHandler(this.generaBollaToolStripMenuItem_Click);
             // 
             // modificaToolStripMenuItem
             // 
             this.modificaToolStripMenuItem.Name = "modificaToolStripMenuItem";
-            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.modificaToolStripMenuItem.Text = "Modifica";
             this.modificaToolStripMenuItem.Click += new System.EventHandler(this.modificaToolStripMenuItem_Click);
             // 
             // aggiungiToolStripMenuItem
             // 
             this.aggiungiToolStripMenuItem.Name = "aggiungiToolStripMenuItem";
-            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.aggiungiToolStripMenuItem.Text = "Aggiungi ";
             this.aggiungiToolStripMenuItem.Click += new System.EventHandler(this.aggiungiToolStripMenuItem_Click);
             // 
             // eliminaToolStripMenuItem
             // 
             this.eliminaToolStripMenuItem.Name = "eliminaToolStripMenuItem";
-            this.eliminaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.eliminaToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.eliminaToolStripMenuItem.Text = "Elimina";
             this.eliminaToolStripMenuItem.Click += new System.EventHandler(this.eliminaToolStripMenuItem_Click);
             // 
@@ -1581,19 +1637,6 @@
             // 
             this.imghome_dlg.FileName = "home img";
             this.imghome_dlg.Filter = "\"All Graphics Types|*.jpg;*.jpeg;*.png\"";
-            // 
-            // mese_btn
-            // 
-            this.mese_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(133)))), ((int)(((byte)(181)))));
-            this.mese_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mese_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.mese_btn.Location = new System.Drawing.Point(226, 7);
-            this.mese_btn.Name = "mese_btn";
-            this.mese_btn.Size = new System.Drawing.Size(75, 30);
-            this.mese_btn.TabIndex = 12;
-            this.mese_btn.Text = "Mese";
-            this.mese_btn.UseVisualStyleBackColor = true;
-            this.mese_btn.Click += new System.EventHandler(this.mese_btn_Click);
             // 
             // Form1
             // 
@@ -1618,6 +1661,8 @@
             this.settings_pnl.ResumeLayout(false);
             this.settings_pnl.PerformLayout();
             this.desktop_pnl.ResumeLayout(false);
+            this.qtreminder_pnl.ResumeLayout(false);
+            this.qtreminder_pnl.PerformLayout();
             this.btnsfilter_pnl.ResumeLayout(false);
             this.info_pnl.ResumeLayout(false);
             this.info_pnl.PerformLayout();
@@ -1777,5 +1822,9 @@
         private Button d30_btn;
         private Panel btnsfilter_pnl;
         private Button mese_btn;
+        private ToolStripMenuItem generaBollaToolStripMenuItem;
+        private Panel qtreminder_pnl;
+        private Label qtreminder_lbl;
+        private Label label8;
     }
 }

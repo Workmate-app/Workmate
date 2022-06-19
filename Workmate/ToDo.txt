@@ -1,5 +1,7 @@
 ﻿Bolla:
 	Controllare/Finire generazione con più pagine
-	Descrizione prodotti
 
 Cambia percorso db
+
+UI:
+	Statistiche in base al periodo

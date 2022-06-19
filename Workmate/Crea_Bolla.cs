@@ -154,7 +154,7 @@ namespace Workmate
             result += "                        <div class=\"col-8\">" + Environment.NewLine;
             result += "                            <p>Data trasporto: <span>" + data_txt.Text + "</span></p>" + Environment.NewLine;
             result += "                            <p>Ora trasporto: <span>" + ora_txt.Text + "</span></p>" + Environment.NewLine;
-            result += "                            <p>Aspetto esterno dei beni: <span>" + asp_txt.Text + "</span></p>" + Environment.NewLine;
+            result += "                            <p>Aspetto esterno dei beni: <span class=\"text - nowrap\">" + asp_txt.Text + "</span></p>" + Environment.NewLine;
             result += "                            <p>N colli: <span>" + ncolli_txt.Text + "</span></p>" + Environment.NewLine;
             result += "                        </div>" + Environment.NewLine;
             result += "                        <div class=\"col-3\">" + Environment.NewLine;
@@ -176,7 +176,6 @@ namespace Workmate
             result += "                            <td>Codice</td>" + Environment.NewLine;
             result += "                            <td>Descrizione</td>" + Environment.NewLine;
             result += "                            <td style=\"text-align: center;\">Quantità</td>" + Environment.NewLine;
-            result += "                            <td style=\"text-align: center;\">Qualcosa</td>" + Environment.NewLine;
             result += "                        </tr>" + Environment.NewLine;
             result += "                    </thead>" + Environment.NewLine;
             result += "                    <tbody>" + Environment.NewLine;
@@ -186,6 +185,10 @@ namespace Workmate
             {
                 while (prodotti.ElementAt(x) != "end")
                 {
+                    XmlDocument xml_fordescs = new XmlDocument();
+                    xml_fordescs.Load(var.db + @"Prodotti\" + prodotti.ElementAt(x) + ".xml");
+                    XmlNode desc = xml_fordescs.DocumentElement.SelectSingleNode("/Prodotto/descrizione");
+
                     result += "                     <tr>" + Environment.NewLine;
                     result += "                         <tr>" + Environment.NewLine;
                     result += "                            <td>" + Environment.NewLine;
@@ -196,9 +199,8 @@ namespace Workmate
                     result += "                                    </div>" + Environment.NewLine;
                     result += "                                </div>" + Environment.NewLine;
                     result += "                            </td>" + Environment.NewLine;
-                    result += "                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>" + Environment.NewLine;
+                    result += "                            <td>" + desc.InnerText + ".</td>" + Environment.NewLine;
                     result += "                            <td style=\"text-align: center;\">" + quantita.ElementAt(x) + "</td>" + Environment.NewLine;
-                    result += "                            <td style=\"text-align: center;\">200$</td>" + Environment.NewLine;
                     result += "                        </tr>" + Environment.NewLine;
                     x++;
                 }

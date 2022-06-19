@@ -27,6 +27,7 @@ namespace Workmate
             carica_foto_home();
             this.Padding = new Padding(borderSize);
             this.BackColor = Color.FromArgb(29, 133, 181);
+            carica_codici();
             carica_ordini();
             carica_clienti();
             carica_impostazioni();
@@ -196,6 +197,7 @@ namespace Workmate
         }
         private void carica_codici(string testoc = "", string colonnac = "", int search = 0)
         {
+            qtreminder_lbl.Text = "";
             MessageBox.Show("Caricamento codici in corso...");
             magazzino_data.Rows.Clear();
             string[] codici = var.carica_codici();
@@ -234,14 +236,18 @@ namespace Workmate
                 if (contenuto.Contains(testoc))
                     magazzino_data.Rows.Add(riga);
 
-                if (Int32.Parse(quantita.InnerText) < Int32.Parse(quantitamin.InnerText) && mostra_avviso == true && search == 0 && avv_mostrati == false)
+                if (Int32.Parse(quantita.InnerText) < Int32.Parse(quantitamin.InnerText) && search == 0)
                 {
-                    CustomDialog customdialog = new CustomDialog();
-                    customdialog.label1.Text = codice.InnerText + " è sceso sotto la soglia minima";
-                    customdialog.ShowDialog();
-                    if (customdialog.DialogResult.Equals(DialogResult.Yes))
+                    qtreminder_lbl.Text += codice.InnerText.ToString() + ": " + quantita.InnerText.ToString() + Environment.NewLine;
+                    if (mostra_avviso == true && avv_mostrati == false)
                     {
-                        mostra_avviso = false;
+                        CustomDialog customdialog = new CustomDialog();
+                        customdialog.label1.Text = codice.InnerText + " è sceso sotto la soglia minima";
+                        customdialog.ShowDialog();
+                        if (customdialog.DialogResult.Equals(DialogResult.Yes))
+                        {
+                            mostra_avviso = false;
+                        }
                     }
                 }
             }
@@ -445,11 +451,14 @@ namespace Workmate
         }
         private void magazzino_btn_Click(object sender, EventArgs e)
         {
+            generaBollaToolStripMenuItem.Visible = false;
             nordini_pnl.Visible = false;
             totfat_pnl.Visible = false;
             totfat_pic.Visible = false;
             totord_pic.Visible = false;
             logo_pic.Visible = false;
+            qtreminder_pnl.Visible =false;
+            btnsfilter_pnl.Visible = false;
             info_pnl.Visible = false;
             settings_pnl.Visible = false;
             desktop_pnl.Visible = true;
@@ -479,6 +488,7 @@ namespace Workmate
 
         private void ordini_btn_Click(object sender, EventArgs e)
         {
+            generaBollaToolStripMenuItem.Visible = true;
             nordini_pnl.Visible = false;
             totfat_pnl.Visible = false;
             totfat_pic.Visible = false;
@@ -486,6 +496,7 @@ namespace Workmate
             info_pnl.Visible = false;
             btnsfilter_pnl.Visible = false;
             logo_pic.Visible = false;
+            qtreminder_pnl.Visible = false;
             settings_pnl.Visible = false;
             desktop_pnl.Visible = true;
             bar_pnl.Visible = true;
@@ -513,11 +524,13 @@ namespace Workmate
         }
         private void prod_btn_Click(object sender, EventArgs e)
         {
+            generaBollaToolStripMenuItem.Visible = false;
             nordini_pnl.Visible = false;
             totfat_pnl.Visible = false;
             totfat_pic.Visible = false;
             totord_pic.Visible = false;
             logo_pic.Visible = false;
+            qtreminder_pnl.Visible = false;
             info_pnl.Visible = false;
             btnsfilter_pnl.Visible = false;
             prod_data.Visible = true;
@@ -544,6 +557,7 @@ namespace Workmate
         }
         private void home_btn_Click(object sender, EventArgs e)
         {
+            generaBollaToolStripMenuItem.Visible = false;
             settings_pnl.Visible = false;
             desktop_pnl.Visible = true;
             bar_pnl.Visible = false;
@@ -559,12 +573,14 @@ namespace Workmate
             info_pnl.Visible = true;
             btnsfilter_pnl.Visible = true;
             logo_pic.Visible = true;
+            qtreminder_pnl.Visible = true;
             clienti = false;
             magazzino = false;
             prod=false;
         }
         private void clienti_btn_Click(object sender, EventArgs e)
         {
+            generaBollaToolStripMenuItem.Visible = false;
             desktop_pnl.Visible = true;
             nordini_pnl.Visible = false;
             totfat_pnl.Visible = false;
@@ -573,6 +589,7 @@ namespace Workmate
             info_pnl.Visible = false;
             btnsfilter_pnl.Visible = false;
             logo_pic.Visible = false;
+            qtreminder_pnl.Visible = false;
             bolla_btn.Visible = false;
             clienti_data.Visible = true;
             magazzino_data.Visible = false;
@@ -596,6 +613,7 @@ namespace Workmate
         }
         private void impostazioni_btn_Click(object sender, EventArgs e)
         {
+            generaBollaToolStripMenuItem.Visible = false;
             desktop_pnl.Visible = false;
             bar_pnl.Visible = false;
             settings_pnl.Visible = true;
@@ -1174,6 +1192,11 @@ namespace Workmate
                     btns.ForeColor = Color.Black;
                 }
             }
+        }
+
+        private void generaBollaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bolla_btn_Click(sender, e);
         }
     }
 }
