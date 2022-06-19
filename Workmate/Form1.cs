@@ -1,4 +1,7 @@
 using System.Text;
+using System.Linq;
+using System.IO;
+using System.IO.Compression;
 using System.Xml;
 using System.Xml.Linq;
 using System.Globalization;
@@ -10,7 +13,7 @@ namespace Workmate
         private int borderSize = 2;
         private bool magazzino = false;
         private bool prod = false;
-        private bool clienti=false;
+        private bool clienti = false;
         bool mostra_avviso = true;
         bool avv_mostrati = false;
         public float totalefatturato;
@@ -33,7 +36,7 @@ namespace Workmate
             carica_impostazioni();
             StileDataGrid();
             ordinicaricati = true;
-            clienticaricati=true;
+            clienticaricati = true;
             bar_pnl.Visible = false;
             ordini_data.Visible = false;
             magazzino_data.Visible = false;
@@ -58,7 +61,7 @@ namespace Workmate
                 var.ended = false;
                 prodotticaricati = true;
             }
-            else if(clienti==true && var.ended == true)
+            else if (clienti == true && var.ended == true)
             {
                 carica_clienti();
                 var.ended = false;
@@ -67,6 +70,7 @@ namespace Workmate
             else if (var.ended == true)
             {
                 carica_ordini();
+                carica_codici();
                 var.ended = false;
                 ordinicaricati = true;
             }
@@ -144,7 +148,7 @@ namespace Workmate
                     new XElement("cap", ""),
                     new XElement("prov", ""),
                     new XElement("piva", ""),
-                    new XElement("codicefiscale", "")                    
+                    new XElement("codicefiscale", "")
                     ));
                 doc_xml.Save(root + @"\workmate.xml");
             }
@@ -177,7 +181,7 @@ namespace Workmate
 
         private void StileDataGrid()
         {
-            foreach(DataGridView datagreedview in desktop_pnl.Controls.OfType<DataGridView>())
+            foreach (DataGridView datagreedview in desktop_pnl.Controls.OfType<DataGridView>())
             {
                 datagreedview.BorderStyle = BorderStyle.None;
                 datagreedview.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(239, 239, 249);
@@ -188,12 +192,6 @@ namespace Workmate
                 datagreedview.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(29, 133, 181);
                 datagreedview.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             }
-        }
-
-        private void Stilebtnshome()
-        {
-            
-
         }
         private void carica_codici(string testoc = "", string colonnac = "", int search = 0)
         {
@@ -1132,6 +1130,19 @@ namespace Workmate
                     btns.ForeColor = Color.Black;
                 }
             }
+            DirectoryInfo directoryInfo = new DirectoryInfo(var.db + @"ordini\");
+            List<FileInfo> files = directoryInfo.GetFiles().Where(a => a.CreationTime >= DateTime.Today).ToList();
+            nordini_lbl.Text = files.Count.ToString();
+            totfat_lbl.Text = "0.00 €";
+            float totfatturatofiltrato = 0;
+            for(int i = 0; i < files.Count; i++)
+            {
+                XmlDocument xml_docperfatturato = new XmlDocument();
+                xml_docperfatturato.Load(files.ElementAt(i).ToString());
+                XmlNode prezzo = xml_docperfatturato.DocumentElement.SelectSingleNode("/ordine/prezzo");
+                totfatturatofiltrato += float.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
+                totfat_lbl.Text = totfatturatofiltrato.ToString("0.00") + " €";
+            }
         }
 
         private void d7_btn_Click(object sender, EventArgs e)
@@ -1146,6 +1157,19 @@ namespace Workmate
                     btns.BackColor = Color.FromArgb(245, 245, 255);
                     btns.ForeColor = Color.Black;
                 }
+            }
+            DirectoryInfo directoryInfo = new DirectoryInfo(var.db + @"ordini\");
+            List<FileInfo> files = directoryInfo.GetFiles().Where(a => a.CreationTime >= DateTime.Today.AddDays(-7)).ToList();
+            nordini_lbl.Text = files.Count.ToString();
+            totfat_lbl.Text = "0.00 €";
+            float totfatturatofiltrato = 0;
+            for (int i = 0; i < files.Count; i++)
+            {
+                XmlDocument xml_docperfatturato = new XmlDocument();
+                xml_docperfatturato.Load(files.ElementAt(i).ToString());
+                XmlNode prezzo = xml_docperfatturato.DocumentElement.SelectSingleNode("/ordine/prezzo");
+                totfatturatofiltrato += float.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
+                totfat_lbl.Text = totfatturatofiltrato.ToString("0.00") + " €";
             }
         }
 
@@ -1162,6 +1186,19 @@ namespace Workmate
                     btns.ForeColor = Color.Black;
                 }
             }
+            DirectoryInfo directoryInfo = new DirectoryInfo(var.db + @"ordini\");
+            List<FileInfo> files = directoryInfo.GetFiles().Where(a => a.CreationTime >= DateTime.Today.AddDays(-30)).ToList();
+            nordini_lbl.Text = files.Count.ToString();
+            totfat_lbl.Text = "0.00 €";
+            float totfatturatofiltrato = 0;
+            for (int i = 0; i < files.Count; i++)
+            {
+                XmlDocument xml_docperfatturato = new XmlDocument();
+                xml_docperfatturato.Load(files.ElementAt(i).ToString());
+                XmlNode prezzo = xml_docperfatturato.DocumentElement.SelectSingleNode("/ordine/prezzo");
+                totfatturatofiltrato += float.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
+                totfat_lbl.Text = totfatturatofiltrato.ToString("0.00") + " €";
+            }
         }
 
         private void mese_btn_Click(object sender, EventArgs e)
@@ -1176,6 +1213,19 @@ namespace Workmate
                     btns.BackColor = Color.FromArgb(245, 245, 255);
                     btns.ForeColor = Color.Black;
                 }
+            }
+            DirectoryInfo directoryInfo = new DirectoryInfo(var.db + @"ordini\");
+            List<FileInfo> files = directoryInfo.GetFiles().Where(a => a.CreationTime >= DateTime.Today.AddDays(-DateTime.Today.Day)).ToList();
+            nordini_lbl.Text = files.Count.ToString();
+            totfat_lbl.Text = "0.00 €";
+            float totfatturatofiltrato = 0;
+            for (int i = 0; i < files.Count; i++)
+            {
+                XmlDocument xml_docperfatturato = new XmlDocument();
+                xml_docperfatturato.Load(files.ElementAt(i).ToString());
+                XmlNode prezzo = xml_docperfatturato.DocumentElement.SelectSingleNode("/ordine/prezzo");
+                totfatturatofiltrato += float.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
+                totfat_lbl.Text = totfatturatofiltrato.ToString("0.00") + " €";
             }
         }
 
@@ -1192,6 +1242,8 @@ namespace Workmate
                     btns.ForeColor = Color.Black;
                 }
             }
+            nordini_lbl.Text = var.cno().ToString();
+            totfat_lbl.Text = totalefatturato.ToString("0.00") + " €";
         }
 
         private void generaBollaToolStripMenuItem_Click(object sender, EventArgs e)

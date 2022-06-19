@@ -172,6 +172,7 @@
             this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imghome_dlg = new System.Windows.Forms.OpenFileDialog();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.dock_pnl.SuspendLayout();
             this.logo_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -703,18 +704,19 @@
             // 
             // qtreminder_pnl
             // 
+            this.qtreminder_pnl.Controls.Add(this.panel1);
             this.qtreminder_pnl.Controls.Add(this.label8);
             this.qtreminder_pnl.Controls.Add(this.qtreminder_lbl);
-            this.qtreminder_pnl.Location = new System.Drawing.Point(6, 113);
+            this.qtreminder_pnl.Location = new System.Drawing.Point(6, 99);
             this.qtreminder_pnl.Name = "qtreminder_pnl";
-            this.qtreminder_pnl.Size = new System.Drawing.Size(392, 470);
+            this.qtreminder_pnl.Size = new System.Drawing.Size(817, 484);
             this.qtreminder_pnl.TabIndex = 13;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("SF Pro Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(7, 13);
+            this.label8.Location = new System.Drawing.Point(7, 32);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(249, 19);
             this.label8.TabIndex = 1;
@@ -724,7 +726,7 @@
             // 
             this.qtreminder_lbl.AutoSize = true;
             this.qtreminder_lbl.Font = new System.Drawing.Font("SF Pro Display", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.qtreminder_lbl.Location = new System.Drawing.Point(8, 42);
+            this.qtreminder_lbl.Location = new System.Drawing.Point(8, 61);
             this.qtreminder_lbl.Name = "qtreminder_lbl";
             this.qtreminder_lbl.Size = new System.Drawing.Size(0, 16);
             this.qtreminder_lbl.TabIndex = 0;
@@ -1638,6 +1640,14 @@
             this.imghome_dlg.FileName = "home img";
             this.imghome_dlg.Filter = "\"All Graphics Types|*.jpg;*.jpeg;*.png\"";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(133)))), ((int)(((byte)(181)))));
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(813, 2);
+            this.panel1.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1826,5 +1836,6 @@
         private Panel qtreminder_pnl;
         private Label qtreminder_lbl;
         private Label label8;
+        private Panel panel1;
     }
 }

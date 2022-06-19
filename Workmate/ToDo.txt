@@ -2,6 +2,3 @@
 	Controllare/Finire generazione con più pagine
 
 Cambia percorso db
-
-UI:
-	Statistiche in base al periodo
