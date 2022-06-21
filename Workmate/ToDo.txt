@@ -2,3 +2,9 @@
 	Controllare/Finire generazione con più pagine
 
 Cambia percorso db
+
+Host CSS file
+
+Windows boot
+
+Data scadenza ordini

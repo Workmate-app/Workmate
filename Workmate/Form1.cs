@@ -26,6 +26,7 @@ namespace Workmate
         public Form1()
         {
             InitializeComponent();
+            var.check_db();
             Checkdirs();
             carica_foto_home();
             this.Padding = new Padding(borderSize);
@@ -115,31 +116,30 @@ namespace Workmate
 
         private void Checkdirs()
         {
-            string root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Workmate";
-            if (!Directory.Exists(root))
+            if (!Directory.Exists(var.db))
             {
-                Directory.CreateDirectory(root);
+                Directory.CreateDirectory(var.db);
             }
-            if (!Directory.Exists(root + @"\Magazzino"))
+            if (!Directory.Exists(var.db + @"\Magazzino"))
             {
-                Directory.CreateDirectory(root + @"\Magazzino");
-                Directory.CreateDirectory(root + @"\Magazzino\Foto");
+                Directory.CreateDirectory(var.db + @"\Magazzino");
+                Directory.CreateDirectory(var.db + @"\Magazzino\Foto");
             }
-            if (!Directory.Exists(root + @"\Ordini"))
+            if (!Directory.Exists(var.db + @"\Ordini"))
             {
-                Directory.CreateDirectory(root + @"\Ordini");
+                Directory.CreateDirectory(var.db + @"\Ordini");
                 //Directory.CreateDirectory(root + @"\Ordini\Foto");
             }
-            if (!Directory.Exists(root + @"\Prodotti"))
+            if (!Directory.Exists(var.db + @"\Prodotti"))
             {
-                Directory.CreateDirectory(root + @"\Prodotti");
-                Directory.CreateDirectory(root + @"\Prodotti\Foto");
+                Directory.CreateDirectory(var.db + @"\Prodotti");
+                Directory.CreateDirectory(var.db + @"\Prodotti\Foto");
             }
-            if (!Directory.Exists(root + @"\Clienti"))
+            if (!Directory.Exists(var.db + @"\Clienti"))
             {
-                Directory.CreateDirectory(root + @"\Clienti");
+                Directory.CreateDirectory(var.db + @"\Clienti");
             }
-            if (!File.Exists(root + @"\workmate.xml"))
+            if (!File.Exists(var.db + @"\workmate.xml"))
             {
                 XDocument doc_xml = new XDocument(new XElement("workmate",
                     new XElement("bollaid", 1),
@@ -150,7 +150,7 @@ namespace Workmate
                     new XElement("piva", ""),
                     new XElement("codicefiscale", "")
                     ));
-                doc_xml.Save(root + @"\workmate.xml");
+                doc_xml.Save(var.db + @"\workmate.xml");
             }
         }
 
@@ -622,6 +622,10 @@ namespace Workmate
             prov_txt.Text = impostazioni[3];
             cf_txt.Text =impostazioni[4];
             piva_txt.Text = impostazioni[5];
+            if (Properties.Settings.Default.apri_all_avvio == true)
+                bootstart_ckb.Checked = true;
+            else
+                bootstart_ckb.Checked = false;
         }
 
         private void plus_btn_Click_1(object sender, EventArgs e)
@@ -1095,6 +1099,21 @@ namespace Workmate
             piva.InnerText = piva_txt.Text;
             codicefiscale.InnerText = cf_txt.Text;
             xml_doc.Save(var.db + "workmate.xml");
+            if (bootstart_ckb.Checked)
+            {
+                Properties.Settings.Default.apri_all_avvio = true;
+                Microsoft.Win32.RegistryKey chiavereg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
+                if (chiavereg.GetValue("Gestionale_Workmate") != null || chiavereg.GetValue("Gestionale_Workmate").ToString() != Application.ExecutablePath)
+                    Microsoft.Win32.Registry.SetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run", "Gestionale_Workmate", Application.ExecutablePath, Microsoft.Win32.RegistryValueKind.String);
+            }
+            else
+            {
+                Properties.Settings.Default.apri_all_avvio = false;
+                Microsoft.Win32.RegistryKey chiavereg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
+                if(chiavereg.GetValue("Gestionale_Workmate") != null)
+                    chiavereg.DeleteValue("Gestionale_Workmate", false);
+            }
+            Properties.Settings.Default.Save();
             carica_impostazioni();
         }
 
@@ -1131,7 +1150,7 @@ namespace Workmate
                 }
             }
             DirectoryInfo directoryInfo = new DirectoryInfo(var.db + @"ordini\");
-            List<FileInfo> files = directoryInfo.GetFiles().Where(a => a.CreationTime >= DateTime.Today).ToList();
+            List<FileInfo> files = directoryInfo.GetFiles("*.xml").Where(a => a.CreationTime >= DateTime.Today).ToList();
             nordini_lbl.Text = files.Count.ToString();
             totfat_lbl.Text = "0.00 €";
             float totfatturatofiltrato = 0;
@@ -1159,7 +1178,7 @@ namespace Workmate
                 }
             }
             DirectoryInfo directoryInfo = new DirectoryInfo(var.db + @"ordini\");
-            List<FileInfo> files = directoryInfo.GetFiles().Where(a => a.CreationTime >= DateTime.Today.AddDays(-7)).ToList();
+            List<FileInfo> files = directoryInfo.GetFiles("*.xml").Where(a => a.CreationTime >= DateTime.Today.AddDays(-7)).ToList();
             nordini_lbl.Text = files.Count.ToString();
             totfat_lbl.Text = "0.00 €";
             float totfatturatofiltrato = 0;
@@ -1187,7 +1206,7 @@ namespace Workmate
                 }
             }
             DirectoryInfo directoryInfo = new DirectoryInfo(var.db + @"ordini\");
-            List<FileInfo> files = directoryInfo.GetFiles().Where(a => a.CreationTime >= DateTime.Today.AddDays(-30)).ToList();
+            List<FileInfo> files = directoryInfo.GetFiles("*.xml").Where(a => a.CreationTime >= DateTime.Today.AddDays(-30)).ToList();
             nordini_lbl.Text = files.Count.ToString();
             totfat_lbl.Text = "0.00 €";
             float totfatturatofiltrato = 0;
@@ -1215,7 +1234,7 @@ namespace Workmate
                 }
             }
             DirectoryInfo directoryInfo = new DirectoryInfo(var.db + @"ordini\");
-            List<FileInfo> files = directoryInfo.GetFiles().Where(a => a.CreationTime >= DateTime.Today.AddDays(-DateTime.Today.Day)).ToList();
+            List<FileInfo> files = directoryInfo.GetFiles("*.xml").Where(a => a.CreationTime >= DateTime.Today.AddDays(-DateTime.Today.Day)).ToList();
             nordini_lbl.Text = files.Count.ToString();
             totfat_lbl.Text = "0.00 €";
             float totfatturatofiltrato = 0;
@@ -1249,6 +1268,13 @@ namespace Workmate
         private void generaBollaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             bolla_btn_Click(sender, e);
+        }
+
+        private void changedb_btn_Click_1(object sender, EventArgs e)
+        {
+            Cambia_dirdb cambia_percorsodb = new Cambia_dirdb();
+            cambia_percorsodb.FormClosing += new FormClosingEventHandler(closeform);
+            cambia_percorsodb.ShowDialog();
         }
     }
 }

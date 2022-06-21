@@ -50,6 +50,7 @@
             this.del_btn = new FontAwesome.Sharp.IconButton();
             this.plus_btn = new FontAwesome.Sharp.IconButton();
             this.settings_pnl = new System.Windows.Forms.Panel();
+            this.bootstart_ckb = new System.Windows.Forms.CheckBox();
             this.ok_btn = new FontAwesome.Sharp.IconButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -67,6 +68,7 @@
             this.changedb_btn = new FontAwesome.Sharp.IconButton();
             this.desktop_pnl = new System.Windows.Forms.Panel();
             this.qtreminder_pnl = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.qtreminder_lbl = new System.Windows.Forms.Label();
             this.btnsfilter_pnl = new System.Windows.Forms.Panel();
@@ -116,6 +118,7 @@
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Scadenza = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.magazzino_data = new System.Windows.Forms.DataGridView();
             this.codice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prezzo_codice = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -172,7 +175,6 @@
             this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imghome_dlg = new System.Windows.Forms.OpenFileDialog();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.dock_pnl.SuspendLayout();
             this.logo_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -519,6 +521,7 @@
             // settings_pnl
             // 
             this.settings_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.settings_pnl.Controls.Add(this.bootstart_ckb);
             this.settings_pnl.Controls.Add(this.ok_btn);
             this.settings_pnl.Controls.Add(this.label7);
             this.settings_pnl.Controls.Add(this.label2);
@@ -539,6 +542,16 @@
             this.settings_pnl.Name = "settings_pnl";
             this.settings_pnl.Size = new System.Drawing.Size(1094, 595);
             this.settings_pnl.TabIndex = 3;
+            // 
+            // bootstart_ckb
+            // 
+            this.bootstart_ckb.AutoSize = true;
+            this.bootstart_ckb.Location = new System.Drawing.Point(15, 376);
+            this.bootstart_ckb.Name = "bootstart_ckb";
+            this.bootstart_ckb.Size = new System.Drawing.Size(159, 19);
+            this.bootstart_ckb.TabIndex = 15;
+            this.bootstart_ckb.Text = "Apri all\'avvio di Windows";
+            this.bootstart_ckb.UseVisualStyleBackColor = true;
             // 
             // ok_btn
             // 
@@ -682,6 +695,7 @@
             this.changedb_btn.Text = "Cambia il percorso del database";
             this.changedb_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.changedb_btn.UseVisualStyleBackColor = true;
+            this.changedb_btn.Click += new System.EventHandler(this.changedb_btn_Click_1);
             // 
             // desktop_pnl
             // 
@@ -711,6 +725,14 @@
             this.qtreminder_pnl.Name = "qtreminder_pnl";
             this.qtreminder_pnl.Size = new System.Drawing.Size(817, 484);
             this.qtreminder_pnl.TabIndex = 13;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(133)))), ((int)(((byte)(181)))));
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(813, 2);
+            this.panel1.TabIndex = 2;
             // 
             // label8
             // 
@@ -1013,7 +1035,8 @@
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9,
             this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11});
+            this.dataGridViewTextBoxColumn11,
+            this.Scadenza});
             this.ordini_data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ordini_data.Location = new System.Drawing.Point(0, 0);
             this.ordini_data.Name = "ordini_data";
@@ -1187,6 +1210,12 @@
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.ReadOnly = true;
             this.dataGridViewTextBoxColumn11.Visible = false;
+            // 
+            // Scadenza
+            // 
+            this.Scadenza.HeaderText = "scadenza";
+            this.Scadenza.Name = "Scadenza";
+            this.Scadenza.ReadOnly = true;
             // 
             // magazzino_data
             // 
@@ -1640,21 +1669,13 @@
             this.imghome_dlg.FileName = "home img";
             this.imghome_dlg.Filter = "\"All Graphics Types|*.jpg;*.jpeg;*.png\"";
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(133)))), ((int)(((byte)(181)))));
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(813, 2);
-            this.panel1.TabIndex = 2;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1324, 655);
-            this.Controls.Add(this.desktop_pnl);
             this.Controls.Add(this.settings_pnl);
+            this.Controls.Add(this.desktop_pnl);
             this.Controls.Add(this.bar_pnl);
             this.Controls.Add(this.dock_pnl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1729,30 +1750,6 @@
         private Label nordini_lbl;
         private Label label1;
         private PictureBox logo_pic;
-        private DataGridViewTextBoxColumn ordine;
-        private DataGridViewTextBoxColumn prezzo;
-        private DataGridViewTextBoxColumn cliente;
-        private DataGridViewTextBoxColumn note;
-        private DataGridViewTextBoxColumn Prodotto1;
-        private DataGridViewTextBoxColumn Prodotto2;
-        private DataGridViewTextBoxColumn Prodotto3;
-        private DataGridViewTextBoxColumn Prodotto4;
-        private DataGridViewTextBoxColumn Prodotto5;
-        private DataGridViewTextBoxColumn Prodotto6;
-        private DataGridViewTextBoxColumn Prodotto7;
-        private DataGridViewTextBoxColumn Prodotto8;
-        private DataGridViewTextBoxColumn Prodotto9;
-        private DataGridViewTextBoxColumn Prodotto10;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private FontAwesome.Sharp.IconButton changedb_btn;
         private FontAwesome.Sharp.IconButton changeimg_btn;
         private DataGridViewTextBoxColumn codice;
@@ -1837,5 +1834,31 @@
         private Label qtreminder_lbl;
         private Label label8;
         private Panel panel1;
+        private CheckBox bootstart_ckb;
+        private DataGridViewTextBoxColumn ordine;
+        private DataGridViewTextBoxColumn prezzo;
+        private DataGridViewTextBoxColumn cliente;
+        private DataGridViewTextBoxColumn note;
+        private DataGridViewTextBoxColumn Prodotto1;
+        private DataGridViewTextBoxColumn Prodotto2;
+        private DataGridViewTextBoxColumn Prodotto3;
+        private DataGridViewTextBoxColumn Prodotto4;
+        private DataGridViewTextBoxColumn Prodotto5;
+        private DataGridViewTextBoxColumn Prodotto6;
+        private DataGridViewTextBoxColumn Prodotto7;
+        private DataGridViewTextBoxColumn Prodotto8;
+        private DataGridViewTextBoxColumn Prodotto9;
+        private DataGridViewTextBoxColumn Prodotto10;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private DataGridViewTextBoxColumn Scadenza;
     }
 }

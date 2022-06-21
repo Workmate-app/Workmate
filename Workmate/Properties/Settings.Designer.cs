@@ -22,5 +22,29 @@ namespace Workmate.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool apri_all_avvio {
+            get {
+                return ((bool)(this["apri_all_avvio"]));
+            }
+            set {
+                this["apri_all_avvio"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string percorso_db {
+            get {
+                return ((string)(this["percorso_db"]));
+            }
+            set {
+                this["percorso_db"] = value;
+            }
+        }
     }
 }

@@ -6,6 +6,14 @@ public class var
     public static bool ended = false;
 
     public static string nfotohome = "";
+    
+    public static void check_db()
+    {
+        if(Workmate.Properties.Settings.Default.percorso_db != "")
+        {
+            db = Workmate.Properties.Settings.Default.percorso_db + @"\Workmate\";
+        }
+    }
     public static int cnc()
     {
         return Directory.GetFiles(db + @"Magazzino\").Length;
