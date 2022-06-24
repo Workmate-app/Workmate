@@ -11,7 +11,7 @@ public class var
     {
         if(Workmate.Properties.Settings.Default.percorso_db != "")
         {
-            db = Workmate.Properties.Settings.Default.percorso_db + @"\Workmate\";
+            db = Workmate.Properties.Settings.Default.percorso_db;
         }
     }
     public static int cnc()

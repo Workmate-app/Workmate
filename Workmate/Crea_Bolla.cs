@@ -103,7 +103,7 @@ namespace Workmate
             result += "    <meta name=\"viewport\" content=\"width = device - width, initial - scale = 1, shrink - to - fit = no\">" + Environment.NewLine;
             result += "    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\" integrity=\"sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm\" crossorigin=\"anonymous\">" + Environment.NewLine;
             result += "    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css\">" + Environment.NewLine;
-            result += "    <link rel=\"stylesheet\" href=\"https://matteopiffari.me/assets/css/styleworkmate.css\"" +  Environment.NewLine;
+            result += "    <link rel=\"stylesheet\" href=\"https://matteopiffarischool.altervista.org/Workmate/style.css\"" +  Environment.NewLine;
             result += "</head>" + Environment.NewLine;
             #endregion
 

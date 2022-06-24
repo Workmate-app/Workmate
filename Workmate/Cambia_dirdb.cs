@@ -33,8 +33,12 @@ namespace Workmate
 
         private void ok_btn_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.percorso_db = dir_txt.Text;
+            if (dir_txt.Text.EndsWith(@"\Workmate") == false)
+                Properties.Settings.Default.percorso_db = dir_txt.Text + @"\Workmate\";
+            else
+                Properties.Settings.Default.percorso_db = dir_txt.Text + @"\";
             Properties.Settings.Default.Save();
+            this.DialogResult = DialogResult.Yes;
             this.Close();
         }
 

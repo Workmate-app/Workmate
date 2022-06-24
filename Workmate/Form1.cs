@@ -143,10 +143,10 @@ namespace Workmate
             {
                 XDocument doc_xml = new XDocument(new XElement("workmate",
                     new XElement("bollaid", 1),
-                    new XElement("azienda", ""),
-                    new XElement("indirizzo", ""),
-                    new XElement("cap", ""),
-                    new XElement("prov", ""),
+                    new XElement("azienda", "Nome Azienda"),
+                    new XElement("indirizzo", "Indirizzo"),
+                    new XElement("cap", "CAP"),
+                    new XElement("prov", "Provincia"),
                     new XElement("piva", ""),
                     new XElement("codicefiscale", "")
                     ));
@@ -177,6 +177,11 @@ namespace Workmate
                 logo_pic.Tag = var.db + @"home.jpeg";
                 var.nfotohome = "home.jpeg";
             }
+            else
+            {
+                logo_pic.BackgroundImage = Properties.Resources.Workmate;
+                logo_pic.Tag = Properties.Resources.Workmate;
+            }
         }
 
         private void StileDataGrid()
@@ -195,7 +200,7 @@ namespace Workmate
         }
         private void carica_codici(string testoc = "", string colonnac = "", int search = 0)
         {
-            qtreminder_lbl.Text = "";
+            qtreminder_txt.Text = "";
             MessageBox.Show("Caricamento codici in corso...");
             magazzino_data.Rows.Clear();
             string[] codici = var.carica_codici();
@@ -236,7 +241,7 @@ namespace Workmate
 
                 if (Int32.Parse(quantita.InnerText) < Int32.Parse(quantitamin.InnerText) && search == 0)
                 {
-                    qtreminder_lbl.Text += codice.InnerText.ToString() + ": " + quantita.InnerText.ToString() + Environment.NewLine;
+                    qtreminder_txt.Text += codice.InnerText.ToString() + ": " + quantita.InnerText.ToString() + Environment.NewLine;
                     if (mostra_avviso == true && avv_mostrati == false)
                     {
                         CustomDialog customdialog = new CustomDialog();
@@ -445,7 +450,6 @@ namespace Workmate
             prov_lbl.Text = prov.InnerText;
             piva_lbl.Text = "P.Iva: "+piva.InnerText;
             cf_lbl.Text = "Cod. Fiscale: "+codicefiscale.InnerText;
-
         }
         private void magazzino_btn_Click(object sender, EventArgs e)
         {
@@ -1103,8 +1107,7 @@ namespace Workmate
             {
                 Properties.Settings.Default.apri_all_avvio = true;
                 Microsoft.Win32.RegistryKey chiavereg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
-                if (chiavereg.GetValue("Gestionale_Workmate") != null || chiavereg.GetValue("Gestionale_Workmate").ToString() != Application.ExecutablePath)
-                    Microsoft.Win32.Registry.SetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run", "Gestionale_Workmate", Application.ExecutablePath, Microsoft.Win32.RegistryValueKind.String);
+                Microsoft.Win32.Registry.SetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run", "Gestionale_Workmate", Application.ExecutablePath, Microsoft.Win32.RegistryValueKind.String);
             }
             else
             {
@@ -1275,6 +1278,23 @@ namespace Workmate
             Cambia_dirdb cambia_percorsodb = new Cambia_dirdb();
             cambia_percorsodb.FormClosing += new FormClosingEventHandler(closeform);
             cambia_percorsodb.ShowDialog();
+            if(cambia_percorsodb.DialogResult == DialogResult.Yes)
+            {
+                var.db = Properties.Settings.Default.percorso_db;
+                mostra_avviso = true;
+                carica_codici();
+                carica_prodotti();
+                carica_ordini();
+                carica_clienti();
+                carica_foto_home();
+                carica_impostazioni();
+                azienda_txt.Text = azienda_lbl.Text;
+                indirizzo_txt.Text=ind_lbl.Text;
+                prov_txt.Text = prov_lbl.Text;
+                cap_txt.Text = cap_lbl.Text;
+                piva_txt.Text = piva_lbl.Text.Remove(0,7);
+                cf_txt.Text = cf_lbl.Text.Remove(0,14);
+            }
         }
     }
 }

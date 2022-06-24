@@ -68,9 +68,9 @@
             this.changedb_btn = new FontAwesome.Sharp.IconButton();
             this.desktop_pnl = new System.Windows.Forms.Panel();
             this.qtreminder_pnl = new System.Windows.Forms.Panel();
+            this.qtreminder_txt = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
-            this.qtreminder_lbl = new System.Windows.Forms.Label();
             this.btnsfilter_pnl = new System.Windows.Forms.Panel();
             this.mese_btn = new System.Windows.Forms.Button();
             this.sempre_btn = new System.Windows.Forms.Button();
@@ -718,13 +718,25 @@
             // 
             // qtreminder_pnl
             // 
+            this.qtreminder_pnl.Controls.Add(this.qtreminder_txt);
             this.qtreminder_pnl.Controls.Add(this.panel1);
             this.qtreminder_pnl.Controls.Add(this.label8);
-            this.qtreminder_pnl.Controls.Add(this.qtreminder_lbl);
             this.qtreminder_pnl.Location = new System.Drawing.Point(6, 99);
             this.qtreminder_pnl.Name = "qtreminder_pnl";
             this.qtreminder_pnl.Size = new System.Drawing.Size(817, 484);
             this.qtreminder_pnl.TabIndex = 13;
+            // 
+            // qtreminder_txt
+            // 
+            this.qtreminder_txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.qtreminder_txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.qtreminder_txt.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.qtreminder_txt.Location = new System.Drawing.Point(7, 61);
+            this.qtreminder_txt.Multiline = true;
+            this.qtreminder_txt.Name = "qtreminder_txt";
+            this.qtreminder_txt.ReadOnly = true;
+            this.qtreminder_txt.Size = new System.Drawing.Size(306, 371);
+            this.qtreminder_txt.TabIndex = 3;
             // 
             // panel1
             // 
@@ -743,15 +755,6 @@
             this.label8.Size = new System.Drawing.Size(249, 19);
             this.label8.TabIndex = 1;
             this.label8.Text = "Codici scesi sotto la quantità minima:";
-            // 
-            // qtreminder_lbl
-            // 
-            this.qtreminder_lbl.AutoSize = true;
-            this.qtreminder_lbl.Font = new System.Drawing.Font("SF Pro Display", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.qtreminder_lbl.Location = new System.Drawing.Point(8, 61);
-            this.qtreminder_lbl.Name = "qtreminder_lbl";
-            this.qtreminder_lbl.Size = new System.Drawing.Size(0, 16);
-            this.qtreminder_lbl.TabIndex = 0;
             // 
             // btnsfilter_pnl
             // 
@@ -1674,8 +1677,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1324, 655);
-            this.Controls.Add(this.settings_pnl);
             this.Controls.Add(this.desktop_pnl);
+            this.Controls.Add(this.settings_pnl);
             this.Controls.Add(this.bar_pnl);
             this.Controls.Add(this.dock_pnl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1831,7 +1834,6 @@
         private Button mese_btn;
         private ToolStripMenuItem generaBollaToolStripMenuItem;
         private Panel qtreminder_pnl;
-        private Label qtreminder_lbl;
         private Label label8;
         private Panel panel1;
         private CheckBox bootstart_ckb;
@@ -1860,5 +1862,6 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private DataGridViewTextBoxColumn Scadenza;
+        private TextBox qtreminder_txt;
     }
 }
