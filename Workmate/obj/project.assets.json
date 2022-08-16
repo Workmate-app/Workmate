@@ -47,11 +47,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\programmazione\\School\\Concorso Sorint 2022\\workmate\\Workmate\\Workmate\\Workmate.csproj",
+      "projectUniqueName": "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\Workmate.csproj",
       "projectName": "Workmate",
-      "projectPath": "D:\\programmazione\\School\\Concorso Sorint 2022\\workmate\\Workmate\\Workmate\\Workmate.csproj",
+      "projectPath": "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\Workmate.csproj",
       "packagesPath": "C:\\Users\\Matteo Piffari\\.nuget\\packages\\",
-      "outputPath": "D:\\programmazione\\School\\Concorso Sorint 2022\\workmate\\Workmate\\Workmate\\obj\\",
+      "outputPath": "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
