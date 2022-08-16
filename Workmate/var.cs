@@ -45,4 +45,6 @@ public class var
         string[] clienti_trovati = Directory.GetFiles(db + @"Clienti\", "*.xml");
         return clienti_trovati;
     }
+
+    public static bool edited_prod = false;
 }

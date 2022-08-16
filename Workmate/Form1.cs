@@ -71,7 +71,11 @@ namespace Workmate
             else if (var.ended == true)
             {
                 carica_ordini();
-                carica_codici();
+                if (var.edited_prod == true)
+                {
+                    carica_codici();
+                    var.edited_prod = false;
+                }
                 var.ended = false;
                 ordinicaricati = true;
             }
@@ -290,7 +294,9 @@ namespace Workmate
                 XmlNode qt8 = xml_doc.DocumentElement.SelectSingleNode("/ordine/qt8");
                 XmlNode qt9 = xml_doc.DocumentElement.SelectSingleNode("/ordine/qt9");
                 XmlNode qt10 = xml_doc.DocumentElement.SelectSingleNode("/ordine/qt10");
-                string[] riga = { ordine.InnerText, prezzo.InnerText, cliente.InnerText, note.InnerText, prodotto1.InnerText, prodotto2.InnerText, prodotto3.InnerText, prodotto4.InnerText, prodotto5.InnerText, prodotto6.InnerText, prodotto7.InnerText, prodotto8.InnerText, prodotto9.InnerText, prodotto10.InnerText, qt1.InnerText, qt2.InnerText, qt3.InnerText, qt4.InnerText, qt5.InnerText, qt6.InnerText, qt7.InnerText, qt8.InnerText, qt9.InnerText, qt10.InnerText };
+                XmlNode scadenza = xml_doc.DocumentElement.SelectSingleNode("/ordine/scadenza");
+                XmlNode evaso = xml_doc.DocumentElement.SelectSingleNode("/ordine/evaso");
+                string[] riga = { ordine.InnerText, prezzo.InnerText, cliente.InnerText, note.InnerText, prodotto1.InnerText, prodotto2.InnerText, prodotto3.InnerText, prodotto4.InnerText, prodotto5.InnerText, prodotto6.InnerText, prodotto7.InnerText, prodotto8.InnerText, prodotto9.InnerText, prodotto10.InnerText, qt1.InnerText, qt2.InnerText, qt3.InnerText, qt4.InnerText, qt5.InnerText, qt6.InnerText, qt7.InnerText, qt8.InnerText, qt9.InnerText, qt10.InnerText , scadenza.InnerText, evaso.InnerText};
 
                 string contenuto = "";
                 switch (colonnac)
@@ -317,7 +323,8 @@ namespace Workmate
                     ordini_data.Rows.Add(riga);
                 if (testoc == "")
                 {
-                    totalefatturato += decimal.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
+                    if(evaso.InnerText == "Sì")
+                        totalefatturato += decimal.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
                     totfat_lbl.Text = totalefatturato.ToString() + " €";
                     nordini_lbl.Text = var.cno().ToString();
                 }
@@ -656,8 +663,6 @@ namespace Workmate
                 Aggiungi_Cliente Nuovo_Cliente = new Aggiungi_Cliente();
                 Nuovo_Cliente.FormClosing += new FormClosingEventHandler(closeform);
                 Nuovo_Cliente.ShowDialog();
-                /*if (Nuovo_Prodotto.DialogResult == DialogResult.Yes)
-                    prodotticaricati = false;*/
             }
             else
             {
@@ -771,6 +776,8 @@ namespace Workmate
                     Nuovo_Ordine.varPrz = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[1].Value.ToString();
                     Nuovo_Ordine.varCliente = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[2].Value.ToString();
                     Nuovo_Ordine.varNote = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[3].Value.ToString();
+                    Nuovo_Ordine.varEvaso = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[25].Value.ToString();
+                    Nuovo_Ordine.varScadenza = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[24].Value.ToString();
                     Nuovo_Ordine.varProdotto1 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[4].Value.ToString();
                     Nuovo_Ordine.varProdotto2 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[5].Value.ToString();
                     Nuovo_Ordine.varProdotto3 = ordini_data.Rows[ordini_data.CurrentCell.RowIndex].Cells[6].Value.ToString();
@@ -917,7 +924,6 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare l'ordine");
                     }
                     carica_ordini();
-                    carica_codici();
                 }
             }
         }
@@ -1164,10 +1170,14 @@ namespace Workmate
             {
                 XmlDocument xml_docperfatturato = new XmlDocument();
                 xml_docperfatturato.Load(files.ElementAt(i).ToString());
-                XmlNode prezzo = xml_docperfatturato.DocumentElement.SelectSingleNode("/ordine/prezzo");
-                totfatturatofiltrato += decimal.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
-                totfat_lbl.Text = totfatturatofiltrato.ToString() + " €";
+                XmlNode evaso = xml_docperfatturato.SelectSingleNode("/ordine/evaso");
+                if (evaso.InnerText == "Sì")
+                {
+                    XmlNode prezzo = xml_docperfatturato.DocumentElement.SelectSingleNode("/ordine/prezzo");
+                    totfatturatofiltrato += decimal.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
+                }
             }
+            totfat_lbl.Text = totfatturatofiltrato.ToString() + " €";
         }
 
         private void d7_btn_Click(object sender, EventArgs e)
@@ -1192,10 +1202,14 @@ namespace Workmate
             {
                 XmlDocument xml_docperfatturato = new XmlDocument();
                 xml_docperfatturato.Load(files.ElementAt(i).ToString());
-                XmlNode prezzo = xml_docperfatturato.DocumentElement.SelectSingleNode("/ordine/prezzo");
-                totfatturatofiltrato += decimal.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
-                totfat_lbl.Text = totfatturatofiltrato.ToString() + " €";
+                XmlNode evaso = xml_docperfatturato.SelectSingleNode("/ordine/evaso");
+                if (evaso.InnerText == "Sì")
+                {
+                    XmlNode prezzo = xml_docperfatturato.DocumentElement.SelectSingleNode("/ordine/prezzo");
+                    totfatturatofiltrato += decimal.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
+                }
             }
+            totfat_lbl.Text = totfatturatofiltrato.ToString() + " €";
         }
 
         private void d30_btn_Click(object sender, EventArgs e)
@@ -1220,10 +1234,14 @@ namespace Workmate
             {
                 XmlDocument xml_docperfatturato = new XmlDocument();
                 xml_docperfatturato.Load(files.ElementAt(i).ToString());
-                XmlNode prezzo = xml_docperfatturato.DocumentElement.SelectSingleNode("/ordine/prezzo");
-                totfatturatofiltrato += decimal.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
-                totfat_lbl.Text = totfatturatofiltrato.ToString() + " €";
+                XmlNode evaso = xml_docperfatturato.SelectSingleNode("/ordine/evaso");
+                if (evaso.InnerText == "Sì")
+                {
+                    XmlNode prezzo = xml_docperfatturato.DocumentElement.SelectSingleNode("/ordine/prezzo");
+                    totfatturatofiltrato += decimal.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
+                }
             }
+            totfat_lbl.Text = totfatturatofiltrato.ToString() + " €";
         }
 
         private void mese_btn_Click(object sender, EventArgs e)
@@ -1248,10 +1266,14 @@ namespace Workmate
             {
                 XmlDocument xml_docperfatturato = new XmlDocument();
                 xml_docperfatturato.Load(files.ElementAt(i).ToString());
-                XmlNode prezzo = xml_docperfatturato.DocumentElement.SelectSingleNode("/ordine/prezzo");
-                totfatturatofiltrato += decimal.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
-                totfat_lbl.Text = totfatturatofiltrato.ToString() + " €";
+                XmlNode evaso = xml_docperfatturato.SelectSingleNode("/ordine/evaso");
+                if (evaso.InnerText == "Sì")
+                {
+                    XmlNode prezzo = xml_docperfatturato.DocumentElement.SelectSingleNode("/ordine/prezzo");
+                    totfatturatofiltrato += decimal.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
+                }
             }
+            totfat_lbl.Text = totfatturatofiltrato.ToString() + " €";
         }
 
         private void sempre_btn_Click(object sender, EventArgs e)

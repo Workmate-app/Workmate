@@ -83,9 +83,12 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.scadenza_txt = new System.Windows.Forms.MaskedTextBox();
             this.cancel_btn = new FontAwesome.Sharp.IconButton();
             this.selectcli_btn = new FontAwesome.Sharp.IconButton();
             this.selectcli_dlg = new System.Windows.Forms.OpenFileDialog();
+            this.evaso_ckb = new System.Windows.Forms.CheckBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.add_prod_pnl.SuspendLayout();
             this.prod_pnl.SuspendLayout();
             this.qt_pnl.SuspendLayout();
@@ -581,6 +584,14 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "Quantità";
             // 
+            // scadenza_txt
+            // 
+            this.scadenza_txt.Location = new System.Drawing.Point(165, 49);
+            this.scadenza_txt.Mask = "00/00/0000";
+            this.scadenza_txt.Name = "scadenza_txt";
+            this.scadenza_txt.Size = new System.Drawing.Size(100, 23);
+            this.scadenza_txt.TabIndex = 24;
+            // 
             // cancel_btn
             // 
             this.cancel_btn.FlatAppearance.BorderSize = 0;
@@ -615,12 +626,32 @@
             // 
             this.selectcli_dlg.Filter = "Xml|*.xml";
             // 
+            // evaso_ckb
+            // 
+            this.evaso_ckb.AutoSize = true;
+            this.evaso_ckb.Location = new System.Drawing.Point(165, 104);
+            this.evaso_ckb.Name = "evaso_ckb";
+            this.evaso_ckb.Size = new System.Drawing.Size(56, 19);
+            this.evaso_ckb.TabIndex = 24;
+            this.evaso_ckb.Text = "Evaso";
+            this.evaso_ckb.UseVisualStyleBackColor = true;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(165, 30);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(59, 15);
+            this.label23.TabIndex = 25;
+            this.label23.Text = "Scadenza:";
+            // 
             // Aggiungi_Ordine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(458, 502);
             this.Controls.Add(this.add_prod_pnl);
+            this.Controls.Add(this.label23);
             this.Controls.Add(this.add_prod_btn);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.note_txt);
@@ -633,6 +664,8 @@
             this.Controls.Add(this.cancel_btn);
             this.Controls.Add(this.add_btn);
             this.Controls.Add(this.selectcli_btn);
+            this.Controls.Add(this.evaso_ckb);
+            this.Controls.Add(this.scadenza_txt);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -710,5 +743,8 @@
         private FontAwesome.Sharp.IconButton cancel_btn;
         private FontAwesome.Sharp.IconButton selectcli_btn;
         private OpenFileDialog selectcli_dlg;
+        private CheckBox evaso_ckb;
+        private MaskedTextBox scadenza_txt;
+        private Label label23;
     }
 }

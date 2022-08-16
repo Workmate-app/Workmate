@@ -1,0 +1,17 @@
+Bolla:
+	Controllare/Finire generazione con più pagine
+
+**Cambia percorso db
+
+**Host CSS file
+
+**Windows boot
+
+https://www.youtube.com/watch?v=WS7BrxWvOiI&list=PLwCjKmwvT_NM5RwSvrlQ5MKMw6kmf6Nyl&index=22
+
+No edit in ordine --> no metti/togli
+
+Forse:
+	Data scadenza ordini (problema per fatturato)
+	Soluzione:
+		Ordine evaso v/f

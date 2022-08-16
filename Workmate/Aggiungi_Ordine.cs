@@ -52,6 +52,10 @@ namespace Workmate
            }
             #endregion
 
+            string evaso="No";
+            if (evaso_ckb.Checked == true)
+                evaso = "Sì";
+
             XDocument doc_xml = new XDocument(new XElement("ordine",
                 new XElement("ordine", ord_txt.Text),
                 new XElement("prezzo", prz_txt.Text),
@@ -76,7 +80,9 @@ namespace Workmate
                 new XElement("qt7", qt7_txt.Text),
                 new XElement("qt8", qt8_txt.Text),
                 new XElement("qt9", qt9_txt.Text),
-                new XElement("qt10", qt10_txt.Text)
+                new XElement("qt10", qt10_txt.Text),
+                new XElement("scadenza", scadenza_txt.Text),
+                new XElement("evaso", evaso)
                 ));
 
             string root = var.db + "Ordini\\";
@@ -87,137 +93,29 @@ namespace Workmate
             }
             else
             {
-                int[] arr = new int[10];
-                int j=0;
-                foreach (TextBox textbox in qt_pnl.Controls.OfType<TextBox>())
+                if (var.edited_prod == true)
                 {
-                    if (textbox.Text.Length != 0)
+                    int[] arr = new int[10];
+                    int j = 0;
+                    foreach (TextBox textbox in qt_pnl.Controls.OfType<TextBox>())
                     {
-                        arr[j] = Convert.ToInt32(textbox.Text);
-                        j++;
-                    }                   
-                }
-                int x = 0;
-                int y = 0;
-
-                foreach (TextBox textbox in prod_pnl.Controls.OfType<TextBox>()) {
-                    /*if(textbox.Text != exprod[x])
-                    {
-                        try
+                        if (textbox.Text.Length != 0)
                         {
-                            XmlDocument exxml_doc = new XmlDocument();
-                            exxml_doc.Load(var.db + "Prodotti\\" + exprod[x] + ".xml");
-                            XmlDocument xml_doc = new XmlDocument();
-                            xml_doc.Load(var.db + "Prodotti\\" + textbox.Text + ".xml");
-                            for (int i = 0; i < 15; i++)
-                            {
-                                XmlNode excod = exxml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod" + (i + 1));
-                                XmlNode cod = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod" + (i + 1));
-
-                                if(cod.InnerText != "")
-                                {
-                                    XmlNode qt = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt" + (i + 1));
-                                    XmlDocument xml_doc_cod = new XmlDocument();
-                                    xml_doc_cod.Load(var.db + "Magazzino\\" + cod.InnerText + ".xml");
-                                    XmlNode qt_cod = xml_doc_cod.DocumentElement.SelectSingleNode("/codice/quantità");
-                                    int tmp = Convert.ToInt32(qt_cod.InnerText) - (Convert.ToInt32(qt.InnerText) * arr[x]);
-                                    if (tmp < 0)
-                                    {
-                                        DialogResult dialogresult = MessageBox.Show("La quantità del codice " + cod.InnerText + " sarà inferiore a 0. Continuare?", "Attenzione", MessageBoxButtons.YesNo);
-                                        if (dialogresult == DialogResult.Yes)
-                                        {
-                                            qt_cod.InnerText = tmp.ToString();
-                                            xml_doc_cod.Save(var.db + "Magazzino\\" + cod.InnerText + ".xml");
-                                        }
-                                        else
-                                            return;
-                                    }
-                                    else
-                                    {
-                                        qt_cod.InnerText = tmp.ToString();
-                                        xml_doc_cod.Save(var.db + "Magazzino\\" + cod.InnerText + ".xml");
-                                    }
-                                }
-
-                                if (excod.InnerText != "")
-                                {
-                                    XmlNode ex_qt = exxml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt" + (i + 1));
-                                    XmlDocument exxml_doc_cod = new XmlDocument();
-                                    exxml_doc_cod.Load(var.db + "Magazzino\\" + excod.InnerText + ".xml");
-                                    XmlNode exqt_cod = exxml_doc_cod.DocumentElement.SelectSingleNode("/codice/quantità");
-                                    exqt_cod.InnerText = (Convert.ToInt32(exqt_cod.InnerText) + (Convert.ToInt32(ex_qt.InnerText) * exqt[x])).ToString();
-                                    exxml_doc_cod.Save(var.db + "Magazzino\\" + excod.InnerText + ".xml");
-                                }
-                            }
-                            x++;
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Prodotto " + textbox.Text + " non trovato!");
-                            return;
+                            arr[j] = Convert.ToInt32(textbox.Text);
+                            j++;
                         }
                     }
-                    else */if (textbox.Text.Length != 0 || textbox.Text != exprod[x])
+                    int x = 0;
+
+                    foreach (TextBox textbox in prod_pnl.Controls.OfType<TextBox>())
                     {
-                        try
+                        if (textbox.Text.Length != 0 || textbox.Text != exprod[x])
                         {
-                            if (Modifica == 1 && textbox.Text != exprod[x] && exprod[x] != "" && textbox.Text == "")
+                            try
                             {
-                                for (int i = 0; i < 15; i++)
+                                if (Modifica == 1 && textbox.Text != exprod[x] && exprod[x] != "" && textbox.Text == "")
                                 {
-                                    XmlDocument exxml_doc = new XmlDocument();
-                                    exxml_doc.Load(var.db + "Prodotti\\" + exprod[x] + ".xml");
-                                    XmlNode excod = exxml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod" + (i + 1));
-                                    if (excod.InnerText != "")
-                                    {
-                                        XmlNode ex_qt = exxml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt" + (i + 1));
-                                        XmlDocument exxml_doc_cod = new XmlDocument();
-                                        exxml_doc_cod.Load(var.db + "Magazzino\\" + excod.InnerText + ".xml");
-                                        XmlNode exqt_cod = exxml_doc_cod.DocumentElement.SelectSingleNode("/codice/quantità");
-                                        exqt_cod.InnerText = (Convert.ToInt32(exqt_cod.InnerText) + (Convert.ToInt32(ex_qt.InnerText) * exqt[x])).ToString();
-                                        exxml_doc_cod.Save(var.db + "Magazzino\\" + excod.InnerText + ".xml");
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                XmlDocument xml_doc = new XmlDocument();
-                                xml_doc.Load(var.db + "Prodotti\\" + textbox.Text + ".xml");
-
-                                for (int i = 0; i < 15; i++)
-                                {
-                                    XmlNode cod = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod" + (i + 1));
-
-                                    if (cod.InnerText != "")
-                                    {
-                                        XmlNode qt = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt" + (i + 1));
-                                        XmlDocument xml_doc_cod = new XmlDocument();
-                                        xml_doc_cod.Load(var.db + "Magazzino\\" + cod.InnerText + ".xml");
-                                        XmlNode qt_cod = xml_doc_cod.DocumentElement.SelectSingleNode("/codice/quantità");
-                                        int tmp = 0;
-                                        if (textbox.Text == exprod[x])
-                                            tmp = Convert.ToInt32(qt_cod.InnerText) + (Convert.ToInt32(qt.InnerText) * exqt[x]) - (Convert.ToInt32(qt.InnerText) * arr[x]);
-                                        else
-                                            tmp = Convert.ToInt32(qt_cod.InnerText) - (Convert.ToInt32(qt.InnerText) * arr[x]);
-
-                                        if (tmp < 0)
-                                        {
-                                            DialogResult dialogresult = MessageBox.Show("La quantità del codice " + cod.InnerText + " sarà inferiore a 0. Continuare?", "Attenzione", MessageBoxButtons.YesNo);
-                                            if (dialogresult == DialogResult.Yes)
-                                            {
-                                                qt_cod.InnerText = tmp.ToString();
-                                                xml_doc_cod.Save(var.db + "Magazzino\\" + cod.InnerText + ".xml");
-                                            }
-                                            else
-                                                return;
-                                        }
-                                        else
-                                        {
-                                            qt_cod.InnerText = tmp.ToString();
-                                            xml_doc_cod.Save(var.db + "Magazzino\\" + cod.InnerText + ".xml");
-                                        }
-                                    }
-                                    if (Modifica == 1 && textbox.Text != exprod[x] && exprod[x] != "")
+                                    for (int i = 0; i < 15; i++)
                                     {
                                         XmlDocument exxml_doc = new XmlDocument();
                                         exxml_doc.Load(var.db + "Prodotti\\" + exprod[x] + ".xml");
@@ -233,16 +131,71 @@ namespace Workmate
                                         }
                                     }
                                 }
-                            }
-                            x++;
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Prodotto " + textbox.Text + " non trovato!");
-                            return;
-                        }
-                    }
+                                else
+                                {
+                                    XmlDocument xml_doc = new XmlDocument();
+                                    xml_doc.Load(var.db + "Prodotti\\" + textbox.Text + ".xml");
 
+                                    for (int i = 0; i < 15; i++)
+                                    {
+                                        XmlNode cod = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod" + (i + 1));
+
+                                        if (cod.InnerText != "")
+                                        {
+                                            XmlNode qt = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt" + (i + 1));
+                                            XmlDocument xml_doc_cod = new XmlDocument();
+                                            xml_doc_cod.Load(var.db + "Magazzino\\" + cod.InnerText + ".xml");
+                                            XmlNode qt_cod = xml_doc_cod.DocumentElement.SelectSingleNode("/codice/quantità");
+                                            int tmp = 0;
+                                            if (textbox.Text == exprod[x])
+                                                tmp = Convert.ToInt32(qt_cod.InnerText) + (Convert.ToInt32(qt.InnerText) * exqt[x]) - (Convert.ToInt32(qt.InnerText) * arr[x]);
+                                            else
+                                                tmp = Convert.ToInt32(qt_cod.InnerText) - (Convert.ToInt32(qt.InnerText) * arr[x]);
+
+                                            if (tmp < 0)
+                                            {
+                                                DialogResult dialogresult = MessageBox.Show("La quantità del codice " + cod.InnerText + " sarà inferiore a 0. Continuare?", "Attenzione", MessageBoxButtons.YesNo);
+                                                if (dialogresult == DialogResult.Yes)
+                                                {
+                                                    qt_cod.InnerText = tmp.ToString();
+                                                    xml_doc_cod.Save(var.db + "Magazzino\\" + cod.InnerText + ".xml");
+                                                }
+                                                else
+                                                    return;
+                                            }
+                                            else
+                                            {
+                                                qt_cod.InnerText = tmp.ToString();
+                                                xml_doc_cod.Save(var.db + "Magazzino\\" + cod.InnerText + ".xml");
+                                            }
+                                        }
+                                        if (Modifica == 1 && textbox.Text != exprod[x] && exprod[x] != "")
+                                        {
+                                            XmlDocument exxml_doc = new XmlDocument();
+                                            exxml_doc.Load(var.db + "Prodotti\\" + exprod[x] + ".xml");
+                                            XmlNode excod = exxml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod" + (i + 1));
+                                            if (excod.InnerText != "")
+                                            {
+                                                XmlNode ex_qt = exxml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt" + (i + 1));
+                                                XmlDocument exxml_doc_cod = new XmlDocument();
+                                                exxml_doc_cod.Load(var.db + "Magazzino\\" + excod.InnerText + ".xml");
+                                                XmlNode exqt_cod = exxml_doc_cod.DocumentElement.SelectSingleNode("/codice/quantità");
+                                                exqt_cod.InnerText = (Convert.ToInt32(exqt_cod.InnerText) + (Convert.ToInt32(ex_qt.InnerText) * exqt[x])).ToString();
+                                                exxml_doc_cod.Save(var.db + "Magazzino\\" + excod.InnerText + ".xml");
+                                            }
+                                        }
+                                    }
+                                }
+                                x++;
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Prodotto " + textbox.Text + " non trovato!");
+                                return;
+                            }
+                        }
+
+                    }
                 }
 
                 doc_xml.Save(root + ord_txt.Text + ".xml");
@@ -289,6 +242,11 @@ namespace Workmate
                 qt8_txt.Text = varQt8.ToString();
                 qt9_txt.Text = varQt9.ToString();
                 qt10_txt.Text = varQt10.ToString();
+                scadenza_txt.Text = varScadenza.ToString();
+                if (varEvaso == "Sì")
+                    evaso_ckb.Checked = true;
+                else
+                    evaso_ckb.Checked = false;
                 int a = 0;
                 foreach (TextBox textbox in qt_pnl.Controls.OfType<TextBox>())
                 {
@@ -336,10 +294,12 @@ namespace Workmate
         public int varQt8 { get; set; }
         public int varQt9 { get; set; }
         public int varQt10 { get; set; }
-
-
+        public string varEvaso { get; set; }
+        public string varScadenza { get; set; }
+        
         private void add_prod_btn_Click(object sender, EventArgs e)
         {
+            var.edited_prod = true;
             add_prod_pnl.Visible = true;
         }
 
