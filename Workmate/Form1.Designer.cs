@@ -50,6 +50,8 @@
             this.del_btn = new FontAwesome.Sharp.IconButton();
             this.plus_btn = new FontAwesome.Sharp.IconButton();
             this.settings_pnl = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.paese_txt = new System.Windows.Forms.TextBox();
             this.bootstart_ckb = new System.Windows.Forms.CheckBox();
             this.ok_btn = new FontAwesome.Sharp.IconButton();
             this.label7 = new System.Windows.Forms.Label();
@@ -78,6 +80,7 @@
             this.d7_btn = new System.Windows.Forms.Button();
             this.oggi_btn = new System.Windows.Forms.Button();
             this.info_pnl = new System.Windows.Forms.Panel();
+            this.paese_lbl = new System.Windows.Forms.Label();
             this.cap_lbl = new System.Windows.Forms.Label();
             this.cf_lbl = new System.Windows.Forms.Label();
             this.piva_lbl = new System.Windows.Forms.Label();
@@ -521,6 +524,8 @@
             // settings_pnl
             // 
             this.settings_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.settings_pnl.Controls.Add(this.label9);
+            this.settings_pnl.Controls.Add(this.paese_txt);
             this.settings_pnl.Controls.Add(this.bootstart_ckb);
             this.settings_pnl.Controls.Add(this.ok_btn);
             this.settings_pnl.Controls.Add(this.label7);
@@ -542,6 +547,22 @@
             this.settings_pnl.Name = "settings_pnl";
             this.settings_pnl.Size = new System.Drawing.Size(1094, 595);
             this.settings_pnl.TabIndex = 3;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(151, 213);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 15);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Paese";
+            // 
+            // paese_txt
+            // 
+            this.paese_txt.Location = new System.Drawing.Point(151, 231);
+            this.paese_txt.Name = "paese_txt";
+            this.paese_txt.Size = new System.Drawing.Size(100, 23);
+            this.paese_txt.TabIndex = 16;
             // 
             // bootstart_ckb
             // 
@@ -572,7 +593,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(213, 213);
+            this.label7.Location = new System.Drawing.Point(322, 213);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 15);
             this.label7.TabIndex = 13;
@@ -581,7 +602,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(150, 213);
+            this.label2.Location = new System.Drawing.Point(259, 213);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 15);
             this.label2.TabIndex = 12;
@@ -639,14 +660,14 @@
             // 
             // prov_txt
             // 
-            this.prov_txt.Location = new System.Drawing.Point(213, 231);
+            this.prov_txt.Location = new System.Drawing.Point(322, 231);
             this.prov_txt.Name = "prov_txt";
             this.prov_txt.Size = new System.Drawing.Size(47, 23);
             this.prov_txt.TabIndex = 5;
             // 
             // cap_txt
             // 
-            this.cap_txt.Location = new System.Drawing.Point(150, 231);
+            this.cap_txt.Location = new System.Drawing.Point(259, 231);
             this.cap_txt.Name = "cap_txt";
             this.cap_txt.Size = new System.Drawing.Size(57, 23);
             this.cap_txt.TabIndex = 4;
@@ -763,9 +784,9 @@
             this.btnsfilter_pnl.Controls.Add(this.d30_btn);
             this.btnsfilter_pnl.Controls.Add(this.d7_btn);
             this.btnsfilter_pnl.Controls.Add(this.oggi_btn);
-            this.btnsfilter_pnl.Location = new System.Drawing.Point(400, 17);
+            this.btnsfilter_pnl.Location = new System.Drawing.Point(455, 17);
             this.btnsfilter_pnl.Name = "btnsfilter_pnl";
-            this.btnsfilter_pnl.Size = new System.Drawing.Size(399, 48);
+            this.btnsfilter_pnl.Size = new System.Drawing.Size(378, 48);
             this.btnsfilter_pnl.TabIndex = 12;
             // 
             // mese_btn
@@ -836,6 +857,7 @@
             // info_pnl
             // 
             this.info_pnl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.info_pnl.Controls.Add(this.paese_lbl);
             this.info_pnl.Controls.Add(this.cap_lbl);
             this.info_pnl.Controls.Add(this.cf_lbl);
             this.info_pnl.Controls.Add(this.piva_lbl);
@@ -847,11 +869,21 @@
             this.info_pnl.Size = new System.Drawing.Size(209, 144);
             this.info_pnl.TabIndex = 7;
             // 
+            // paese_lbl
+            // 
+            this.paese_lbl.AutoSize = true;
+            this.paese_lbl.Font = new System.Drawing.Font("SansSerif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.paese_lbl.Location = new System.Drawing.Point(9, 71);
+            this.paese_lbl.Name = "paese_lbl";
+            this.paese_lbl.Size = new System.Drawing.Size(50, 17);
+            this.paese_lbl.TabIndex = 12;
+            this.paese_lbl.Text = "Paese";
+            // 
             // cap_lbl
             // 
             this.cap_lbl.AutoSize = true;
             this.cap_lbl.Font = new System.Drawing.Font("SansSerif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cap_lbl.Location = new System.Drawing.Point(9, 71);
+            this.cap_lbl.Location = new System.Drawing.Point(106, 71);
             this.cap_lbl.Name = "cap_lbl";
             this.cap_lbl.Size = new System.Drawing.Size(39, 17);
             this.cap_lbl.TabIndex = 11;
@@ -881,11 +913,11 @@
             // 
             this.prov_lbl.AutoSize = true;
             this.prov_lbl.Font = new System.Drawing.Font("SansSerif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.prov_lbl.Location = new System.Drawing.Point(63, 71);
+            this.prov_lbl.Location = new System.Drawing.Point(160, 71);
             this.prov_lbl.Name = "prov_lbl";
-            this.prov_lbl.Size = new System.Drawing.Size(69, 17);
+            this.prov_lbl.Size = new System.Drawing.Size(39, 17);
             this.prov_lbl.TabIndex = 7;
-            this.prov_lbl.Text = "Provincia";
+            this.prov_lbl.Text = "Prov";
             // 
             // ind_lbl
             // 
@@ -923,9 +955,9 @@
             this.totfat_pnl.Controls.Add(this.totfat_pic);
             this.totfat_pnl.Controls.Add(this.totfat_lbl);
             this.totfat_pnl.Controls.Add(this.label4);
-            this.totfat_pnl.Location = new System.Drawing.Point(213, 17);
+            this.totfat_pnl.Location = new System.Drawing.Point(201, 17);
             this.totfat_pnl.Name = "totfat_pnl";
-            this.totfat_pnl.Size = new System.Drawing.Size(185, 76);
+            this.totfat_pnl.Size = new System.Drawing.Size(248, 76);
             this.totfat_pnl.TabIndex = 1;
             // 
             // totfat_pic
@@ -948,9 +980,9 @@
             this.totfat_lbl.Font = new System.Drawing.Font("SF Pro Display", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.totfat_lbl.Location = new System.Drawing.Point(64, 24);
             this.totfat_lbl.Name = "totfat_lbl";
-            this.totfat_lbl.Size = new System.Drawing.Size(22, 24);
+            this.totfat_lbl.Size = new System.Drawing.Size(67, 24);
             this.totfat_lbl.TabIndex = 3;
-            this.totfat_lbl.Text = "0";
+            this.totfat_lbl.Text = "0,00 €";
             this.totfat_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
@@ -970,7 +1002,7 @@
             this.nordini_pnl.Controls.Add(this.label1);
             this.nordini_pnl.Location = new System.Drawing.Point(6, 17);
             this.nordini_pnl.Name = "nordini_pnl";
-            this.nordini_pnl.Size = new System.Drawing.Size(201, 76);
+            this.nordini_pnl.Size = new System.Drawing.Size(189, 76);
             this.nordini_pnl.TabIndex = 0;
             // 
             // totord_pic
@@ -1863,5 +1895,8 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private DataGridViewTextBoxColumn Scadenza;
         private TextBox qtreminder_txt;
+        private Label label9;
+        private TextBox paese_txt;
+        private Label paese_lbl;
     }
 }

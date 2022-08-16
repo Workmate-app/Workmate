@@ -16,12 +16,12 @@ namespace Workmate
         private bool clienti = false;
         bool mostra_avviso = true;
         bool avv_mostrati = false;
-        public float totalefatturato;
+        public decimal totalefatturato;
         bool ordinicaricati = false;
         bool prodotticaricati = false;
         bool codicicaricati = false;
         bool clienticaricati = false;
-        string[] impostazioni = new string[6];
+        string[] impostazioni = new string[7];
         private string btn;
         public Form1()
         {
@@ -145,6 +145,7 @@ namespace Workmate
                     new XElement("bollaid", 1),
                     new XElement("azienda", "Nome Azienda"),
                     new XElement("indirizzo", "Indirizzo"),
+                    new XElement("paese", "Paese"),
                     new XElement("cap", "CAP"),
                     new XElement("prov", "Provincia"),
                     new XElement("piva", ""),
@@ -201,7 +202,6 @@ namespace Workmate
         private void carica_codici(string testoc = "", string colonnac = "", int search = 0)
         {
             qtreminder_txt.Text = "";
-            MessageBox.Show("Caricamento codici in corso...");
             magazzino_data.Rows.Clear();
             string[] codici = var.carica_codici();
             for (int i = 0; i < codici.Length; i++)
@@ -258,9 +258,8 @@ namespace Workmate
 
         private void carica_ordini(string testoc = "", string colonnac = "")
         {
-            MessageBox.Show("Caricamento ordini in corso...");
             if (testoc == "")
-                totalefatturato = 0;
+                totalefatturato = 0.00m;
             ordini_data.Rows.Clear();
             string[] ordini = var.carica_ordini();
             for (int i = 0; i < ordini.Length; i++)
@@ -318,8 +317,8 @@ namespace Workmate
                     ordini_data.Rows.Add(riga);
                 if (testoc == "")
                 {
-                    totalefatturato += float.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
-                    totfat_lbl.Text = totalefatturato.ToString("0.00") + " €";
+                    totalefatturato += decimal.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
+                    totfat_lbl.Text = totalefatturato.ToString() + " €";
                     nordini_lbl.Text = var.cno().ToString();
                 }
             }
@@ -327,7 +326,6 @@ namespace Workmate
 
         private void carica_prodotti(string testoc = "", string colonnac = "")
         {
-            MessageBox.Show("Caricamento prodotti in corso...");
             prod_data.Rows.Clear();
             string[] prodotti = var.carica_prodotti();
             for (int i = 0; i < prodotti.Length; i++)
@@ -388,7 +386,6 @@ namespace Workmate
 
         private void carica_clienti(string testoc = "", string colonnac = "")
         {
-            MessageBox.Show("Caricamento clienti in corso...");
             clienti_data.Rows.Clear();
             string[] codici = var.carica_clienti();
             for (int i = 0; i < codici.Length; i++)
@@ -434,6 +431,7 @@ namespace Workmate
             XmlNode bollaid = xml_doc.DocumentElement.SelectSingleNode("/workmate/bollaid");
             XmlNode azienda = xml_doc.DocumentElement.SelectSingleNode("/workmate/azienda");
             XmlNode indirizzo = xml_doc.DocumentElement.SelectSingleNode("/workmate/indirizzo");
+            XmlNode paese = xml_doc.DocumentElement.SelectSingleNode("/workmate/paese");
             XmlNode cap = xml_doc.DocumentElement.SelectSingleNode("/workmate/cap");
             XmlNode prov = xml_doc.DocumentElement.SelectSingleNode("/workmate/prov");
             XmlNode piva = xml_doc.DocumentElement.SelectSingleNode("/workmate/piva");
@@ -444,8 +442,10 @@ namespace Workmate
             impostazioni[3] = prov.InnerText;
             impostazioni[4] = piva.InnerText;
             impostazioni[5] = codicefiscale.InnerText;
+            impostazioni[6] = paese.InnerText;
             azienda_lbl.Text = azienda.InnerText;
             ind_lbl.Text = indirizzo.InnerText;
+            paese_lbl.Text = paese.InnerText;
             cap_lbl.Text = cap.InnerText;
             prov_lbl.Text = prov.InnerText;
             piva_lbl.Text = "P.Iva: "+piva.InnerText;
@@ -622,6 +622,7 @@ namespace Workmate
             avv_mostrati = false;
             azienda_txt.Text = impostazioni[0];
             indirizzo_txt.Text = impostazioni[1];
+            paese_txt.Text = impostazioni[6];
             cap_txt.Text=impostazioni[2];
             prov_txt.Text = impostazioni[3];
             cf_txt.Text =impostazioni[4];
@@ -916,6 +917,7 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare l'ordine");
                     }
                     carica_ordini();
+                    carica_codici();
                 }
             }
         }
@@ -1075,7 +1077,6 @@ namespace Workmate
             foreach (DataGridViewCell cell in ordini_data.SelectedCells)
             {
                 ordini[i]=ordini_data.Rows[cell.RowIndex].Cells[0].Value.ToString();
-                MessageBox.Show(ordini[i]);
                 i--;
             }
             Crea_Bolla Bolla = new Crea_Bolla();
@@ -1092,12 +1093,14 @@ namespace Workmate
             XmlNode bollaid = xml_doc.DocumentElement.SelectSingleNode("/workmate/bollaid");
             XmlNode azienda = xml_doc.DocumentElement.SelectSingleNode("/workmate/azienda");
             XmlNode indirizzo = xml_doc.DocumentElement.SelectSingleNode("/workmate/indirizzo");
+            XmlNode paese = xml_doc.DocumentElement.SelectSingleNode("/workmate/paese");
             XmlNode cap = xml_doc.DocumentElement.SelectSingleNode("/workmate/cap");
             XmlNode prov = xml_doc.DocumentElement.SelectSingleNode("/workmate/prov");
             XmlNode piva = xml_doc.DocumentElement.SelectSingleNode("/workmate/piva");
             XmlNode codicefiscale = xml_doc.DocumentElement.SelectSingleNode("/workmate/codicefiscale");
             azienda.InnerText = azienda_txt.Text;
             indirizzo.InnerText = indirizzo_txt.Text;
+            paese.InnerText = paese_txt.Text;
             cap.InnerText = cap_txt.Text;
             prov.InnerText = prov_txt.Text;
             piva.InnerText = piva_txt.Text;
@@ -1155,15 +1158,15 @@ namespace Workmate
             DirectoryInfo directoryInfo = new DirectoryInfo(var.db + @"ordini\");
             List<FileInfo> files = directoryInfo.GetFiles("*.xml").Where(a => a.CreationTime >= DateTime.Today).ToList();
             nordini_lbl.Text = files.Count.ToString();
-            totfat_lbl.Text = "0.00 €";
-            float totfatturatofiltrato = 0;
+            totfat_lbl.Text = "0,00 €";
+            decimal totfatturatofiltrato = 0;
             for(int i = 0; i < files.Count; i++)
             {
                 XmlDocument xml_docperfatturato = new XmlDocument();
                 xml_docperfatturato.Load(files.ElementAt(i).ToString());
                 XmlNode prezzo = xml_docperfatturato.DocumentElement.SelectSingleNode("/ordine/prezzo");
-                totfatturatofiltrato += float.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
-                totfat_lbl.Text = totfatturatofiltrato.ToString("0.00") + " €";
+                totfatturatofiltrato += decimal.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
+                totfat_lbl.Text = totfatturatofiltrato.ToString() + " €";
             }
         }
 
@@ -1183,15 +1186,15 @@ namespace Workmate
             DirectoryInfo directoryInfo = new DirectoryInfo(var.db + @"ordini\");
             List<FileInfo> files = directoryInfo.GetFiles("*.xml").Where(a => a.CreationTime >= DateTime.Today.AddDays(-7)).ToList();
             nordini_lbl.Text = files.Count.ToString();
-            totfat_lbl.Text = "0.00 €";
-            float totfatturatofiltrato = 0;
+            totfat_lbl.Text = "0,00 €";
+            decimal totfatturatofiltrato = 0;
             for (int i = 0; i < files.Count; i++)
             {
                 XmlDocument xml_docperfatturato = new XmlDocument();
                 xml_docperfatturato.Load(files.ElementAt(i).ToString());
                 XmlNode prezzo = xml_docperfatturato.DocumentElement.SelectSingleNode("/ordine/prezzo");
-                totfatturatofiltrato += float.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
-                totfat_lbl.Text = totfatturatofiltrato.ToString("0.00") + " €";
+                totfatturatofiltrato += decimal.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
+                totfat_lbl.Text = totfatturatofiltrato.ToString() + " €";
             }
         }
 
@@ -1211,15 +1214,15 @@ namespace Workmate
             DirectoryInfo directoryInfo = new DirectoryInfo(var.db + @"ordini\");
             List<FileInfo> files = directoryInfo.GetFiles("*.xml").Where(a => a.CreationTime >= DateTime.Today.AddDays(-30)).ToList();
             nordini_lbl.Text = files.Count.ToString();
-            totfat_lbl.Text = "0.00 €";
-            float totfatturatofiltrato = 0;
+            totfat_lbl.Text = "0,00 €";
+            decimal totfatturatofiltrato = 0;
             for (int i = 0; i < files.Count; i++)
             {
                 XmlDocument xml_docperfatturato = new XmlDocument();
                 xml_docperfatturato.Load(files.ElementAt(i).ToString());
                 XmlNode prezzo = xml_docperfatturato.DocumentElement.SelectSingleNode("/ordine/prezzo");
-                totfatturatofiltrato += float.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
-                totfat_lbl.Text = totfatturatofiltrato.ToString("0.00") + " €";
+                totfatturatofiltrato += decimal.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
+                totfat_lbl.Text = totfatturatofiltrato.ToString() + " €";
             }
         }
 
@@ -1239,15 +1242,15 @@ namespace Workmate
             DirectoryInfo directoryInfo = new DirectoryInfo(var.db + @"ordini\");
             List<FileInfo> files = directoryInfo.GetFiles("*.xml").Where(a => a.CreationTime >= DateTime.Today.AddDays(-DateTime.Today.Day)).ToList();
             nordini_lbl.Text = files.Count.ToString();
-            totfat_lbl.Text = "0.00 €";
-            float totfatturatofiltrato = 0;
+            totfat_lbl.Text = "0,00 €";
+            decimal totfatturatofiltrato = 0;
             for (int i = 0; i < files.Count; i++)
             {
                 XmlDocument xml_docperfatturato = new XmlDocument();
                 xml_docperfatturato.Load(files.ElementAt(i).ToString());
                 XmlNode prezzo = xml_docperfatturato.DocumentElement.SelectSingleNode("/ordine/prezzo");
-                totfatturatofiltrato += float.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
-                totfat_lbl.Text = totfatturatofiltrato.ToString("0.00") + " €";
+                totfatturatofiltrato += decimal.Parse(prezzo.InnerText, CultureInfo.InvariantCulture.NumberFormat);
+                totfat_lbl.Text = totfatturatofiltrato.ToString() + " €";
             }
         }
 
@@ -1265,7 +1268,10 @@ namespace Workmate
                 }
             }
             nordini_lbl.Text = var.cno().ToString();
-            totfat_lbl.Text = totalefatturato.ToString("0.00") + " €";
+            if (totalefatturato == 0)
+                totfat_lbl.Text = "0,00 €";
+            else
+                totfat_lbl.Text = totalefatturato.ToString() + " €";
         }
 
         private void generaBollaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1281,6 +1287,7 @@ namespace Workmate
             if(cambia_percorsodb.DialogResult == DialogResult.Yes)
             {
                 var.db = Properties.Settings.Default.percorso_db;
+                totfat_lbl.Text = totalefatturato.ToString("0,00") + " €";
                 mostra_avviso = true;
                 carica_codici();
                 carica_prodotti();
@@ -1290,6 +1297,7 @@ namespace Workmate
                 carica_impostazioni();
                 azienda_txt.Text = azienda_lbl.Text;
                 indirizzo_txt.Text=ind_lbl.Text;
+                paese_txt.Text = paese_lbl.Text;
                 prov_txt.Text = prov_lbl.Text;
                 cap_txt.Text = cap_lbl.Text;
                 piva_txt.Text = piva_lbl.Text.Remove(0,7);

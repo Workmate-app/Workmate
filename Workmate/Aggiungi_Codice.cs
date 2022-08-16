@@ -23,7 +23,7 @@ namespace Workmate
         string OldCod = "";
         private void add_btn_Click(object sender, EventArgs e)
         {
-            string root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Magazzino\\";
+            string root = var.db + "Magazzino\\";
             #region Controlli
             if (cod_txt.Text.Length == 0)
             {

@@ -90,7 +90,7 @@ namespace Workmate
             {
                 extfoto = Path.GetExtension(prodimg.Tag.ToString());
             }
-            string root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Prodotti\\";
+            string root = var.db + "Prodotti\\";
             string percorsofoto = root + "Foto\\" + prodotto_txt.Text + extfoto;
             if (prodimg.Tag == null)
                 percorsofoto = "";
@@ -144,7 +144,7 @@ namespace Workmate
                     try
                     {
                         XmlDocument xml_doc = new XmlDocument();
-                        xml_doc.Load(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Magazzino\\" + textbox.Text + ".xml");
+                        xml_doc.Load(var.db + "Magazzino\\" + textbox.Text + ".xml");
                     }
                     catch
                     {

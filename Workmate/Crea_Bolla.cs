@@ -23,7 +23,7 @@ namespace Workmate
         {
             cli_dlg.InitialDirectory = var.db + @"Clienti\";
             XmlDocument xml_doc = new XmlDocument();
-            xml_doc.Load(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\workmate.xml");
+            xml_doc.Load(var.db + "workmate.xml");
             XmlNode n = xml_doc.DocumentElement.SelectSingleNode("/workmate/bollaid");
             nbolla_txt.Text = Convert.ToInt32(n.InnerText).ToString();
             data_txt.Text = String.Format("{0:dd/MM/yyyy}", DateTime.Now);
@@ -40,8 +40,8 @@ namespace Workmate
                 XmlNode piva = xml_doc.DocumentElement.SelectSingleNode("/cliente/piva");
                 XmlNode cf = xml_doc.DocumentElement.SelectSingleNode("/cliente/codice_fiscale");
                 XmlNode indirizzo = xml_doc.DocumentElement.SelectSingleNode("/cliente/indirizzo");
-                XmlNode cap = xml_doc.DocumentElement.SelectSingleNode("/cliente/cap");
                 XmlNode paese = xml_doc.DocumentElement.SelectSingleNode("/cliente/paese");
+                XmlNode cap = xml_doc.DocumentElement.SelectSingleNode("/cliente/cap");
                 XmlNode prov = xml_doc.DocumentElement.SelectSingleNode("/cliente/prov");
 
                 if (destinazione == false)
@@ -87,6 +87,7 @@ namespace Workmate
             XmlNode n = xml_doc.DocumentElement.SelectSingleNode("/workmate/bollaid");
             XmlNode azienda = xml_doc.DocumentElement.SelectSingleNode("/workmate/azienda");
             XmlNode indirizzo = xml_doc.DocumentElement.SelectSingleNode("/workmate/indirizzo");
+            XmlNode paese = xml_doc.DocumentElement.SelectSingleNode("/workmate/paese");
             XmlNode cap = xml_doc.DocumentElement.SelectSingleNode("/workmate/cap");
             XmlNode prov = xml_doc.DocumentElement.SelectSingleNode("/workmate/prov");
             XmlNode piva = xml_doc.DocumentElement.SelectSingleNode("/workmate/piva");
@@ -119,7 +120,7 @@ namespace Workmate
             result += "                    <div class=\"position-relative\" style=\"text-align: right;\">" + Environment.NewLine;
             result += "                        <b>" + azienda.InnerText + "</b>" + Environment.NewLine;
             result += "                        <p>" + indirizzo.InnerText + "</p>" + Environment.NewLine;
-            result += "                        <p>" + cap.InnerText + " " + prov.InnerText + "</p>" + Environment.NewLine;
+            result += "                        <p>" + paese.InnerText + " " + cap.InnerText + " " + prov.InnerText + "</p>" + Environment.NewLine;
             result += "                        <p>P.Iva " + piva.InnerText + "</p>" + Environment.NewLine;
             result += "                        <p>Codice fiscale " + codicefiscale.InnerText + "</p>" + Environment.NewLine;
             result += "                        <p>Documento di trasporto N. <span>" + nbolla_txt.Text +"</span></p>" + Environment.NewLine;

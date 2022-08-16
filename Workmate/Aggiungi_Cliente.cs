@@ -32,7 +32,7 @@ namespace Workmate
         string oldcli = "";
         private void add_btn_Click(object sender, EventArgs e)
         {
-            string root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Workmate\\Clienti\\";
+            string root = var.db + "Clienti\\";
 
             XDocument doc_xml = new XDocument(new XElement("cliente",
                 new XElement("cliente", cli_txt.Text),
