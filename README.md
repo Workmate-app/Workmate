@@ -30,7 +30,7 @@ matteopiffari@main:~$ git clone https://github.com/matteopiffari/Workmate
 
 ## 🎈 Uso <a name="usage"></a>
 
-Apri il file Workmate.exe nella directory /Workmate/bin/Debug/net6.0-windows/
+Apri il file Workmate.exe nella directory /Workmate/bin/Release/net6.0-windows/
 
 ## ⛏️ Fatto con <a name = "tech_stack"></a>
 
