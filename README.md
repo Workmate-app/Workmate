@@ -25,7 +25,7 @@
 Per scaricare il codice sorgente basta scrivere questo in una Git bash:
 
 ```console
-matteopiffari@main:~$ git clone https://github.com/matteopiffari/Workmate
+matteopiffari@main:~$ git clone https://github.com/Workmate-app/Workmate
 ```
 
 ## 🎈 Uso <a name="usage"></a>
