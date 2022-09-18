@@ -46,5 +46,11 @@ public class var
         return clienti_trovati;
     }
 
+    public static string[] carica_acquisti()
+    {
+        string[] clienti_trovati = Directory.GetFiles(db + @"Acquisti\", "*.xml");
+        return clienti_trovati;
+    }
+
     public static bool edited_prod = false;
 }

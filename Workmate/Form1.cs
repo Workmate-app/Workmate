@@ -5,6 +5,7 @@ using System.IO.Compression;
 using System.Xml;
 using System.Xml.Linq;
 using System.Globalization;
+using System.Threading;
 
 namespace Workmate
 {
@@ -14,6 +15,7 @@ namespace Workmate
         private bool magazzino = false;
         private bool prod = false;
         private bool clienti = false;
+        private bool acquisti=false;
         bool mostra_avviso = true;
         bool avv_mostrati = false;
         public decimal totalefatturato;
@@ -21,7 +23,8 @@ namespace Workmate
         bool prodotticaricati = false;
         bool codicicaricati = false;
         bool clienticaricati = false;
-        string[] impostazioni = new string[7];
+        bool acquisticaricati= false;
+        string[] impostazioni = new string[8];
         private string btn;
         public Form1()
         {
@@ -34,19 +37,27 @@ namespace Workmate
             carica_codici();
             carica_ordini();
             carica_clienti();
+            carica_acquisti();
             carica_impostazioni();
             StileDataGrid();
             ordinicaricati = true;
             clienticaricati = true;
+            acquisticaricati = true;
             bar_pnl.Visible = false;
             ordini_data.Visible = false;
             magazzino_data.Visible = false;
             settings_pnl.Visible = false;
             prod_data.Visible = false;
             clienti_data.Visible = false;
+            acquisti_data.Visible = false;
             desktop_pnl.Visible = true;
             sempre_btn.BackColor = Color.FromArgb(29, 133, 181);
             sempre_btn.ForeColor = Color.White;
+        }
+
+        public static void CallToChildThread()
+        {
+            MessageBox.Show("Thread");
         }
         private void closeform(object sender, FormClosingEventArgs e)
         {
@@ -67,6 +78,12 @@ namespace Workmate
                 carica_clienti();
                 var.ended = false;
                 clienticaricati = true;
+            }
+            else if(acquisti== true && var.ended == true)
+            {
+                carica_acquisti();
+                var.ended = false;
+                acquisticaricati = true;
             }
             else if (var.ended == true)
             {
@@ -143,6 +160,10 @@ namespace Workmate
             {
                 Directory.CreateDirectory(var.db + @"\Clienti");
             }
+            if (!Directory.Exists(var.db + @"\Acquisti"))
+            {
+                Directory.CreateDirectory(var.db + @"\Acquisti");
+            }
             if (!File.Exists(var.db + @"\workmate.xml"))
             {
                 XDocument doc_xml = new XDocument(new XElement("workmate",
@@ -153,7 +174,8 @@ namespace Workmate
                     new XElement("cap", "CAP"),
                     new XElement("prov", "Provincia"),
                     new XElement("piva", ""),
-                    new XElement("codicefiscale", "")
+                    new XElement("codicefiscale", ""),
+                    new XElement("clientserver", "false")
                     ));
                 doc_xml.Save(var.db + @"\workmate.xml");
             }
@@ -431,6 +453,43 @@ namespace Workmate
             }
         }
 
+        private void carica_acquisti(string testoc = "", string colonnac = "")
+        {
+            acquisti_data.Rows.Clear();
+            string[] codici = var.carica_acquisti();
+            for (int i = 0; i < codici.Length; i++)
+            {
+                XmlDocument xml_doc = new XmlDocument();
+                xml_doc.Load(codici[i]);
+                XmlNode codice = xml_doc.DocumentElement.SelectSingleNode("/acquisto/cod");
+                XmlNode prezzo = xml_doc.DocumentElement.SelectSingleNode("/acquisto/prezzo");
+                XmlNode quantita = xml_doc.DocumentElement.SelectSingleNode("/acquisto/quantità");
+                XmlNode data_acquisto = xml_doc.DocumentElement.SelectSingleNode("/acquisto/data_acquisto");
+                XmlNode descrizione = xml_doc.DocumentElement.SelectSingleNode("/acquisto/descrizione");
+                XmlNode foto = xml_doc.DocumentElement.SelectSingleNode("/acquisto/foto");
+                XmlNode arrivato = xml_doc.DocumentElement.SelectSingleNode("/acquisto/arrivato");
+                XmlNode timestamp = xml_doc.DocumentElement.SelectSingleNode("/acquisto/timestamp");
+                string[] riga = { codice.InnerText, prezzo.InnerText, quantita.InnerText, data_acquisto.InnerText, descrizione.InnerText, foto.InnerText, arrivato.InnerText, timestamp.InnerText};
+                string contenuto = "";
+                switch (colonnac)
+                {
+                    case "Codice":
+                        contenuto = codice.InnerText;
+                        break;
+                    case "Data acquisto":
+                        contenuto = data_acquisto.InnerText;
+                        break;
+                    default:
+                        contenuto = "";
+                        break;
+                }
+                contenuto = contenuto.ToLower();
+                testoc = testoc.ToLower();
+                if (contenuto.Contains(testoc))
+                    acquisti_data.Rows.Add(riga);
+            }
+        }
+
         private void carica_impostazioni()
         {
             XmlDocument xml_doc = new XmlDocument();
@@ -443,6 +502,7 @@ namespace Workmate
             XmlNode prov = xml_doc.DocumentElement.SelectSingleNode("/workmate/prov");
             XmlNode piva = xml_doc.DocumentElement.SelectSingleNode("/workmate/piva");
             XmlNode codicefiscale = xml_doc.DocumentElement.SelectSingleNode("/workmate/codicefiscale");
+            XmlNode clientserver = xml_doc.DocumentElement.SelectSingleNode("/workmate/clientserver");
             impostazioni[0] = azienda.InnerText;
             impostazioni[1] = indirizzo.InnerText;
             impostazioni[2] = cap.InnerText;
@@ -450,6 +510,7 @@ namespace Workmate
             impostazioni[4] = piva.InnerText;
             impostazioni[5] = codicefiscale.InnerText;
             impostazioni[6] = paese.InnerText;
+            impostazioni[7] = clientserver.InnerText;
             azienda_lbl.Text = azienda.InnerText;
             ind_lbl.Text = indirizzo.InnerText;
             paese_lbl.Text = paese.InnerText;
@@ -457,6 +518,12 @@ namespace Workmate
             prov_lbl.Text = prov.InnerText;
             piva_lbl.Text = "P.Iva: "+piva.InnerText;
             cf_lbl.Text = "Cod. Fiscale: "+codicefiscale.InnerText;
+            if (clientserver.InnerText == "true")
+            {
+                ThreadStart childref = new ThreadStart(CallToChildThread);
+                Thread childThread = new Thread(childref);
+                childThread.Start();
+            }
         }
         private void magazzino_btn_Click(object sender, EventArgs e)
         {
@@ -477,9 +544,11 @@ namespace Workmate
             magazzino_data.Visible = true;
             prod_data.Visible = false;
             clienti_data.Visible = false;
+            acquisti_data.Visible = false;
             magazzino = true;
             prod = false;
             clienti = false;
+            acquisti = false;
             comboBox1.Items.Clear();
             comboBox1.Items.Add("Codice");
             comboBox1.Items.Add("Prezzo");
@@ -514,9 +583,11 @@ namespace Workmate
             magazzino_data.Visible = false;
             prod_data.Visible = false;
             clienti_data.Visible = false;
+            acquisti_data.Visible = false;
             magazzino = false;
             prod = false;
             clienti= false;
+            acquisti = false;
             avv_mostrati = false;
             comboBox1.Items.Clear();
             comboBox1.Items.Add("Ordine");
@@ -546,6 +617,7 @@ namespace Workmate
             magazzino_data.Visible = false;
             ordini_data.Visible = false;
             clienti_data.Visible = false;
+            acquisti_data.Visible = false;
             settings_pnl.Visible = false;
             desktop_pnl.Visible = true;
             bar_pnl.Visible = true;
@@ -553,6 +625,7 @@ namespace Workmate
             magazzino = false;
             prod = true;
             clienti = false;
+            acquisti = false;
             avv_mostrati = false;
             comboBox1.Items.Clear();
             comboBox1.Items.Add("Prodotto");
@@ -574,6 +647,7 @@ namespace Workmate
             magazzino_data.Visible = false;
             prod_data.Visible = false;
             clienti_data.Visible = false;
+            acquisti_data.Visible = false;
             avv_mostrati = false;
             nordini_pnl.Visible = true;
             totfat_pnl.Visible = true;
@@ -586,6 +660,7 @@ namespace Workmate
             clienti = false;
             magazzino = false;
             prod=false;
+            acquisti = false;
         }
         private void clienti_btn_Click(object sender, EventArgs e)
         {
@@ -604,11 +679,13 @@ namespace Workmate
             magazzino_data.Visible = false;
             ordini_data.Visible = false;
             prod_data.Visible = false;
+            acquisti_data.Visible = false;
             settings_pnl.Visible = false;
             bar_pnl.Visible = true;
             clienti = true;
             magazzino = false;
             prod = false;
+            acquisti = false;
             comboBox1.Items.Clear();
             comboBox1.Items.Add("Cliente");
             comboBox1.Items.Add("Piva");
@@ -634,6 +711,18 @@ namespace Workmate
             prov_txt.Text = impostazioni[3];
             cf_txt.Text =impostazioni[4];
             piva_txt.Text = impostazioni[5];
+            if (impostazioni[7] == "true")
+            {
+                client_server_ckb.Checked = true;
+                ip_text.Visible = true;
+                label10.Visible = true;
+            }
+            else
+            {
+                client_server_ckb.Checked = false;
+                ip_text.Visible = false;
+                label10.Visible = false;
+            }
             if (Properties.Settings.Default.apri_all_avvio == true)
                 bootstart_ckb.Checked = true;
             else
@@ -663,6 +752,12 @@ namespace Workmate
                 Aggiungi_Cliente Nuovo_Cliente = new Aggiungi_Cliente();
                 Nuovo_Cliente.FormClosing += new FormClosingEventHandler(closeform);
                 Nuovo_Cliente.ShowDialog();
+            }
+            if(acquisti == true)
+            {
+                Aggiungi_Acquisto Nuovo_Acquisto = new Aggiungi_Acquisto();
+                Nuovo_Acquisto.FormClosing += new FormClosingEventHandler(closeform);
+                Nuovo_Acquisto.ShowDialog();
             }
             else
             {
@@ -764,6 +859,28 @@ namespace Workmate
                 else
                 {
                     MessageBox.Show("Selezionare prima un cliente!");
+                }
+            }
+            else if (acquisti == true)
+            {
+                if (acquisti_data.SelectedCells.Count > 0)
+                {
+                    Aggiungi_Acquisto Nuovo_Acquisto = new Aggiungi_Acquisto();
+                    Nuovo_Acquisto.FormClosing += new FormClosingEventHandler(closeform);
+                    Nuovo_Acquisto.varCod = acquisti_data.Rows[acquisti_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                    Nuovo_Acquisto.varPrz = acquisti_data.Rows[acquisti_data.CurrentCell.RowIndex].Cells[1].Value.ToString();
+                    Nuovo_Acquisto.varQt = acquisti_data.Rows[acquisti_data.CurrentCell.RowIndex].Cells[2].Value.ToString();
+                    Nuovo_Acquisto.varData = acquisti_data.Rows[acquisti_data.CurrentCell.RowIndex].Cells[3].Value.ToString();
+                    Nuovo_Acquisto.varDes = acquisti_data.Rows[acquisti_data.CurrentCell.RowIndex].Cells[4].Value.ToString();
+                    Nuovo_Acquisto.varFoto = acquisti_data.Rows[acquisti_data.CurrentCell.RowIndex].Cells[5].Value.ToString();
+                    Nuovo_Acquisto.varArrivato = acquisti_data.Rows[acquisti_data.CurrentCell.RowIndex].Cells[6].Value.ToString();
+                    Nuovo_Acquisto.varTimestamp = acquisti_data.Rows[acquisti_data.CurrentCell.RowIndex ].Cells[7].Value.ToString();
+                    Nuovo_Acquisto.Modifica = 1;
+                    Nuovo_Acquisto.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Selezionare prima un acquisto!");
                 }
             }
             else
@@ -883,6 +1000,23 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare il cliente");
                     }
                     carica_clienti();
+                }
+            }else if (acquisti == true)
+            {
+                string acquisto = acquisti_data.Rows[acquisti_data.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                string timestamp = acquisti_data.Rows[acquisti_data.CurrentCell.RowIndex].Cells[7].Value.ToString();
+                DialogResult Scelta = MessageBox.Show("Sei sicuro di voler eliminare " + acquisto, "Eliminazione acquisto", MessageBoxButtons.YesNo);
+                if (Scelta == DialogResult.Yes)
+                {
+                    try
+                    {
+                        File.Delete(var.db + @"Acquisti\" + acquisto + "_" + timestamp + ".xml");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, " Impossibile eliminare l'acquisto");
+                    }
+                    carica_acquisti();
                 }
             }
             else
@@ -1104,6 +1238,7 @@ namespace Workmate
             XmlNode prov = xml_doc.DocumentElement.SelectSingleNode("/workmate/prov");
             XmlNode piva = xml_doc.DocumentElement.SelectSingleNode("/workmate/piva");
             XmlNode codicefiscale = xml_doc.DocumentElement.SelectSingleNode("/workmate/codicefiscale");
+            XmlNode clientserver = xml_doc.DocumentElement.SelectSingleNode("/workmate/clientserver");
             azienda.InnerText = azienda_txt.Text;
             indirizzo.InnerText = indirizzo_txt.Text;
             paese.InnerText = paese_txt.Text;
@@ -1111,6 +1246,10 @@ namespace Workmate
             prov.InnerText = prov_txt.Text;
             piva.InnerText = piva_txt.Text;
             codicefiscale.InnerText = cf_txt.Text;
+            if (client_server_ckb.Checked)
+                clientserver.InnerText = "true";
+            else
+                clientserver.InnerText = "false";
             xml_doc.Save(var.db + "workmate.xml");
             if (bootstart_ckb.Checked)
             {
@@ -1324,6 +1463,52 @@ namespace Workmate
                 cap_txt.Text = cap_lbl.Text;
                 piva_txt.Text = piva_lbl.Text.Remove(0,7);
                 cf_txt.Text = cf_lbl.Text.Remove(0,14);
+            }
+        }
+
+        private void acquisti_btn_Click(object sender, EventArgs e)
+        {
+            acquisti_data.Visible = true;
+            generaBollaToolStripMenuItem.Visible = false;
+            nordini_pnl.Visible = false;
+            totfat_pnl.Visible = false;
+            totfat_pic.Visible = false;
+            totord_pic.Visible = false;
+            logo_pic.Visible = false;
+            qtreminder_pnl.Visible = false;
+            btnsfilter_pnl.Visible = false;
+            info_pnl.Visible = false;
+            settings_pnl.Visible = false;
+            desktop_pnl.Visible = true;
+            bar_pnl.Visible = true;
+            bolla_btn.Visible = false;
+            ordini_data.Visible = false;
+            magazzino_data.Visible = false;
+            prod_data.Visible = false;
+            clienti_data.Visible = false;
+            magazzino = false;
+            prod = false;
+            clienti = false;
+            acquisti = true;
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add("Codice");
+            comboBox1.Items.Add("Data acquisto");
+            comboBox1.SelectedIndex = 0;
+            if(acquisticaricati==false)
+                carica_acquisti();
+        }
+
+        private void client_server_ckb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (client_server_ckb.Checked == true)
+            {
+                ip_text.Visible = true;
+                label10.Visible = true;
+            }
+            else
+            {
+                ip_text.Visible = false;
+                label10.Visible = false;
             }
         }
     }
