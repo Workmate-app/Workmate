@@ -13,6 +13,15 @@
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App"
         ]
+      },
+      "SuperSimpleTcp/3.0.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/SuperSimpleTcp.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/SuperSimpleTcp.dll": {}
+        }
       }
     }
   },
@@ -33,32 +42,54 @@
         "lib/net5.0-windows7.0/FontAwesome.Sharp.dll",
         "lib/netcoreapp3.1/FontAwesome.Sharp.dll"
       ]
+    },
+    "SuperSimpleTcp/3.0.0.1": {
+      "sha512": "wiiFTfkzZjNlWlpyFnRshp+wvGWm5wVFwXGh+0UJ2+e9qstAVbX9OX/4UGSANU+ZbyDsxJ3ikt6WvMxdovpMjA==",
+      "type": "package",
+      "path": "supersimpletcp/3.0.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "icon.png",
+        "lib/net461/SimpleTcp.xml",
+        "lib/net461/SuperSimpleTcp.dll",
+        "lib/net48/SuperSimpleTcp.dll",
+        "lib/net5.0/SimpleTcp.xml",
+        "lib/net5.0/SuperSimpleTcp.dll",
+        "lib/net6.0/SimpleTcp.xml",
+        "lib/net6.0/SuperSimpleTcp.dll",
+        "lib/netcoreapp3.1/SimpleTcp.xml",
+        "lib/netcoreapp3.1/SuperSimpleTcp.dll",
+        "lib/netstandard2.0/SimpleTcp.xml",
+        "lib/netstandard2.0/SuperSimpleTcp.dll",
+        "lib/netstandard2.1/SimpleTcp.xml",
+        "lib/netstandard2.1/SuperSimpleTcp.dll",
+        "supersimpletcp.3.0.0.1.nupkg.sha512",
+        "supersimpletcp.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
-      "FontAwesome.Sharp >= 5.15.4"
+      "FontAwesome.Sharp >= 5.15.4",
+      "SuperSimpleTcp >= 3.0.0.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Matteo Piffari\\.nuget\\packages\\": {},
-    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\matti\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\Workmate.csproj",
+      "projectUniqueName": "C:\\Users\\matti\\Desktop\\Github\\Workmate\\Workmate\\Workmate.csproj",
       "projectName": "Workmate",
-      "projectPath": "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\Workmate.csproj",
-      "packagesPath": "C:\\Users\\Matteo Piffari\\.nuget\\packages\\",
-      "outputPath": "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\obj\\",
+      "projectPath": "C:\\Users\\matti\\Desktop\\Github\\Workmate\\Workmate\\Workmate.csproj",
+      "packagesPath": "C:\\Users\\matti\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\matti\\Desktop\\Github\\Workmate\\Workmate\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Matteo Piffari\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\matti\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -87,6 +118,10 @@
           "FontAwesome.Sharp": {
             "target": "Package",
             "version": "[5.15.4, )"
+          },
+          "SuperSimpleTcp": {
+            "target": "Package",
+            "version": "[3.0.0.1, )"
           }
         },
         "imports": [

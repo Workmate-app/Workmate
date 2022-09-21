@@ -6,6 +6,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Globalization;
 using System.Threading;
+using SuperSimpleTcp;
 
 namespace Workmate
 {
@@ -24,11 +25,23 @@ namespace Workmate
         bool codicicaricati = false;
         bool clienticaricati = false;
         bool acquisticaricati= false;
-        string[] impostazioni = new string[8];
+        string[] impostazioni = new string[9];
         private string btn;
+        public static string ipserver;
         public Form1()
         {
             InitializeComponent();
+            XmlDocument xml_doc = new XmlDocument();
+            xml_doc.Load(var.db + "workmate.xml");
+            XmlNode clientserver = xml_doc.DocumentElement.SelectSingleNode("/workmate/clientserver");
+            XmlNode ip = xml_doc.DocumentElement.SelectSingleNode("/workmate/ip");
+            ipserver = ip.InnerText;
+            if (clientserver.InnerText == "true")
+            {
+                ThreadStart childref = new ThreadStart(CallToChildThread);
+                Thread childThread = new Thread(childref);
+                childThread.Start();
+            }
             var.check_db();
             Checkdirs();
             carica_foto_home();
@@ -58,7 +71,42 @@ namespace Workmate
         public static void CallToChildThread()
         {
             MessageBox.Show("Thread");
+            SimpleTcpClient client = new SimpleTcpClient(ipserver+":16460");
+
+            client.Events.Connected += Connected;
+            client.Events.Disconnected += Disconnected;
+            client.Events.DataReceived += DataReceived;
+
+            try
+            { 
+                client.ConnectWithRetries(10000);
+            }
+            catch
+            {
+                MessageBox.Show("Impossibile connettersi al server!");
+            }
+            while (true)
+            {
+
+            }
+
         }
+
+        private static void Connected(object? sender, ConnectionEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void Disconnected(object? sender, ConnectionEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void DataReceived(object? sender, DataReceivedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         private void closeform(object sender, FormClosingEventArgs e)
         {
             if (magazzino == true && var.ended == true)
@@ -175,7 +223,8 @@ namespace Workmate
                     new XElement("prov", "Provincia"),
                     new XElement("piva", ""),
                     new XElement("codicefiscale", ""),
-                    new XElement("clientserver", "false")
+                    new XElement("clientserver", "false"),
+                    new XElement("ip", "")
                     ));
                 doc_xml.Save(var.db + @"\workmate.xml");
             }
@@ -503,6 +552,7 @@ namespace Workmate
             XmlNode piva = xml_doc.DocumentElement.SelectSingleNode("/workmate/piva");
             XmlNode codicefiscale = xml_doc.DocumentElement.SelectSingleNode("/workmate/codicefiscale");
             XmlNode clientserver = xml_doc.DocumentElement.SelectSingleNode("/workmate/clientserver");
+            XmlNode ip = xml_doc.DocumentElement.SelectSingleNode("/workmate/ip");
             impostazioni[0] = azienda.InnerText;
             impostazioni[1] = indirizzo.InnerText;
             impostazioni[2] = cap.InnerText;
@@ -511,6 +561,7 @@ namespace Workmate
             impostazioni[5] = codicefiscale.InnerText;
             impostazioni[6] = paese.InnerText;
             impostazioni[7] = clientserver.InnerText;
+            impostazioni[8] = ip.InnerText;
             azienda_lbl.Text = azienda.InnerText;
             ind_lbl.Text = indirizzo.InnerText;
             paese_lbl.Text = paese.InnerText;
@@ -518,12 +569,6 @@ namespace Workmate
             prov_lbl.Text = prov.InnerText;
             piva_lbl.Text = "P.Iva: "+piva.InnerText;
             cf_lbl.Text = "Cod. Fiscale: "+codicefiscale.InnerText;
-            if (clientserver.InnerText == "true")
-            {
-                ThreadStart childref = new ThreadStart(CallToChildThread);
-                Thread childThread = new Thread(childref);
-                childThread.Start();
-            }
         }
         private void magazzino_btn_Click(object sender, EventArgs e)
         {
@@ -711,6 +756,7 @@ namespace Workmate
             prov_txt.Text = impostazioni[3];
             cf_txt.Text =impostazioni[4];
             piva_txt.Text = impostazioni[5];
+            ip_text.Text = impostazioni[8];
             if (impostazioni[7] == "true")
             {
                 client_server_ckb.Checked = true;
@@ -1239,6 +1285,7 @@ namespace Workmate
             XmlNode piva = xml_doc.DocumentElement.SelectSingleNode("/workmate/piva");
             XmlNode codicefiscale = xml_doc.DocumentElement.SelectSingleNode("/workmate/codicefiscale");
             XmlNode clientserver = xml_doc.DocumentElement.SelectSingleNode("/workmate/clientserver");
+            XmlNode ip = xml_doc.DocumentElement.SelectSingleNode("/workmate/ip");
             azienda.InnerText = azienda_txt.Text;
             indirizzo.InnerText = indirizzo_txt.Text;
             paese.InnerText = paese_txt.Text;
@@ -1246,6 +1293,7 @@ namespace Workmate
             prov.InnerText = prov_txt.Text;
             piva.InnerText = piva_txt.Text;
             codicefiscale.InnerText = cf_txt.Text;
+            ip.InnerText = ip_text.Text;
             if (client_server_ckb.Checked)
                 clientserver.InnerText = "true";
             else

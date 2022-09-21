@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v6.0": {
       "Workmate/1.0.0": {
         "dependencies": {
-          "FontAwesome.Sharp": "5.15.4"
+          "FontAwesome.Sharp": "5.15.4",
+          "SuperSimpleTcp": "3.0.0.1"
         },
         "runtime": {
           "Workmate.dll": {}
@@ -19,6 +20,14 @@
           "lib/net5.0-windows7.0/FontAwesome.Sharp.dll": {
             "assemblyVersion": "5.15.4.0",
             "fileVersion": "5.15.4.0"
+          }
+        }
+      },
+      "SuperSimpleTcp/3.0.0.1": {
+        "runtime": {
+          "lib/net6.0/SuperSimpleTcp.dll": {
+            "assemblyVersion": "3.0.0.1",
+            "fileVersion": "3.0.0.1"
           }
         }
       }
@@ -36,6 +45,13 @@
       "sha512": "sha512-IqJe1IQas6tSVXMNHTWA/NJeP7azyxDTk6DCB+NMXOOED2F07IYI9nvfB1HP83r4yh5cntZoTdwSpIraA5XoXw==",
       "path": "fontawesome.sharp/5.15.4",
       "hashPath": "fontawesome.sharp.5.15.4.nupkg.sha512"
+    },
+    "SuperSimpleTcp/3.0.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wiiFTfkzZjNlWlpyFnRshp+wvGWm5wVFwXGh+0UJ2+e9qstAVbX9OX/4UGSANU+ZbyDsxJ3ikt6WvMxdovpMjA==",
+      "path": "supersimpletcp/3.0.0.1",
+      "hashPath": "supersimpletcp.3.0.0.1.nupkg.sha512"
     }
   }
 }

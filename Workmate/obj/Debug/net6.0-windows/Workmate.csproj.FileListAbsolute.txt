@@ -75,3 +75,32 @@ D:\programmazione\School\Concorso Sorint 2022\Workmate\Workmate\obj\Debug\net6.0
 D:\programmazione\School\Concorso Sorint 2022\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.Crea_Bolla.resources
 D:\programmazione\School\Concorso Sorint 2022\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.CustomDialog.resources
 D:\programmazione\School\Concorso Sorint 2022\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.Aggiungi_Acquisto.resources
+C:\Users\matti\Desktop\Github\Workmate\Workmate\bin\Debug\net6.0-windows\Workmate.exe
+C:\Users\matti\Desktop\Github\Workmate\Workmate\bin\Debug\net6.0-windows\Workmate.deps.json
+C:\Users\matti\Desktop\Github\Workmate\Workmate\bin\Debug\net6.0-windows\Workmate.runtimeconfig.json
+C:\Users\matti\Desktop\Github\Workmate\Workmate\bin\Debug\net6.0-windows\Workmate.dll
+C:\Users\matti\Desktop\Github\Workmate\Workmate\bin\Debug\net6.0-windows\Workmate.pdb
+C:\Users\matti\Desktop\Github\Workmate\Workmate\bin\Debug\net6.0-windows\FontAwesome.Sharp.dll
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.csproj.AssemblyReference.cache
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.Aggiungi_Acquisto.resources
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.Aggiungi_Cliente.resources
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.Aggiungi_Codice.resources
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.Aggiungi_Ordine.resources
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.Aggiungi_Prodotto.resources
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.Cambia_dirdb.resources
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.Crea_Bolla.resources
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.CustomDialog.resources
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.Form1.resources
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.Properties.Resources.resources
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.csproj.GenerateResource.cache
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.AssemblyInfoInputs.cache
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.AssemblyInfo.cs
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.csproj.CoreCompileInputs.cache
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.csproj.CopyComplete
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.dll
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\refint\Workmate.dll
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.pdb
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\Workmate.genruntimeconfig.cache
+C:\Users\matti\Desktop\Github\Workmate\Workmate\obj\Debug\net6.0-windows\ref\Workmate.dll
+C:\Users\matti\Desktop\Github\Workmate\Workmate\bin\Debug\net6.0-windows\SuperSimpleTcp.dll

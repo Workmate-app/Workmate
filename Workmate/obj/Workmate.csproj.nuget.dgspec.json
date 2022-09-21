@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\Workmate.csproj": {}
+    "C:\\Users\\matti\\Desktop\\Github\\Workmate\\Workmate\\Workmate.csproj": {}
   },
   "projects": {
-    "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\Workmate.csproj": {
+    "C:\\Users\\matti\\Desktop\\Github\\Workmate\\Workmate\\Workmate.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\Workmate.csproj",
+        "projectUniqueName": "C:\\Users\\matti\\Desktop\\Github\\Workmate\\Workmate\\Workmate.csproj",
         "projectName": "Workmate",
-        "projectPath": "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\Workmate.csproj",
-        "packagesPath": "C:\\Users\\Matteo Piffari\\.nuget\\packages\\",
-        "outputPath": "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\obj\\",
+        "projectPath": "C:\\Users\\matti\\Desktop\\Github\\Workmate\\Workmate\\Workmate.csproj",
+        "packagesPath": "C:\\Users\\matti\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\matti\\Desktop\\Github\\Workmate\\Workmate\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Matteo Piffari\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\matti\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -47,6 +43,10 @@
             "FontAwesome.Sharp": {
               "target": "Package",
               "version": "[5.15.4, )"
+            },
+            "SuperSimpleTcp": {
+              "target": "Package",
+              "version": "[3.0.0.1, )"
             }
           },
           "imports": [

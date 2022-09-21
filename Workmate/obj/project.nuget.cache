@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "AElmETM2IFU14oiyqxwYrGMAPLHcmHgpa5YZoNfIGJjpUTNENzr8FO6SKmkBQBR5W5DO+8UdoU3HVRey3TyQAg==",
+  "dgSpecHash": "CtAUY/baMhE/SRn1h++T9+KjzMzAEecwGRBKyEq+omRm0AU1zGGlZtDNYL8jFBL5mi7g3N6/AJqBQVe/7Yq3hw==",
   "success": true,
-  "projectFilePath": "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\Workmate.csproj",
+  "projectFilePath": "C:\\Users\\matti\\Desktop\\Github\\Workmate\\Workmate\\Workmate.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Matteo Piffari\\.nuget\\packages\\fontawesome.sharp\\5.15.4\\fontawesome.sharp.5.15.4.nupkg.sha512"
+    "C:\\Users\\matti\\.nuget\\packages\\fontawesome.sharp\\5.15.4\\fontawesome.sharp.5.15.4.nupkg.sha512",
+    "C:\\Users\\matti\\.nuget\\packages\\supersimpletcp\\3.0.0.1\\supersimpletcp.3.0.0.1.nupkg.sha512"
   ],
   "logs": []
 }
