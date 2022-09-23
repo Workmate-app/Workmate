@@ -52,5 +52,7 @@ public class var
         return clienti_trovati;
     }
 
+    public static string ipserver;
+
     public static bool edited_prod = false;
 }

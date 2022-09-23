@@ -27,23 +27,25 @@ namespace Workmate
         bool acquisticaricati= false;
         string[] impostazioni = new string[9];
         private string btn;
-        public static string ipserver;
+        public bool cs = false;
         public Form1()
         {
             InitializeComponent();
+            var.check_db();
+            Checkdirs();
             XmlDocument xml_doc = new XmlDocument();
             xml_doc.Load(var.db + "workmate.xml");
             XmlNode clientserver = xml_doc.DocumentElement.SelectSingleNode("/workmate/clientserver");
-            XmlNode ip = xml_doc.DocumentElement.SelectSingleNode("/workmate/ip");
-            ipserver = ip.InnerText;
             if (clientserver.InnerText == "true")
             {
+                XmlNode ip = xml_doc.DocumentElement.SelectSingleNode("/workmate/ip");
+                cs = true;
+                var.ipserver = ip.InnerText+ ":16460";
                 ThreadStart childref = new ThreadStart(CallToChildThread);
                 Thread childThread = new Thread(childref);
+                childThread.IsBackground = true;
                 childThread.Start();
             }
-            var.check_db();
-            Checkdirs();
             carica_foto_home();
             this.Padding = new Padding(borderSize);
             this.BackColor = Color.FromArgb(29, 133, 181);
@@ -68,22 +70,21 @@ namespace Workmate
             sempre_btn.ForeColor = Color.White;
         }
 
+        static SimpleTcpClient client = new SimpleTcpClient(var.ipserver);
         public static void CallToChildThread()
         {
             MessageBox.Show("Thread");
-            SimpleTcpClient client = new SimpleTcpClient(ipserver+":16460");
 
             client.Events.Connected += Connected;
             client.Events.Disconnected += Disconnected;
             client.Events.DataReceived += DataReceived;
-
             try
             { 
                 client.ConnectWithRetries(10000);
             }
             catch
             {
-                MessageBox.Show("Impossibile connettersi al server!");
+                MessageBox.Show("Impossibile connettersi al server! ("+ var.ipserver + ")");
             }
             while (true)
             {
@@ -94,55 +95,125 @@ namespace Workmate
 
         private static void Connected(object? sender, ConnectionEventArgs e)
         {
-            throw new NotImplementedException();
+            MessageBox.Show("Connesso");
         }
 
         private static void Disconnected(object? sender, ConnectionEventArgs e)
         {
-            throw new NotImplementedException();
+            MessageBox.Show("Connessione con il server persa!");
         }
 
         private static void DataReceived(object? sender, DataReceivedEventArgs e)
         {
-            throw new NotImplementedException();
+            Form1 form = new Form1();
+            if (Encoding.UTF8.GetString(e.Data) == "Aggiornare magazzino")
+            {
+                client.Send("Aggiornamento magazzino in corso");
+                form.carica_codici();
+            }
+            else if(Encoding.UTF8.GetString(e.Data) == "Aggiornare prodotti")
+            {
+                client.Send("Aggiornamento prodotti in corso");
+                form.carica_prodotti();
+            }
+            else if (Encoding.UTF8.GetString(e.Data) == "Aggiornare ordini")
+            {
+                client.Send("Aggiornamento ordini in corso");
+                form.carica_ordini();
+            }
+            else if (Encoding.UTF8.GetString(e.Data) == "Aggiornare clienti")
+            {
+                client.Send("Aggiornamento clienti in corso");
+                form.carica_clienti();
+            }
+            else if (Encoding.UTF8.GetString(e.Data) == "Aggiornare acquisti")
+            {
+                client.Send("Aggiornamento acquisti in corso");
+                form.carica_acquisti();
+            }
         }
 
         private void closeform(object sender, FormClosingEventArgs e)
         {
             if (magazzino == true && var.ended == true)
             {
-                carica_codici();
-                var.ended = false;
-                codicicaricati = true;
+                if (cs == false)
+                {
+                    carica_codici();
+                    var.ended = false;
+                    codicicaricati = true;
+                }
+                else
+                {
+                    client.Send("Magazzino aggiornato");
+                    carica_codici();
+                    var.ended = false;
+                }
             }
             else if (prod == true && var.ended == true)
             {
-                carica_prodotti();
-                var.ended = false;
-                prodotticaricati = true;
+                if (cs == false)
+                {
+                    carica_prodotti();
+                    var.ended = false;
+                    prodotticaricati = true;
+                }
+                else
+                {
+                    client.Send("Prodotti aggiornati");
+                    carica_prodotti();
+                    var.ended = false;
+                }
             }
             else if (clienti == true && var.ended == true)
             {
-                carica_clienti();
-                var.ended = false;
-                clienticaricati = true;
+                if (cs == false)
+                {
+                    carica_clienti();
+                    var.ended = false;
+                    clienticaricati = true;
+                }
+                else
+                {
+                    client.Send("Clienti aggiornati");
+                    carica_clienti();
+                    var.ended = false;
+                }
             }
             else if(acquisti== true && var.ended == true)
             {
-                carica_acquisti();
-                var.ended = false;
-                acquisticaricati = true;
+                if (cs == false)
+                {
+                    carica_acquisti();
+                    var.ended = false;
+                    acquisticaricati = true;
+                }
+                else
+                {
+                    client.Send("Acquisti aggiornati");
+                    carica_acquisti();
+                    var.ended = false;
+                }
             }
             else if (var.ended == true)
             {
-                carica_ordini();
-                if (var.edited_prod == true)
+                if (cs == false)
                 {
-                    carica_codici();
-                    var.edited_prod = false;
+                    carica_ordini();
+                    if (var.edited_prod == true)
+                    {
+                        carica_codici();
+                        var.edited_prod = false;
+                    }
+                    var.ended = false;
+                    ordinicaricati = true;
                 }
-                var.ended = false;
-                ordinicaricati = true;
+                else
+                {
+                    client.Send("Ordini aggiornati");
+                    carica_ordini();
+                    var.ended = false;
+                }
             }
         }
         private void Form1_Load(object sender, EventArgs e)
