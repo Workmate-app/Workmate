@@ -109,7 +109,9 @@ namespace Workmate
             if (Encoding.UTF8.GetString(e.Data) == "Aggiornare magazzino")
             {
                 client.Send("Aggiornamento magazzino in corso");
+                form.mostra_avviso = false;
                 form.carica_codici();
+                form.mostra_avviso = true;
             }
             else if(Encoding.UTF8.GetString(e.Data) == "Aggiornare prodotti")
             {
@@ -120,6 +122,9 @@ namespace Workmate
             {
                 client.Send("Aggiornamento ordini in corso");
                 form.carica_ordini();
+                form.mostra_avviso = false;
+                form.carica_codici();
+                form.mostra_avviso = true;
             }
             else if (Encoding.UTF8.GetString(e.Data) == "Aggiornare clienti")
             {
@@ -130,6 +135,9 @@ namespace Workmate
             {
                 client.Send("Aggiornamento acquisti in corso");
                 form.carica_acquisti();
+                form.mostra_avviso = false;
+                form.carica_codici();
+                form.mostra_avviso = true;
             }
         }
 
@@ -185,6 +193,9 @@ namespace Workmate
                 if (cs == false)
                 {
                     carica_acquisti();
+                    mostra_avviso = false;
+                    carica_codici();
+                    mostra_avviso = true;
                     var.ended = false;
                     acquisticaricati = true;
                 }
@@ -192,6 +203,9 @@ namespace Workmate
                 {
                     client.Send("Acquisti aggiornati");
                     carica_acquisti();
+                    mostra_avviso = false;
+                    carica_codici();
+                    mostra_avviso = true;
                     var.ended = false;
                 }
             }
@@ -212,6 +226,7 @@ namespace Workmate
                 {
                     client.Send("Ordini aggiornati");
                     carica_ordini();
+                    carica_codici();
                     var.ended = false;
                 }
             }
@@ -1127,6 +1142,19 @@ namespace Workmate
                 {
                     try
                     {
+                        XmlDocument xml_acq_doc = new XmlDocument();
+                        xml_acq_doc.Load(var.db + @"Acquisti\" + acquisto+"_"+timestamp+".xml");
+                        XmlNode arrivato = xml_acq_doc.DocumentElement.SelectSingleNode("/acquisto/arrivato");
+                        XmlNode qtacq = xml_acq_doc.DocumentElement.SelectSingleNode("/acquisto/quantità");
+                        if (arrivato.InnerText == "Sì")
+                        {
+                            XmlDocument xml_cod_doc = new XmlDocument();
+                            xml_cod_doc.Load(var.db + @"Magazzino\" + acquisto + ".xml");
+                            XmlNode qt = xml_cod_doc.DocumentElement.SelectSingleNode("/codice/quantità");
+                            qt.InnerText = (Convert.ToInt32(qt.InnerText)-Convert.ToInt32(qtacq.InnerText)).ToString();
+                            xml_cod_doc.Save(var.db + @"Magazzino\" + acquisto + ".xml");
+                            carica_codici();
+                        }
                         File.Delete(var.db + @"Acquisti\" + acquisto + "_" + timestamp + ".xml");
                     }
                     catch (Exception ex)

@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\matti\\Desktop\\Github\\Workmate\\Workmate\\Workmate.csproj": {}
+    "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\Workmate.csproj": {}
   },
   "projects": {
-    "C:\\Users\\matti\\Desktop\\Github\\Workmate\\Workmate\\Workmate.csproj": {
+    "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\Workmate.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\matti\\Desktop\\Github\\Workmate\\Workmate\\Workmate.csproj",
+        "projectUniqueName": "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\Workmate.csproj",
         "projectName": "Workmate",
-        "projectPath": "C:\\Users\\matti\\Desktop\\Github\\Workmate\\Workmate\\Workmate.csproj",
-        "packagesPath": "C:\\Users\\matti\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\matti\\Desktop\\Github\\Workmate\\Workmate\\obj\\",
+        "projectPath": "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\Workmate.csproj",
+        "packagesPath": "C:\\Users\\Matteo Piffari\\.nuget\\packages\\",
+        "outputPath": "D:\\programmazione\\School\\Concorso Sorint 2022\\Workmate\\Workmate\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\matti\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Matteo Piffari\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

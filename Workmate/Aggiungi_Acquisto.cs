@@ -30,12 +30,12 @@ namespace Workmate
         {
             string root = var.db + "Acquisti\\";
             #region Controlli
-            if(cod_txt.Text.Length == 0)
+            if (cod_txt.Text.Length == 0)
             {
                 MessageBox.Show("Il codice non può essere vuoto");
                 return;
             }
-            if(prz_txt.Text.Length == 0)
+            if (prz_txt.Text.Length == 0)
             {
                 MessageBox.Show("Il prezzo non può essere vuoto");
                 return;
@@ -89,10 +89,48 @@ namespace Workmate
                     File.Delete(root + "Foto\\" + cod_txt.Text + "jpeg");
                 File.Copy(pictureBox1.Tag.ToString(), root + "Foto\\" + cod_txt.Text + extfoto);
             }
+
+            XmlDocument xml_doc = new XmlDocument();
+            try
+            {
+                xml_doc.Load(var.db + "Magazzino\\" + cod_txt.Text + ".xml");
+                if (arrivato_ckb.Checked)
+                {
+                    XmlNode qt = xml_doc.DocumentElement.SelectSingleNode("/codice/quantità");
+                    qt.InnerText = (Convert.ToInt32(qt.InnerText) + Convert.ToInt32(qt_txt.Text) - Convert.ToInt32(oldqt)).ToString();
+                    xml_doc.Save(var.db + "Magazzino\\" + cod_txt.Text + ".xml");
+                }
+                else if(varArrivato == "Sì" && !arrivato_ckb.Checked)
+                {
+                    XmlNode qt = xml_doc.DocumentElement.SelectSingleNode("/codice/quantità");
+                    qt.InnerText = (Convert.ToInt32(qt.InnerText) - Convert.ToInt32(oldqt)).ToString();
+                    xml_doc.Save(var.db + "Magazzino\\" + cod_txt.Text + ".xml");
+                }
+            }
+            catch
+            {
+                if (MessageBox.Show("Codice non presente nel magazzino, crearlo?", "Attenzione", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (!arrivato_ckb.Checked)
+                        qt_txt.Text = "0";
+                    XDocument doc_cod_xml = new XDocument(new XElement("codice",
+                        new XElement("cod", cod_txt.Text),
+                        new XElement("prezzo", "0.00"),
+                        new XElement("quantità", qt_txt.Text),
+                        new XElement("quantitàmin", "0"),
+                        new XElement("descrizione", ""),
+                        new XElement("foto", "")
+                        ));
+                    doc_cod_xml.Save(var.db + "Magazzino//" + cod_txt.Text + ".xml");
+                }
+                else
+                    return;
+            }
+
             doc_xml.Save(root + cod_txt.Text + "_" + timestamp + ".xml");
             if (Modifica == 1 && OldAcq != cod_txt.Text)
                 File.Delete(root + OldAcq + "_" + timestamp + ".xml");
-            var.ended=true;
+            var.ended = true;
             this.Close();
         }
 
@@ -109,7 +147,14 @@ namespace Workmate
                 desc_txt.Text = varDes;
                 timestamp = varTimestamp;
                 if (varArrivato == "Sì")
+                {
                     arrivato_ckb.Checked = true;
+                    oldqt = qt_txt.Text;
+                }
+                else
+                {
+                    oldqt = "0";
+                }
                 if (varFoto.Length != 0)
                 {
                     Image image = Image.FromFile(varFoto);
@@ -161,6 +206,7 @@ namespace Workmate
         public int Modifica { get; set; }
         public string varFoto { get; set; }
 
+        public string oldqt { get; set; }
         public string varArrivato { get; set; }
     }
 }
