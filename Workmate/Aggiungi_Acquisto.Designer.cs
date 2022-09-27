@@ -165,6 +165,7 @@
             this.removeimg_btn.TabIndex = 23;
             this.removeimg_btn.Text = "Rimuovi";
             this.removeimg_btn.UseVisualStyleBackColor = true;
+            this.removeimg_btn.Click += new System.EventHandler(this.removeimg_btn_Click_1);
             // 
             // addimg_btn
             // 
@@ -177,6 +178,7 @@
             this.addimg_btn.TabIndex = 22;
             this.addimg_btn.Text = "Aggiungi";
             this.addimg_btn.UseVisualStyleBackColor = true;
+            this.addimg_btn.Click += new System.EventHandler(this.addimg_btn_Click_1);
             // 
             // label5
             // 
@@ -199,6 +201,7 @@
             // addphoto_dlg
             // 
             this.addphoto_dlg.FileName = "Foto_Acquisto";
+            this.addphoto_dlg.Filter = "\"All Graphics Types|*.jpg;*.jpeg;*.png;\"";
             // 
             // arrivato_ckb
             // 

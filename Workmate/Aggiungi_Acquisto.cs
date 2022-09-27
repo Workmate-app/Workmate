@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
+using System.Windows.Media.Imaging;
 
 namespace Workmate
 {
@@ -81,12 +82,12 @@ namespace Workmate
                 ));
             if (pictureBox1.Tag != null)
             {
-                if (File.Exists(root + "Foto\\" + cod_txt.Text + "png"))
-                    File.Delete(root + "Foto\\" + cod_txt.Text + "png");
-                else if (File.Exists(root + "Foto\\" + cod_txt.Text + "jpg"))
-                    File.Delete(root + "Foto\\" + cod_txt.Text + "jpg");
-                else if (File.Exists(root + "Foto\\" + cod_txt.Text + "jpeg"))
-                    File.Delete(root + "Foto\\" + cod_txt.Text + "jpeg");
+                if (File.Exists(root + "Foto\\" + cod_txt.Text + ".png"))
+                    File.Delete(root + "Foto\\" + cod_txt.Text + ".png");
+                else if (File.Exists(root + "Foto\\" + cod_txt.Text + ".jpg"))
+                    File.Delete(root + "Foto\\" + cod_txt.Text + ".jpg");
+                else if (File.Exists(root + "Foto\\" + cod_txt.Text + ".jpeg"))
+                    File.Delete(root + "Foto\\" + cod_txt.Text + ".jpeg");
                 File.Copy(pictureBox1.Tag.ToString(), root + "Foto\\" + cod_txt.Text + extfoto);
             }
 
@@ -157,9 +158,10 @@ namespace Workmate
                 }
                 if (varFoto.Length != 0)
                 {
-                    Image image = Image.FromFile(varFoto);
-                    pictureBox1.BackgroundImage = image;
+                    FileStream stream = new FileStream(varFoto, FileMode.Open, FileAccess.Read);
+                    pictureBox1.BackgroundImage = Image.FromStream(stream);
                     pictureBox1.Tag = varFoto;
+                    stream.Close();
                 }
                 else
                 {
@@ -168,30 +170,6 @@ namespace Workmate
                 }
             }
 
-        }
-        private void addimg_btn_Click(object sender, EventArgs e)
-        {
-            if (addphoto_dlg.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    if (addphoto_dlg.FileName != null)
-                    {
-                        Image image = Image.FromFile(addphoto_dlg.FileName);
-                        pictureBox1.BackgroundImage = image;
-                        pictureBox1.Tag = addphoto_dlg.FileName;
-                    }
-                }
-                catch
-                {
-
-                }
-            }
-        }
-        private void removeimg_btn_Click(object sender, EventArgs e)
-        {
-            pictureBox1.BackgroundImage = Properties.Resources.Workmate;
-            pictureBox1.Tag = null;
         }
         public static String GetTimestamp(DateTime value)
         {
@@ -208,5 +186,32 @@ namespace Workmate
 
         public string oldqt { get; set; }
         public string varArrivato { get; set; }
+
+        private void addimg_btn_Click_1(object sender, EventArgs e)
+        {
+            if (addphoto_dlg.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if (addphoto_dlg.FileName != null)
+                    {
+                        FileStream stream = new FileStream(addphoto_dlg.FileName, FileMode.Open, FileAccess.Read);
+                        pictureBox1.BackgroundImage = Image.FromStream(stream);
+                        pictureBox1.Tag = addphoto_dlg.FileName;
+                        stream.Close();
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        private void removeimg_btn_Click_1(object sender, EventArgs e)
+        {
+            pictureBox1.BackgroundImage = Properties.Resources.Workmate;
+            pictureBox1.Tag = null;
+        }
     }
 }

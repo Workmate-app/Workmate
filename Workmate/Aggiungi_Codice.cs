@@ -87,12 +87,12 @@ namespace Workmate
             {
                 if (imgcod.Tag != null)
                 {
-                    if (File.Exists(root + "Foto\\" + cod_txt.Text + "png"))
-                        File.Delete(root + "Foto\\" + cod_txt.Text + "png");
-                    else if(File.Exists(root + "Foto\\" + cod_txt.Text + "jpg"))
-                        File.Delete(root + "Foto\\" + cod_txt.Text + "jpg");
-                    else if (File.Exists(root + "Foto\\" + cod_txt.Text + "jpeg"))
-                        File.Delete(root + "Foto\\" + cod_txt.Text + "jpeg");
+                    if (File.Exists(root + "Foto\\" + cod_txt.Text + ".png"))
+                        File.Delete(root + "Foto\\" + cod_txt.Text + ".png");
+                    else if(File.Exists(root + "Foto\\" + cod_txt.Text + ".jpg"))
+                        File.Delete(root + "Foto\\" + cod_txt.Text + ".jpg");
+                    else if (File.Exists(root + "Foto\\" + cod_txt.Text + ".jpeg"))
+                        File.Delete(root + "Foto\\" + cod_txt.Text + ".jpeg");
                     File.Copy(imgcod.Tag.ToString(), root + "Foto\\" + cod_txt.Text + extfoto);
                 }
                 doc_xml.Save(root + cod_txt.Text + ".xml");
@@ -120,9 +120,10 @@ namespace Workmate
                 desc_txt.Text = varDes;
                 if (varFoto.Length != 0)
                 {
-                    Image image = Image.FromFile(varFoto);
-                    imgcod.BackgroundImage = image;
-                    imgcod.Tag = varFoto;
+                    FileStream stream = new FileStream(varFoto, FileMode.Open, FileAccess.Read);
+                    imgcod.BackgroundImage = Image.FromStream(stream);
+                    imgcod.Tag = addphoto_dlg.FileName;
+                    stream.Close();
                 }
                 else
                 {
@@ -147,9 +148,10 @@ namespace Workmate
                 {
                     if (addphoto_dlg.FileName != null)
                     {
-                        Image image = Image.FromFile(addphoto_dlg.FileName);
-                        imgcod.BackgroundImage = image;
+                        FileStream stream = new FileStream(addphoto_dlg.FileName, FileMode.Open, FileAccess.Read);
+                        imgcod.BackgroundImage = Image.FromStream(stream);
                         imgcod.Tag = addphoto_dlg.FileName;
+                        stream.Close();
                     }
                 }
                 catch

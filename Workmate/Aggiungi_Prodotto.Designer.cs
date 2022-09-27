@@ -477,7 +477,7 @@
             // 
             this.addphoto_dlg.DefaultExt = "jpg";
             this.addphoto_dlg.FileName = "Foto prodotto";
-            this.addphoto_dlg.Filter = "\"All Graphics Types|*.jpg;*.jpeg;*.png\"";
+            this.addphoto_dlg.Filter = "\"All Graphics Types|*.jpg;*.jpeg;*.png;\"";
             // 
             // Aggiungi_Prodotto
             // 

@@ -200,7 +200,7 @@
             // 
             this.addphoto_dlg.DefaultExt = "jpg";
             this.addphoto_dlg.FileName = "foto_codice";
-            this.addphoto_dlg.Filter = "\"All Graphics Types|*.jpg;*.jpeg;*.png\"";
+            this.addphoto_dlg.Filter = "\"All Graphics Types|*.jpg;*.jpeg;*.png;\"";
             // 
             // removeimg_btn
             // 

@@ -297,6 +297,7 @@ namespace Workmate
             if (!Directory.Exists(var.db + @"\Acquisti"))
             {
                 Directory.CreateDirectory(var.db + @"\Acquisti");
+                Directory.CreateDirectory(var.db + @"\Acquisti\Foto");
             }
             if (!File.Exists(var.db + @"\workmate.xml"))
             {

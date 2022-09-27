@@ -60,9 +60,10 @@ namespace Workmate
                 qt15.Text = varQt15;
                 if (varFoto.Length != 0)
                 {
-                    Image image = Image.FromFile(varFoto);
-                    prodimg.BackgroundImage = image;
-                    prodimg.Tag = varFoto;
+                    FileStream stream = new FileStream(varFoto, FileMode.Open, FileAccess.Read);
+                    prodimg.BackgroundImage = Image.FromStream(stream);
+                    prodimg.Tag = addphoto_dlg.FileName;
+                    stream.Close();
                 }
                 else
                 {
@@ -167,12 +168,12 @@ namespace Workmate
             }
             if (prodimg.Tag != null)
             {
-                if (File.Exists(root + "Foto\\" + prodotto_txt.Text + "png"))
-                    File.Delete(root + "Foto\\" + prodotto_txt.Text + "png");
-                else if (File.Exists(root + "Foto\\" + prodotto_txt.Text + "jpg"))
-                    File.Delete(root + "Foto\\" + prodotto_txt.Text + "jpg");
-                else if (File.Exists(root + "Foto\\" + prodotto_txt.Text + "jpeg"))
-                    File.Delete(root + "Foto\\" + prodotto_txt.Text + "jpeg");
+                if (File.Exists(root + "Foto\\" + prodotto_txt.Text + ".png"))
+                    File.Delete(root + "Foto\\" + prodotto_txt.Text + ".png");
+                else if (File.Exists(root + "Foto\\" + prodotto_txt.Text + ".jpg"))
+                    File.Delete(root + "Foto\\" + prodotto_txt.Text + ".jpg");
+                else if (File.Exists(root + "Foto\\" + prodotto_txt.Text + ".jpeg"))
+                    File.Delete(root + "Foto\\" + prodotto_txt.Text + ".jpeg");
                 File.Copy(prodimg.Tag.ToString(), root + "Foto\\" + prodotto_txt.Text + extfoto);
             }
             doc_xml.Save(root + prodotto_txt.Text + ".xml");
@@ -192,9 +193,10 @@ namespace Workmate
                 {
                     if (addphoto_dlg.FileName != null)
                     {
-                        Image image = Image.FromFile(addphoto_dlg.FileName);
-                        prodimg.BackgroundImage = image;
+                        FileStream stream = new FileStream(addphoto_dlg.FileName, FileMode.Open, FileAccess.Read);
+                        prodimg.BackgroundImage = Image.FromStream(stream);
                         prodimg.Tag = addphoto_dlg.FileName;
+                        stream.Close();
                     }
                 }
                 catch
