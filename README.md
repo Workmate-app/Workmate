@@ -23,6 +23,7 @@
   - [Ordini](#ordini)
   - [Clienti](#clienti)
   - [Acquisti](#acquisti)
+  - [Client Server(multiutente)](#client_server)
 - [Tecnologie](#tech_stack)
 - [Autori](#authors)
 
@@ -64,6 +65,11 @@ Nella sezione clienti è possibile creare i vari clienti a cui poi intestare i v
 ### Acquisti
 
 Nella sezione acquisti è possibile aggiungere i vari acquisti relativi al materiale che poi verrà aggiornato automaticamente nel magazzino una volta inserito l'acquisto
+
+### Client Server <a name="client_server"></a>
+
+Per utilizzare workmate in modalità multiutente, e quindi su più postazioni, è necessario che il database dei file sia in una share accessibile ai vari utenti (per cambiare la directory del database basta andare in impostazione e selezionare l'apposito pulsante), successivamente sarà necessario installare la versione per [windows](https://github.com/Workmate-app/Workmate-Server-Windows) o per [linux](https://github.com/Workmate-app/Workmate-Server-Linux) del server tramite l'apposita repository. Una volta fatto questo bisognerà andare nelle impostazioni di workmate e abilitare l'opzione "Utilizza tipologia client/server" e immettere l'ip del server (in caso di firewall abilitare la porta 16460).
+
 
 ## ⛏️ Fatto con <a name = "tech_stack"></a>
 
