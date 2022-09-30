@@ -31,49 +31,11 @@ namespace Workmate
         public Form1()
         {
             InitializeComponent();
-            var.check_db();
-            Checkdirs();
-            XmlDocument xml_doc = new XmlDocument();
-            xml_doc.Load(var.db + "workmate.xml");
-            XmlNode clientserver = xml_doc.DocumentElement.SelectSingleNode("/workmate/clientserver");
-            if (clientserver.InnerText == "true")
-            {
-                XmlNode ip = xml_doc.DocumentElement.SelectSingleNode("/workmate/ip");
-                cs = true;
-                var.ipserver = ip.InnerText+ ":16460";
-                ThreadStart childref = new ThreadStart(CallToChildThread);
-                Thread childThread = new Thread(childref);
-                childThread.IsBackground = true;
-                childThread.Start();
-            }
-            carica_foto_home();
-            this.Padding = new Padding(borderSize);
-            this.BackColor = Color.FromArgb(29, 133, 181);
-            carica_codici();
-            carica_ordini();
-            carica_clienti();
-            carica_acquisti();
-            carica_impostazioni();
-            StileDataGrid();
-            ordinicaricati = true;
-            clienticaricati = true;
-            acquisticaricati = true;
-            bar_pnl.Visible = false;
-            ordini_data.Visible = false;
-            magazzino_data.Visible = false;
-            settings_pnl.Visible = false;
-            prod_data.Visible = false;
-            clienti_data.Visible = false;
-            acquisti_data.Visible = false;
-            desktop_pnl.Visible = true;
-            sempre_btn.BackColor = Color.FromArgb(29, 133, 181);
-            sempre_btn.ForeColor = Color.White;
         }
 
         static SimpleTcpClient client = new SimpleTcpClient(var.ipserver);
         public static void CallToChildThread()
         {
-            MessageBox.Show("Thread");
 
             client.Events.Connected += Connected;
             client.Events.Disconnected += Disconnected;
@@ -95,7 +57,7 @@ namespace Workmate
 
         private static void Connected(object? sender, ConnectionEventArgs e)
         {
-            MessageBox.Show("Connesso");
+            
         }
 
         private static void Disconnected(object? sender, ConnectionEventArgs e)
@@ -139,6 +101,7 @@ namespace Workmate
                 form.carica_codici();
                 form.mostra_avviso = true;
             }
+            form.Close();
         }
 
         private void closeform(object sender, FormClosingEventArgs e)
@@ -233,7 +196,43 @@ namespace Workmate
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            var.check_db();
+            Checkdirs();
+            XmlDocument xml_doc = new XmlDocument();
+            xml_doc.Load(var.db + "workmate.xml");
+            XmlNode clientserver = xml_doc.DocumentElement.SelectSingleNode("/workmate/clientserver");
+            if (clientserver.InnerText == "true")
+            {
+                XmlNode ip = xml_doc.DocumentElement.SelectSingleNode("/workmate/ip");
+                cs = true;
+                var.ipserver = ip.InnerText + ":16460";
+                ThreadStart childref = new ThreadStart(CallToChildThread);
+                Thread childThread = new Thread(childref);
+                childThread.IsBackground = true;
+                childThread.Start();
+            }
+            carica_foto_home();
+            this.Padding = new Padding(borderSize);
+            this.BackColor = Color.FromArgb(29, 133, 181);
+            carica_codici();
+            carica_ordini();
+            carica_clienti();
+            carica_acquisti();
+            carica_impostazioni();
+            StileDataGrid();
+            ordinicaricati = true;
+            clienticaricati = true;
+            acquisticaricati = true;
+            bar_pnl.Visible = false;
+            ordini_data.Visible = false;
+            magazzino_data.Visible = false;
+            settings_pnl.Visible = false;
+            prod_data.Visible = false;
+            clienti_data.Visible = false;
+            acquisti_data.Visible = false;
+            desktop_pnl.Visible = true;
+            sempre_btn.BackColor = Color.FromArgb(29, 133, 181);
+            sempre_btn.ForeColor = Color.White;
         }
 
         private void bars_btn_Click(object sender, EventArgs e)
@@ -886,7 +885,7 @@ namespace Workmate
                 Nuovo_Cliente.FormClosing += new FormClosingEventHandler(closeform);
                 Nuovo_Cliente.ShowDialog();
             }
-            if(acquisti == true)
+            else if(acquisti == true)
             {
                 Aggiungi_Acquisto Nuovo_Acquisto = new Aggiungi_Acquisto();
                 Nuovo_Acquisto.FormClosing += new FormClosingEventHandler(closeform);
@@ -1092,6 +1091,7 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare il codice");
                     }
                     carica_codici();
+                    client.Send("Magazzino aggiornato");
                 }
             }else if (prod == true)
             {
@@ -1116,6 +1116,7 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare il prodotto");
                     }
                     carica_prodotti();
+                    client.Send("Prodotti aggiornati");
                 }
             }
             else if (clienti == true)
@@ -1133,6 +1134,7 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare il cliente");
                     }
                     carica_clienti();
+                    client.Send("Clienti aggiornati");
                 }
             }else if (acquisti == true)
             {
@@ -1163,6 +1165,7 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare l'acquisto");
                     }
                     carica_acquisti();
+                    client.Send("Acquisti aggiornati");
                 }
             }
             else
@@ -1204,6 +1207,7 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare l'ordine");
                     }
                     carica_ordini();
+                    client.Send("Ordini aggiornati");
                 }
             }
         }
