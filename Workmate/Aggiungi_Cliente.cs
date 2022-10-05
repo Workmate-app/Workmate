@@ -32,6 +32,12 @@ namespace Workmate
         string oldcli = "";
         private void add_btn_Click(object sender, EventArgs e)
         {
+            if (cli_txt.Text.Length == 0)
+            {
+                MessageBox.Show("Cliente non può essere vuoto");
+                return;
+            }
+
             string root = var.db + "Clienti\\";
 
             XDocument doc_xml = new XDocument(new XElement("cliente",

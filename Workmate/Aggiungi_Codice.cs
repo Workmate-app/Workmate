@@ -45,12 +45,12 @@ namespace Workmate
                 MessageBox.Show("Controllare il prezzo (per la , inserire il .)");
                 return;
             }
-            if (System.Text.RegularExpressions.Regex.IsMatch(qt_txt.Text, @"^[0-9]+$") == false)
+            if (System.Text.RegularExpressions.Regex.IsMatch(qt_txt.Text, @"^[0-9\s-]+$") == false)
             {
                 MessageBox.Show("Controllare la quantità");
                 return;
             }
-            if (System.Text.RegularExpressions.Regex.IsMatch(qtmin_txt.Text, @"^[0-9]+$") == false)
+            if (System.Text.RegularExpressions.Regex.IsMatch(qtmin_txt.Text, @"^[0-9\s-]+$") == false)
             {
                 MessageBox.Show("Controllare la quantità minima");
                 return;

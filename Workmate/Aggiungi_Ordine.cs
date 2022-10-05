@@ -161,7 +161,22 @@ namespace Workmate
                                                     xml_doc_cod.Save(var.db + "Magazzino\\" + cod.InnerText + ".xml");
                                                 }
                                                 else
+                                                {
+                                                    while (i != 0)
+                                                    {
+                                                        
+                                                        XmlNode codRestore = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/cod" + i);
+                                                        XmlNode qtRestore = xml_doc.DocumentElement.SelectSingleNode("/Prodotto/qt" + i);
+                                                        XmlDocument xml_doc_cod_Restore = new XmlDocument();
+                                                        xml_doc_cod_Restore.Load(var.db + "Magazzino\\" + codRestore.InnerText + ".xml");
+                                                        XmlNode qt_cod_Restore = xml_doc_cod_Restore.DocumentElement.SelectSingleNode("/codice/quantità");
+                                                        qt_cod_Restore.InnerText = (Convert.ToInt32(qt_cod_Restore.InnerText) + (Convert.ToInt32(qtRestore.InnerText) * arr[x])).ToString();
+                                                        xml_doc_cod_Restore.Save(var.db + "Magazzino\\" + codRestore.InnerText + ".xml");
+                                                        x--;
+                                                        i--;
+                                                    }
                                                     return;
+                                                }
                                             }
                                             else
                                             {

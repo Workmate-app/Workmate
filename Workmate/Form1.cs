@@ -320,24 +320,24 @@ namespace Workmate
         {
             if (File.Exists(var.db + @"home.png"))
             {
-                Image image = Image.FromFile(var.db + @"home.png");
-                logo_pic.BackgroundImage = image;
+                FileStream stream = new FileStream(var.db + @"home.png", FileMode.Open, FileAccess.Read);
+                logo_pic.BackgroundImage = Image.FromStream(stream);
                 logo_pic.Tag = var.db + @"home.png";
-                var.nfotohome = "home.png";
+                stream.Close();
             }
             else if (File.Exists(var.db + @"home.jpg"))
             {
-                Image image = Image.FromFile(var.db + @"home.jpg");
-                logo_pic.BackgroundImage = image;
+                FileStream stream = new FileStream(var.db + @"home.jpg", FileMode.Open, FileAccess.Read);
+                logo_pic.BackgroundImage = Image.FromStream(stream);
                 logo_pic.Tag = var.db + @"home.jpg";
-                var.nfotohome = "home.jpg";
+                stream.Close();
             }
-            else if (Directory.Exists(var.db + @"home.jpeg"))
+            else if (File.Exists(var.db + @"home.jpeg"))
             {
-                Image image = Image.FromFile(var.db + @"home.jpeg");
-                logo_pic.BackgroundImage = image;
+                FileStream stream = new FileStream(var.db + @"home.jpeg", FileMode.Open, FileAccess.Read);
+                logo_pic.BackgroundImage = Image.FromStream(stream);
                 logo_pic.Tag = var.db + @"home.jpeg";
-                var.nfotohome = "home.jpeg";
+                stream.Close();
             }
             else
             {
@@ -1091,7 +1091,8 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare il codice");
                     }
                     carica_codici();
-                    client.Send("Magazzino aggiornato");
+                    if(cs==true)
+                        client.Send("Magazzino aggiornato");
                 }
             }else if (prod == true)
             {
@@ -1116,7 +1117,8 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare il prodotto");
                     }
                     carica_prodotti();
-                    client.Send("Prodotti aggiornati");
+                    if(cs==true)
+                        client.Send("Prodotti aggiornati");
                 }
             }
             else if (clienti == true)
@@ -1134,7 +1136,8 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare il cliente");
                     }
                     carica_clienti();
-                    client.Send("Clienti aggiornati");
+                    if(cs==true)
+                        client.Send("Clienti aggiornati");
                 }
             }else if (acquisti == true)
             {
@@ -1165,7 +1168,8 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare l'acquisto");
                     }
                     carica_acquisti();
-                    client.Send("Acquisti aggiornati");
+                    if(cs==true)
+                        client.Send("Acquisti aggiornati");
                 }
             }
             else
@@ -1207,7 +1211,8 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare l'ordine");
                     }
                     carica_ordini();
-                    client.Send("Ordini aggiornati");
+                    if(cs==true)
+                        client.Send("Ordini aggiornati");
                 }
             }
         }
@@ -1340,9 +1345,10 @@ namespace Workmate
                 {
                     if (imghome_dlg.FileName != null)
                     {
-                        Image image = Image.FromFile(imghome_dlg.FileName);
-                        logo_pic.BackgroundImage = image;
+                        FileStream stream = new FileStream(imghome_dlg.FileName, FileMode.Open, FileAccess.Read);
+                        logo_pic.BackgroundImage = Image.FromStream(stream);
                         logo_pic.Tag = imghome_dlg.FileName;
+                        stream.Close();
                         string extfoto = Path.GetExtension(logo_pic.Tag.ToString());
                         if (File.Exists(var.db + @"home.png"))
                             File.Delete(var.db + @"home.png");
@@ -1355,7 +1361,6 @@ namespace Workmate
                 }
                 catch
                 {
-
                 }
             }
         }
