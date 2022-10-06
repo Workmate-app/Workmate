@@ -34,7 +34,7 @@ namespace Workmate
         }
 
         static SimpleTcpClient client = new SimpleTcpClient(var.ipserver);
-        public static void CallToChildThread()
+        private void CallToChildThread()
         {
 
             client.Events.Connected += Connected;
@@ -48,60 +48,53 @@ namespace Workmate
             {
                 MessageBox.Show("Impossibile connettersi al server! ("+ var.ipserver + ")");
             }
-            while (true)
-            {
-
-            }
-
         }
 
-        private static void Connected(object? sender, ConnectionEventArgs e)
+        private void Connected(object? sender, ConnectionEventArgs e)
         {
             
         }
 
-        private static void Disconnected(object? sender, ConnectionEventArgs e)
+        private void Disconnected(object? sender, ConnectionEventArgs e)
         {
             MessageBox.Show("Connessione con il server persa!");
         }
 
-        private static void DataReceived(object? sender, DataReceivedEventArgs e)
+        private void DataReceived(object? sender, DataReceivedEventArgs e)
         {
-            Form1 form = new Form1();
             if (Encoding.UTF8.GetString(e.Data) == "Aggiornare magazzino")
             {
                 client.Send("Aggiornamento magazzino in corso");
-                form.mostra_avviso = false;
-                form.carica_codici();
-                form.mostra_avviso = true;
+                mostra_avviso = false;
+                carica_codici();
+                mostra_avviso = true;
             }
             else if(Encoding.UTF8.GetString(e.Data) == "Aggiornare prodotti")
             {
                 client.Send("Aggiornamento prodotti in corso");
-                form.carica_prodotti();
+                carica_prodotti();
             }
             else if (Encoding.UTF8.GetString(e.Data) == "Aggiornare ordini")
             {
                 client.Send("Aggiornamento ordini in corso");
-                form.carica_ordini();
-                form.mostra_avviso = false;
-                form.carica_codici();
-                form.mostra_avviso = true;
+                carica_ordini();
+                mostra_avviso = false;
+                carica_codici();
+                mostra_avviso = true;
             }
             else if (Encoding.UTF8.GetString(e.Data) == "Aggiornare clienti")
             {
                 client.Send("Aggiornamento clienti in corso");
-                form.carica_clienti();
+                carica_clienti();
             }
             else if (Encoding.UTF8.GetString(e.Data) == "Aggiornare acquisti")
             {
                 client.Send("Aggiornamento acquisti in corso");
-                form.carica_acquisti();
-                form.mostra_avviso = false;
-                form.carica_codici();
-                form.mostra_avviso = true;
+                carica_acquisti();
+                mostra_avviso = false;
+                carica_codici();
+                mostra_avviso = true;
             }
-            form.Close();
         }
 
         private void closeform(object sender, FormClosingEventArgs e)
@@ -198,14 +191,10 @@ namespace Workmate
         {
             var.check_db();
             Checkdirs();
-            XmlDocument xml_doc = new XmlDocument();
-            xml_doc.Load(var.db + "workmate.xml");
-            XmlNode clientserver = xml_doc.DocumentElement.SelectSingleNode("/workmate/clientserver");
-            if (clientserver.InnerText == "true")
+            if (Properties.Settings.Default.cs == true)
             {
-                XmlNode ip = xml_doc.DocumentElement.SelectSingleNode("/workmate/ip");
                 cs = true;
-                var.ipserver = ip.InnerText + ":16460";
+                var.ipserver = Properties.Settings.Default.ip + ":16460";
                 ThreadStart childref = new ThreadStart(CallToChildThread);
                 Thread childThread = new Thread(childref);
                 childThread.IsBackground = true;
@@ -282,7 +271,6 @@ namespace Workmate
             if (!Directory.Exists(var.db + @"\Ordini"))
             {
                 Directory.CreateDirectory(var.db + @"\Ordini");
-                //Directory.CreateDirectory(root + @"\Ordini\Foto");
             }
             if (!Directory.Exists(var.db + @"\Prodotti"))
             {
@@ -308,9 +296,7 @@ namespace Workmate
                     new XElement("cap", "CAP"),
                     new XElement("prov", "Provincia"),
                     new XElement("piva", ""),
-                    new XElement("codicefiscale", ""),
-                    new XElement("clientserver", "false"),
-                    new XElement("ip", "")
+                    new XElement("codicefiscale", "")
                     ));
                 doc_xml.Save(var.db + @"\workmate.xml");
             }
@@ -637,8 +623,6 @@ namespace Workmate
             XmlNode prov = xml_doc.DocumentElement.SelectSingleNode("/workmate/prov");
             XmlNode piva = xml_doc.DocumentElement.SelectSingleNode("/workmate/piva");
             XmlNode codicefiscale = xml_doc.DocumentElement.SelectSingleNode("/workmate/codicefiscale");
-            XmlNode clientserver = xml_doc.DocumentElement.SelectSingleNode("/workmate/clientserver");
-            XmlNode ip = xml_doc.DocumentElement.SelectSingleNode("/workmate/ip");
             impostazioni[0] = azienda.InnerText;
             impostazioni[1] = indirizzo.InnerText;
             impostazioni[2] = cap.InnerText;
@@ -646,8 +630,8 @@ namespace Workmate
             impostazioni[4] = piva.InnerText;
             impostazioni[5] = codicefiscale.InnerText;
             impostazioni[6] = paese.InnerText;
-            impostazioni[7] = clientserver.InnerText;
-            impostazioni[8] = ip.InnerText;
+            impostazioni[7] = Properties.Settings.Default.cs.ToString();
+            impostazioni[8] = Properties.Settings.Default.ip;
             azienda_lbl.Text = azienda.InnerText;
             ind_lbl.Text = indirizzo.InnerText;
             paese_lbl.Text = paese.InnerText;
@@ -843,7 +827,7 @@ namespace Workmate
             cf_txt.Text =impostazioni[4];
             piva_txt.Text = impostazioni[5];
             ip_text.Text = impostazioni[8];
-            if (impostazioni[7] == "true")
+            if (Properties.Settings.Default.cs == true)
             {
                 client_server_ckb.Checked = true;
                 ip_text.Visible = true;
@@ -1393,8 +1377,6 @@ namespace Workmate
             XmlNode prov = xml_doc.DocumentElement.SelectSingleNode("/workmate/prov");
             XmlNode piva = xml_doc.DocumentElement.SelectSingleNode("/workmate/piva");
             XmlNode codicefiscale = xml_doc.DocumentElement.SelectSingleNode("/workmate/codicefiscale");
-            XmlNode clientserver = xml_doc.DocumentElement.SelectSingleNode("/workmate/clientserver");
-            XmlNode ip = xml_doc.DocumentElement.SelectSingleNode("/workmate/ip");
             azienda.InnerText = azienda_txt.Text;
             indirizzo.InnerText = indirizzo_txt.Text;
             paese.InnerText = paese_txt.Text;
@@ -1402,11 +1384,11 @@ namespace Workmate
             prov.InnerText = prov_txt.Text;
             piva.InnerText = piva_txt.Text;
             codicefiscale.InnerText = cf_txt.Text;
-            ip.InnerText = ip_text.Text;
+            Properties.Settings.Default.ip = ip_text.Text;
             if (client_server_ckb.Checked)
-                clientserver.InnerText = "true";
+                Properties.Settings.Default.cs = true;
             else
-                clientserver.InnerText = "false";
+                Properties.Settings.Default.cs = false;
             xml_doc.Save(var.db + "workmate.xml");
             if (bootstart_ckb.Checked)
             {
