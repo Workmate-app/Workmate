@@ -109,9 +109,16 @@ namespace Workmate
                 }
                 else
                 {
-                    client.Send("Magazzino aggiornato");
-                    carica_codici();
-                    var.ended = false;
+                    try
+                    {
+                        carica_codici();
+                        var.ended = false;
+                        client.Send("Magazzino aggiornato");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Impossibile comunicare con il server!","Attenzione!");
+                    }
                 }
             }
             else if (prod == true && var.ended == true)
@@ -124,9 +131,16 @@ namespace Workmate
                 }
                 else
                 {
-                    client.Send("Prodotti aggiornati");
-                    carica_prodotti();
-                    var.ended = false;
+                    try
+                    {
+                        carica_prodotti();
+                        var.ended = false;
+                        client.Send("Prodotti aggiornati");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Impossibile comunicare con il server!", "Attenzione!");
+                    }
                 }
             }
             else if (clienti == true && var.ended == true)
@@ -139,9 +153,16 @@ namespace Workmate
                 }
                 else
                 {
-                    client.Send("Clienti aggiornati");
-                    carica_clienti();
-                    var.ended = false;
+                    try
+                    {
+                        carica_clienti();
+                        var.ended = false;
+                        client.Send("Clienti aggiornati");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Impossibile comunicare con il server!", "Attenzione!");
+                    }
                 }
             }
             else if(acquisti== true && var.ended == true)
@@ -157,12 +178,19 @@ namespace Workmate
                 }
                 else
                 {
-                    client.Send("Acquisti aggiornati");
-                    carica_acquisti();
-                    mostra_avviso = false;
-                    carica_codici();
-                    mostra_avviso = true;
-                    var.ended = false;
+                    try
+                    {
+                        carica_acquisti();
+                        mostra_avviso = false;
+                        carica_codici();
+                        mostra_avviso = true;
+                        var.ended = false;
+                        client.Send("Acquisti aggiornati");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Impossibile comunicare con il server!", "Attenzione!");
+                    }
                 }
             }
             else if (var.ended == true)
@@ -180,10 +208,17 @@ namespace Workmate
                 }
                 else
                 {
-                    client.Send("Ordini aggiornati");
-                    carica_ordini();
-                    carica_codici();
-                    var.ended = false;
+                    try
+                    {
+                        carica_ordini();
+                        carica_codici();
+                        var.ended = false;
+                        client.Send("Ordini aggiornati");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Impossibile comunicare con il server!", "Attenzione!");
+                    }
                 }
             }
         }
@@ -1075,8 +1110,17 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare il codice");
                     }
                     carica_codici();
-                    if(cs==true)
-                        client.Send("Magazzino aggiornato");
+                    if (cs == true)
+                    {
+                        try
+                        {
+                            client.Send("Magazzino aggiornato");
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Impossibile comunicare con il server!", "Attenzione!");
+                        }
+                    }
                 }
             }else if (prod == true)
             {
@@ -1101,8 +1145,17 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare il prodotto");
                     }
                     carica_prodotti();
-                    if(cs==true)
-                        client.Send("Prodotti aggiornati");
+                    if (cs == true)
+                    {
+                        try
+                        {
+                            client.Send("Prodotti aggiornati");
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Impossibile comunicare con il server!", "Attenzione!");
+                        }
+                    }
                 }
             }
             else if (clienti == true)
@@ -1120,8 +1173,17 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare il cliente");
                     }
                     carica_clienti();
-                    if(cs==true)
-                        client.Send("Clienti aggiornati");
+                    if (cs == true)
+                    {
+                        try
+                        {
+                            client.Send("Clienti aggiornati");
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Impossibile comunicare con il server!", "Attenzione!");
+                        }
+                    }
                 }
             }else if (acquisti == true)
             {
@@ -1152,8 +1214,17 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare l'acquisto");
                     }
                     carica_acquisti();
-                    if(cs==true)
-                        client.Send("Acquisti aggiornati");
+                    if (cs == true)
+                    {
+                        try
+                        {
+                            client.Send("Acquisti aggiornati");
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Impossibile comunicare con il server!", "Attenzione!");
+                        }
+                    }
                 }
             }
             else
@@ -1195,8 +1266,17 @@ namespace Workmate
                         MessageBox.Show(ex.Message, " Impossibile eliminare l'ordine");
                     }
                     carica_ordini();
-                    if(cs==true)
-                        client.Send("Ordini aggiornati");
+                    if (cs == true)
+                    {
+                        try
+                        {
+                            client.Send("Ordini aggiornati");
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Impossibile comunicare con il server!", "Attenzione!");
+                        }
+                    }
                 }
             }
         }
